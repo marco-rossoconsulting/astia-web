@@ -25,7 +25,7 @@ slug:
 
 collections:
   # ============================================================================
-  # PAGES — i18n single_file structure
+  # PAGES — raw object structure matching the JSON exactly (NO i18n field magic)
   # ============================================================================
   - name: pages
     label: "Pages"
@@ -36,54 +36,85 @@ collections:
       - name: journal-index
         label: "Journal Index Page"
         file: src/content/pages/journal-index.json
-        i18n: true
         fields:
           - label: "SEO"
             name: seo
             widget: object
             fields:
-              - { label: "Meta Title", name: title, widget: string, i18n: true }
-              - { label: "Meta Description", name: description, widget: text, i18n: true }
+              - label: "Meta Title"
+                name: title
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Meta Description"
+                name: description
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
               - { label: "OG Image", name: ogImage, widget: image, required: false }
-              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
+              - label: "OG Image Alt Text"
+                name: ogImageAlt
+                widget: object
+                required: false
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
           - label: "Hero"
             name: hero
             widget: object
             fields:
-              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
-              - { label: "Title", name: titlePre, widget: string, i18n: true }
-              - { label: "Lede", name: lede, widget: text, i18n: true }
+              - label: "Eyebrow"
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Title"
+                name: titlePre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
           - label: "Labels"
             name: labels
             widget: object
             fields:
-              - { label: "Read more", name: readMore, widget: string, i18n: true }
-              - { label: "Back to Journal", name: backToJournal, widget: string, i18n: true }
-              - { label: "Translation note", name: translationNote, widget: text, required: false, i18n: true }
-
-      - name: home
-        label: "Home Page"
-        file: src/content/pages/home.json
-        i18n: true
-        fields:
-          - label: "SEO"
-            name: seo
-            widget: object
-            fields:
-              - { label: "Meta Title", name: title, widget: string, i18n: true }
-              - { label: "Meta Description", name: description, widget: text, i18n: true }
-              - { label: "OG Image", name: ogImage, widget: image, required: false }
-              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
-          - label: "Hero"
-            name: hero
-            widget: object
-            fields:
-              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
-              - { label: "Headline — pre-italic", name: preEm, widget: string, i18n: true }
-              - { label: "Headline — italic", name: em, widget: string, i18n: true }
-              - { label: "Headline — post-italic", name: post, widget: string, i18n: true }
-              - { label: "Lede", name: lede, widget: text, i18n: true }
-              - { label: "Capacity claim", name: capacity, widget: string, i18n: true }
+              - label: "Read more"
+                name: readMore
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Back to Journal"
+                name: backToJournal
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Translation note"
+                name: translationNote
+                widget: object
+                required: false
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
 
   # ============================================================================
   # ARTICLES
