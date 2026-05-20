@@ -30,7 +30,6 @@ collections:
   - name: pages
     label: "Pages"
     label_singular: "Page"
-    i18n: true
     editor:
       preview: false
     files:
@@ -558,7 +557,6 @@ collections:
   # ============================================================================
   - name: site
     label: "Site Settings"
-    i18n: true
     files:
       - name: general
         label: "Brand, Nav, Footer, Social"
