@@ -27,7 +27,8 @@ const url = (p: string) => {
   return prefix + paths[p];
 };
 
-// Build comparison rows for the table
+// Build comparison rows and headers for the table
+const cmpHeaders = d.comparison.headers[lang].map((h: any) => h.header || h);
 const cmpRows = d.comparison.rows.map((r: any) => ({
   label: r.label[lang],
   agency: r.agency[lang],
@@ -143,7 +144,7 @@ const managedPrices = [
     </h2>
     <p class="body" style="max-width:580px; margin-bottom:48px;">{d.comparison.intro[lang]}</p>
 
-    <ComparisonTable headers={d.comparison.headers[lang]} rows={cmpRows} />
+    <ComparisonTable headers={cmpHeaders} rows={cmpRows} />
 
     <div style="margin-top:36px;">
       <a class="btn btn-ghost btn-arrow" href={url('how')}>{d.comparison.ctaTech[lang]}</a>

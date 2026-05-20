@@ -249,9 +249,9 @@
       "it": "Il confronto onesto. I numeri sono medie del settore — da benchmark pubblici, dal nostro lavoro, e da vent'anni di prezzi web per hotel."
     },
     "headers": {
-      "en": ["", "Web agency", "Wix / Squarespace", "Astia Web"],
-      "de": ["", "Web-Agentur", "Wix / Squarespace", "Astia Web"],
-      "it": ["", "Agenzia web", "Wix / Squarespace", "Astia Web"]
+      "en": [{"header": ""}, {"header": "Web agency"}, {"header": "Wix / Squarespace"}, {"header": "Astia Web"}],
+      "de": [{"header": ""}, {"header": "Web-Agentur"}, {"header": "Wix / Squarespace"}, {"header": "Astia Web"}],
+      "it": [{"header": ""}, {"header": "Agenzia web"}, {"header": "Wix / Squarespace"}, {"header": "Astia Web"}]
     },
     "rows": [
       {
