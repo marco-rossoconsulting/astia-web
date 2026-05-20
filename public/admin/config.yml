@@ -50,7 +50,7 @@ collections:
                   - { label: "It", name: it, widget: text }
               - label: "Ogimage"
                 name: ogImage
-                widget: string
+                widget: image
               - label: "Ogimagealt"
                 name: ogImageAlt
                 widget: object
@@ -253,7 +253,7 @@ collections:
             fields:
               - label: "Image"
                 name: image
-                widget: string
+                widget: image
               - label: "Alt"
                 name: alt
                 widget: object
@@ -689,7 +689,7 @@ collections:
                   - { label: "It", name: it, widget: text }
               - label: "Ogimage"
                 name: ogImage
-                widget: string
+                widget: image
               - label: "Ogimagealt"
                 name: ogImageAlt
                 widget: object
@@ -774,7 +774,7 @@ collections:
                   - { label: "It", name: it, widget: text }
               - label: "Ogimage"
                 name: ogImage
-                widget: string
+                widget: image
               - label: "Ogimagealt"
                 name: ogImageAlt
                 widget: object
@@ -1128,7 +1128,7 @@ collections:
                   - { label: "It", name: it, widget: text }
               - label: "Ogimage"
                 name: ogImage
-                widget: string
+                widget: image
               - label: "Ogimagealt"
                 name: ogImageAlt
                 widget: object
@@ -1609,7 +1609,7 @@ collections:
                   - { label: "It", name: it, widget: text }
               - label: "Ogimage"
                 name: ogImage
-                widget: string
+                widget: image
               - label: "Ogimagealt"
                 name: ogImageAlt
                 widget: object
@@ -1829,7 +1829,7 @@ collections:
             fields:
               - label: "Image"
                 name: image
-                widget: string
+                widget: image
               - label: "Alt"
                 name: alt
                 widget: object
