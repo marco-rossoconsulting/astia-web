@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/astia-web
+  repo: marcorosso-labs/Astia-Web-Site
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: oauth/auth
@@ -8,9 +8,9 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 
-site_url: https://astiaweb.com
-display_url: https://astiaweb.com
-logo_url: https://astiaweb.com/favicon.svg
+site_url: https://astiaweb.netlify.app
+display_url: https://astiaweb.netlify.app
+logo_url: https://astiaweb.netlify.app/favicon.svg
 
 i18n:
   locales: [en, de, it]
