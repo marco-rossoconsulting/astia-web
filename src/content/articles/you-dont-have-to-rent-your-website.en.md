@@ -1,6 +1,6 @@
 ---
 title: "You don't have to rent your website. A practical guide to owning your code."
-slug: you-dont-have-to-rent-your-website-en
+route: you-dont-have-to-rent-your-website-en
 lang: en
 excerpt: "When you pay Wix or Squarespace every month, you are paying rent. Stop paying and the site disappears. Owning your website code is not just for developers — and in 2026 it costs less than renting."
 tag: Ownership

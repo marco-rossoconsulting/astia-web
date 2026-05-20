@@ -1,6 +1,6 @@
 ---
 title: "Sie müssen Ihre Website nicht mieten. Ein praktischer Leitfaden zum Eigentum am Code."
-slug: you-dont-have-to-rent-your-website-de
+route: you-dont-have-to-rent-your-website-de
 lang: de
 excerpt: "Wenn Sie monatlich Wix oder Squarespace bezahlen, zahlen Sie Miete. Hören Sie auf zu zahlen, und die Seite verschwindet."
 tag: Ownership

@@ -1,6 +1,6 @@
 ---
 title: "Connect anything. The case for open hosting and APIs in 2026."
-slug: connect-anything-open-platforms-2026-en
+route: connect-anything-open-platforms-2026-en
 lang: en
 excerpt: "Walled-garden website builders made one thing easy and everything else nearly impossible. The hotel that wants to integrate its booking engine, CRM, revenue management, and guest messaging needs an architecture designed to connect — not one designed to lock in."
 tag: Architecture

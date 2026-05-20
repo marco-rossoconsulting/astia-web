@@ -1,6 +1,6 @@
 ---
 title: "Das Ende der 30.000 €-Hotel-Website. Und was sie ersetzt hat."
-slug: thirty-thousand-website-is-over-de
+route: thirty-thousand-website-is-over-de
 lang: de
 excerpt: "Ein Boutique-Hotel mit 30 Zimmern zahlte 2015 einer Agentur 25.000–40.000 € für eine Website, die fünf Monate dauerte und schon in zwei Jahren veraltet wirkte. 2026 lässt sich dieselbe Seite in drei Wochen für weniger als die Anzahlung der Agentur bauen."
 tag: Economics

@@ -1,6 +1,6 @@
 ---
 title: "Vibe coding, agenti IA, e la nuova economia dei siti per piccole imprese."
-slug: vibe-coding-and-the-new-economics-it
+route: vibe-coding-and-the-new-economics-it
 lang: it
 excerpt: "Due anni fa, costruire un sito richiedeva ingegneria. Oggi richiede soprattutto gusto."
 tag: AI Era

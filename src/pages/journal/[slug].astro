@@ -5,7 +5,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 export async function getStaticPaths() {
   const articles = await getCollection('articles', (entry) => entry.data.lang === 'en' && entry.data.published);
   return articles.map(article => ({
-    params: { slug: article.data.slug },
+    params: { slug: article.data.route },
     props: { article },
   }));
 }
@@ -29,7 +29,7 @@ const seo = {
   },
 };
 
-const currentPath = `/journal/${article.data.slug}`;
+const currentPath = `/journal/${article.data.route}`;
 const backUrl = '/journal';
 const translationNote = j.labels.translationNote[lang];
 ---
