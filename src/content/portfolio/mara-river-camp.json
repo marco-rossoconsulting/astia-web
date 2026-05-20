@@ -1,0 +1,21 @@
+{
+  "order": 2,
+  "tag": {
+    "en": "Tented camp · 2024",
+    "de": "Zeltcamp · 2024",
+    "it": "Tented camp · 2024"
+  },
+  "title": "Mara River Camp",
+  "subtitle": {
+    "en": "On the path of the great migration",
+    "de": "An der Route der grossen Migration",
+    "it": "Sul percorso della grande migrazione"
+  },
+  "image": "/images/portfolio-mara.jpg",
+  "imageAlt": {
+    "en": "Mara River Camp tented accommodation overlooking the great migration route",
+    "de": "Mara River Camp Zeltunterkunft mit Blick auf die grosse Migrationsroute",
+    "it": "Tenda del Mara River Camp che si affaccia sulla rotta della grande migrazione"
+  },
+  "url": ""
+}

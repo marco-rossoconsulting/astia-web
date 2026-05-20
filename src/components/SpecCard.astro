@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  us: string;
+  them: string;
+}
+const { label, us, them } = Astro.props;
+---
+<div class="spec-card">
+  <div class="spec-label">{label}</div>
+  <div class="spec-us">{us}</div>
+  <div class="spec-them">{them}</div>
+</div>

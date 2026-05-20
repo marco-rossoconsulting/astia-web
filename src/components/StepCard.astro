@@ -1,0 +1,16 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  days: string;
+  body: string;
+  accent?: boolean;
+}
+const { num, title, days, body, accent = false } = Astro.props;
+---
+<div class={`step-card ${accent ? 'accent' : ''}`}>
+  <span class="step-num">{num}</span>
+  <h3 class="step-title">{title}</h3>
+  <div class="step-days">{days}</div>
+  <p class="step-body">{body}</p>
+</div>

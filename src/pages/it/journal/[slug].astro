@@ -1,0 +1,60 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', (entry) => entry.data.lang === 'it' && entry.data.published);
+  return articles.map(article => ({
+    params: { slug: article.data.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const lang = 'it' as 'en' | 'de' | 'it';
+const journal = await getEntry('pages', 'journal-index');
+const j = journal.data as any;
+const { Content } = await article.render();
+
+const seo = {
+  title: {
+    en: article.data.title,
+    de: article.data.title,
+    it: article.data.title,
+  },
+  description: {
+    en: article.data.excerpt,
+    de: article.data.excerpt,
+    it: article.data.excerpt,
+  },
+};
+
+const currentPath = `/it/journal/${article.data.slug}`;
+const backUrl = '/it/journal';
+const translationNote = j.labels.translationNote[lang];
+---
+<BaseLayout lang={lang} page="article" seo={seo} currentPath={currentPath}>
+  <section class="section" style="padding-top:80px; padding-bottom:100px;">
+    <div class="container-narrow">
+      <a href={backUrl} style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--rosso); margin-bottom:48px; display:inline-block;">
+        ← {j.labels.backToJournal[lang]}
+      </a>
+
+      <article class="article-body">
+        <div class="article-meta-row">
+          <span class="article-card-tag">{article.data.tag}</span>
+          <span class="article-card-date">{article.data.date}</span>
+          <span class="article-card-date">{article.data.readingTime}</span>
+        </div>
+
+        <h1>{article.data.title}</h1>
+
+        {translationNote && (
+          <p class="article-translation-note">{translationNote}</p>
+        )}
+
+        <Content />
+      </article>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,38 @@
+{
+  "seo": {
+    "title": {
+      "en": "Journal · Astia Web",
+      "de": "Journal · Astia Web",
+      "it": "Journal · Astia Web"
+    },
+    "description": {
+      "en": "Notes from inside the shift. Short essays on what changed in web development, why hotel websites still cost a fortune, and what the AI era actually means for independent operators.",
+      "de": "Notizen aus dem Wandel. Kurze Essays darüber, was sich in der Webentwicklung geändert hat, warum Hotel-Websites immer noch ein Vermögen kosten, und was die KI-Ära für unabhängige Betreiber bedeutet.",
+      "it": "Note dall'interno del cambiamento. Brevi saggi su cosa è cambiato nello sviluppo web, perché i siti degli hotel costano ancora una fortuna, e cosa significa l'era dell'IA per gli operatori indipendenti."
+    },
+    "ogImage": "/images/og-journal.jpg",
+    "ogImageAlt": {
+      "en": "The Astia Journal",
+      "de": "Das Astia Journal",
+      "it": "Il Journal di Astia"
+    }
+  },
+  "hero": {
+    "eyebrow": { "en": "The Astia Journal", "de": "Das Astia Journal", "it": "Il Journal di Astia" },
+    "titlePre": { "en": "Notes from inside the shift", "de": "Notizen aus dem Wandel", "it": "Note dall'interno del cambiamento" },
+    "lede": {
+      "en": "Short essays on what changed in web development, why hotel websites still cost a fortune, and what the AI era actually means for independent operators. Updated when there is something worth saying.",
+      "de": "Kurze Essays darüber, was sich in der Webentwicklung geändert hat, warum Hotel-Websites immer noch ein Vermögen kosten, und was die KI-Ära für unabhängige Betreiber wirklich bedeutet. Aktualisiert, wenn es etwas zu sagen gibt.",
+      "it": "Brevi saggi su cosa è cambiato nello sviluppo web, perché i siti degli hotel costano ancora una fortuna, e cosa significa davvero l'era dell'IA per gli operatori indipendenti. Aggiornato quando c'è qualcosa che vale la pena dire."
+    }
+  },
+  "labels": {
+    "readMore": { "en": "Read", "de": "Lesen", "it": "Leggi" },
+    "backToJournal": { "en": "Back to Journal", "de": "Zurück zum Journal", "it": "Torna al Journal" },
+    "translationNote": {
+      "en": "",
+      "de": "Dieser Artikel ist derzeit nur auf Englisch verfügbar. Vollständige deutsche Übersetzung folgt in Kürze.",
+      "it": "Questo articolo è attualmente disponibile solo in inglese. La versione italiana completa sarà disponibile a breve."
+    }
+  }
+}

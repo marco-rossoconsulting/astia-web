@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PricingContent from '@components/page-content/PricingContent.astro';
+import { getEntry } from 'astro:content';
+
+const lang = 'de' as 'en' | 'de' | 'it';
+const page = await getEntry('pages', 'pricing');
+const seo = page.data.seo;
+---
+<BaseLayout lang={lang} page="pricing" seo={seo} currentPath="/de/pricing">
+  <PricingContent lang={lang} />
+</BaseLayout>

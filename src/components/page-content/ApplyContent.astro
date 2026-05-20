@@ -1,0 +1,122 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props { lang: 'en' | 'de' | 'it'; }
+const { lang } = Astro.props;
+
+const apply = await getEntry('pages', 'apply');
+const d = apply.data as any;
+const f = d.form;
+---
+{/* HERO */}
+<section class="section" style="padding-top:110px; padding-bottom:56px;">
+  <div class="container-narrow">
+    <span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span>
+    <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
+      {d.hero.headlinePre[lang]}<span class="editorial-i">{d.hero.headlineEm[lang]}</span>{d.hero.headlinePost[lang]}
+    </h1>
+    <p class="lede" style="margin-bottom:14px;">{d.hero.lede[lang]}</p>
+    <p class="body-sm">{d.hero.subnote[lang]}</p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* FORM */}
+<section class="section">
+  <div class="container-narrow">
+    <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you">
+      <input type="hidden" name="form-name" value="apply" />
+      <input type="hidden" name="lang" value={lang} />
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+      {/* Property section */}
+      <div class="form-section">
+        <span class="form-section-title">{f.sections.property[lang]}</span>
+
+        <div class="form-field">
+          <label class="form-label">{f.fields.propertyName.label[lang]} *</label>
+          <input class="form-input" type="text" name="propertyName" required />
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label class="form-label">{f.fields.propertyType.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+            <select class="form-select" name="propertyType">
+              <option value=""></option>
+              {f.fields.propertyType.options[lang].map((o: string) => <option value={o}>{o}</option>)}
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">{f.fields.rooms.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+            <select class="form-select" name="rooms">
+              <option value=""></option>
+              {f.fields.rooms.options[lang].map((o: string) => <option value={o}>{o}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">{f.fields.location.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+          <input class="form-input" type="text" name="location" />
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label class="form-label">{f.fields.website.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+            <input class="form-input" type="url" name="website" placeholder="https://" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">{f.fields.bookingEngine.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+            <input class="form-input" type="text" name="bookingEngine" />
+          </div>
+        </div>
+      </div>
+
+      {/* Broken section */}
+      <div class="form-section">
+        <span class="form-section-title">{f.sections.broken[lang]}</span>
+
+        <div class="form-field">
+          <label class="form-label">{f.fields.whatsBroken.label[lang]} *</label>
+          <textarea class="form-textarea" name="whatsBroken" required placeholder={f.fields.whatsBroken.placeholder[lang]}></textarea>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">{f.fields.goal.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+          <textarea class="form-textarea" name="goal" placeholder={f.fields.goal.placeholder[lang]}></textarea>
+        </div>
+      </div>
+
+      {/* You section */}
+      <div class="form-section">
+        <span class="form-section-title">{f.sections.you[lang]}</span>
+
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label class="form-label">{f.fields.name.label[lang]} *</label>
+            <input class="form-input" type="text" name="name" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label">{f.fields.role.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
+            <input class="form-input" type="text" name="role" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label class="form-label">{f.fields.email.label[lang]} *</label>
+            <input class="form-input" type="email" name="email" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label">{f.fields.phone.label[lang]}</label>
+            <input class="form-input" type="tel" name="phone" />
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-arrow">{f.submit[lang]}</button>
+    </form>
+  </div>
+</section>

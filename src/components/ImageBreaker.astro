@@ -1,0 +1,16 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  attribution?: string;
+}
+const { src, alt, caption, attribution } = Astro.props;
+---
+<section class="img-breaker">
+  <img src={src} alt={alt} loading="lazy" />
+  <div class="img-breaker-overlay">
+    <p class="img-breaker-caption">{caption}</p>
+  </div>
+  {attribution && <span class="img-breaker-attribution">{attribution}</span>}
+</section>

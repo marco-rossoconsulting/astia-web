@@ -1,0 +1,327 @@
+{
+  "seo": {
+    "title": {
+      "en": "How it works · Astia Web",
+      "de": "So funktioniert es · Astia Web",
+      "it": "Come funziona · Astia Web"
+    },
+    "description": {
+      "en": "AI-managed means something specific. The lifecycle, the build process, the technical case, and what's included in every Astia subscription.",
+      "de": "AI-verwaltet bedeutet etwas Konkretes. Der Lebenszyklus, der Bauprozess, der technische Fall und was in jedem Astia-Abonnement enthalten ist.",
+      "it": "Gestito dall'IA significa qualcosa di preciso. Il ciclo di vita, il processo di costruzione, il caso tecnico e cosa è incluso in ogni abbonamento Astia."
+    },
+    "ogImage": "/images/og-how.jpg",
+    "ogImageAlt": {
+      "en": "How Astia Web works",
+      "de": "So funktioniert Astia Web",
+      "it": "Come funziona Astia Web"
+    }
+  },
+  "hero": {
+    "eyebrow": {
+      "en": "How it works",
+      "de": "So funktioniert es",
+      "it": "Come funziona"
+    },
+    "headlinePre": { "en": "", "de": "", "it": "" },
+    "headlineEm": {
+      "en": "AI-managed",
+      "de": "AI-verwaltet",
+      "it": "Gestito dall'IA"
+    },
+    "headlinePost": {
+      "en": " means something specific.",
+      "de": " bedeutet etwas Konkretes.",
+      "it": " significa qualcosa di preciso."
+    },
+    "lede": {
+      "en": "Every Astia site goes through the same lifecycle: you tell us what to change, an AI agent drafts the change, we review it, and Netlify deploys it. That loop runs on every property we manage. Here is what each step looks like in practice.",
+      "de": "Jede Astia-Seite durchläuft denselben Lebenszyklus: Sie sagen uns, was sich ändern soll, ein AI-Agent entwirft die Änderung, wir prüfen sie, und Netlify deployt sie. Diese Schleife läuft für jedes Haus, das wir betreuen. So sieht jeder Schritt in der Praxis aus.",
+      "it": "Ogni sito Astia segue lo stesso ciclo: voi dite cosa cambiare, un agente IA prepara la modifica, noi la rivediamo, Netlify la pubblica. Questo loop funziona per ogni struttura che gestiamo. Ecco come si presenta ogni passaggio in pratica."
+    }
+  },
+  "lifecycle": {
+    "num": {
+      "en": "01 — The lifecycle",
+      "de": "01 — Der Lebenszyklus",
+      "it": "01 — Il ciclo di vita"
+    },
+    "h2pre": { "en": "How a change ", "de": "Wie eine Änderung ", "it": "Come una modifica " },
+    "h2em": { "en": "actually happens.", "de": "wirklich geschieht.", "it": "accade davvero." },
+    "items": [
+      {
+        "num": "01",
+        "title": { "en": "You", "de": "Sie", "it": "Voi" },
+        "body": {
+          "en": "Email, WhatsApp, or directly in the CMS — you describe what needs to change. \"Add the new tasting menu.\" \"Update the rates for August.\" \"The contact page address is wrong.\" Any channel that reaches us works.",
+          "de": "E-Mail, WhatsApp oder direkt im CMS — Sie beschreiben, was sich ändern soll. „Neues Tasting-Menü hinzufügen.\" „Tarife für August aktualisieren.\" „Die Adresse auf der Kontaktseite ist falsch.\" Jeder Kanal, der uns erreicht, funktioniert.",
+          "it": "Email, WhatsApp o direttamente nel CMS — descrivete cosa serve cambiare. \"Aggiungete il nuovo menu degustazione.\" \"Aggiornate le tariffe di agosto.\" \"L'indirizzo nella pagina contatti è sbagliato.\" Qualsiasi canale che ci raggiunge funziona."
+        }
+      },
+      {
+        "num": "02",
+        "title": { "en": "AI agent", "de": "AI-Agent", "it": "Agente IA" },
+        "body": {
+          "en": "Our AI agent reads your request, opens your repository, drafts the change as a Git commit, and pushes it to a preview branch. This typically happens within an hour. The agent never deploys to production directly.",
+          "de": "Unser AI-Agent liest Ihre Anfrage, öffnet Ihr Repository, entwirft die Änderung als Git-Commit und pusht sie in einen Preview-Branch. Das geschieht in der Regel innerhalb einer Stunde. Der Agent deployt nie direkt in die Produktion.",
+          "it": "Il nostro agente IA legge la richiesta, apre il vostro repository, prepara la modifica come commit Git e la pubblica su un branch di preview. Di solito entro un'ora. L'agente non pubblica mai direttamente in produzione."
+        }
+      },
+      {
+        "num": "03",
+        "title": { "en": "Marco", "de": "Marco", "it": "Marco" },
+        "body": {
+          "en": "A human reviews every agent change before it goes live. We check the copy, the layout impact, the SEO. If something looks off, we adjust it or send it back. Most changes pass review in under five minutes.",
+          "de": "Ein Mensch prüft jede Agent-Änderung, bevor sie live geht. Wir kontrollieren den Text, die Layout-Auswirkungen, das SEO. Wenn etwas nicht stimmt, passen wir es an oder schicken es zurück. Die meisten Änderungen sind in unter fünf Minuten freigegeben.",
+          "it": "Una persona rivede ogni modifica dell'agente prima che vada online. Controlliamo il testo, l'impatto sul layout, il SEO. Se qualcosa non torna, lo correggiamo o lo rimandiamo indietro. La maggior parte delle modifiche passa la revisione in meno di cinque minuti."
+        }
+      },
+      {
+        "num": "04",
+        "title": { "en": "Netlify", "de": "Netlify", "it": "Netlify" },
+        "body": {
+          "en": "Once approved, Netlify builds the site, runs the optimisations, and deploys to a global edge network. Your visitors see the change within two minutes of approval. Performance scores are unchanged. Nothing else moves.",
+          "de": "Nach Freigabe baut Netlify die Seite, führt die Optimierungen durch und deployt in ein globales Edge-Netzwerk. Ihre Besucher sehen die Änderung innerhalb von zwei Minuten nach Freigabe. Die Performance-Werte bleiben unverändert. Sonst bewegt sich nichts.",
+          "it": "Dopo l'approvazione, Netlify compila il sito, applica le ottimizzazioni e pubblica su una rete edge globale. I vostri visitatori vedono la modifica entro due minuti dall'approvazione. I punteggi di performance restano invariati. Nient'altro si muove."
+        }
+      }
+    ]
+  },
+  "build": {
+    "num": {
+      "en": "02 — The build",
+      "de": "02 — Der Bau",
+      "it": "02 — La costruzione"
+    },
+    "h2pre": { "en": "From signed contract to ", "de": "Vom unterzeichneten Vertrag bis zum ", "it": "Dal contratto firmato al " },
+    "h2em": { "en": "live site.", "de": "Live-Auftritt.", "it": "sito live." },
+    "intro": {
+      "en": "Two to three weeks. Four phases. You see the work at every stage. The build is a fixed-scope project; the maintenance afterwards is the subscription.",
+      "de": "Zwei bis drei Wochen. Vier Phasen. Sie sehen die Arbeit in jeder Phase. Der Bau ist ein Projekt mit festem Umfang; die anschliessende Wartung ist das Abonnement.",
+      "it": "Due o tre settimane. Quattro fasi. Vedete il lavoro in ogni fase. La costruzione è un progetto a scope fisso; la manutenzione successiva è l'abbonamento."
+    },
+    "phases": [
+      {
+        "n": "01",
+        "days": { "en": "Day 1–3", "de": "Tag 1–3", "it": "Giorno 1–3" },
+        "title": { "en": "Discovery", "de": "Discovery", "it": "Discovery" },
+        "body": {
+          "en": "We learn your property — the rooms, the rates, the booking engine, the brand voice, the photography you have. We audit your current site if there is one. We agree on the scope and the launch date.",
+          "de": "Wir lernen Ihr Haus kennen — die Zimmer, die Tarife, das Buchungssystem, die Markenstimme, die vorhandene Fotografie. Wir auditieren Ihre aktuelle Seite, falls vorhanden. Wir einigen uns auf Umfang und Launch-Datum.",
+          "it": "Conosciamo la vostra struttura — le camere, le tariffe, il booking engine, la voce del brand, le fotografie esistenti. Facciamo un audit del sito attuale, se c'è. Concordiamo lo scope e la data di lancio."
+        }
+      },
+      {
+        "n": "02",
+        "days": { "en": "Day 4–10", "de": "Tag 4–10", "it": "Giorno 4–10" },
+        "title": { "en": "Design", "de": "Design", "it": "Design" },
+        "body": {
+          "en": "We design the homepage and one inner page as full mockups. You see them, you give notes, we iterate. Once approved, the rest of the site follows the same system. No surprises later.",
+          "de": "Wir entwerfen die Startseite und eine Unterseite als vollständige Mockups. Sie sehen sie, geben Anmerkungen, wir iterieren. Nach Freigabe folgt der Rest der Seite demselben System. Keine Überraschungen später.",
+          "it": "Disegniamo l'homepage e una pagina interna come mockup completi. Voi li vedete, date riscontri, iteriamo. Una volta approvati, il resto del sito segue lo stesso sistema. Nessuna sorpresa dopo."
+        }
+      },
+      {
+        "n": "03",
+        "days": { "en": "Day 11–17", "de": "Tag 11–17", "it": "Giorno 11–17" },
+        "title": { "en": "Build", "de": "Bau", "it": "Costruzione" },
+        "body": {
+          "en": "Astro project setup, all pages built, content migrated, booking engine integrated, performance tuned, SEO configured, multi-language scaffolding if applicable. You can review the staging URL at any point.",
+          "de": "Astro-Projekt-Setup, alle Seiten gebaut, Inhalte migriert, Buchungssystem integriert, Performance getunt, SEO konfiguriert, Mehrsprachen-Scaffolding falls anwendbar. Sie können die Staging-URL jederzeit ansehen.",
+          "it": "Setup del progetto Astro, tutte le pagine costruite, contenuti migrati, booking engine integrato, performance ottimizzate, SEO configurato, scaffolding multilingua se applicabile. Potete rivedere l'URL di staging in qualsiasi momento."
+        }
+      },
+      {
+        "n": "04",
+        "days": { "en": "Day 18–21", "de": "Tag 18–21", "it": "Giorno 18–21" },
+        "title": { "en": "Launch", "de": "Launch", "it": "Lancio" },
+        "body": {
+          "en": "Final QA, performance audit, accessibility check, SEO sweep. DNS cutover happens during a window you choose. Post-launch monitoring for the first 48 hours. Then the lifecycle begins.",
+          "de": "Finales QA, Performance-Audit, Accessibility-Check, SEO-Durchgang. Der DNS-Wechsel erfolgt in einem von Ihnen gewählten Fenster. Post-Launch-Monitoring für die ersten 48 Stunden. Dann beginnt der Lebenszyklus.",
+          "it": "QA finale, audit di performance, controllo accessibilità, sweep SEO. Il cambio DNS avviene in una finestra che scegliete voi. Monitoraggio post-lancio per le prime 48 ore. Poi inizia il ciclo di vita."
+        }
+      }
+    ]
+  },
+  "technical": {
+    "num": {
+      "en": "03 — The technical case",
+      "de": "03 — Der technische Fall",
+      "it": "03 — Il caso tecnico"
+    },
+    "h2pre": { "en": "Why ", "de": "Warum ", "it": "Perché " },
+    "h2em": { "en": "Astro.", "de": "Astro.", "it": "Astro." },
+    "intro": {
+      "en": "Astro is the framework behind some of the fastest websites on the public web — Google's own developer site, Netflix's job board, parts of NASA, Figma, Microsoft. It generates static HTML at build time, which means no database queries on every visit, no server-side code to attack, and no JavaScript downloaded by default.",
+      "de": "Astro ist das Framework hinter einigen der schnellsten Websites im öffentlichen Web — Googles eigene Entwicklerseite, Netflix' Job Board, Teile von NASA, Figma, Microsoft. Es generiert statisches HTML zur Bauzeit, was bedeutet: keine Datenbankabfragen bei jedem Besuch, kein angreifbarer serverseitiger Code und kein JavaScript, das standardmässig geladen wird.",
+      "it": "Astro è il framework dietro alcuni dei siti più veloci del web pubblico — il sito sviluppatori di Google, la job board di Netflix, parti di NASA, Figma, Microsoft. Genera HTML statico al momento della build, il che significa: nessuna query al database ad ogni visita, nessun codice server-side da attaccare, nessun JavaScript scaricato di default."
+    },
+    "specs": [
+      {
+        "label": {
+          "en": "First contentful paint",
+          "de": "First Contentful Paint",
+          "it": "First Contentful Paint"
+        },
+        "us": "0.7s",
+        "them": {
+          "en": "Industry average: 3.4s",
+          "de": "Branchendurchschnitt: 3,4s",
+          "it": "Media del settore: 3,4s"
+        }
+      },
+      {
+        "label": {
+          "en": "Total page weight",
+          "de": "Gesamte Seitengrösse",
+          "it": "Peso totale pagina"
+        },
+        "us": "~80 KB",
+        "them": {
+          "en": "WordPress average: 2.1 MB",
+          "de": "WordPress-Durchschnitt: 2,1 MB",
+          "it": "Media WordPress: 2,1 MB"
+        }
+      },
+      {
+        "label": {
+          "en": "Lighthouse performance",
+          "de": "Lighthouse-Performance",
+          "it": "Performance Lighthouse"
+        },
+        "us": "98–100",
+        "them": {
+          "en": "Hotel industry median: 42",
+          "de": "Hotelbranche-Median: 42",
+          "it": "Mediana settore hotel: 42"
+        }
+      },
+      {
+        "label": {
+          "en": "Time to deploy a change",
+          "de": "Zeit, eine Änderung zu deployen",
+          "it": "Tempo per pubblicare una modifica"
+        },
+        "us": {
+          "en": "< 2 min",
+          "de": "< 2 Min.",
+          "it": "< 2 min"
+        },
+        "them": {
+          "en": "Agency average: 3–14 days",
+          "de": "Agentur-Durchschnitt: 3–14 Tage",
+          "it": "Media agenzia: 3–14 giorni"
+        }
+      }
+    ]
+  },
+  "imageBreaker": {
+    "image": "/images/how-image-breaker.jpg",
+    "alt": {
+      "en": "A modern hotel reception, quiet in the morning",
+      "de": "Eine moderne Hotelrezeption, ruhig am Morgen",
+      "it": "Una moderna reception alberghiera, tranquilla al mattino"
+    },
+    "caption": {
+      "en": "The boring infrastructure choices are the ones that compound over years.",
+      "de": "Die langweiligen Infrastruktur-Entscheidungen sind diejenigen, die sich über Jahre auszahlen.",
+      "it": "Le scelte infrastrutturali noiose sono quelle che si accumulano negli anni."
+    },
+    "attribution": {
+      "en": "Astia · principle 02",
+      "de": "Astia · Prinzip 02",
+      "it": "Astia · principio 02"
+    }
+  },
+  "included": {
+    "num": {
+      "en": "04 — What's included",
+      "de": "04 — Was enthalten ist",
+      "it": "04 — Cosa è incluso"
+    },
+    "h2pre": { "en": "Every Astia subscription includes ", "de": "Jedes Astia-Abonnement umfasst ", "it": "Ogni abbonamento Astia include " },
+    "h2em": { "en": "the boring necessities.", "de": "die langweiligen Selbstverständlichkeiten.", "it": "le cose noiose ma necessarie." },
+    "columns": [
+      {
+        "title": { "en": "Hosting & infrastructure", "de": "Hosting & Infrastruktur", "it": "Hosting & infrastruttura" },
+        "items": {
+          "en": ["Global edge network (Netlify)", "SSL certificates, renewed automatically", "Daily backups, via Git", "DDoS protection at the CDN layer", "100% uptime SLA"],
+          "de": ["Globales Edge-Netzwerk (Netlify)", "SSL-Zertifikate, automatisch erneuert", "Tägliche Backups, via Git", "DDoS-Schutz auf CDN-Ebene", "100% Uptime-SLA"],
+          "it": ["Rete edge globale (Netlify)", "Certificati SSL, rinnovati automaticamente", "Backup quotidiani, tramite Git", "Protezione DDoS a livello CDN", "SLA di uptime al 100%"]
+        }
+      },
+      {
+        "title": { "en": "Security & maintenance", "de": "Sicherheit & Wartung", "it": "Sicurezza & manutenzione" },
+        "items": {
+          "en": ["No database to compromise", "No plugins to keep updated", "Quarterly performance audits", "Annual accessibility review", "Annual design check-in"],
+          "de": ["Keine Datenbank, die kompromittiert werden kann", "Keine Plugins, die aktualisiert werden müssen", "Vierteljährliche Performance-Audits", "Jährliche Accessibility-Review", "Jährlicher Design-Check"],
+          "it": ["Nessun database da compromettere", "Nessun plugin da aggiornare", "Audit di performance trimestrali", "Revisione annuale dell'accessibilità", "Check di design annuale"]
+        }
+      },
+      {
+        "title": { "en": "Content & editing", "de": "Inhalt & Bearbeitung", "it": "Contenuto & modifica" },
+        "items": {
+          "en": ["Sveltia CMS access", "Unlimited team members", "Multi-language editing", "Version history on every change", "Direct booking engine integration"],
+          "de": ["Sveltia CMS-Zugang", "Unbegrenzte Teammitglieder", "Mehrsprachige Bearbeitung", "Versionshistorie für jede Änderung", "Direktbuchung-Integration"],
+          "it": ["Accesso a Sveltia CMS", "Membri del team illimitati", "Modifica multilingua", "Cronologia delle modifiche", "Integrazione booking engine diretto"]
+        }
+      },
+      {
+        "title": { "en": "AI agents (Managed only)", "de": "AI-Agenten (nur Managed)", "it": "Agenti IA (solo Managed)" },
+        "items": {
+          "en": ["Email-to-edit workflow", "Booking system monitoring", "Automatic content drafts", "Human review on every change", "Response within 24 hours"],
+          "de": ["E-Mail-zu-Änderung-Workflow", "Buchungssystem-Überwachung", "Automatische Inhaltsentwürfe", "Menschliche Review bei jeder Änderung", "Antwort innerhalb von 24 Stunden"],
+          "it": ["Workflow email-to-edit", "Monitoraggio sistema di prenotazione", "Bozze di contenuto automatiche", "Revisione umana su ogni modifica", "Risposta entro 24 ore"]
+        }
+      }
+    ]
+  },
+  "bookingMath": {
+    "num": {
+      "en": "05 — The math",
+      "de": "05 — Die Rechnung",
+      "it": "05 — La matematica"
+    },
+    "h2pre": { "en": "What direct bookings ", "de": "Was Direktbuchungen ", "it": "Cosa le prenotazioni dirette " },
+    "h2em": { "en": "actually save.", "de": "wirklich sparen.", "it": "fanno davvero risparmiare." },
+    "stat": "CHF 3,240",
+    "statLabel": {
+      "en": "Saved per month",
+      "de": "Pro Monat gespart",
+      "it": "Risparmiati al mese"
+    },
+    "vs": {
+      "en": "vs. paying booking.com commission on 18 average bookings.",
+      "de": "ggü. Booking.com-Kommissionen auf 18 durchschnittlichen Buchungen.",
+      "it": "rispetto alle commissioni Booking.com su 18 prenotazioni medie."
+    },
+    "body": {
+      "en": "Assume a 30-room property, 65% occupancy, average rate CHF 240, 30% of bookings via OTAs at 15% commission. Shifting 18 of those bookings per month to direct via a fast website saves CHF 3,240/month. Astia Managed costs CHF 350/month. The math compounds.",
+      "de": "Annahme: ein 30-Zimmer-Haus, 65% Auslastung, Durchschnittsrate CHF 240, 30% der Buchungen über OTAs zu 15% Kommission. 18 dieser Buchungen pro Monat über eine schnelle Website auf Direkt umzustellen, spart CHF 3.240/Monat. Astia Managed kostet CHF 350/Monat. Die Rechnung verstärkt sich mit der Zeit.",
+      "it": "Ipotesi: una struttura da 30 camere, 65% di occupazione, tariffa media CHF 240, 30% delle prenotazioni via OTA al 15% di commissione. Spostare 18 di quelle prenotazioni al mese su canale diretto tramite un sito veloce fa risparmiare CHF 3.240/mese. Astia Managed costa CHF 350/mese. La matematica si accumula nel tempo."
+    }
+  },
+  "about": {
+    "num": {
+      "en": "06 — Behind Astia",
+      "de": "06 — Hinter Astia",
+      "it": "06 — Dietro Astia"
+    },
+    "h2pre": { "en": "Astia is a product of ", "de": "Astia ist ein Produkt der ", "it": "Astia è un prodotto di " },
+    "h2em": { "en": "Marcorosso Consulting.", "de": "Marcorosso Consulting.", "it": "Marcorosso Consulting." },
+    "body": {
+      "en": "We're a small team based in Lugano with two decades of combined experience across hospitality technology — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. The Exploreans collection was the first portfolio of properties built on this stack. Astia is the productisation of that work.",
+      "de": "Wir sind ein kleines Team mit Sitz in Lugano und zwei Jahrzehnten gemeinsamer Erfahrung in der Hotellerie-Technologie — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. Die Exploreans-Kollektion war das erste Portfolio von Häusern, die auf diesem Stack gebaut wurden. Astia ist die Produktisierung dieser Arbeit.",
+      "it": "Siamo un piccolo team con sede a Lugano e vent'anni di esperienza combinata nella tecnologia per l'ospitalità — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. La collezione Exploreans è stato il primo portfolio di strutture costruito su questo stack. Astia è la prodottizzazione di quel lavoro."
+    }
+  },
+  "finalCTA": {
+    "h2pre": { "en": "Ready to ", "de": "Bereit, ", "it": "Pronti a " },
+    "h2em": { "en": "see if Astia fits?", "de": "zu sehen, ob Astia passt?", "it": "vedere se Astia fa per voi?" },
+    "lede": {
+      "en": "Apply now. Two properties per month, reviewed personally, three business days to a response.",
+      "de": "Jetzt bewerben. Zwei Häuser pro Monat, persönlich geprüft, drei Werktage bis zur Antwort.",
+      "it": "Candidatevi ora. Due strutture al mese, riviste personalmente, tre giorni lavorativi per una risposta."
+    }
+  }
+}

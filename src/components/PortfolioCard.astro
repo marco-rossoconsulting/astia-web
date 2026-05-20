@@ -1,0 +1,24 @@
+---
+interface Props {
+  tag: string;
+  title: string;
+  sub: string;
+  img?: string;
+  alt: string;
+  url?: string;
+}
+const { tag, title, sub, img, alt, url } = Astro.props;
+const Wrapper = url ? 'a' : 'div';
+---
+<Wrapper class="portfolio-card" href={url || undefined} target={url ? '_blank' : undefined} rel={url ? 'noopener' : undefined}>
+  {img ? (
+    <img class="portfolio-img" src={img} alt={alt} loading="lazy" />
+  ) : (
+    <div class="portfolio-fallback"></div>
+  )}
+  <div class="portfolio-overlay">
+    <div class="portfolio-tag">{tag}</div>
+    <div class="portfolio-title">{title}</div>
+    <div class="portfolio-sub">{sub}</div>
+  </div>
+</Wrapper>

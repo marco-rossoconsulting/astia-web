@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": {
+      "en": "Apply · Astia Web",
+      "de": "Bewerbung · Astia Web",
+      "it": "Candidati · Astia Web"
+    },
+    "description": {
+      "en": "Apply for an Astia website. We accept two new properties per month, review every application personally, and respond within three business days.",
+      "de": "Bewerben Sie sich für ein Astia-Website. Wir nehmen zwei neue Häuser pro Monat auf, lesen jede Bewerbung persönlich und antworten innerhalb von drei Werktagen.",
+      "it": "Candidatevi per un sito Astia. Accettiamo due nuove strutture al mese, leggiamo personalmente ogni candidatura, e rispondiamo entro tre giorni lavorativi."
+    },
+    "ogImage": "/images/og-apply.jpg",
+    "ogImageAlt": {
+      "en": "Apply for Astia Web",
+      "de": "Bewerbung für Astia Web",
+      "it": "Candidatura per Astia Web"
+    }
+  },
+  "hero": {
+    "eyebrow": { "en": "Apply for a site", "de": "Für eine Site bewerben", "it": "Candida la tua struttura" },
+    "headlinePre": { "en": "Tell us about your ", "de": "Erzählen Sie uns von Ihrem ", "it": "Raccontateci della vostra " },
+    "headlineEm": { "en": "property.", "de": "Haus.", "it": "struttura." },
+    "headlinePost": { "en": "", "de": "", "it": "" },
+    "lede": {
+      "en": "We accept two new properties a month. We review every application personally, respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
+      "de": "Wir nehmen zwei neue Häuser pro Monat auf. Wir lesen jede Bewerbung persönlich, antworten innerhalb von drei Werktagen, und sagen ehrlich, ob Astia für Sie passt, bevor sich einer von uns verpflichtet.",
+      "it": "Accettiamo due nuove strutture al mese. Leggiamo personalmente ogni candidatura, rispondiamo entro tre giorni lavorativi, e saremo onesti se Astia è la scelta giusta prima che nessuno di noi si impegni."
+    },
+    "subnote": {
+      "en": "All fields optional except the four marked. Takes about three minutes.",
+      "de": "Alle Felder optional ausser den vier markierten. Dauert etwa drei Minuten.",
+      "it": "Tutti i campi sono opzionali tranne i quattro contrassegnati. Richiede circa tre minuti."
+    }
+  },
+  "form": {
+    "sections": {
+      "property": { "en": "Your property", "de": "Ihr Haus", "it": "La vostra struttura" },
+      "broken": { "en": "What's broken", "de": "Was nicht funktioniert", "it": "Cosa non funziona" },
+      "you": { "en": "You", "de": "Sie", "it": "Voi" }
+    },
+    "fields": {
+      "propertyName": {
+        "label": { "en": "Property name", "de": "Name des Hauses", "it": "Nome della struttura" },
+        "required": true
+      },
+      "propertyType": {
+        "label": { "en": "Type", "de": "Art", "it": "Tipo" },
+        "options": {
+          "en": ["Boutique hotel", "Bed & Breakfast", "Lodge / Camp", "Restaurant", "Retreat", "Multiple properties", "Other"],
+          "de": ["Boutique-Hotel", "Bed & Breakfast", "Lodge / Camp", "Restaurant", "Retreat", "Mehrere Häuser", "Andere"],
+          "it": ["Boutique hotel", "Bed & Breakfast", "Lodge / Camp", "Ristorante", "Retreat", "Più strutture", "Altro"]
+        }
+      },
+      "rooms": {
+        "label": { "en": "Rooms", "de": "Zimmer", "it": "Camere" },
+        "options": {
+          "en": ["1–15", "16–30", "31–50", "50+", "Not applicable"],
+          "de": ["1–15", "16–30", "31–50", "50+", "Nicht zutreffend"],
+          "it": ["1–15", "16–30", "31–50", "50+", "Non applicabile"]
+        }
+      },
+      "location": {
+        "label": { "en": "Location (city, country)", "de": "Standort (Stadt, Land)", "it": "Località (città, paese)" }
+      },
+      "website": {
+        "label": { "en": "Current website (if any)", "de": "Aktuelle Website (falls vorhanden)", "it": "Sito web attuale (se esiste)" }
+      },
+      "bookingEngine": {
+        "label": { "en": "Booking engine (if any)", "de": "Buchungssystem (falls vorhanden)", "it": "Booking engine (se esiste)" }
+      },
+      "whatsBroken": {
+        "label": { "en": "What's not working with your current setup?", "de": "Was funktioniert mit Ihrem aktuellen Setup nicht?", "it": "Cosa non funziona con il vostro setup attuale?" },
+        "required": true,
+        "placeholder": {
+          "en": "Speed? Costs? Difficult to update? Bad on mobile? Be honest — we've heard everything.",
+          "de": "Geschwindigkeit? Kosten? Schwer zu aktualisieren? Schlecht auf dem Handy? Seien Sie ehrlich — wir haben alles gehört.",
+          "it": "Velocità? Costi? Difficile da aggiornare? Cattivo su mobile? Siate onesti — abbiamo sentito di tutto."
+        }
+      },
+      "goal": {
+        "label": { "en": "If everything went well in 90 days, what would have changed?", "de": "Wenn in 90 Tagen alles gut läuft — was hätte sich verändert?", "it": "Se tutto andasse bene tra 90 giorni, cosa sarebbe cambiato?" },
+        "placeholder": {
+          "en": "More direct bookings? Less time editing? A site you're proud to share?",
+          "de": "Mehr Direktbuchungen? Weniger Zeit beim Editieren? Ein Site, den Sie stolz teilen können?",
+          "it": "Più prenotazioni dirette? Meno tempo a modificare? Un sito che siete fieri di condividere?"
+        }
+      },
+      "name": {
+        "label": { "en": "Your name", "de": "Ihr Name", "it": "Il vostro nome" },
+        "required": true
+      },
+      "role": {
+        "label": { "en": "Your role", "de": "Ihre Rolle", "it": "Il vostro ruolo" }
+      },
+      "email": {
+        "label": { "en": "Email", "de": "E-Mail", "it": "Email" },
+        "required": true
+      },
+      "phone": {
+        "label": { "en": "Phone (optional, for fast response)", "de": "Telefon (optional, für schnelle Antwort)", "it": "Telefono (opzionale, per risposta rapida)" }
+      }
+    },
+    "optional": { "en": "optional", "de": "optional", "it": "opzionale" },
+    "submit": { "en": "Send application", "de": "Bewerbung senden", "it": "Invia candidatura" }
+  },
+  "thankYou": {
+    "eyebrow": { "en": "Received", "de": "Eingegangen", "it": "Ricevuta" },
+    "thanks": { "en": "Thank you,", "de": "Danke,", "it": "Grazie," },
+    "body1": {
+      "en": "We've received your application for ",
+      "de": "Wir haben Ihre Bewerbung für ",
+      "it": "Abbiamo ricevuto la candidatura per "
+    },
+    "body2": {
+      "en": ". Marco reads every one personally. You'll hear back within three business days — and we'll be honest about whether Astia is the right fit before either of us commits.",
+      "de": " erhalten. Marco liest jede persönlich. Sie hören innerhalb von drei Werktagen von uns — und wir sagen ehrlich, ob Astia das Richtige für Sie ist, bevor sich einer von uns verpflichtet.",
+      "it": ". Marco legge personalmente ognuna. Risponderemo entro tre giorni lavorativi — e saremo onesti se Astia è la scelta giusta prima che nessuno di noi si impegni."
+    },
+    "another": {
+      "en": "Submit another",
+      "de": "Weitere Bewerbung senden",
+      "it": "Invia un'altra candidatura"
+    }
+  }
+}

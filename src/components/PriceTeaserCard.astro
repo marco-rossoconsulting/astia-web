@@ -1,0 +1,32 @@
+---
+interface Props {
+  tier: string;
+  tagline: string;
+  prices: Array<{ rooms: string; price: string }>;
+  recommended?: boolean;
+  recommendedLabel?: string;
+  roomsLabel: string;
+  currency?: string;
+  perMonth: string;
+}
+const { tier, tagline, prices, recommended = false, recommendedLabel = 'Recommended', roomsLabel, currency = 'CHF', perMonth } = Astro.props;
+---
+<div class={`price-card ${recommended ? 'recommended' : ''}`}>
+  {recommended && (
+    <span style="position:absolute; top:24px; right:28px; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; opacity:0.7;">
+      {recommendedLabel}
+    </span>
+  )}
+  <div class="price-tier">{tier}</div>
+  <h3 class="price-tagline">{tagline}</h3>
+  <table class="price-table">
+    <tbody>
+      {prices.map(p => (
+        <tr>
+          <td>{p.rooms} {roomsLabel}</td>
+          <td>{currency} {p.price}{perMonth}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,176 @@
+---
+import { getEntry } from 'astro:content';
+import LifecycleDiagram from '@components/LifecycleDiagram.astro';
+import ImageBreaker from '@components/ImageBreaker.astro';
+import SpecCard from '@components/SpecCard.astro';
+import MathCard from '@components/MathCard.astro';
+
+interface Props { lang: 'en' | 'de' | 'it'; }
+const { lang } = Astro.props;
+
+const how = await getEntry('pages', 'how');
+const site = await getEntry('site', 'general');
+const d = how.data as any;
+const cta = (site.data as any).cta;
+
+const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply', pricing: '/pricing' } as any)[p];
+const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
+---
+{/* HERO */}
+<section class="section" style="padding-top:110px; padding-bottom:60px;">
+  <div class="container-narrow">
+    <span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span>
+    <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
+      {d.hero.headlinePre[lang]}<span class="editorial-i">{d.hero.headlineEm[lang]}</span>{d.hero.headlinePost[lang]}
+    </h1>
+    <p class="lede">{d.hero.lede[lang]}</p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* LIFECYCLE */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.lifecycle.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:48px;">
+      {d.lifecycle.h2pre[lang]}<span class="editorial-i">{d.lifecycle.h2em[lang]}</span>
+    </h2>
+
+    <LifecycleDiagram labels={lifecycleLabels} />
+
+    <div class="grid-4" style="margin-top:48px;">
+      {d.lifecycle.items.map((item: any) => (
+        <div>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--rosso);">{item.num}</span>
+          <h3 style="font-family:'Editorial New', serif; font-size:22px; margin:8px 0 12px; font-weight:400;">{item.title[lang]}</h3>
+          <p style="font-size:14px; line-height:1.55; color:var(--ink-soft); margin:0;">{item.body[lang]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* BUILD PROCESS */}
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-num">{d.build.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:12px;">
+      {d.build.h2pre[lang]}<span class="editorial-i">{d.build.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.build.intro[lang]}</p>
+
+    <div class="grid-4">
+      {d.build.phases.map((p: any) => (
+        <div style="padding:24px; background:var(--paper); border:1px solid var(--bone);">
+          <span style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--rosso);">{p.n}</span>
+          <div style="font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--stone); margin:6px 0 14px;">{p.days[lang]}</div>
+          <h3 style="font-family:'Editorial New', serif; font-size:20px; margin:0 0 10px; font-weight:400;">{p.title[lang]}</h3>
+          <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0;">{p.body[lang]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* TECHNICAL CASE */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.technical.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:12px;">
+      {d.technical.h2pre[lang]}<span class="editorial-i">{d.technical.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:720px; margin-bottom:48px;">{d.technical.intro[lang]}</p>
+
+    <div class="grid-4">
+      {d.technical.specs.map((spec: any) => (
+        <SpecCard
+          label={spec.label[lang]}
+          us={typeof spec.us === 'string' ? spec.us : spec.us[lang]}
+          them={spec.them[lang]}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<ImageBreaker
+  src={d.imageBreaker.image}
+  alt={d.imageBreaker.alt[lang]}
+  caption={d.imageBreaker.caption[lang]}
+  attribution={d.imageBreaker.attribution[lang]}
+/>
+
+{/* WHAT'S INCLUDED */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.included.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:48px;">
+      {d.included.h2pre[lang]}<span class="editorial-i">{d.included.h2em[lang]}</span>
+    </h2>
+
+    <div class="grid-4">
+      {d.included.columns.map((col: any) => (
+        <div>
+          <h3 style="font-family:'Editorial New', serif; font-size:20px; margin:0 0 18px; font-weight:400;">{col.title[lang]}</h3>
+          <ul style="list-style:none; padding:0; margin:0;">
+            {col.items[lang].map((item: string) => (
+              <li style="padding:8px 0 8px 20px; position:relative; font-size:14px; line-height:1.55; color:var(--ink-soft);">
+                <span style="position:absolute; left:0; color:var(--rosso);">+</span>{item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* BOOKING MATH */}
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-num">{d.bookingMath.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:48px;">
+      {d.bookingMath.h2pre[lang]}<span class="editorial-i">{d.bookingMath.h2em[lang]}</span>
+    </h2>
+
+    <MathCard
+      stat={d.bookingMath.stat}
+      statLabel={d.bookingMath.statLabel[lang]}
+      vs={d.bookingMath.vs[lang]}
+      body={d.bookingMath.body[lang]}
+    />
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* ABOUT */}
+<section class="section">
+  <div class="container-narrow">
+    <span class="section-num">{d.about.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:24px;">
+      {d.about.h2pre[lang]}<span class="editorial-i">{d.about.h2em[lang]}</span>
+    </h2>
+    <p class="lede">{d.about.body[lang]}</p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* FINAL CTA */}
+<section class="section">
+  <div class="container-narrow" style="text-align:center;">
+    <h2 class="display-2" style="margin-bottom:28px;">
+      {d.finalCTA.h2pre[lang]}<span class="editorial-i">{d.finalCTA.h2em[lang]}</span>
+    </h2>
+    <p class="lede" style="margin-bottom:40px; max-width:540px; margin-left:auto; margin-right:auto;">{d.finalCTA.lede[lang]}</p>
+    <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
+  </div>
+</section>

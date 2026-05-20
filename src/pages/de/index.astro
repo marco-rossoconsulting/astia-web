@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HomeContent from '@components/page-content/HomeContent.astro';
+import { getEntry } from 'astro:content';
+
+const lang = 'de' as 'en' | 'de' | 'it';
+const page = await getEntry('pages', 'home');
+const seo = page.data.seo;
+---
+<BaseLayout lang={lang} page="home" seo={seo} currentPath="/de">
+  <HomeContent lang={lang} />
+</BaseLayout>

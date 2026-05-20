@@ -1,0 +1,62 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  lang: 'en' | 'de' | 'it';
+  page: string;
+  currentPath: string;
+}
+
+const { lang, page, currentPath } = Astro.props;
+const site = await getEntry('site', 'general');
+const data = site.data as any;
+const nav = data.nav;
+const cta = data.cta;
+
+// Build URL for a given page in a given language
+const url = (p: string, l: 'en' | 'de' | 'it' = lang) => {
+  const prefix = l === 'en' ? '' : `/${l}`;
+  const paths: Record<string, string> = {
+    home: '/',
+    how: '/how-it-works',
+    pricing: '/pricing',
+    journal: '/journal',
+    apply: '/apply',
+  };
+  return prefix + paths[p];
+};
+
+// For language switcher: get the equivalent page in another language
+const langUrl = (l: 'en' | 'de' | 'it') => {
+  // Strip the current language prefix to determine the page
+  let cleanPath = currentPath.replace(/^\/(de|it)/, '');
+  if (cleanPath === '') cleanPath = '/';
+  const prefix = l === 'en' ? '' : `/${l}`;
+  return cleanPath === '/' ? (prefix || '/') : prefix + cleanPath;
+};
+
+const langLabels = { en: 'EN', de: 'DE', it: 'IT' };
+---
+<nav class="nav">
+  <div class="nav-inner">
+    <a href={url('home')} style="text-decoration:none;">
+      <span class="wordmark">astia<span class="dot">·</span>web</span>
+    </a>
+    <div class="nav-links">
+      <a class={`nav-link ${page === 'how' ? 'active' : ''}`} href={url('how')}>{nav.how[lang]}</a>
+      <a class={`nav-link ${page === 'pricing' ? 'active' : ''}`} href={url('pricing')}>{nav.pricing[lang]}</a>
+      <a class={`nav-link ${page === 'journal' || page === 'article' ? 'active' : ''}`} href={url('journal')}>{nav.journal[lang]}</a>
+      <a class={`nav-link ${page === 'apply' ? 'active' : ''}`} href={url('apply')}>{nav.apply[lang]} →</a>
+      <div class="lang-switch">
+        {(['en', 'de', 'it'] as const).map((l, i) => (
+          <>
+            {i > 0 && <span class="lang-sep">·</span>}
+            <a href={langUrl(l)} class={`lang-btn ${lang === l ? 'active' : ''}`} aria-label={`Switch to ${langLabels[l]}`}>
+              {langLabels[l]}
+            </a>
+          </>
+        ))}
+      </div>
+    </div>
+  </div>
+</nav>

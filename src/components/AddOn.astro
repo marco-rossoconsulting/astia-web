@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  price: string;
+}
+const { title, body, price } = Astro.props;
+---
+<div class="addon-card">
+  <div>
+    <h3 class="addon-title">{title}</h3>
+    <p class="addon-body">{body}</p>
+  </div>
+  <div class="addon-price">{price}</div>
+</div>

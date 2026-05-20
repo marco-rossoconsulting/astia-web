@@ -1,0 +1,72 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  lang: 'en' | 'de' | 'it';
+}
+
+const { lang } = Astro.props;
+const site = await getEntry('site', 'general');
+const data = site.data as any;
+const f = data.footer;
+const brand = data.brand;
+const nav = data.nav;
+
+const url = (p: string) => {
+  const prefix = lang === 'en' ? '' : `/${lang}`;
+  const paths: Record<string, string> = {
+    home: '/',
+    how: '/how-it-works',
+    pricing: '/pricing',
+    journal: '/journal',
+    apply: '/apply',
+  };
+  return prefix + paths[p];
+};
+
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-wordmark">astia<span class="dot">·</span>web</span>
+        <p style="font-size:14px; opacity:0.85; max-width:380px; line-height:1.55; margin-top:8px;">
+          {brand.tagline[lang]}
+        </p>
+      </div>
+
+      <div>
+        <h4>{f.siteHeading[lang]}</h4>
+        <ul>
+          <li><a href={url('how')}>{nav.how[lang]}</a></li>
+          <li><a href={url('pricing')}>{nav.pricing[lang]}</a></li>
+          <li><a href={url('journal')}>{nav.journal[lang]}</a></li>
+          <li><a href={url('apply')}>{nav.apply[lang]}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>{brand.parentCompany}</h4>
+        <p style="font-size:14px; opacity:0.85; line-height:1.55;">
+          {data.brand.parentDescription[lang]}<br />
+          <span style="color:#FAFAF7; opacity:1;">{brand.parentCompany}</span>
+        </p>
+      </div>
+
+      <div>
+        <h4>{brand.location[lang]}</h4>
+        <p style="font-size:14px; opacity:0.85; line-height:1.55;">
+          {brand.address}<br /><br />
+          <a href={`mailto:${brand.email}`} style="display:block;">{brand.email}</a>
+          <a href={`tel:${brand.phone.replace(/\s/g, '')}`} style="display:block; margin-top:4px;">{brand.phone}</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© {year} {brand.parentCompany} · {f.rights[lang]}</div>
+      <div>{f.legalLinks[lang]}</div>
+    </div>
+  </div>
+</footer>

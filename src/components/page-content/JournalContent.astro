@@ -1,0 +1,45 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import ArticleCard from '@components/ArticleCard.astro';
+
+interface Props { lang: 'en' | 'de' | 'it'; }
+const { lang } = Astro.props;
+
+const journal = await getEntry('pages', 'journal-index');
+const d = journal.data as any;
+
+// Get all articles for the current language, sort by date desc
+const articles = (await getCollection('articles', (entry) => entry.data.lang === lang && entry.data.published))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const articleUrl = (slug: string) => (lang === 'en' ? '' : `/${lang}`) + `/journal/${slug}`;
+---
+<section class="section" style="padding-top:110px; padding-bottom:56px;">
+  <div class="container-narrow">
+    <span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span>
+    <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
+      {d.hero.titlePre[lang]}<span class="editorial-i">.</span>
+    </h1>
+    <p class="lede">{d.hero.lede[lang]}</p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="gap:28px;">
+      {articles.map(a => (
+        <ArticleCard
+          href={articleUrl(a.data.slug)}
+          tag={a.data.tag}
+          date={a.data.date}
+          readingTime={a.data.readingTime}
+          title={a.data.title}
+          excerpt={a.data.excerpt}
+          readMore={d.labels.readMore[lang]}
+        />
+      ))}
+    </div>
+  </div>
+</section>

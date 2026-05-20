@@ -1,0 +1,672 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/astia-web
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: oauth/auth
+
+media_folder: "public/images"
+public_folder: "/images"
+
+site_url: https://astiaweb.com
+display_url: https://astiaweb.com
+logo_url: https://astiaweb.com/favicon.svg
+
+i18n:
+  locales: [en, de, it]
+  default_locale: en
+  structure: single_file
+
+publish_mode: simple
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # ============================================================================
+  # PAGES — One file per page, i18n single_file structure
+  # ============================================================================
+  - name: pages
+    label: "Pages"
+    label_singular: "Page"
+    editor:
+      preview: false
+    files:
+      # ----- HOME -----
+      - name: home
+        label: "Home Page"
+        file: src/content/pages/home.json
+        i18n: true
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Meta Title", name: title, widget: string, i18n: true }
+              - { label: "Meta Description", name: description, widget: text, i18n: true }
+              - { label: "OG Image", name: ogImage, widget: image, required: false, i18n: duplicate }
+              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Eyebrow (small label above headline)", name: eyebrow, widget: string, i18n: true }
+              - { label: "Headline — text before italic", name: preEm, widget: string, i18n: true }
+              - { label: "Headline — italic word", name: em, widget: string, i18n: true }
+              - { label: "Headline — text after italic", name: post, widget: string, i18n: true }
+              - { label: "Lede (subheadline)", name: lede, widget: text, i18n: true }
+              - { label: "Capacity claim (small text next to CTA)", name: capacity, widget: string, i18n: true }
+          - label: "Section 01 — Problem"
+            name: problem
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number label", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro paragraph", name: intro, widget: text, i18n: true }
+              - label: "Cards (3 options)"
+                name: cards
+                widget: list
+                summary: "{{fields.title.en}}"
+                fields:
+                  - { label: "Tag (Option A/B/C)", name: tag, widget: string, i18n: true }
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+                  - { label: "Tail (italic conclusion)", name: tail, widget: string, i18n: true }
+          - label: "Section 02 — Solution"
+            name: solution
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number label", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Paragraph 1", name: p1, widget: text, i18n: true }
+              - { label: "Paragraph 2 — pre-italic", name: p2pre, widget: text, i18n: true }
+              - { label: "Paragraph 2 — italic finish", name: p2em, widget: string, i18n: true }
+              - { label: "Pulled quote — line 1", name: quoteL1, widget: string, i18n: true }
+              - { label: "Pulled quote — line 2", name: quoteL2, widget: string, i18n: true }
+              - { label: "Pulled quote — line 3 (in red)", name: quoteL3, widget: string, i18n: true }
+              - { label: "Paragraph 3", name: p3, widget: text, i18n: true }
+          - label: "Image Breaker"
+            name: imageBreaker
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Image", name: image, widget: image, i18n: duplicate }
+              - { label: "Image Alt Text", name: alt, widget: string, i18n: true, hint: "Required for accessibility & SEO" }
+              - { label: "Caption (white text on image)", name: caption, widget: text, i18n: true }
+              - { label: "Attribution (small text bottom right)", name: attribution, widget: string, i18n: true }
+          - label: "Section 03 — Steps"
+            name: steps
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number label", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - label: "Steps (3 items)"
+                name: items
+                widget: list
+                summary: "{{fields.title.en}}"
+                fields:
+                  - { label: "Step number (01/02/03)", name: num, widget: string }
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Days label", name: days, widget: string, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+              - { label: "CTA button — full process", name: ctaFull, widget: string, i18n: true }
+          - label: "Section 04 — Comparison"
+            name: comparison
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number label", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro paragraph", name: intro, widget: text, i18n: true }
+              - { label: "Table headers (4 columns)", name: headers, widget: list, field: { label: "Header", name: header, widget: string }, i18n: true }
+              - label: "Comparison rows"
+                name: rows
+                widget: list
+                summary: "{{fields.label.en}}"
+                fields:
+                  - { label: "Row label", name: label, widget: string, i18n: true }
+                  - { label: "Agency value", name: agency, widget: string, i18n: true }
+                  - { label: "Builder value", name: builder, widget: string, i18n: true }
+                  - { label: "Astia value", name: astia, widget: string, i18n: true }
+              - { label: "CTA — technical case", name: ctaTech, widget: string, i18n: true }
+          - label: "Section 05 — Portfolio"
+            name: portfolio
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number label", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Headline — post-italic", name: h2post, widget: string, i18n: true }
+              - { label: "Meta caption", name: meta, widget: string, i18n: true }
+              - { label: "Note text — before bold", name: notePre, widget: string, i18n: true }
+              - { label: "Note text — bold word", name: noteStrong, widget: string, i18n: true }
+              - { label: "Note text — after bold", name: notePost, widget: text, i18n: true }
+          - label: "Section 06 — Pricing Teaser"
+            name: pricingTeaser
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number label", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro paragraph", name: intro, widget: text, i18n: true }
+              - label: "Self-Serve tier"
+                name: selfTier
+                widget: object
+                fields:
+                  - { label: "Tier name", name: tier, widget: string, i18n: true }
+                  - { label: "Tagline", name: tagline, widget: string, i18n: true }
+              - label: "Managed tier"
+                name: managedTier
+                widget: object
+                fields:
+                  - { label: "Tier name", name: tier, widget: string, i18n: true }
+                  - { label: "Tagline", name: tagline, widget: string, i18n: true }
+              - { label: "Recommended badge text", name: recommended, widget: string, i18n: true }
+              - label: "Room size labels"
+                name: rooms
+                widget: object
+                fields:
+                  - { label: "Up to 15", name: upTo15, widget: string, i18n: true }
+                  - { label: "Up to 30", name: upTo30, widget: string, i18n: true }
+                  - { label: "50+", name: plus50, widget: string, i18n: true }
+              - { label: "Rooms label (e.g. 'rooms')", name: roomsLabel, widget: string, i18n: true }
+              - label: "Self-Serve prices"
+                name: selfPrices
+                widget: object
+                fields:
+                  - { label: "Up to 15 rooms", name: upTo15, widget: string }
+                  - { label: "Up to 30 rooms", name: upTo30, widget: string }
+                  - { label: "50+ rooms", name: plus50, widget: string }
+              - label: "Managed prices"
+                name: managedPrices
+                widget: object
+                fields:
+                  - { label: "Up to 15 rooms", name: upTo15, widget: string }
+                  - { label: "Up to 30 rooms", name: upTo30, widget: string }
+                  - { label: "50+ rooms", name: plus50, widget: string }
+              - { label: "CTA button text", name: cta, widget: string, i18n: true }
+          - label: "Final CTA"
+            name: finalCTA
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Headline — post-italic", name: h2post, widget: string, i18n: true }
+              - { label: "Lede", name: lede, widget: text, i18n: true }
+
+      # ----- HOW IT WORKS -----
+      - name: how
+        label: "How It Works Page"
+        file: src/content/pages/how.json
+        i18n: true
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Meta Title", name: title, widget: string, i18n: true }
+              - { label: "Meta Description", name: description, widget: text, i18n: true }
+              - { label: "OG Image", name: ogImage, widget: image, required: false, i18n: duplicate }
+              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: headlinePre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: headlineEm, widget: string, i18n: true }
+              - { label: "Headline — post-italic", name: headlinePost, widget: string, i18n: true }
+              - { label: "Lede", name: lede, widget: text, i18n: true }
+          - label: "Lifecycle (the 4-step loop)"
+            name: lifecycle
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - label: "Items (4)"
+                name: items
+                widget: list
+                summary: "{{fields.title.en}}"
+                fields:
+                  - { label: "Number", name: num, widget: string }
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+          - label: "Build phases"
+            name: build
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro", name: intro, widget: text, i18n: true }
+              - label: "Phases (4)"
+                name: phases
+                widget: list
+                summary: "{{fields.title.en}}"
+                fields:
+                  - { label: "Number", name: n, widget: string }
+                  - { label: "Days label", name: days, widget: string, i18n: true }
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+          - label: "Technical case"
+            name: technical
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro", name: intro, widget: text, i18n: true }
+              - label: "Spec cards"
+                name: specs
+                widget: list
+                summary: "{{fields.label.en}}"
+                fields:
+                  - { label: "Label", name: label, widget: string, i18n: true }
+                  - { label: "Our value", name: us, widget: string }
+                  - { label: "Their comparison", name: them, widget: string, i18n: true }
+          - label: "Image Breaker"
+            name: imageBreaker
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Image", name: image, widget: image, i18n: duplicate }
+              - { label: "Alt text", name: alt, widget: string, i18n: true }
+              - { label: "Caption", name: caption, widget: text, i18n: true }
+              - { label: "Attribution", name: attribution, widget: string, i18n: true }
+          - label: "What's included"
+            name: included
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - label: "Columns (4)"
+                name: columns
+                widget: list
+                summary: "{{fields.title.en}}"
+                fields:
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Items", name: items, widget: list, field: { label: "Item", name: item, widget: string }, i18n: true }
+          - label: "Booking math card"
+            name: bookingMath
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Big statistic", name: stat, widget: string }
+              - { label: "Stat label", name: statLabel, widget: string, i18n: true }
+              - { label: "vs. line", name: vs, widget: text, i18n: true }
+              - { label: "Body", name: body, widget: text, i18n: true }
+          - label: "About section"
+            name: about
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Body", name: body, widget: text, i18n: true }
+          - label: "Final CTA"
+            name: finalCTA
+            widget: object
+            fields:
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Lede", name: lede, widget: text, i18n: true }
+
+      # ----- PRICING -----
+      - name: pricing
+        label: "Pricing Page"
+        file: src/content/pages/pricing.json
+        i18n: true
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Meta Title", name: title, widget: string, i18n: true }
+              - { label: "Meta Description", name: description, widget: text, i18n: true }
+              - { label: "OG Image", name: ogImage, widget: image, required: false, i18n: duplicate }
+              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: headlinePre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: headlineEm, widget: string, i18n: true }
+              - { label: "Headline — post-italic", name: headlinePost, widget: string, i18n: true }
+              - { label: "Lede", name: lede, widget: text, i18n: true }
+          - label: "Pricing matrix"
+            name: matrix
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro", name: intro, widget: text, i18n: true }
+              - { label: "Self-Serve tier name", name: selfTier, widget: string, i18n: true }
+              - { label: "Managed tier name", name: managedTier, widget: string, i18n: true }
+              - { label: "Self-Serve tagline", name: selfTagline, widget: text, i18n: true }
+              - { label: "Managed tagline", name: managedTagline, widget: text, i18n: true }
+              - { label: "Recommended badge", name: recommended, widget: string, i18n: true }
+              - label: "Size labels"
+                name: sizes
+                widget: object
+                fields:
+                  - { label: "Small", name: small, widget: string, i18n: true }
+                  - { label: "Medium", name: medium, widget: string, i18n: true }
+                  - { label: "Large", name: large, widget: string, i18n: true }
+              - label: "Prices (all 6 cells)"
+                name: prices
+                widget: object
+                fields:
+                  - { label: "Self-Serve Small", name: selfSmall, widget: string }
+                  - { label: "Self-Serve Medium", name: selfMedium, widget: string }
+                  - { label: "Self-Serve Large", name: selfLarge, widget: string }
+                  - { label: "Managed Small", name: managedSmall, widget: string }
+                  - { label: "Managed Medium", name: managedMedium, widget: string }
+                  - { label: "Managed Large", name: managedLarge, widget: string }
+              - { label: "Currency code", name: currency, widget: string }
+              - { label: "Per month suffix", name: perMonth, widget: string, i18n: true }
+          - label: "Tier detail"
+            name: tierDetail
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - label: "Self-Serve"
+                name: self
+                widget: object
+                fields:
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Tagline", name: tagline, widget: text, i18n: true }
+                  - { label: "What's good (list)", name: good, widget: list, field: { label: "Item", name: item, widget: string }, i18n: true }
+                  - { label: "What's not (list)", name: bad, widget: list, field: { label: "Item", name: item, widget: string }, i18n: true }
+              - label: "Managed"
+                name: managed
+                widget: object
+                fields:
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Tagline", name: tagline, widget: text, i18n: true }
+                  - { label: "What's good (list)", name: good, widget: list, field: { label: "Item", name: item, widget: string }, i18n: true }
+          - label: "Booking engines"
+            name: bookingEngines
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - { label: "Intro", name: intro, widget: text, i18n: true }
+              - label: "SimpleBooking card"
+                name: simpleBooking
+                widget: object
+                fields:
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Tag", name: tag, widget: string, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+                  - { label: "Price label", name: price, widget: string, i18n: true }
+              - label: "Other booking engines card"
+                name: others
+                widget: object
+                fields:
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Engine list (display text)", name: list, widget: text, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+                  - { label: "Price label", name: price, widget: string, i18n: true }
+          - label: "Add-ons"
+            name: addons
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - label: "Add-on items"
+                name: items
+                widget: list
+                summary: "{{fields.title.en}}"
+                fields:
+                  - { label: "Title", name: title, widget: string, i18n: true }
+                  - { label: "Body", name: body, widget: text, i18n: true }
+                  - { label: "Price", name: price, widget: string, i18n: true }
+          - label: "FAQ"
+            name: faq
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Section number", name: num, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: h2pre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: h2em, widget: string, i18n: true }
+              - label: "FAQ items"
+                name: items
+                widget: list
+                summary: "{{fields.q.en}}"
+                fields:
+                  - { label: "Question", name: q, widget: string, i18n: true }
+                  - { label: "Answer", name: a, widget: text, i18n: true }
+
+      # ----- APPLY -----
+      - name: apply
+        label: "Apply Page"
+        file: src/content/pages/apply.json
+        i18n: true
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Meta Title", name: title, widget: string, i18n: true }
+              - { label: "Meta Description", name: description, widget: text, i18n: true }
+              - { label: "OG Image", name: ogImage, widget: image, required: false, i18n: duplicate }
+              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
+              - { label: "Headline — pre-italic", name: headlinePre, widget: string, i18n: true }
+              - { label: "Headline — italic", name: headlineEm, widget: string, i18n: true }
+              - { label: "Headline — post-italic", name: headlinePost, widget: string, i18n: true }
+              - { label: "Lede", name: lede, widget: text, i18n: true }
+              - { label: "Subnote (small text below lede)", name: subnote, widget: text, i18n: true }
+          - label: "Form (labels & options)"
+            name: form
+            widget: object
+            collapsed: true
+            hint: "These are the labels shown on the form. Change the field structure in the codebase if needed."
+            fields:
+              - label: "Section titles"
+                name: sections
+                widget: object
+                fields:
+                  - { label: "Property section", name: property, widget: string, i18n: true }
+                  - { label: "What's broken section", name: broken, widget: string, i18n: true }
+                  - { label: "You section", name: you, widget: string, i18n: true }
+              - { label: "Submit button text", name: submit, widget: string, i18n: true }
+              - { label: "Optional label", name: optional, widget: string, i18n: true }
+          - label: "Thank-you page"
+            name: thankYou
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
+              - { label: "Thank you text", name: thanks, widget: string, i18n: true }
+              - { label: "Body — before italic", name: body1, widget: text, i18n: true }
+              - { label: "Body — after italic", name: body2, widget: text, i18n: true }
+              - { label: "Another button text", name: another, widget: string, i18n: true }
+
+      # ----- JOURNAL INDEX -----
+      - name: journal-index
+        label: "Journal Index Page"
+        file: src/content/pages/journal-index.json
+        i18n: true
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            fields:
+              - { label: "Meta Title", name: title, widget: string, i18n: true }
+              - { label: "Meta Description", name: description, widget: text, i18n: true }
+              - { label: "OG Image", name: ogImage, widget: image, required: false, i18n: duplicate }
+              - { label: "OG Image Alt Text", name: ogImageAlt, widget: string, required: false, i18n: true }
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: eyebrow, widget: string, i18n: true }
+              - { label: "Title", name: titlePre, widget: string, i18n: true }
+              - { label: "Lede", name: lede, widget: text, i18n: true }
+          - label: "Labels"
+            name: labels
+            widget: object
+            fields:
+              - { label: "Read more", name: readMore, widget: string, i18n: true }
+              - { label: "Back to Journal", name: backToJournal, widget: string, i18n: true }
+              - { label: "Translation note (DE/IT only)", name: translationNote, widget: text, required: false, i18n: true }
+
+  # ============================================================================
+  # SITE SETTINGS
+  # ============================================================================
+  - name: site
+    label: "Site Settings"
+    files:
+      - name: general
+        label: "Brand, Nav, Footer, Social"
+        file: src/content/site/general.json
+        i18n: true
+        fields:
+          - label: "Brand"
+            name: brand
+            widget: object
+            fields:
+              - { label: "Site name", name: name, widget: string }
+              - { label: "Wordmark — before dot", name: wordmarkBefore, widget: string }
+              - { label: "Wordmark — after dot", name: wordmarkAfter, widget: string }
+              - { label: "Tagline (used in footer)", name: tagline, widget: text, i18n: true }
+              - { label: "Parent company name", name: parentCompany, widget: string }
+              - { label: "Parent description prefix", name: parentDescription, widget: string, i18n: true }
+              - { label: "Location (display)", name: location, widget: string, i18n: true }
+              - { label: "Address", name: address, widget: string }
+              - { label: "Email", name: email, widget: string }
+              - { label: "Phone", name: phone, widget: string }
+          - label: "Navigation labels"
+            name: nav
+            widget: object
+            fields:
+              - { label: "How it works", name: how, widget: string, i18n: true }
+              - { label: "Pricing", name: pricing, widget: string, i18n: true }
+              - { label: "Journal", name: journal, widget: string, i18n: true }
+              - { label: "Apply", name: apply, widget: string, i18n: true }
+          - label: "Primary CTAs (used across site)"
+            name: cta
+            widget: object
+            fields:
+              - { label: "Apply for a site", name: applyForSite, widget: string, i18n: true }
+              - { label: "See how it works", name: seeHow, widget: string, i18n: true }
+          - label: "Footer"
+            name: footer
+            widget: object
+            fields:
+              - { label: "Site column heading", name: siteHeading, widget: string, i18n: true }
+              - { label: "Company column heading", name: companyHeading, widget: string, i18n: true }
+              - { label: "Rights text", name: rights, widget: string, i18n: true }
+              - { label: "Legal links text", name: legalLinks, widget: string, i18n: true }
+          - label: "Social links"
+            name: social
+            widget: object
+            fields:
+              - { label: "LinkedIn URL", name: linkedin, widget: string, required: false }
+              - { label: "Twitter URL", name: twitter, widget: string, required: false }
+              - { label: "Instagram URL", name: instagram, widget: string, required: false }
+          - label: "Schema.org metadata"
+            name: schema
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Organization description", name: organizationDescription, widget: text, i18n: true }
+              - { label: "Founding year", name: foundingYear, widget: number }
+
+  # ============================================================================
+  # ARTICLES (Journal entries)
+  # ============================================================================
+  - name: articles
+    label: "Journal Articles"
+    label_singular: "Article"
+    folder: src/content/articles
+    create: true
+    delete: true
+    identifier_field: slug
+    extension: md
+    format: yaml-frontmatter
+    slug: "{{slug}}.{{lang}}"
+    summary: "{{title}} · {{lang}}"
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - { label: "URL Slug", name: slug, widget: string, hint: "Same across all languages — lowercase, hyphens" }
+      - { label: "Language", name: lang, widget: select, options: ["en", "de", "it"], default: "en" }
+      - { label: "Excerpt (1-2 sentences)", name: excerpt, widget: text }
+      - { label: "Tag/category", name: tag, widget: string }
+      - { label: "Publication date", name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { label: "Reading time", name: readingTime, widget: string, default: "5 min" }
+      - { label: "Published", name: published, widget: boolean, default: true }
+      - label: "SEO (optional override)"
+        name: seo
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Meta Title (defaults to article title)", name: title, widget: string, required: false }
+          - { label: "Meta Description (defaults to excerpt)", name: description, widget: text, required: false }
+          - { label: "OG Image", name: ogImage, widget: image, required: false }
+          - { label: "OG Image Alt", name: ogImageAlt, widget: string, required: false }
+      - { label: "Body", name: body, widget: markdown }
+
+  # ============================================================================
+  # PORTFOLIO
+  # ============================================================================
+  - name: portfolio
+    label: "Portfolio"
+    label_singular: "Property"
+    folder: src/content/portfolio
+    create: true
+    delete: true
+    identifier_field: title
+    extension: json
+    format: json
+    summary: "{{title}}"
+    fields:
+      - { label: "Display order", name: order, widget: number, hint: "1 = first, 2 = second, etc." }
+      - { label: "Tag (e.g. 'Group brand · 2024')", name: tag, widget: string, i18n: true }
+      - { label: "Title", name: title, widget: string }
+      - { label: "Subtitle (location, description)", name: subtitle, widget: string, i18n: true }
+      - { label: "Image", name: image, widget: image, hint: "Recommended 800×1000px portrait" }
+      - { label: "Image alt text", name: imageAlt, widget: string, i18n: true, hint: "Required for accessibility & SEO" }
+      - { label: "External URL (optional)", name: url, widget: string, required: false }

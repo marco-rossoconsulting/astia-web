@@ -1,0 +1,21 @@
+{
+  "order": 1,
+  "tag": {
+    "en": "Group brand · 2024",
+    "de": "Gruppenmarke · 2024",
+    "it": "Brand di gruppo · 2024"
+  },
+  "title": "Exploreans",
+  "subtitle": {
+    "en": "Maasai Mara · Watamu · Indian Ocean",
+    "de": "Maasai Mara · Watamu · Indischer Ozean",
+    "it": "Maasai Mara · Watamu · Oceano Indiano"
+  },
+  "image": "/images/portfolio-exploreans.jpg",
+  "imageAlt": {
+    "en": "Exploreans nature-led safari experience",
+    "de": "Exploreans naturorientiertes Safari-Erlebnis",
+    "it": "Esperienza safari naturalistica Exploreans"
+  },
+  "url": "https://exploreans.com"
+}

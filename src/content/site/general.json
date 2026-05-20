@@ -1,0 +1,63 @@
+{
+  "brand": {
+    "name": "Astia Web",
+    "wordmarkBefore": "astia",
+    "wordmarkAfter": "web",
+    "tagline": {
+      "en": "The first AI-managed website service for independent hotels. Built on Astro for speed, run by AI for cost, designed for hospitality.",
+      "de": "Der erste AI-verwaltete Website-Service für unabhängige Hotels. Auf Astro für Geschwindigkeit, von AI für Kosten, für die Hotellerie konzipiert.",
+      "it": "Il primo servizio di siti web gestiti dall'IA per hotel indipendenti. Costruito su Astro per la velocità, gestito dall'IA per il costo, progettato per l'ospitalità."
+    },
+    "parentCompany": "Marcorosso Consulting",
+    "parentDescription": {
+      "en": "Astia Web is a product of",
+      "de": "Astia Web ist ein Produkt von",
+      "it": "Astia Web è un prodotto di"
+    },
+    "location": {
+      "en": "Lugano · Switzerland",
+      "de": "Lugano · Schweiz",
+      "it": "Lugano · Svizzera"
+    },
+    "address": "Via Don Gagliardi 23, 6932 Lugano, Switzerland",
+    "email": "marcorosso.consulting@gmail.com",
+    "phone": "+41 76 433 5845"
+  },
+  "nav": {
+    "how": { "en": "How it works", "de": "So funktioniert es", "it": "Come funziona" },
+    "pricing": { "en": "Pricing", "de": "Preise", "it": "Prezzi" },
+    "journal": { "en": "Journal", "de": "Journal", "it": "Journal" },
+    "apply": { "en": "Apply", "de": "Bewerbung", "it": "Candidati" }
+  },
+  "cta": {
+    "applyForSite": { "en": "Apply for a site", "de": "Für ein Site bewerben", "it": "Candida la tua struttura" },
+    "seeHow": { "en": "See how it works", "de": "So funktioniert es", "it": "Come funziona" }
+  },
+  "footer": {
+    "siteHeading": { "en": "The site", "de": "Die Seite", "it": "Il sito" },
+    "companyHeading": { "en": "Marcorosso Consulting", "de": "Marcorosso Consulting", "it": "Marcorosso Consulting" },
+    "rights": {
+      "en": "All rights reserved",
+      "de": "Alle Rechte vorbehalten",
+      "it": "Tutti i diritti riservati"
+    },
+    "legalLinks": {
+      "en": "Privacy · Terms · Cookies",
+      "de": "Datenschutz · AGB · Cookies",
+      "it": "Privacy · Termini · Cookie"
+    }
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/company/marcorosso-consulting",
+    "twitter": "",
+    "instagram": ""
+  },
+  "schema": {
+    "organizationDescription": {
+      "en": "Astia Web is a productized website service for independent hotels. We build on Astro, host on Netlify, and use AI agents to handle daily content edits.",
+      "de": "Astia Web ist ein produktisierter Website-Service für unabhängige Hotels. Wir bauen auf Astro, hosten auf Netlify und nutzen AI-Agenten für tägliche Content-Bearbeitungen.",
+      "it": "Astia Web è un servizio di siti web prodottizzato per hotel indipendenti. Costruiamo su Astro, ospitiamo su Netlify, e usiamo agenti IA per le modifiche quotidiane ai contenuti."
+    },
+    "foundingYear": 2026
+  }
+}

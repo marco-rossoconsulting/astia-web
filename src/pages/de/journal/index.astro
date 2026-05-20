@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import JournalContent from '@components/page-content/JournalContent.astro';
+import { getEntry } from 'astro:content';
+
+const lang = 'de' as 'en' | 'de' | 'it';
+const page = await getEntry('pages', 'journal-index');
+const seo = page.data.seo;
+---
+<BaseLayout lang={lang} page="journal" seo={seo} currentPath="/de/journal">
+  <JournalContent lang={lang} />
+</BaseLayout>

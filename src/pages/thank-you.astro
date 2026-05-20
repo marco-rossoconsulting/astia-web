@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const lang = 'en' as 'en' | 'de' | 'it';
+const apply = await getEntry('pages', 'apply');
+const d = apply.data as any;
+const ty = d.thankYou;
+---
+<BaseLayout lang={lang} page="apply" seo={d.seo} currentPath="/thank-you">
+  <section class="section" style="padding-top:140px; padding-bottom:200px;">
+    <div class="container-narrow" style="text-align:center;">
+      <span class="eyebrow eyebrow-rosso">{ty.eyebrow[lang]}</span>
+      <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
+        {ty.thanks[lang]}
+      </h1>
+      <p class="lede" style="margin-bottom:32px;">
+        {ty.body1[lang]}<span class="editorial-i text-rosso">your application</span>{ty.body2[lang]}
+      </p>
+      <a class="btn btn-ghost btn-arrow" href="/apply">{ty.another[lang]}</a>
+    </div>
+  </section>
+</BaseLayout>

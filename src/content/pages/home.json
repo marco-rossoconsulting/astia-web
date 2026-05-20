@@ -1,0 +1,427 @@
+{
+  "seo": {
+    "title": {
+      "en": "Astia Web · The first AI-managed website service for independent hotels",
+      "de": "Astia Web · Der erste AI-verwaltete Website-Service für unabhängige Hotels",
+      "it": "Astia Web · Il primo servizio di siti gestiti dall'IA per hotel indipendenti"
+    },
+    "description": {
+      "en": "Built on Astro for speed. Run by AI for cost. Designed for hospitality, by hospitality. From Lugano, Switzerland.",
+      "de": "Auf Astro gebaut für Geschwindigkeit. Von AI verwaltet für die Kosten. Für die Hotellerie konzipiert, von Hoteliers. Aus Lugano, Schweiz.",
+      "it": "Costruito su Astro per la velocità. Gestito dall'IA per il costo. Progettato per l'ospitalità, da chi conosce l'ospitalità. Da Lugano, Svizzera."
+    },
+    "ogImage": "/images/og-home.jpg",
+    "ogImageAlt": {
+      "en": "Astia Web — AI-managed websites for independent hotels",
+      "de": "Astia Web — AI-verwaltete Websites für unabhängige Hotels",
+      "it": "Astia Web — siti gestiti dall'IA per hotel indipendenti"
+    }
+  },
+  "hero": {
+    "eyebrow": {
+      "en": "Vol. 01 · Hospitality",
+      "de": "Band 01 · Hotellerie",
+      "it": "Vol. 01 · Ospitalità"
+    },
+    "preEm": {
+      "en": "The first",
+      "de": "Der erste",
+      "it": "Il primo servizio di siti web"
+    },
+    "em": {
+      "en": "AI-managed",
+      "de": "AI-verwaltete",
+      "it": "gestiti dall'IA"
+    },
+    "post": {
+      "en": "website service for independent hotels.",
+      "de": "Website-Service für unabhängige Hotels.",
+      "it": "per hotel indipendenti."
+    },
+    "lede": {
+      "en": "Built on Astro for speed. Run by AI for cost. Designed for hospitality, by hospitality.",
+      "de": "Auf Astro gebaut für Geschwindigkeit. Von AI verwaltet für die Kosten. Für die Hotellerie konzipiert, von Hoteliers.",
+      "it": "Costruito su Astro per la velocità. Gestito dall'IA per il costo. Progettato per l'ospitalità, da chi conosce l'ospitalità."
+    },
+    "capacity": {
+      "en": "Currently accepting 2 properties per month",
+      "de": "Wir nehmen aktuell zwei neue Objekte pro Monat auf",
+      "it": "Accettiamo due nuove strutture al mese"
+    }
+  },
+  "problem": {
+    "num": {
+      "en": "01 — The current options",
+      "de": "01 — Die aktuellen Optionen",
+      "it": "01 — Le opzioni di oggi"
+    },
+    "h2pre": {
+      "en": "Three ways hotels get a website today.",
+      "de": "Drei Wege, wie Hotels heute eine Website bekommen.",
+      "it": "Tre modi in cui gli hotel si fanno un sito oggi."
+    },
+    "h2em": {
+      "en": " None of them work.",
+      "de": " Keiner funktioniert.",
+      "it": " Nessuno funziona davvero."
+    },
+    "intro": {
+      "en": "Every independent property eventually faces the same decision — and every option asks them to compromise on something they shouldn't have to.",
+      "de": "Jedes unabhängige Haus steht früher oder später vor derselben Entscheidung — und jede Option verlangt einen Kompromiss, der nicht nötig sein sollte.",
+      "it": "Ogni struttura indipendente, prima o poi, si trova davanti alla stessa decisione — e ogni opzione chiede un compromesso che non dovrebbe esistere."
+    },
+    "cards": [
+      {
+        "tag": { "en": "Option A", "de": "Option A", "it": "Opzione A" },
+        "title": { "en": "The digital agency", "de": "Die digitale Agentur", "it": "L'agenzia digitale" },
+        "body": {
+          "en": "CHF 15,000–40,000 upfront. Three to six months. Then a maintenance retainer of CHF 500–2,000/month for changes you used to make in five minutes. Beautiful, often. Affordable, rarely.",
+          "de": "CHF 15.000–40.000 im Voraus. Drei bis sechs Monate. Danach ein Wartungsvertrag über CHF 500–2.000/Monat für Änderungen, die früher in fünf Minuten gemacht waren. Schön, oft. Bezahlbar, selten.",
+          "it": "CHF 15.000–40.000 di anticipo. Da tre a sei mesi. Poi un canone di manutenzione di CHF 500–2.000/mese per modifiche che prima si facevano in cinque minuti. Bei siti, spesso. Abbordabili, raramente."
+        },
+        "tail": { "en": "Too expensive.", "de": "Zu teuer.", "it": "Troppo costose." }
+      },
+      {
+        "tag": { "en": "Option B", "de": "Option B", "it": "Opzione B" },
+        "title": { "en": "The website builder", "de": "Der Website-Baukasten", "it": "Il website builder" },
+        "body": {
+          "en": "Wix, Squarespace, GoDaddy. Cheap monthly, drag-and-drop, looks like every other small hotel website. Slow on mobile. Mediocre on Google. You never quite own it.",
+          "de": "Wix, Squarespace, GoDaddy. Günstig im Monat, Drag-and-Drop, sieht aus wie jede andere kleine Hotel-Website. Langsam auf dem Handy. Mittelmässig bei Google. Sie besitzen die Seite nie wirklich.",
+          "it": "Wix, Squarespace, GoDaddy. Costo mensile basso, drag-and-drop, somiglia a ogni altro sito di piccolo hotel. Lento sul mobile. Mediocre su Google. Non lo possiedi mai davvero."
+        },
+        "tail": { "en": "Too generic.", "de": "Zu generisch.", "it": "Troppo generici." }
+      },
+      {
+        "tag": { "en": "Option C", "de": "Option C", "it": "Opzione C" },
+        "title": { "en": "The WordPress site", "de": "Die WordPress-Seite", "it": "Il sito WordPress" },
+        "body": {
+          "en": "Powers 43% of the web. Also 94% of hacked websites. Plugin conflicts, security patches, hosting bills, the developer who built it has moved on. You inherited a maintenance liability.",
+          "de": "Treibt 43 % des Webs an. Auch 94 % der gehackten Websites. Plugin-Konflikte, Sicherheits-Patches, Hosting-Rechnungen, der Entwickler ist längst weg. Eine geerbte Wartungslast.",
+          "it": "Alimenta il 43% del web. E il 94% dei siti hackerati. Conflitti tra plugin, patch di sicurezza, costi di hosting, lo sviluppatore che l'ha creato non c'è più. Una passività di manutenzione ereditata."
+        },
+        "tail": { "en": "Too fragile.", "de": "Zu fragil.", "it": "Troppo fragili." }
+      }
+    ]
+  },
+  "solution": {
+    "num": {
+      "en": "02 — A fourth way",
+      "de": "02 — Ein vierter Weg",
+      "it": "02 — Una quarta via"
+    },
+    "h2pre": {
+      "en": "A website that ",
+      "de": "Eine Website, die ",
+      "it": "Un sito che "
+    },
+    "h2em": {
+      "en": "maintains itself.",
+      "de": "sich selbst pflegt.",
+      "it": "si mantiene da solo."
+    },
+    "p1": {
+      "en": "We build your site once, on Astro — the framework Google itself uses for the fastest sites on the web. Static HTML. No database. No plugins. No security patches. It loads in under a second on any device, from anywhere.",
+      "de": "Wir bauen Ihre Seite einmal, mit Astro — dem Framework, das Google selbst für die schnellsten Websites des Internets verwendet. Statisches HTML. Keine Datenbank. Keine Plugins. Keine Sicherheits-Patches. Die Seite lädt auf jedem Gerät in unter einer Sekunde, von überall.",
+      "it": "Costruiamo il vostro sito una volta, su Astro — il framework che Google stesso usa per i siti più veloci del web. HTML statico. Nessun database. Nessun plugin. Nessuna patch di sicurezza. Si carica in meno di un secondo su qualsiasi dispositivo, ovunque."
+    },
+    "p2pre": {
+      "en": "Then we hand the day-to-day to AI agents that read your inbox, your booking system, and your CMS — and make the small edits a website actually needs. New seasonal menu. Updated rates. A typo on the contact page. ",
+      "de": "Dann übergeben wir die täglichen Arbeiten an AI-Agenten, die Ihren Posteingang, Ihr Buchungssystem und Ihr CMS lesen — und die kleinen Anpassungen vornehmen, die eine Website wirklich braucht. Neue saisonale Speisekarte. Aktualisierte Preise. Ein Tippfehler auf der Kontaktseite. ",
+      "it": "Poi affidiamo le piccole modifiche quotidiane ad agenti IA che leggono la vostra email, il vostro sistema di prenotazione e il vostro CMS — e fanno gli aggiornamenti che un sito serve davvero. Menu di stagione. Tariffe aggiornate. Un refuso sulla pagina contatti. "
+    },
+    "p2em": {
+      "en": "All handled, none invoiced.",
+      "de": "Alles erledigt, nichts verrechnet.",
+      "it": "Tutto fatto, niente fatturato."
+    },
+    "quoteL1": {
+      "en": "An agency's craft.",
+      "de": "Das Handwerk einer Agentur.",
+      "it": "L'artigianato di un'agenzia."
+    },
+    "quoteL2": {
+      "en": "A builder's price.",
+      "de": "Der Preis eines Baukastens.",
+      "it": "Il prezzo di un builder."
+    },
+    "quoteL3": {
+      "en": "A system that updates itself.",
+      "de": "Ein System, das sich selbst aktualisiert.",
+      "it": "Un sistema che si aggiorna da solo."
+    },
+    "p3": {
+      "en": "You get the website an agency would build, the cost of a website builder, the security of static infrastructure, and a system that updates itself. One predictable monthly fee. Apply, or leave, anytime.",
+      "de": "Sie bekommen die Website, die eine Agentur bauen würde, zum Preis eines Baukastens, mit der Sicherheit statischer Infrastruktur und einem System, das sich selbst pflegt. Eine planbare monatliche Gebühr. Jederzeit kündbar.",
+      "it": "Ottenete il sito che farebbe un'agenzia, al costo di un website builder, con la sicurezza dell'infrastruttura statica, e un sistema che si aggiorna da solo. Un canone mensile prevedibile. Candidatevi o andate via, in qualsiasi momento."
+    }
+  },
+  "imageBreaker": {
+    "image": "/images/home-image-breaker.jpg",
+    "alt": {
+      "en": "A quiet hospitality interior at the close of the day",
+      "de": "Ein ruhiges Hotel-Interieur am Ende des Tages",
+      "it": "Un interno alberghiero tranquillo alla fine della giornata"
+    },
+    "caption": {
+      "en": "A website that runs without you. So the morning belongs to your guests, not your inbox.",
+      "de": "Eine Website, die ohne Sie läuft. Damit der Morgen Ihren Gästen gehört, nicht Ihrem Posteingang.",
+      "it": "Un sito che funziona senza di voi. Così la mattina appartiene ai vostri ospiti, non alla vostra casella di posta."
+    },
+    "attribution": {
+      "en": "Astia · principle 01",
+      "de": "Astia · Prinzip 01",
+      "it": "Astia · principio 01"
+    }
+  },
+  "steps": {
+    "num": {
+      "en": "03 — How it works",
+      "de": "03 — So funktioniert es",
+      "it": "03 — Come funziona"
+    },
+    "h2pre": {
+      "en": "Three steps. ",
+      "de": "Drei Schritte. ",
+      "it": "Tre passi. "
+    },
+    "h2em": {
+      "en": "Roughly three weeks.",
+      "de": "Etwa drei Wochen.",
+      "it": "Circa tre settimane."
+    },
+    "items": [
+      {
+        "num": "01",
+        "title": { "en": "Apply", "de": "Bewerben", "it": "Candidati" },
+        "days": { "en": "Day 1–3", "de": "Tag 1–3", "it": "Giorno 1–3" },
+        "body": {
+          "en": "Tell us about your property — what you offer, what's broken on your current site, what direct bookings should look like. We respond within three business days and confirm fit.",
+          "de": "Erzählen Sie uns von Ihrem Haus — was Sie anbieten, was an der aktuellen Seite nicht funktioniert, wie Direktbuchungen aussehen sollten. Wir antworten innerhalb von drei Werktagen und bestätigen die Eignung.",
+          "it": "Raccontateci della vostra struttura — cosa offrite, cosa non funziona nel sito attuale, come dovrebbero essere le prenotazioni dirette. Rispondiamo entro tre giorni lavorativi e confermiamo l'incontro."
+        }
+      },
+      {
+        "num": "02",
+        "title": { "en": "Build", "de": "Bauen", "it": "Costruiamo" },
+        "days": { "en": "Week 1–3", "de": "Woche 1–3", "it": "Settimana 1–3" },
+        "body": {
+          "en": "Discovery, design system, content migration, booking-engine integration, performance tuning. You see progress at every stage. We launch when you approve, not before.",
+          "de": "Discovery, Designsystem, Content-Migration, Anbindung des Buchungssystems, Performance-Tuning. Sie sehen den Fortschritt in jeder Phase. Wir gehen erst live, wenn Sie es freigeben.",
+          "it": "Discovery, design system, migrazione dei contenuti, integrazione del booking engine, tuning delle prestazioni. Vedete i progressi in ogni fase. Andiamo live quando approvate, non prima."
+        }
+      },
+      {
+        "num": "03",
+        "title": { "en": "Run", "de": "Betreiben", "it": "Funziona" },
+        "days": { "en": "Forever", "de": "Für immer", "it": "Per sempre" },
+        "body": {
+          "en": "Edits handled by AI agents within 24 hours. Hosting and security included. An annual design check-in to keep it modern. You focus on guests; the website handles itself.",
+          "de": "Änderungen erledigen AI-Agenten innerhalb von 24 Stunden. Hosting und Sicherheit inklusive. Jährlicher Design-Check, damit alles modern bleibt. Sie kümmern sich um Gäste; die Website kümmert sich um sich selbst.",
+          "it": "Modifiche gestite da agenti IA entro 24 ore. Hosting e sicurezza inclusi. Un check di design annuale per mantenerlo moderno. Voi pensate agli ospiti; il sito pensa a se stesso."
+        }
+      }
+    ],
+    "ctaFull": {
+      "en": "The full process",
+      "de": "Der gesamte Prozess",
+      "it": "Il processo completo"
+    }
+  },
+  "comparison": {
+    "num": {
+      "en": "04 — At a glance",
+      "de": "04 — Auf einen Blick",
+      "it": "04 — In sintesi"
+    },
+    "h2pre": {
+      "en": "Astia versus ",
+      "de": "Astia gegen ",
+      "it": "Astia contro "
+    },
+    "h2em": {
+      "en": "the alternatives.",
+      "de": "die Alternativen.",
+      "it": "le alternative."
+    },
+    "intro": {
+      "en": "The honest comparison. Numbers are industry averages — pulled from public benchmarks, our own work, and twenty years of hospitality web pricing.",
+      "de": "Der ehrliche Vergleich. Die Zahlen sind Branchendurchschnitte — aus öffentlichen Benchmarks, unserer eigenen Arbeit und zwanzig Jahren Erfahrung in der Hotellerie-Webentwicklung.",
+      "it": "Il confronto onesto. I numeri sono medie del settore — da benchmark pubblici, dal nostro lavoro, e da vent'anni di prezzi web per hotel."
+    },
+    "headers": {
+      "en": ["", "Web agency", "Wix / Squarespace", "Astia Web"],
+      "de": ["", "Web-Agentur", "Wix / Squarespace", "Astia Web"],
+      "it": ["", "Agenzia web", "Wix / Squarespace", "Astia Web"]
+    },
+    "rows": [
+      {
+        "label": { "en": "Upfront cost", "de": "Anschaffungskosten", "it": "Costo iniziale" },
+        "agency": { "en": "CHF 15k – 40k", "de": "CHF 15k – 40k", "it": "CHF 15k – 40k" },
+        "builder": { "en": "CHF 0", "de": "CHF 0", "it": "CHF 0" },
+        "astia": { "en": "CHF 0", "de": "CHF 0", "it": "CHF 0" }
+      },
+      {
+        "label": { "en": "Monthly cost", "de": "Monatliche Kosten", "it": "Costo mensile" },
+        "agency": { "en": "CHF 500 – 2,000", "de": "CHF 500 – 2.000", "it": "CHF 500 – 2.000" },
+        "builder": { "en": "CHF 30 – 50", "de": "CHF 30 – 50", "it": "CHF 30 – 50" },
+        "astia": { "en": "CHF 150 – 550", "de": "CHF 150 – 550", "it": "CHF 150 – 550" }
+      },
+      {
+        "label": { "en": "Time to launch", "de": "Zeit bis zum Launch", "it": "Tempo di lancio" },
+        "agency": { "en": "3–6 months", "de": "3–6 Monate", "it": "3–6 mesi" },
+        "builder": { "en": "A weekend (looks it)", "de": "Ein Wochenende (sieht man)", "it": "Un weekend (si vede)" },
+        "astia": { "en": "2–3 weeks", "de": "2–3 Wochen", "it": "2–3 settimane" }
+      },
+      {
+        "label": { "en": "Loads in under one second", "de": "Lädt in unter einer Sekunde", "it": "Si carica in meno di un secondo" },
+        "agency": { "en": "Sometimes", "de": "Manchmal", "it": "A volte" },
+        "builder": { "en": "Rarely", "de": "Selten", "it": "Raramente" },
+        "astia": { "en": "Always", "de": "Immer", "it": "Sempre" }
+      },
+      {
+        "label": { "en": "You own the code & content", "de": "Sie besitzen Code & Inhalte", "it": "Possedete codice & contenuti" },
+        "agency": { "en": "Maybe", "de": "Vielleicht", "it": "Forse" },
+        "builder": { "en": "No", "de": "Nein", "it": "No" },
+        "astia": { "en": "Yes", "de": "Ja", "it": "Sì" }
+      },
+      {
+        "label": { "en": "Updates handled by", "de": "Updates erledigt von", "it": "Aggiornamenti gestiti da" },
+        "agency": { "en": "You pay per edit", "de": "Sie zahlen pro Änderung", "it": "Pagate ogni modifica" },
+        "builder": { "en": "You, manually", "de": "Sie, manuell", "it": "Voi, manualmente" },
+        "astia": { "en": "AI agent + you", "de": "AI-Agent + Sie", "it": "Agente IA + voi" }
+      },
+      {
+        "label": { "en": "Direct booking integration", "de": "Direktbuchung integriert", "it": "Booking diretto integrato" },
+        "agency": { "en": "Custom build", "de": "Custom-Bau", "it": "Sviluppo custom" },
+        "builder": { "en": "Limited add-ons", "de": "Begrenzte Add-ons", "it": "Add-on limitati" },
+        "astia": { "en": "Built for it", "de": "Im Konzept verankert", "it": "Pensato per questo" }
+      }
+    ],
+    "ctaTech": {
+      "en": "The technical case for Astro",
+      "de": "Der technische Fall für Astro",
+      "it": "Il caso tecnico per Astro"
+    }
+  },
+  "portfolio": {
+    "num": {
+      "en": "05 — The work",
+      "de": "05 — Die Arbeit",
+      "it": "05 — Il lavoro"
+    },
+    "h2pre": {
+      "en": "The standard developed for ",
+      "de": "Der Standard, entwickelt für ",
+      "it": "Lo standard sviluppato per "
+    },
+    "h2em": {
+      "en": "Planhotel's Exploreans collection,",
+      "de": "die Exploreans-Kollektion von Planhotel,",
+      "it": "la collezione Exploreans di Planhotel,"
+    },
+    "h2post": {
+      "en": " now available to independent properties.",
+      "de": " jetzt verfügbar für unabhängige Häuser.",
+      "it": " ora disponibile per strutture indipendenti."
+    },
+    "meta": {
+      "en": "3 properties · built on Astia",
+      "de": "3 Häuser · mit Astia gebaut",
+      "it": "3 strutture · realizzate su Astia"
+    },
+    "notePre": {
+      "en": "Exploreans is the nature-led brand of ",
+      "de": "Exploreans ist die naturorientierte Marke der ",
+      "it": "Exploreans è il brand di natura di "
+    },
+    "noteStrong": {
+      "en": "Planhotel Hospitality Group",
+      "de": "Planhotel Hospitality Group",
+      "it": "Planhotel Hospitality Group"
+    },
+    "notePost": {
+      "en": ", an independent Swiss-Italian hotel group headquartered in Lugano. Three properties, one platform, all built and maintained on the Astia stack.",
+      "de": ", einer unabhängigen Schweizer-italienischen Hotelgruppe mit Sitz in Lugano. Drei Häuser, eine Plattform, alle mit dem Astia-Stack gebaut und gepflegt.",
+      "it": ", un gruppo alberghiero svizzero-italiano indipendente con sede a Lugano. Tre strutture, una piattaforma, tutte costruite e mantenute sullo stack Astia."
+    }
+  },
+  "pricingTeaser": {
+    "num": {
+      "en": "06 — Pricing",
+      "de": "06 — Preise",
+      "it": "06 — Prezzi"
+    },
+    "h2pre": {
+      "en": "One monthly fee. ",
+      "de": "Eine monatliche Gebühr. ",
+      "it": "Una tariffa mensile. "
+    },
+    "h2em": {
+      "en": "Zero invoices in between.",
+      "de": "Keine Rechnungen dazwischen.",
+      "it": "Zero fatture in mezzo."
+    },
+    "intro": {
+      "en": "Pricing by property size and how involved you want to be. Switch tiers anytime.",
+      "de": "Preise nach Hausgrösse und wie eingebunden Sie sein möchten. Wechsel jederzeit möglich.",
+      "it": "Prezzi in base alla grandezza della struttura e a quanto volete essere coinvolti. Si può cambiare livello in qualsiasi momento."
+    },
+    "selfTier": {
+      "tier": { "en": "Self-Serve", "de": "Self-Serve", "it": "Self-Serve" },
+      "tagline": {
+        "en": "You edit. We host, secure, and refresh.",
+        "de": "Sie editieren. Wir hosten, sichern, frischen auf.",
+        "it": "Voi modificate. Noi ospitiamo, proteggiamo, aggiorniamo."
+      }
+    },
+    "managedTier": {
+      "tier": { "en": "Managed", "de": "Managed", "it": "Managed" },
+      "tagline": {
+        "en": "You email. AI agents and we handle every edit.",
+        "de": "Sie schreiben uns. AI-Agenten und wir erledigen jede Anpassung.",
+        "it": "Voi scrivete. Agenti IA e noi gestiamo ogni modifica."
+      }
+    },
+    "recommended": { "en": "Recommended", "de": "Empfohlen", "it": "Consigliato" },
+    "rooms": {
+      "upTo15": { "en": "Up to 15", "de": "Bis zu 15", "it": "Fino a 15" },
+      "upTo30": { "en": "Up to 30", "de": "Bis zu 30", "it": "Fino a 30" },
+      "plus50": { "en": "50+", "de": "50+", "it": "50+" }
+    },
+    "roomsLabel": { "en": "rooms", "de": "Zimmer", "it": "camere" },
+    "selfPrices": { "upTo15": "150", "upTo30": "200", "plus50": "300" },
+    "managedPrices": { "upTo15": "250", "upTo30": "350", "plus50": "550" },
+    "cta": {
+      "en": "Full pricing & what's included",
+      "de": "Vollständige Preise & Leistungen",
+      "it": "Prezzi completi & cosa è incluso"
+    }
+  },
+  "finalCTA": {
+    "eyebrow": {
+      "en": "Limited intake",
+      "de": "Begrenzte Aufnahme",
+      "it": "Posti limitati"
+    },
+    "h2pre": {
+      "en": "We accept ",
+      "de": "Wir nehmen ",
+      "it": "Accettiamo "
+    },
+    "h2em": {
+      "en": "two new properties",
+      "de": "zwei neue Häuser",
+      "it": "due nuove strutture"
+    },
+    "h2post": {
+      "en": " a month.",
+      "de": " pro Monat auf.",
+      "it": " al mese."
+    },
+    "lede": {
+      "en": "Tell us about yours. We respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
+      "de": "Erzählen Sie uns von Ihrem. Wir antworten innerhalb von drei Werktagen — und sind ehrlich, ob Astia für Sie das Richtige ist, bevor sich einer von uns verpflichtet.",
+      "it": "Raccontateci della vostra. Rispondiamo entro tre giorni lavorativi, e saremo onesti su se Astia è la scelta giusta prima che nessuno di noi si impegni."
+    }
+  }
+}

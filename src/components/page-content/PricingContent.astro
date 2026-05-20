@@ -1,0 +1,167 @@
+---
+import { getEntry } from 'astro:content';
+import TierDetail from '@components/TierDetail.astro';
+import AddOn from '@components/AddOn.astro';
+import FAQ from '@components/FAQ.astro';
+
+interface Props { lang: 'en' | 'de' | 'it'; }
+const { lang } = Astro.props;
+
+const pricing = await getEntry('pages', 'pricing');
+const site = await getEntry('site', 'general');
+const d = pricing.data as any;
+const cta = (site.data as any).cta;
+const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply' } as any)[p];
+---
+{/* HERO */}
+<section class="section" style="padding-top:110px; padding-bottom:56px;">
+  <div class="container-narrow">
+    <span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span>
+    <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
+      {d.hero.headlinePre[lang]}<span class="editorial-i">{d.hero.headlineEm[lang]}</span>{d.hero.headlinePost[lang]}
+    </h1>
+    <p class="lede">{d.hero.lede[lang]}</p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* MATRIX */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.matrix.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:12px;">
+      {d.matrix.h2pre[lang]}<span class="editorial-i">{d.matrix.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:680px; margin-bottom:48px;">{d.matrix.intro[lang]}</p>
+
+    <div style="overflow-x:auto;">
+      <table style="width:100%; min-width:600px; border-collapse:separate; border-spacing:0; background:var(--paper);">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone);"></th>
+            <th style="padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone); text-align:center;">{d.matrix.sizes.small[lang]}</th>
+            <th style="padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone); text-align:center;">{d.matrix.sizes.medium[lang]}</th>
+            <th style="padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone); text-align:center;">{d.matrix.sizes.large[lang]}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:32px 16px; border-bottom:1px solid var(--bone); vertical-align:top;">
+              <div style="font-family:'Editorial New', serif; font-size:22px; font-weight:400;">{d.matrix.selfTier[lang]}</div>
+              <div style="font-size:13px; color:var(--stone); margin-top:6px; max-width:240px;">{d.matrix.selfTagline[lang]}</div>
+            </td>
+            <td style="padding:32px 16px; text-align:center; border-bottom:1px solid var(--bone); font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--ink);">{d.matrix.currency} {d.matrix.prices.selfSmall}{d.matrix.perMonth[lang]}</td>
+            <td style="padding:32px 16px; text-align:center; border-bottom:1px solid var(--bone); font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--ink);">{d.matrix.currency} {d.matrix.prices.selfMedium}{d.matrix.perMonth[lang]}</td>
+            <td style="padding:32px 16px; text-align:center; border-bottom:1px solid var(--bone); font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--ink);">{d.matrix.currency} {d.matrix.prices.selfLarge}{d.matrix.perMonth[lang]}</td>
+          </tr>
+          <tr style="background:var(--cream);">
+            <td style="padding:32px 16px; position:relative; vertical-align:top;">
+              <span style="position:absolute; top:8px; right:8px; font-family:'JetBrains Mono', monospace; font-size:9px; letter-spacing:0.14em; color:var(--rosso); text-transform:uppercase;">{d.matrix.recommended[lang]}</span>
+              <div style="font-family:'Editorial New', serif; font-size:22px; font-weight:400;">{d.matrix.managedTier[lang]}</div>
+              <div style="font-size:13px; color:var(--stone); margin-top:6px; max-width:240px;">{d.matrix.managedTagline[lang]}</div>
+            </td>
+            <td style="padding:32px 16px; text-align:center; font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--rosso); font-weight:500;">{d.matrix.currency} {d.matrix.prices.managedSmall}{d.matrix.perMonth[lang]}</td>
+            <td style="padding:32px 16px; text-align:center; font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--rosso); font-weight:500;">{d.matrix.currency} {d.matrix.prices.managedMedium}{d.matrix.perMonth[lang]}</td>
+            <td style="padding:32px 16px; text-align:center; font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--rosso); font-weight:500;">{d.matrix.currency} {d.matrix.prices.managedLarge}{d.matrix.perMonth[lang]}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* TIER DETAIL */}
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-num">{d.tierDetail.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:48px;">
+      {d.tierDetail.h2pre[lang]}<span class="editorial-i">{d.tierDetail.h2em[lang]}</span>
+    </h2>
+
+    <div class="grid-2">
+      <TierDetail
+        title={d.tierDetail.self.title[lang]}
+        tagline={d.tierDetail.self.tagline[lang]}
+        good={d.tierDetail.self.good[lang]}
+        bad={d.tierDetail.self.bad[lang]}
+      />
+      <TierDetail
+        title={d.tierDetail.managed.title[lang]}
+        tagline={d.tierDetail.managed.tagline[lang]}
+        good={d.tierDetail.managed.good[lang]}
+        recommended
+      />
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* BOOKING ENGINES */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.bookingEngines.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:12px;">
+      {d.bookingEngines.h2pre[lang]}<span class="editorial-i">{d.bookingEngines.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.bookingEngines.intro[lang]}</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="caption text-rosso" style="margin-bottom:12px; display:block;">{d.bookingEngines.simpleBooking.tag[lang]}</span>
+        <h3 style="font-family:'Editorial New', serif; font-size:24px; margin:0 0 14px; font-weight:400;">{d.bookingEngines.simpleBooking.title[lang]}</h3>
+        <p class="body-sm" style="margin-bottom:18px;">{d.bookingEngines.simpleBooking.body[lang]}</p>
+        <div style="font-family:'JetBrains Mono', monospace; color:var(--rosso); font-size:16px;">{d.bookingEngines.simpleBooking.price[lang]}</div>
+      </div>
+      <div class="card card-cream">
+        <h3 style="font-family:'Editorial New', serif; font-size:24px; margin:0 0 14px; font-weight:400;">{d.bookingEngines.others.title[lang]}</h3>
+        <p class="body-sm" style="margin-bottom:14px;">{d.bookingEngines.others.list[lang]}</p>
+        <p class="body-sm" style="margin-bottom:18px;">{d.bookingEngines.others.body[lang]}</p>
+        <div style="font-family:'JetBrains Mono', monospace; color:var(--ink); font-size:14px;">{d.bookingEngines.others.price[lang]}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* ADD-ONS */}
+<section class="section section-cream">
+  <div class="container-narrow">
+    <span class="section-num">{d.addons.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:48px;">
+      {d.addons.h2pre[lang]}<span class="editorial-i">{d.addons.h2em[lang]}</span>
+    </h2>
+
+    <div>
+      {d.addons.items.map((a: any) => (
+        <AddOn title={a.title[lang]} body={a.body[lang]} price={a.price[lang]} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* FAQ */}
+<section class="section">
+  <div class="container-narrow">
+    <span class="section-num">{d.faq.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:48px;">
+      {d.faq.h2pre[lang]}<span class="editorial-i">{d.faq.h2em[lang]}</span>
+    </h2>
+
+    <div>
+      {d.faq.items.map((item: any) => (
+        <FAQ q={item.q[lang]} a={item.a[lang]} />
+      ))}
+    </div>
+
+    <div style="margin-top:64px; text-align:center;">
+      <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
+    </div>
+  </div>
+</section>

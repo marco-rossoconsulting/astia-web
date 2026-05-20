@@ -1,0 +1,21 @@
+{
+  "order": 3,
+  "tag": {
+    "en": "Beach club & villas · 2025",
+    "de": "Beach Club & Villen · 2025",
+    "it": "Beach club & ville · 2025"
+  },
+  "title": "Watamu",
+  "subtitle": {
+    "en": "Mayungu Bay, Kenyan coast",
+    "de": "Mayungu Bay, kenianische Küste",
+    "it": "Mayungu Bay, costa keniota"
+  },
+  "image": "/images/portfolio-watamu.jpg",
+  "imageAlt": {
+    "en": "Watamu beach club at Mayungu Bay on the Kenyan coast",
+    "de": "Watamu Beach Club an der Mayungu Bay an der kenianischen Küste",
+    "it": "Beach club di Watamu a Mayungu Bay sulla costa keniota"
+  },
+  "url": ""
+}

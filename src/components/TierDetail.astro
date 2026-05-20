@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  tagline: string;
+  good: string[];
+  bad?: string[];
+  recommended?: boolean;
+}
+const { title, tagline, good, bad = [], recommended = false } = Astro.props;
+---
+<div class={`tier-detail ${recommended ? 'recommended' : ''}`}>
+  <h3>{title}</h3>
+  <p class="tier-detail-tagline">{tagline}</p>
+  <ul class="tier-detail-list">
+    {good.map(item => <li>{item}</li>)}
+  </ul>
+  {bad.length > 0 && (
+    <ul class="tier-detail-list bad">
+      {bad.map(item => <li>{item}</li>)}
+    </ul>
+  )}
+</div>

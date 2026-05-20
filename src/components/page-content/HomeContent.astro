@@ -1,0 +1,234 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import ProblemCard from '@components/ProblemCard.astro';
+import StepCard from '@components/StepCard.astro';
+import PortfolioCard from '@components/PortfolioCard.astro';
+import PriceTeaserCard from '@components/PriceTeaserCard.astro';
+import ImageBreaker from '@components/ImageBreaker.astro';
+import ComparisonTable from '@components/ComparisonTable.astro';
+
+interface Props {
+  lang: 'en' | 'de' | 'it';
+}
+const { lang } = Astro.props;
+
+const home = await getEntry('pages', 'home');
+const site = await getEntry('site', 'general');
+const portfolio = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
+
+const d = home.data as any;
+const s = site.data as any;
+const cta = s.cta;
+const perMonth = lang === 'en' ? '/mo' : (lang === 'de' ? '/Mt.' : '/mese');
+
+const url = (p: string) => {
+  const prefix = lang === 'en' ? '' : `/${lang}`;
+  const paths: Record<string, string> = { how: '/how-it-works', pricing: '/pricing', apply: '/apply' };
+  return prefix + paths[p];
+};
+
+// Build comparison rows for the table
+const cmpRows = d.comparison.rows.map((r: any) => ({
+  label: r.label[lang],
+  agency: r.agency[lang],
+  builder: r.builder[lang],
+  astia: r.astia[lang],
+}));
+
+const selfPrices = [
+  { rooms: d.pricingTeaser.rooms.upTo15[lang], price: d.pricingTeaser.selfPrices.upTo15 },
+  { rooms: d.pricingTeaser.rooms.upTo30[lang], price: d.pricingTeaser.selfPrices.upTo30 },
+  { rooms: d.pricingTeaser.rooms.plus50[lang], price: d.pricingTeaser.selfPrices.plus50 },
+];
+const managedPrices = [
+  { rooms: d.pricingTeaser.rooms.upTo15[lang], price: d.pricingTeaser.managedPrices.upTo15 },
+  { rooms: d.pricingTeaser.rooms.upTo30[lang], price: d.pricingTeaser.managedPrices.upTo30 },
+  { rooms: d.pricingTeaser.rooms.plus50[lang], price: d.pricingTeaser.managedPrices.plus50 },
+];
+---
+{/* HERO */}
+<section class="section hero-grid" style="padding-top:120px; padding-bottom:80px;">
+  <div class="container">
+    <div class="fade-in delay-1"><span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span></div>
+    <h1 class="display-1 fade-in delay-2" style="margin-top:26px; max-width:1000px;">
+      {d.hero.preEm[lang]} <span class="editorial-i">{d.hero.em[lang]}</span> {d.hero.post[lang]}
+    </h1>
+    <p class="lede fade-in delay-3" style="margin-top:32px; max-width:620px;">{d.hero.lede[lang]}</p>
+    <div class="fade-in delay-4" style="margin-top:44px; display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+      <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
+      <a class="btn btn-ghost btn-arrow" href={url('how')}>{cta.seeHow[lang]}</a>
+      <span class="caption" style="margin-left:12px; color:var(--stone);">{d.hero.capacity[lang]}</span>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* PROBLEM */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.problem.num[lang]}</span>
+    <h2 class="display-2" style="max-width:780px; margin-bottom:12px;">
+      {d.problem.h2pre[lang]} <span class="editorial-i text-rosso">{d.problem.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:640px; margin-bottom:64px;">{d.problem.intro[lang]}</p>
+
+    <div class="grid-3">
+      {d.problem.cards.map((c: any) => (
+        <ProblemCard tag={c.tag[lang]} title={c.title[lang]} body={c.body[lang]} tail={c.tail[lang]} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* SOLUTION */}
+<section class="section section-cream">
+  <div class="container-narrow">
+    <span class="section-num">{d.solution.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:32px;">
+      {d.solution.h2pre[lang]}<span class="editorial-i">{d.solution.h2em[lang]}</span>
+    </h2>
+    <p class="lede" style="margin-bottom:24px;">{d.solution.p1[lang]}</p>
+    <p class="lede" style="margin-bottom:24px;">
+      {d.solution.p2pre[lang]}<span class="editorial-i text-rosso">{d.solution.p2em[lang]}</span>
+    </p>
+
+    <blockquote class="pulled-quote">
+      {d.solution.quoteL1[lang]}<br />
+      {d.solution.quoteL2[lang]}<br />
+      <span style="color:var(--rosso);">{d.solution.quoteL3[lang]}</span>
+    </blockquote>
+
+    <p class="body" style="color:var(--stone);">{d.solution.p3[lang]}</p>
+  </div>
+</section>
+
+<ImageBreaker
+  src={d.imageBreaker.image}
+  alt={d.imageBreaker.alt[lang]}
+  caption={d.imageBreaker.caption[lang]}
+  attribution={d.imageBreaker.attribution[lang]}
+/>
+
+{/* STEPS */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.steps.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:64px;">
+      {d.steps.h2pre[lang]}<span class="editorial-i">{d.steps.h2em[lang]}</span>
+    </h2>
+
+    <div class="grid-3">
+      {d.steps.items.map((s: any, i: number) => (
+        <StepCard num={s.num} title={s.title[lang]} days={s.days[lang]} body={s.body[lang]} accent={i === 2} />
+      ))}
+    </div>
+
+    <div style="margin-top:56px;">
+      <a class="btn btn-ghost btn-arrow" href={url('how')}>{d.steps.ctaFull[lang]}</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* COMPARISON */}
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-num">{d.comparison.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:12px;">
+      {d.comparison.h2pre[lang]}<span class="editorial-i">{d.comparison.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.comparison.intro[lang]}</p>
+
+    <ComparisonTable headers={d.comparison.headers[lang]} rows={cmpRows} />
+
+    <div style="margin-top:36px;">
+      <a class="btn btn-ghost btn-arrow" href={url('how')}>{d.comparison.ctaTech[lang]}</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* PORTFOLIO */}
+<section class="section">
+  <div class="container">
+    <span class="section-num">{d.portfolio.num[lang]}</span>
+    <div class="flex-between" style="align-items:flex-end; margin-bottom:48px;">
+      <h2 class="display-2" style="max-width:720px; margin-bottom:0;">
+        {d.portfolio.h2pre[lang]}<span class="editorial-i">{d.portfolio.h2em[lang]}</span>{d.portfolio.h2post[lang]}
+      </h2>
+      <span class="caption" style="white-space:nowrap;">{d.portfolio.meta[lang]}</span>
+    </div>
+
+    <div class="grid-3">
+      {portfolio.map(p => (
+        <PortfolioCard
+          tag={p.data.tag[lang]}
+          title={p.data.title}
+          sub={p.data.subtitle[lang]}
+          img={p.data.image}
+          alt={p.data.imageAlt[lang]}
+          url={p.data.url}
+        />
+      ))}
+    </div>
+
+    <p class="body-sm" style="margin-top:32px; max-width:640px;">
+      {d.portfolio.notePre[lang]}<span class="text-ink">{d.portfolio.noteStrong[lang]}</span>{d.portfolio.notePost[lang]}
+    </p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* PRICING TEASER */}
+<section class="section section-cream">
+  <div class="container">
+    <span class="section-num">{d.pricingTeaser.num[lang]}</span>
+    <h2 class="display-2" style="margin-bottom:12px;">
+      {d.pricingTeaser.h2pre[lang]}<span class="editorial-i">{d.pricingTeaser.h2em[lang]}</span>
+    </h2>
+    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.pricingTeaser.intro[lang]}</p>
+
+    <div class="grid-2">
+      <PriceTeaserCard
+        tier={d.pricingTeaser.selfTier.tier[lang]}
+        tagline={d.pricingTeaser.selfTier.tagline[lang]}
+        roomsLabel={d.pricingTeaser.roomsLabel[lang]}
+        prices={selfPrices}
+        perMonth={perMonth}
+      />
+      <PriceTeaserCard
+        tier={d.pricingTeaser.managedTier.tier[lang]}
+        tagline={d.pricingTeaser.managedTier.tagline[lang]}
+        roomsLabel={d.pricingTeaser.roomsLabel[lang]}
+        prices={managedPrices}
+        recommended
+        recommendedLabel={d.pricingTeaser.recommended[lang]}
+        perMonth={perMonth}
+      />
+    </div>
+
+    <div style="margin-top:36px;">
+      <a class="btn btn-ghost btn-arrow" href={url('pricing')}>{d.pricingTeaser.cta[lang]}</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+{/* FINAL CTA */}
+<section class="section">
+  <div class="container-narrow" style="text-align:center;">
+    <span class="eyebrow eyebrow-rosso">{d.finalCTA.eyebrow[lang]}</span>
+    <h2 class="display-2" style="margin-top:24px; margin-bottom:28px;">
+      {d.finalCTA.h2pre[lang]}<span class="editorial-i">{d.finalCTA.h2em[lang]}</span>{d.finalCTA.h2post[lang]}
+    </h2>
+    <p class="lede" style="margin-bottom:40px; max-width:540px; margin-left:auto; margin-right:auto;">{d.finalCTA.lede[lang]}</p>
+    <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
+  </div>
+</section>
