@@ -39,6 +39,7 @@ const articles = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    route: z.string(),
     lang: z.enum(['en', 'de', 'it']),
     excerpt: z.string(),
     tag: z.string(),
