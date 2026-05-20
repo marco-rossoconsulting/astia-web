@@ -8,9 +8,9 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 
-site_url: https://astiaweb.netlify.app
-display_url: https://astiaweb.netlify.app
-logo_url: https://astiaweb.netlify.app/favicon.svg
+site_url: https://astiaweb.com
+display_url: https://astiaweb.com
+logo_url: https://astiaweb.com/favicon.svg
 
 publish_mode: simple
 slug:
