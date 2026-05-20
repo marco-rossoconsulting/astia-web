@@ -12,11 +12,6 @@ site_url: https://astiaweb.netlify.app
 display_url: https://astiaweb.netlify.app
 logo_url: https://astiaweb.netlify.app/favicon.svg
 
-i18n:
-  locales: [en, de, it]
-  default_locale: en
-  structure: single_file
-
 publish_mode: simple
 slug:
   encoding: ascii
@@ -24,22 +19,20 @@ slug:
   sanitize_replacement: "-"
 
 collections:
-  # ============================================================================
-  # PAGES — raw object structure matching the JSON exactly (NO i18n field magic)
-  # ============================================================================
   - name: pages
     label: "Pages"
     label_singular: "Page"
     editor:
       preview: false
     files:
-      - name: journal-index
-        label: "Journal Index Page"
-        file: src/content/pages/journal-index.json
+      - name: home
+        label: "Home Page"
+        file: src/content/pages/home.json
         fields:
           - label: "SEO"
             name: seo
             widget: object
+            collapsed: true
             fields:
               - label: "Meta Title"
                 name: title
@@ -56,17 +49,215 @@ collections:
                   - { label: "German",  name: de, widget: text }
                   - { label: "Italian", name: it, widget: text }
               - { label: "OG Image", name: ogImage, widget: image, required: false }
-              - label: "OG Image Alt Text"
-                name: ogImageAlt
+          - label: "Hero"
+            name: hero
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Eyebrow"
+                name: eyebrow
                 widget: object
-                required: false
                 fields:
                   - { label: "English", name: en, widget: string }
                   - { label: "German",  name: de, widget: string }
                   - { label: "Italian", name: it, widget: string }
+              - label: "Headline pre"
+                name: preEm
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline em"
+                name: em
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline post"
+                name: post
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+              - label: "Capacity claim"
+                name: capacity
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+          - label: "Problem cards"
+            name: problem
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Intro"
+                name: intro
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+              - label: "Cards"
+                name: cards
+                widget: list
+                fields:
+                  - label: "Tag"
+                    name: tag
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: string }
+                      - { label: "German",  name: de, widget: string }
+                      - { label: "Italian", name: it, widget: string }
+                  - label: "Title"
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: string }
+                      - { label: "German",  name: de, widget: string }
+                      - { label: "Italian", name: it, widget: string }
+                  - label: "Body"
+                    name: body
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: text }
+                      - { label: "German",  name: de, widget: text }
+                      - { label: "Italian", name: it, widget: text }
+          - label: "Solution"
+            name: solution
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Paragraph 1"
+                name: p1
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+              - label: "Paragraph 2 pre"
+                name: p2pre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+              - label: "Paragraph 2 em"
+                name: p2em
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Paragraph 3"
+                name: p3
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "Steps"
+            name: steps
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Items"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Number", name: num, widget: string }
+                  - label: "Title"
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: string }
+                      - { label: "German",  name: de, widget: string }
+                      - { label: "Italian", name: it, widget: string }
+                  - label: "Body"
+                    name: body
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: text }
+                      - { label: "German",  name: de, widget: text }
+                      - { label: "Italian", name: it, widget: text }
+          - label: "Final CTA"
+            name: finalCTA
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Eyebrow"
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "H2 pre"
+                name: h2pre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "H2 em"
+                name: h2em
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "H2 post"
+                name: h2post
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+
+      - name: journal-index
+        label: "Journal Index Page"
+        file: src/content/pages/journal-index.json
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Meta Title"
+                name: title
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Meta Description"
+                name: description
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
           - label: "Hero"
             name: hero
             widget: object
+            collapsed: true
             fields:
               - label: "Eyebrow"
                 name: eyebrow
@@ -92,6 +283,7 @@ collections:
           - label: "Labels"
             name: labels
             widget: object
+            collapsed: true
             fields:
               - label: "Read more"
                 name: readMore
@@ -107,18 +299,298 @@ collections:
                   - { label: "English", name: en, widget: string }
                   - { label: "German",  name: de, widget: string }
                   - { label: "Italian", name: it, widget: string }
-              - label: "Translation note"
-                name: translationNote
+
+      - name: apply
+        label: "Apply Page"
+        file: src/content/pages/apply.json
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Meta Title"
+                name: title
                 widget: object
-                required: false
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Meta Description"
+                name: description
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "Hero"
+            name: hero
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Eyebrow"
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline pre"
+                name: headlinePre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline em"
+                name: headlineEm
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "Thank you"
+            name: thankYou
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Eyebrow"
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Thanks"
+                name: thanks
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Body 1"
+                name: body1
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+              - label: "Body 2"
+                name: body2
+                widget: object
                 fields:
                   - { label: "English", name: en, widget: text }
                   - { label: "German",  name: de, widget: text }
                   - { label: "Italian", name: it, widget: text }
 
-  # ============================================================================
-  # ARTICLES
-  # ============================================================================
+      - name: pricing
+        label: "Pricing Page"
+        file: src/content/pages/pricing.json
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Meta Title"
+                name: title
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Meta Description"
+                name: description
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "Hero"
+            name: hero
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Eyebrow"
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline pre"
+                name: headlinePre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline em"
+                name: headlineEm
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "FAQ"
+            name: faq
+            widget: object
+            collapsed: true
+            fields:
+              - label: "H2 pre"
+                name: h2pre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "H2 em"
+                name: h2em
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Items"
+                name: items
+                widget: list
+                fields:
+                  - label: "Question"
+                    name: q
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: text }
+                      - { label: "German",  name: de, widget: text }
+                      - { label: "Italian", name: it, widget: text }
+                  - label: "Answer"
+                    name: a
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: text }
+                      - { label: "German",  name: de, widget: text }
+                      - { label: "Italian", name: it, widget: text }
+
+      - name: how
+        label: "How It Works Page"
+        file: src/content/pages/how.json
+        fields:
+          - label: "SEO"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Meta Title"
+                name: title
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Meta Description"
+                name: description
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "Hero"
+            name: hero
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Eyebrow"
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline em"
+                name: headlineEm
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Headline post"
+                name: headlinePost
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+          - label: "Lifecycle"
+            name: lifecycle
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Items"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Number", name: num, widget: string }
+                  - label: "Title"
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: string }
+                      - { label: "German",  name: de, widget: string }
+                      - { label: "Italian", name: it, widget: string }
+                  - label: "Body"
+                    name: body
+                    widget: object
+                    fields:
+                      - { label: "English", name: en, widget: text }
+                      - { label: "German",  name: de, widget: text }
+                      - { label: "Italian", name: it, widget: text }
+          - label: "Final CTA"
+            name: finalCTA
+            widget: object
+            collapsed: true
+            fields:
+              - label: "H2 pre"
+                name: h2pre
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "H2 em"
+                name: h2em
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: string }
+                  - { label: "German",  name: de, widget: string }
+                  - { label: "Italian", name: it, widget: string }
+              - label: "Lede"
+                name: lede
+                widget: object
+                fields:
+                  - { label: "English", name: en, widget: text }
+                  - { label: "German",  name: de, widget: text }
+                  - { label: "Italian", name: it, widget: text }
+
   - name: articles
     label: "Journal Articles"
     label_singular: "Article"
