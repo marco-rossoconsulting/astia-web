@@ -1,6 +1,6 @@
 ---
 title: "Alles verbinden. Plädoyer für offenes Hosting und APIs im Jahr 2026."
-slug: connect-anything-open-platforms-2026
+slug: connect-anything-open-platforms-2026-de
 lang: de
 excerpt: "Geschlossene Website-Baukastensysteme haben eine Sache einfach gemacht und fast alles andere nahezu unmöglich."
 tag: Architecture

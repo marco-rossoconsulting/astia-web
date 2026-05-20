@@ -1,6 +1,6 @@
 ---
 title: "Connetti qualsiasi cosa. Il caso per un'architettura aperta nel 2026."
-slug: connect-anything-open-platforms-2026
+slug: connect-anything-open-platforms-2026-it
 lang: it
 excerpt: "Le piattaforme chiuse hanno reso facile una cosa e quasi impossibile tutto il resto."
 tag: Architecture

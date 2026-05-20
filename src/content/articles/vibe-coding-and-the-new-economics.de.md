@@ -1,6 +1,6 @@
 ---
 title: "Vibe Coding, KI-Agenten und die neue Ökonomie kleiner Unternehmens-Websites."
-slug: vibe-coding-and-the-new-economics
+slug: vibe-coding-and-the-new-economics-de
 lang: de
 excerpt: "Vor zwei Jahren erforderte der Bau einer Website noch echte Ingenieursarbeit. Heute ist es vor allem eine Frage des Geschmacks."
 tag: AI Era

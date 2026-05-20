@@ -1,6 +1,6 @@
 ---
 title: "Vibe coding, AI agents, and the new economics of small business websites."
-slug: vibe-coding-and-the-new-economics
+slug: vibe-coding-and-the-new-economics-en
 lang: en
 excerpt: "Two years ago, building a website still required engineering. Today, much of it requires taste. The shift, called vibe coding by the people doing it, has rewritten the economics of small business web development — and most of the industry hasn't adjusted."
 tag: AI Era

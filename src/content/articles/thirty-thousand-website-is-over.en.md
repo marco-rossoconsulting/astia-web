@@ -1,6 +1,6 @@
 ---
 title: "The end of the €30,000 hotel website. And what replaced it."
-slug: thirty-thousand-website-is-over
+slug: thirty-thousand-website-is-over-en
 lang: en
 excerpt: "A 30-room boutique in 2015 paid an agency €25,000–40,000 for a website that took five months to build and started looking dated in two years. In 2026, that same site can be built in three weeks for less than the agency's deposit. The technology changed. The pricing has not. Yet."
 tag: Economics

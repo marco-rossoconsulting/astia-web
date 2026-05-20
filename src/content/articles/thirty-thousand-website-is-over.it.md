@@ -1,6 +1,6 @@
 ---
 title: "La fine del sito hotel da 30.000 €. E cosa lo ha sostituito."
-slug: thirty-thousand-website-is-over
+slug: thirty-thousand-website-is-over-it
 lang: it
 excerpt: "Un boutique hotel di 30 camere nel 2015 pagava un'agenzia 25.000–40.000 € per un sito che richiedeva cinque mesi e iniziava a sembrare datato in due anni. Nel 2026, lo stesso sito si costruisce in tre settimane con meno dell'acconto dell'agenzia."
 tag: Economics

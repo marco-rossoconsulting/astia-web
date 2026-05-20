@@ -1,6 +1,6 @@
 ---
 title: "Non sei obbligato ad affittare il tuo sito. Una guida pratica per possedere il tuo codice."
-slug: you-dont-have-to-rent-your-website
+slug: you-dont-have-to-rent-your-website-it
 lang: it
 excerpt: "Quando paghi Wix o Squarespace ogni mese, stai pagando un affitto. Smetti di pagare e il sito sparisce."
 tag: Ownership
