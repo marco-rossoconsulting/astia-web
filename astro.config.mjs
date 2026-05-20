@@ -11,12 +11,7 @@ export default defineConfig({
     },
   },
   integrations: [
-    sitemap({
-      i18n: {
-        defaultLocale: 'en',
-        locales: { en: 'en', de: 'de', it: 'it' },
-      },
-    }),
+    sitemap(),
   ],
   trailingSlash: 'never',
   build: {
