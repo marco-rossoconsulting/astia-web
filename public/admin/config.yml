@@ -623,14 +623,13 @@ collections:
     folder: src/content/articles
     create: true
     delete: true
-    identifier_field: slug
+    identifier_field: route
     extension: md
     format: yaml-frontmatter
-    slug: "{{slug}}.{{lang}}"
     summary: "{{title}} · {{lang}}"
     fields:
       - { label: "Title", name: title, widget: string }
-      - { label: "URL Slug", name: slug, widget: string, hint: "Same across all languages — lowercase, hyphens" }
+      - { label: "URL Route", name: route, widget: string, hint: "Lowercase, hyphens. Append language code, e.g. my-article-en" }
       - { label: "Language", name: lang, widget: select, options: ["en", "de", "it"], default: "en" }
       - { label: "Excerpt (1-2 sentences)", name: excerpt, widget: text }
       - { label: "Tag/category", name: tag, widget: string }
