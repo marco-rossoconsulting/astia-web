@@ -21,7 +21,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container-narrow">
     <span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span>
     <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
-      {d.hero.headlinePre[lang]}<span class="editorial-i">{d.hero.headlineEm[lang]}</span>{d.hero.headlinePost[lang]}
+      {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
     </h1>
     <p class="lede">{d.hero.lede[lang]}</p>
   </div>
@@ -34,7 +34,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container">
     <span class="section-num">{d.lifecycle.num[lang]}</span>
     <h2 class="display-2" style="margin-bottom:48px;">
-      {d.lifecycle.h2pre[lang]}<span class="editorial-i">{d.lifecycle.h2em[lang]}</span>
+      {d.lifecycle.h2pre[lang]} <span class="editorial-i">{d.lifecycle.h2em[lang]}</span>
     </h2>
 
     <LifecycleDiagram labels={lifecycleLabels} />
@@ -58,7 +58,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container">
     <span class="section-num">{d.build.num[lang]}</span>
     <h2 class="display-2" style="margin-bottom:12px;">
-      {d.build.h2pre[lang]}<span class="editorial-i">{d.build.h2em[lang]}</span>
+      {d.build.h2pre[lang]} <span class="editorial-i">{d.build.h2em[lang]}</span>
     </h2>
     <p class="body" style="max-width:580px; margin-bottom:48px;">{d.build.intro[lang]}</p>
 
@@ -82,7 +82,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container">
     <span class="section-num">{d.technical.num[lang]}</span>
     <h2 class="display-2" style="margin-bottom:12px;">
-      {d.technical.h2pre[lang]}<span class="editorial-i">{d.technical.h2em[lang]}</span>
+      {d.technical.h2pre[lang]} <span class="editorial-i">{d.technical.h2em[lang]}</span>
     </h2>
     <p class="body" style="max-width:720px; margin-bottom:48px;">{d.technical.intro[lang]}</p>
 
@@ -110,7 +110,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container">
     <span class="section-num">{d.included.num[lang]}</span>
     <h2 class="display-2" style="margin-bottom:48px;">
-      {d.included.h2pre[lang]}<span class="editorial-i">{d.included.h2em[lang]}</span>
+      {d.included.h2pre[lang]} <span class="editorial-i">{d.included.h2em[lang]}</span>
     </h2>
 
     <div class="grid-4">
@@ -120,7 +120,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
           <ul style="list-style:none; padding:0; margin:0;">
             {col.items[lang].map((item: string) => (
               <li style="padding:8px 0 8px 20px; position:relative; font-size:14px; line-height:1.55; color:var(--ink-soft);">
-                <span style="position:absolute; left:0; color:var(--rosso);">+</span>{item}
+                <span style="position:absolute; left:0; color:var(--rosso);">+</span> {item}
               </li>
             ))}
           </ul>
@@ -137,7 +137,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container">
     <span class="section-num">{d.bookingMath.num[lang]}</span>
     <h2 class="display-2" style="margin-bottom:48px;">
-      {d.bookingMath.h2pre[lang]}<span class="editorial-i">{d.bookingMath.h2em[lang]}</span>
+      {d.bookingMath.h2pre[lang]} <span class="editorial-i">{d.bookingMath.h2em[lang]}</span>
     </h2>
 
     <MathCard
@@ -156,7 +156,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   <div class="container-narrow">
     <span class="section-num">{d.about.num[lang]}</span>
     <h2 class="display-2" style="margin-bottom:24px;">
-      {d.about.h2pre[lang]}<span class="editorial-i">{d.about.h2em[lang]}</span>
+      {d.about.h2pre[lang]} <span class="editorial-i">{d.about.h2em[lang]}</span>
     </h2>
     <p class="lede">{d.about.body[lang]}</p>
   </div>
@@ -168,7 +168,7 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
 <section class="section">
   <div class="container-narrow" style="text-align:center;">
     <h2 class="display-2" style="margin-bottom:28px;">
-      {d.finalCTA.h2pre[lang]}<span class="editorial-i">{d.finalCTA.h2em[lang]}</span>
+      {d.finalCTA.h2pre[lang]} <span class="editorial-i">{d.finalCTA.h2em[lang]}</span>
     </h2>
     <p class="lede" style="margin-bottom:40px; max-width:540px; margin-left:auto; margin-right:auto;">{d.finalCTA.lede[lang]}</p>
     <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
