@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
+  <url>
+    <loc>https://astiaweb.com/</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://astiaweb.com/"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it"/>
+  </url>
+
+  <!-- How it works -->
+  <url>
+    <loc>https://astiaweb.com/how-it-works</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/how-it-works"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/how-it-works"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/how-it-works"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/how-it-works</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/how-it-works</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Pricing -->
+  <url>
+    <loc>https://astiaweb.com/pricing</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/pricing"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/pricing"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/pricing</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/pricing</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Apply -->
+  <url>
+    <loc>https://astiaweb.com/apply</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/apply"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/apply"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/apply"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/apply</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/apply</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Thank you -->
+  <url>
+    <loc>https://astiaweb.com/thank-you</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Journal index -->
+  <url>
+    <loc>https://astiaweb.com/journal</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/journal"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/journal"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/journal"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/journal</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/journal</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Journal articles -->
+  <url>
+    <loc>https://astiaweb.com/journal/1995-prices-in-2026-en</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/journal/1995-prices-in-2026-en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/journal/1995-prices-in-2026-de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/journal/1995-prices-in-2026-it"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/journal/1995-prices-in-2026-de</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/journal/1995-prices-in-2026-it</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://astiaweb.com/journal/connect-anything-open-platforms-2026-en</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/journal/connect-anything-open-platforms-2026-en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/journal/connect-anything-open-platforms-2026-de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/journal/connect-anything-open-platforms-2026-it"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/journal/connect-anything-open-platforms-2026-de</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/journal/connect-anything-open-platforms-2026-it</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://astiaweb.com/journal/thirty-thousand-website-is-over-en</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/journal/thirty-thousand-website-is-over-en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/journal/thirty-thousand-website-is-over-de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/journal/thirty-thousand-website-is-over-it"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/journal/thirty-thousand-website-is-over-de</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/journal/thirty-thousand-website-is-over-it</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://astiaweb.com/journal/vibe-coding-and-the-new-economics-en</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/journal/vibe-coding-and-the-new-economics-en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/journal/vibe-coding-and-the-new-economics-de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/journal/vibe-coding-and-the-new-economics-it"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/journal/vibe-coding-and-the-new-economics-de</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/journal/vibe-coding-and-the-new-economics-it</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://astiaweb.com/journal/you-dont-have-to-rent-your-website-en</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astiaweb.com/journal/you-dont-have-to-rent-your-website-en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://astiaweb.com/de/journal/you-dont-have-to-rent-your-website-de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://astiaweb.com/it/journal/you-dont-have-to-rent-your-website-it"/>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/de/journal/you-dont-have-to-rent-your-website-de</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://astiaweb.com/it/journal/you-dont-have-to-rent-your-website-it</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
