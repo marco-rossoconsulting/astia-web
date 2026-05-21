@@ -8,8 +8,10 @@ export default async (req, context) => {
     return new Response("Invalid payload", { status: 400 });
   }
 
-  // Netlify v2 event payload structure: payload.data holds the form fields
-  const data = payload.data || payload;
+  console.log("Raw payload keys:", Object.keys(payload).join(", "));
+
+  // Netlify v2 may nest data under payload.data or send it flat.
+  const data = payload.data || payload.payload?.data || payload;
 
   const to = process.env.NOTIFY_EMAIL;
   const resendKey = process.env.RESEND_API_KEY;
@@ -20,23 +22,26 @@ export default async (req, context) => {
   }
 
   const fields = {
-    "Property": data.propertyName || "—",
-    "Type": data.propertyType || "—",
-    "Rooms": data.rooms || "—",
-    "Location": data.location || "—",
+    Property: data.propertyName || "—",
+    Type: data.propertyType || "—",
+    Rooms: data.rooms || "—",
+    Location: data.location || "—",
     "Current website": data.website || "—",
     "Booking engine": data.bookingEngine || "—",
     "What's broken": data.whatsBroken || "—",
     "90-day goal": data.goal || "—",
     "Contact name": data.name || "—",
-    "Role": data.role || "—",
-    "Email": data.email || "—",
-    "Phone": data.phone || "—",
-    "Language": data.lang || "—",
+    Role: data.role || "—",
+    Email: data.email || "—",
+    Phone: data.phone || "—",
+    Language: data.lang || "—",
   };
 
   const htmlRows = Object.entries(fields)
-    .map(([k, v]) => `<tr><td style="padding:6px 12px;border-bottom:1px solid #eee;font-weight:600;white-space:nowrap;">${k}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;">${v}</td></tr>`)
+    .map(
+      ([k, v]) =>
+        `<tr><td style="padding:6px 12px;border-bottom:1px solid #eee;font-weight:600;white-space:nowrap;">${k}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;">${v}</td></tr>`
+    )
     .join("");
 
   const html = `<!DOCTYPE html>
@@ -49,7 +54,7 @@ export default async (req, context) => {
       ${htmlRows}
     </table>
     <p style="margin-top:24px;color:#999;font-size:13px;">
-      Netlify submission ID: ${payload.id || "N/A"}
+      Netlify submission ID: ${payload.id || payload.payload?.id || "N/A"}
     </p>
   </div>
 </body>
@@ -59,7 +64,7 @@ export default async (req, context) => {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${resendKey}`,
+        Authorization: `Bearer ${resendKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
