@@ -188,7 +188,7 @@
           "de": "Übersetzungsinfrastruktur plus erste Übersetzungsrunde Ihrer bestehenden Inhalte. Laufende Übersetzungen via AI mit menschlicher Review.",
           "it": "Infrastruttura di traduzione più prima traduzione dei contenuti esistenti. Traduzioni successive gestite dall'IA con revisione umana."
         },
-        "price": { "en": "CHF 500 setup + CHF 50/mo per language", "de": "CHF 500 Setup + CHF 50/Mt. pro Sprache", "it": "CHF 500 setup + CHF 50/mese per lingua" }
+        "price": { "en": "CHF 300 setup + CHF 20/mo per language", "de": "CHF 300 Setup + CHF 20/Mt. pro Sprache", "it": "CHF 300 setup + CHF 20/mese per lingua" }
       },
       {
         "title": { "en": "Property photography", "de": "Hausfotografie", "it": "Fotografia della struttura" },

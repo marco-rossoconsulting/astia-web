@@ -87,10 +87,11 @@ collections:
               - label: "Post"
                 name: post
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Lede"
                 name: lede
                 widget: object
@@ -264,17 +265,19 @@ collections:
               - label: "Caption"
                 name: caption
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Attribution"
                 name: attribution
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
           - label: "Steps"
             name: steps
             widget: object
@@ -446,10 +449,11 @@ collections:
               - label: "H2Post"
                 name: h2post
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Meta"
                 name: meta
                 widget: object
@@ -474,10 +478,11 @@ collections:
               - label: "Notepost"
                 name: notePost
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: text }
-                  - { label: "De", name: de, widget: text }
-                  - { label: "It", name: it, widget: text }
+                  - { label: "En", name: en, widget: text, required: false }
+                  - { label: "De", name: de, widget: text, required: false }
+                  - { label: "It", name: it, widget: text, required: false }
           - label: "Pricingteaser"
             name: pricingTeaser
             widget: object
@@ -653,10 +658,11 @@ collections:
               - label: "H2Post"
                 name: h2post
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Lede"
                 name: lede
                 widget: object
@@ -745,10 +751,11 @@ collections:
               - label: "Translationnote"
                 name: translationNote
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
       - name: apply
         label: "Apply Page"
         file: src/content/pages/apply.json
@@ -797,10 +804,11 @@ collections:
               - label: "Headlinepre"
                 name: headlinePre
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Headlineem"
                 name: headlineEm
                 widget: object
@@ -811,10 +819,11 @@ collections:
               - label: "Headlinepost"
                 name: headlinePost
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Lede"
                 name: lede
                 widget: object
@@ -1151,10 +1160,11 @@ collections:
               - label: "Headlinepre"
                 name: headlinePre
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Headlineem"
                 name: headlineEm
                 widget: object
@@ -1165,10 +1175,11 @@ collections:
               - label: "Headlinepost"
                 name: headlinePost
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Lede"
                 name: lede
                 widget: object
@@ -1632,10 +1643,11 @@ collections:
               - label: "Headlinepre"
                 name: headlinePre
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Headlineem"
                 name: headlineEm
                 widget: object
@@ -1646,10 +1658,11 @@ collections:
               - label: "Headlinepost"
                 name: headlinePost
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Lede"
                 name: lede
                 widget: object
@@ -1840,17 +1853,19 @@ collections:
               - label: "Caption"
                 name: caption
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
               - label: "Attribution"
                 name: attribution
                 widget: object
+                required: false
                 fields:
-                  - { label: "En", name: en, widget: string }
-                  - { label: "De", name: de, widget: string }
-                  - { label: "It", name: it, widget: string }
+                  - { label: "En", name: en, widget: string, required: false }
+                  - { label: "De", name: de, widget: string, required: false }
+                  - { label: "It", name: it, widget: string, required: false }
           - label: "Included"
             name: included
             widget: object
