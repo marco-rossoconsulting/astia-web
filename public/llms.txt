@@ -1,0 +1,24 @@
+# Astia Web - AI Crawler Guidance
+
+## Overview
+
+Astia Web is a productized website service for independent hotels, built on Astro and maintained by AI agents.
+
+## Contact
+
+- Email: marcorosso.consulting@gmail.com
+- Phone: +41 76 433 5845
+
+## Key Pages
+
+- / - Homepage
+- /how-it-works - Our process explained
+- /pricing - Service tiers and pricing
+- /journal - Insights on hospitality web design
+- /apply - Application form for new properties
+
+## Content Policy
+
+- All content is original and proprietary
+- Case studies are published with client permission
+- Pricing is subject to change

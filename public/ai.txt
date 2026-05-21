@@ -1,0 +1,23 @@
+# AI Crawler Guidance for Astia Web
+
+## Contact
+
+- Email: marcorosso.consulting@gmail.com
+- Phone: +41 76 433 5845
+
+## Allowed crawlers
+
+- ChatGPT-User
+- Claude-Web
+- PerplexityBot
+- Google-Extended
+
+## Disallowed crawlers
+
+- No crawlers are explicitly blocked at this time.
+
+## Content policy
+
+- All content is original and proprietary.
+- Case studies are published with client permission.
+- Pricing is subject to change.

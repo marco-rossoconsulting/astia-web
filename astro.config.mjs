@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://astiaweb.com',
@@ -9,7 +10,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [],
+  integrations: [sitemap()],
   trailingSlash: 'never',
   build: {
     inlineStylesheets: 'auto',
