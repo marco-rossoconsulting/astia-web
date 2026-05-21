@@ -1,5 +1,14 @@
 export default async (req, context) => {
-  const payload = await req.json();
+  // Netlify sends the submission as JSON in the request body
+  let payload;
+  try {
+    payload = await req.json();
+  } catch (e) {
+    console.error("Failed to parse JSON body:", e.message);
+    return new Response("Invalid payload", { status: 400 });
+  }
+
+  // Netlify v2 event payload structure: payload.data holds the form fields
   const data = payload.data || payload;
 
   const to = process.env.NOTIFY_EMAIL;
@@ -46,25 +55,30 @@ export default async (req, context) => {
 </body>
 </html>`;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${resendKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "Astia Web <apply@astiaweb.com>",
-      to: [to],
-      subject: `New application: ${data.propertyName || "Unknown property"}`,
-      html,
-    }),
-  });
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${resendKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Astia Web <apply@astiaweb.com>",
+        to: [to],
+        subject: `New application: ${data.propertyName || "Unknown property"}`,
+        html,
+      }),
+    });
 
-  if (!res.ok) {
-    const err = await res.text();
-    console.error("Resend error:", err);
-    return new Response("Email failed", { status: 502 });
+    if (!res.ok) {
+      const err = await res.text();
+      console.error("Resend error:", err);
+      return new Response("Email failed", { status: 502 });
+    }
+
+    return new Response("OK", { status: 200 });
+  } catch (err) {
+    console.error("Exception calling Resend:", err);
+    return new Response("Email exception", { status: 502 });
   }
-
-  return new Response("OK", { status: 200 });
 };
