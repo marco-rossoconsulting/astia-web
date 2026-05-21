@@ -6,9 +6,9 @@
       "it": "Prezzi · Astia Web"
     },
     "description": {
-      "en": "From CHF 150 per month. Six prices, two service tiers, three property sizes. No upfront cost. No surprise invoices. Cancel anytime with 30 days notice.",
-      "de": "Ab CHF 150 pro Monat. Sechs Preise, zwei Service-Stufen, drei Hausgrössen. Keine Anschaffungskosten. Keine Überraschungsrechnungen. Jederzeit kündbar mit 30 Tagen Frist.",
-      "it": "Da CHF 150 al mese. Sei prezzi, due livelli di servizio, tre dimensioni di struttura. Nessun costo iniziale. Nessuna fattura sorpresa. Disdetta in qualsiasi momento con 30 giorni di preavviso."
+      "en": "From CHF 150 per month. Six prices, two service tiers, three property sizes. No upfront cost. Twelve-month initial term, then month-to-month with 30 days notice. No surprise invoices.",
+      "de": "Ab CHF 150 pro Monat. Sechs Preise, zwei Service-Stufen, drei Hausgrössen. Keine Anschaffungskosten. Mindestlaufzeit zwölf Monate, danach monatlich kündbar mit 30 Tagen Frist. Keine Überraschungsrechnungen.",
+      "it": "Da CHF 150 al mese. Sei prezzi, due livelli di servizio, tre dimensioni di struttura. Nessun costo iniziale. Durata iniziale dodici mesi, poi mensile con 30 giorni di preavviso. Nessuna fattura sorpresa."
     },
     "ogImage": "/images/og-pricing.jpg",
     "ogImageAlt": {
@@ -33,9 +33,9 @@
     "h2pre": { "en": "Pick a tier. ", "de": "Wählen Sie eine Stufe. ", "it": "Scegliete un livello. " },
     "h2em": { "en": "Pick a size.", "de": "Wählen Sie eine Grösse.", "it": "Scegliete una dimensione." },
     "intro": {
-      "en": "All prices are monthly, in Swiss Francs, ex. VAT. Cancel anytime with 30 days notice. Switch tiers up or down at any month boundary.",
-      "de": "Alle Preise sind monatlich, in Schweizer Franken, exkl. MwSt. Jederzeit kündbar mit 30 Tagen Frist. Wechsel der Stufe nach oben oder unten zu jedem Monatswechsel.",
-      "it": "Tutti i prezzi sono mensili, in franchi svizzeri, IVA esclusa. Disdetta in qualsiasi momento con 30 giorni di preavviso. Cambio di livello in su o in giù ad ogni inizio mese."
+      "en": "All prices are monthly, in Swiss Francs, ex. VAT. Initial term: twelve months. After year one, month-to-month with 30 days notice. Switch tiers up or down at any month boundary.",
+      "de": "Alle Preise sind monatlich, in Schweizer Franken, exkl. MwSt. Mindestlaufzeit: zwölf Monate. Danach monatlich kündbar mit 30 Tagen Frist. Wechsel der Stufe nach oben oder unten zu jedem Monatswechsel.",
+      "it": "Tutti i prezzi sono mensili, in franchi svizzeri, IVA esclusa. Durata iniziale: dodici mesi. Dopo il primo anno, mensile con preavviso di 30 giorni. Cambio di livello in su o in giù ad ogni inizio mese."
     },
     "selfTier": { "en": "Self-Serve", "de": "Self-Serve", "it": "Self-Serve" },
     "managedTier": { "en": "Managed", "de": "Managed", "it": "Managed" },
@@ -235,9 +235,9 @@
       {
         "q": { "en": "What if I cancel?", "de": "Was, wenn ich kündige?", "it": "E se disdico?" },
         "a": {
-          "en": "Thirty days notice, in writing. You keep the code, the content, the Git repository — everything. We help you move to whoever you choose. No exit fee. That's the entire point of building things you own.",
-          "de": "Dreissig Tage Frist, schriftlich. Sie behalten den Code, die Inhalte, das Git-Repository — alles. Wir helfen Ihnen, zu wem auch immer Sie wählen, umzuziehen. Keine Exit-Gebühr. Genau das ist der Sinn davon, Dinge zu bauen, die Ihnen gehören.",
-          "it": "Trenta giorni di preavviso, per iscritto. Tenete il codice, i contenuti, il repository Git — tutto. Vi aiutiamo a passare a chiunque scegliate. Nessuna penale di uscita. È proprio il punto di costruire cose che vi appartengono."
+          "en": "Twelve months to start, month-to-month after that. We do the build work upfront with no upfront fee — the twelve-month initial term is how that work gets paid for. After year one, thirty days notice cancels the subscription. You keep the code, the content, the Git repository at every stage — that ownership is permanent, not contingent on staying with us. We help you move when you leave. No exit fee.",
+          "de": "Mindestlaufzeit zwölf Monate, danach monatlich kündbar. Wir leisten die Aufbauarbeit im Voraus ohne Anschaffungskosten — die zwölfmonatige Laufzeit ist die Gegenleistung dafür. Nach dem ersten Jahr beendet eine Kündigungsfrist von dreissig Tagen das Abonnement. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase — dieses Eigentum ist dauerhaft, nicht an die Zusammenarbeit gebunden. Wir helfen beim Wechsel. Keine Exit-Gebühr.",
+          "it": "Durata iniziale dodici mesi, poi mensile. Facciamo il lavoro di costruzione in anticipo senza costo iniziale — i dodici mesi sono la contropartita di quel lavoro. Dopo il primo anno, trenta giorni di preavviso terminano l'abbonamento. Voi tenete il codice, i contenuti e il repository Git in ogni fase — questa proprietà è permanente, non vincolata alla collaborazione. Vi aiutiamo a passare ad altri. Nessuna penale di uscita."
         }
       },
       {
