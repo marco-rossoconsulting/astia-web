@@ -120,5 +120,32 @@ const orgJsonLd = {
       <slot />
     </main>
     <Footer lang={lang} />
+
+    {/* GA4 event tracking */}
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        /* Track apply form submission */
+        var form = document.querySelector('form[name="apply"]');
+        if (form) {
+          form.addEventListener('submit', function () {
+            if (typeof gtag === 'function') {
+              gtag('event', 'form_submit', { form_name: 'apply' });
+            }
+          });
+        }
+
+        /* Track outbound link clicks */
+        document.querySelectorAll('a[href^="http"], a[href^="mailto"], a[href^="tel"]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            if (typeof gtag === 'function') {
+              gtag('event', 'outbound_link', {
+                link_url: link.href,
+                link_text: link.textContent.trim()
+              });
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
