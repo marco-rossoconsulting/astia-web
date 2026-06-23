@@ -309,6 +309,18 @@
     },
     "h2pre": { "en": "Astia is a product of ", "de": "Astia ist ein Produkt der ", "it": "Astia è un prodotto di " },
     "h2em": { "en": "Marcorosso Consulting.", "de": "Marcorosso Consulting.", "it": "Marcorosso Consulting." },
+    "logoSrc": "/images/marcorosso-consulting-logo.png",
+    "logoAlt": {
+      "en": "Marcorosso Consulting logo",
+      "de": "Marcorosso Consulting Logo",
+      "it": "Logo Marcorosso Consulting"
+    },
+    "ctaLabel": {
+      "en": "Visit Marcorosso Consulting →",
+      "de": "Marcorosso Consulting besuchen →",
+      "it": "Visita Marcorosso Consulting →"
+    },
+    "ctaHref": "https://rossoconsulting.ch",
     "body": {
       "en": "We're a small team based in Lugano with two decades of combined experience across hospitality technology — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. The Exploreans collection was the first portfolio of properties built on this stack. Astia is the productisation of that work.",
       "de": "Wir sind ein kleines Team mit Sitz in Lugano und zwei Jahrzehnten gemeinsamer Erfahrung in der Hotellerie-Technologie — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. Die Exploreans-Kollektion war das erste Portfolio von Häusern, die auf diesem Stack gebaut wurden. Astia ist die Produktisierung dieser Arbeit.",

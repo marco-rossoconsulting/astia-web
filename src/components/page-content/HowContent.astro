@@ -162,7 +162,25 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
     <h2 class="display-2 reveal" style="margin-bottom:24px;">
       {d.about.h2pre[lang]} <span class="editorial-i">{d.about.h2em[lang]}</span>
     </h2>
-    <p class="lede reveal">{d.about.body[lang]}</p>
+    <p class="lede reveal" style="margin-bottom:40px;">{d.about.body[lang]}</p>
+
+    <div class="reveal" style="display:flex; flex-direction:column; align-items:center; gap:32px; margin-top:8px;">
+      {d.about.logoSrc && (
+        <img
+          src={d.about.logoSrc}
+          alt={d.about.logoAlt?.[lang] || 'Marcorosso Consulting'}
+          style="max-height:48px; width:auto; opacity:0.85;"
+        />
+      )}
+      <a
+        class="btn btn-primary btn-arrow"
+        href={d.about.ctaHref}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {d.about.ctaLabel[lang]}
+      </a>
+    </div>
   </div>
 </section>
 
