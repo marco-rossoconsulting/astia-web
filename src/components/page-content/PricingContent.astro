@@ -26,47 +26,56 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
 
 <hr class="rule" />
 
-{/* MATRIX */}
+{/* MATRIX — visual redesign */}
 <section class="section">
   <div class="container">
-    <span class="section-num">{d.matrix.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:12px;">
+    <span class="section-num reveal">{d.matrix.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.matrix.h2pre[lang]} <span class="editorial-i">{d.matrix.h2em[lang]}</span>
     </h2>
-    <p class="body" style="max-width:680px; margin-bottom:48px;">{d.matrix.intro[lang]}</p>
+    <p class="body reveal" style="max-width:680px; margin-bottom:48px;">{d.matrix.intro[lang]}</p>
 
-    <div style="overflow-x:auto;">
-      <table style="width:100%; min-width:600px; border-collapse:separate; border-spacing:0; background:var(--paper);">
-        <thead>
-          <tr>
-            <th style="text-align:left; padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone);"></th>
-            <th style="padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone); text-align:center;">{d.matrix.sizes.small[lang]}</th>
-            <th style="padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone); text-align:center;">{d.matrix.sizes.medium[lang]}</th>
-            <th style="padding:20px 16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--stone); text-transform:uppercase; border-bottom:1px solid var(--bone); text-align:center;">{d.matrix.sizes.large[lang]}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:32px 16px; border-bottom:1px solid var(--bone); vertical-align:top;">
-              <div style="font-family:'Editorial New', serif; font-size:22px; font-weight:400;">{d.matrix.selfTier[lang]}</div>
-              <div style="font-size:13px; color:var(--stone); margin-top:6px; max-width:240px;">{d.matrix.selfTagline[lang]}</div>
-            </td>
-            <td style="padding:32px 16px; text-align:center; border-bottom:1px solid var(--bone); font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--ink);">{d.matrix.currency} {d.matrix.prices.selfSmall}{d.matrix.perMonth[lang]}</td>
-            <td style="padding:32px 16px; text-align:center; border-bottom:1px solid var(--bone); font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--ink);">{d.matrix.currency} {d.matrix.prices.selfMedium}{d.matrix.perMonth[lang]}</td>
-            <td style="padding:32px 16px; text-align:center; border-bottom:1px solid var(--bone); font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--ink);">{d.matrix.currency} {d.matrix.prices.selfLarge}{d.matrix.perMonth[lang]}</td>
-          </tr>
-          <tr style="background:var(--cream);">
-            <td style="padding:32px 16px; position:relative; vertical-align:top;">
-              <span style="position:absolute; top:8px; right:8px; font-family:'JetBrains Mono', monospace; font-size:9px; letter-spacing:0.14em; color:var(--rosso); text-transform:uppercase;">{d.matrix.recommended[lang]}</span>
-              <div style="font-family:'Editorial New', serif; font-size:22px; font-weight:400;">{d.matrix.managedTier[lang]}</div>
-              <div style="font-size:13px; color:var(--stone); margin-top:6px; max-width:240px;">{d.matrix.managedTagline[lang]}</div>
-            </td>
-            <td style="padding:32px 16px; text-align:center; font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--rosso); font-weight:500;">{d.matrix.currency} {d.matrix.prices.managedSmall}{d.matrix.perMonth[lang]}</td>
-            <td style="padding:32px 16px; text-align:center; font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--rosso); font-weight:500;">{d.matrix.currency} {d.matrix.prices.managedMedium}{d.matrix.perMonth[lang]}</td>
-            <td style="padding:32px 16px; text-align:center; font-family:'JetBrains Mono', monospace; font-size:18px; color:var(--rosso); font-weight:500;">{d.matrix.currency} {d.matrix.prices.managedLarge}{d.matrix.perMonth[lang]}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="matrix-wrap reveal">
+      {/* Header */}
+      <div class="matrix-row">
+        <div class="matrix-cell matrix-head"></div>
+        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.small[lang]}</div>
+        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.medium[lang]}</div>
+        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.large[lang]}</div>
+      </div>
+      {/* Self-Serve */}
+      <div class="matrix-row">
+        <div class="matrix-cell matrix-label">
+          <div class="matrix-tier">{d.matrix.selfTier[lang]}</div>
+          <div class="matrix-tier-sub">{d.matrix.selfTagline[lang]}</div>
+        </div>
+        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfSmall}{d.matrix.perMonth[lang]}</div>
+        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfMedium}{d.matrix.perMonth[lang]}</div>
+        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfLarge}{d.matrix.perMonth[lang]}</div>
+      </div>
+      {/* Managed */}
+      <div class="matrix-row" style="background:var(--cream);">
+        <div class="matrix-cell matrix-label">
+          <span class="matrix-badge">{d.matrix.recommended[lang]}</span>
+          <div class="matrix-tier">{d.matrix.managedTier[lang]}</div>
+          <div class="matrix-tier-sub">{d.matrix.managedTagline[lang]}</div>
+        </div>
+        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedSmall}{d.matrix.perMonth[lang]}</div>
+        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedMedium}{d.matrix.perMonth[lang]}</div>
+        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedLarge}{d.matrix.perMonth[lang]}</div>
+      </div>
+    </div>
+
+    {/* Savings callout */}
+    <div class="savings-callout reveal" style="margin-top:48px;">
+      <div>
+        <h3>{lang === 'en' ? 'Save CHF 10,000+ in year one' : lang === 'de' ? 'Sparen Sie CHF 10.000+ im ersten Jahr' : 'Risparmiate CHF 10.000+ nel primo anno'}</h3>
+        <p>{lang === 'en' ? 'Compared to a typical agency retainer. Same craft, no upfront cost, no surprise invoices.' : lang === 'de' ? 'Im Vergleich zu einem typischen Agentur-Wartungsvertrag. Gleiche Qualität, keine Anschaffungskosten, keine Überraschungsrechnungen.' : 'Rispetto a un tipico canone di manutenzione di agenzia. Stessa qualità, nessun costo iniziale, nessuna fattura a sorpresa.'}</p>
+      </div>
+      <div style="text-align:right;">
+        <div class="savings-stat">CHF 0</div>
+        <div class="trust-label" style="color:var(--paper); opacity:0.7;">{lang === 'en' ? 'Upfront cost' : lang === 'de' ? 'Anschaffungskosten' : 'Costo iniziale'}</div>
+      </div>
     </div>
   </div>
 </section>
@@ -76,12 +85,12 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
 {/* TIER DETAIL */}
 <section class="section section-cream">
   <div class="container">
-    <span class="section-num">{d.tierDetail.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:48px;">
+    <span class="section-num reveal">{d.tierDetail.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:48px;">
       {d.tierDetail.h2pre[lang]} <span class="editorial-i">{d.tierDetail.h2em[lang]}</span>
     </h2>
 
-    <div class="grid-2">
+    <div class="grid-2 reveal">
       <TierDetail
         title={d.tierDetail.self.title[lang]}
         tagline={d.tierDetail.self.tagline[lang]}
@@ -103,13 +112,13 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
 {/* BOOKING ENGINES */}
 <section class="section">
   <div class="container">
-    <span class="section-num">{d.bookingEngines.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:12px;">
+    <span class="section-num reveal">{d.bookingEngines.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.bookingEngines.h2pre[lang]} <span class="editorial-i">{d.bookingEngines.h2em[lang]}</span>
     </h2>
-    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.bookingEngines.intro[lang]}</p>
+    <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.bookingEngines.intro[lang]}</p>
 
-    <div class="grid-2">
+    <div class="grid-2 reveal">
       <div class="card">
         <span class="caption text-rosso" style="margin-bottom:12px; display:block;">{d.bookingEngines.simpleBooking.tag[lang]}</span>
         <h3 style="font-family:'Editorial New', serif; font-size:24px; margin:0 0 14px; font-weight:400;">{d.bookingEngines.simpleBooking.title[lang]}</h3>
@@ -131,12 +140,12 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
 {/* ADD-ONS */}
 <section class="section section-cream">
   <div class="container-narrow">
-    <span class="section-num">{d.addons.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:48px;">
+    <span class="section-num reveal">{d.addons.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:48px;">
       {d.addons.h2pre[lang]} <span class="editorial-i">{d.addons.h2em[lang]}</span>
     </h2>
 
-    <div>
+    <div class="reveal">
       {d.addons.items.map((a: any) => (
         <AddOn title={a.title[lang]} body={a.body[lang]} price={a.price[lang]} />
       ))}
@@ -149,18 +158,18 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
 {/* FAQ */}
 <section class="section">
   <div class="container-narrow">
-    <span class="section-num">{d.faq.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:48px;">
+    <span class="section-num reveal">{d.faq.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:48px;">
       {d.faq.h2pre[lang]} <span class="editorial-i">{d.faq.h2em[lang]}</span>
     </h2>
 
-    <div>
+    <div class="reveal">
       {d.faq.items.map((item: any) => (
         <FAQ q={item.q[lang]} a={item.a[lang]} />
       ))}
     </div>
 
-    <div style="margin-top:64px; text-align:center;">
+    <div class="reveal" style="margin-top:64px; text-align:center;">
       <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
     </div>
   </div>

@@ -1,14 +1,14 @@
 {
   "seo": {
     "title": {
-      "en": "Astia Web · The first AI-managed website service for independent hotels",
-      "de": "Astia Web · Der erste AI-verwaltete Website-Service für unabhängige Hotels",
-      "it": "Astia Web · Il primo servizio di siti gestiti dall'IA per hotel indipendenti"
+      "en": "Affordable Hotel Websites | Astia Web — AI-Managed, Fast & Secure",
+      "de": "Bezahlbare Hotel-Websites | Astia Web — AI-verwaltet, schnell & sicher",
+      "it": "Siti web per hotel convenienti | Astia Web — Gestito dall'IA, veloce e sicuro"
     },
     "description": {
-      "en": "Built on Astro for speed. Run by AI for cost. Designed for hospitality, by hospitality. From Lugano, Switzerland.",
-      "de": "Auf Astro gebaut für Geschwindigkeit. Von AI verwaltet für die Kosten. Für die Hotellerie konzipiert, von Hoteliers. Aus Lugano, Schweiz.",
-      "it": "Costruito su Astro per la velocità. Gestito dall'IA per il costo. Progettato per l'ospitalità, da chi conosce l'ospitalità. Da Lugano, Svizzera."
+      "en": "High-quality, affordable hotel websites from CHF 150/month. Built on Astro for speed. Run by AI for cost. No upfront fees. Designed for independent hotels and B&Bs.",
+      "de": "Hochwertige, bezahlbare Hotel-Websites ab CHF 150/Monat. Auf Astro gebaut für Geschwindigkeit. Von AI verwaltet für niedrige Kosten. Keine Anschaffungskosten. Für unabhängige Hotels und B&Bs.",
+      "it": "Siti web per hotel di alta qualità e convenienti da CHF 150/mese. Costruito su Astro per la velocità. Gestito dall'IA per il costo. Nessun costo iniziale. Per hotel indipendenti e B&B."
     },
     "ogImage": "/images/og-home.jpg",
     "ogImageAlt": {

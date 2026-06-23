@@ -1,14 +1,14 @@
 {
   "seo": {
     "title": {
-      "en": "How it works · Astia Web",
-      "de": "So funktioniert es · Astia Web",
-      "it": "Come funziona · Astia Web"
+      "en": "How it Works · Astia Web — Affordable Hotel Website Service",
+      "de": "So funktioniert es · Astia Web — Bezahlbarer Hotel-Website-Service",
+      "it": "Come funziona · Astia Web — Servizio di siti web per hotel convenienti"
     },
     "description": {
-      "en": "AI-managed means something specific. The lifecycle, the build process, the technical case, and what's included in every Astia subscription.",
-      "de": "AI-verwaltet bedeutet etwas Konkretes. Der Lebenszyklus, der Bauprozess, der technische Fall und was in jedem Astia-Abonnement enthalten ist.",
-      "it": "Gestito dall'IA significa qualcosa di preciso. Il ciclo di vita, il processo di costruzione, il caso tecnico e cosa è incluso in ogni abbonamento Astia."
+      "en": "Discover how Astia builds affordable, high-quality hotel websites in 2–3 weeks. AI-managed updates, Astro-powered speed, and transparent pricing.",
+      "de": "Entdecken Sie, wie Astia in 2–3 Wochen bezahlbare, hochwertige Hotel-Websites erstellt. AI-verwaltete Updates, Astro-geschwindigkeit und transparente Preise.",
+      "it": "Scoprite come Astia costruisce siti web per hotel convenienti e di alta qualità in 2–3 settimane. Aggiornamenti gestiti dall'IA, velocità Astro e prezzi trasparenti."
     },
     "ogImage": "/images/og-how.jpg",
     "ogImageAlt": {

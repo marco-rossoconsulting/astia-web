@@ -5,7 +5,6 @@ import StepCard from '@components/StepCard.astro';
 import PortfolioCard from '@components/PortfolioCard.astro';
 import PriceTeaserCard from '@components/PriceTeaserCard.astro';
 import ImageBreaker from '@components/ImageBreaker.astro';
-import ComparisonTable from '@components/ComparisonTable.astro';
 
 interface Props {
   lang: 'en' | 'de' | 'it';
@@ -27,15 +26,6 @@ const url = (p: string) => {
   return prefix + paths[p];
 };
 
-// Build comparison rows and headers for the table
-const cmpHeaders = d.comparison.headers[lang].map((h: any) => h.header || h);
-const cmpRows = d.comparison.rows.map((r: any) => ({
-  label: r.label[lang],
-  agency: r.agency[lang],
-  builder: r.builder[lang],
-  astia: r.astia[lang],
-}));
-
 const selfPrices = [
   { rooms: d.pricingTeaser.rooms.upTo15[lang], price: d.pricingTeaser.selfPrices.upTo15 },
   { rooms: d.pricingTeaser.rooms.upTo30[lang], price: d.pricingTeaser.selfPrices.upTo30 },
@@ -46,7 +36,17 @@ const managedPrices = [
   { rooms: d.pricingTeaser.rooms.upTo30[lang], price: d.pricingTeaser.managedPrices.upTo30 },
   { rooms: d.pricingTeaser.rooms.plus50[lang], price: d.pricingTeaser.managedPrices.plus50 },
 ];
+
+// Visual comparison data
+const vsRows = d.comparison.rows.map((r: any) => ({
+  label: r.label[lang],
+  agency: r.agency[lang],
+  builder: r.builder[lang],
+  astia: r.astia[lang],
+}));
+const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang][2], d.comparison.headers[lang][3] ];
 ---
+
 {/* HERO */}
 <section class="section hero-grid" style="padding-top:120px; padding-bottom:80px;">
   <div class="container">
@@ -60,6 +60,22 @@ const managedPrices = [
       <a class="btn btn-ghost btn-arrow" href={url('how')}>{cta.seeHow[lang]}</a>
       <span class="caption" style="margin-left:12px; color:var(--stone);">{d.hero.capacity[lang]}</span>
     </div>
+
+    {/* Trust bar */}
+    <div class="trust-bar fade-in delay-4">
+      <div class="trust-item">
+        <div class="trust-num">&lt;1s</div>
+        <div class="trust-label">{lang === 'en' ? 'Load time' : lang === 'de' ? 'Ladezeit' : 'Tempo di caricamento'}</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">CHF 150</div>
+        <div class="trust-label">{lang === 'en' ? 'From per month' : lang === 'de' ? 'Ab pro Monat' : 'Da al mese'}</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">2–3 {lang === 'en' ? 'wks' : lang === 'de' ? 'Wo.' : 'sett.'}</div>
+        <div class="trust-label">{lang === 'en' ? 'To launch' : lang === 'de' ? 'Bis zum Launch' : 'Al lancio'}</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -68,15 +84,17 @@ const managedPrices = [
 {/* PROBLEM */}
 <section class="section">
   <div class="container">
-    <span class="section-num">{d.problem.num[lang]}</span>
-    <h2 class="display-2" style="max-width:780px; margin-bottom:12px;">
+    <span class="section-num reveal">{d.problem.num[lang]}</span>
+    <h2 class="display-2 reveal" style="max-width:780px; margin-bottom:12px;">
       {d.problem.h2pre[lang]} <span class="editorial-i text-rosso">{d.problem.h2em[lang]}</span>
     </h2>
-    <p class="body" style="max-width:640px; margin-bottom:64px;">{d.problem.intro[lang]}</p>
+    <p class="body reveal" style="max-width:640px; margin-bottom:64px;">{d.problem.intro[lang]}</p>
 
     <div class="grid-3">
-      {d.problem.cards.map((c: any) => (
-        <ProblemCard tag={c.tag[lang]} title={c.title[lang]} body={c.body[lang]} tail={c.tail[lang]} />
+      {d.problem.cards.map((c: any, i: number) => (
+        <div class={`reveal reveal-delay-${i + 1}`}>
+          <ProblemCard tag={c.tag[lang]} title={c.title[lang]} body={c.body[lang]} tail={c.tail[lang]} />
+        </div>
       ))}
     </div>
   </div>
@@ -87,22 +105,22 @@ const managedPrices = [
 {/* SOLUTION */}
 <section class="section section-cream">
   <div class="container-narrow">
-    <span class="section-num">{d.solution.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:32px;">
+    <span class="section-num reveal">{d.solution.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:32px;">
       {d.solution.h2pre[lang]} <span class="editorial-i">{d.solution.h2em[lang]}</span>
     </h2>
-    <p class="lede" style="margin-bottom:24px;">{d.solution.p1[lang]}</p>
-    <p class="lede" style="margin-bottom:24px;">
+    <p class="lede reveal">{d.solution.p1[lang]}</p>
+    <p class="lede reveal">
       {d.solution.p2pre[lang]} <span class="editorial-i text-rosso">{d.solution.p2em[lang]}</span>
     </p>
 
-    <blockquote class="pulled-quote">
+    <blockquote class="pulled-quote reveal">
       {d.solution.quoteL1[lang]}<br />
       {d.solution.quoteL2[lang]}<br />
       <span style="color:var(--rosso);">{d.solution.quoteL3[lang]}</span>
     </blockquote>
 
-    <p class="body" style="color:var(--stone);">{d.solution.p3[lang]}</p>
+    <p class="body reveal" style="color:var(--stone);">{d.solution.p3[lang]}</p>
   </div>
 </section>
 
@@ -116,18 +134,20 @@ const managedPrices = [
 {/* STEPS */}
 <section class="section">
   <div class="container">
-    <span class="section-num">{d.steps.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:64px;">
+    <span class="section-num reveal">{d.steps.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:64px;">
       {d.steps.h2pre[lang]} <span class="editorial-i">{d.steps.h2em[lang]}</span>
     </h2>
 
-    <div class="grid-3">
-      {d.steps.items.map((s: any, i: number) => (
-        <StepCard num={s.num} title={s.title[lang]} days={s.days[lang]} body={s.body[lang]} accent={i === 2} />
-      ))}
+    <div class="timeline-wrap reveal">
+      <div class="grid-3">
+        {d.steps.items.map((s: any, i: number) => (
+          <StepCard num={s.num} title={s.title[lang]} days={s.days[lang]} body={s.body[lang]} accent={i === 2} />
+        ))}
+      </div>
     </div>
 
-    <div style="margin-top:56px;">
+    <div class="reveal" style="margin-top:56px;">
       <a class="btn btn-ghost btn-arrow" href={url('how')}>{d.steps.ctaFull[lang]}</a>
     </div>
   </div>
@@ -135,18 +155,55 @@ const managedPrices = [
 
 <hr class="rule" />
 
-{/* COMPARISON */}
+{/* COMPARISON — visual redesign */}
 <section class="section section-cream">
   <div class="container">
-    <span class="section-num">{d.comparison.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:12px;">
+    <span class="section-num reveal">{d.comparison.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.comparison.h2pre[lang]} <span class="editorial-i">{d.comparison.h2em[lang]}</span>
     </h2>
-    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.comparison.intro[lang]}</p>
+    <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.comparison.intro[lang]}</p>
 
-    <ComparisonTable headers={cmpHeaders} rows={cmpRows} />
+    <div class="vs-grid reveal">
+      {/* Header row */}
+      <div class="vs-cell head">{vsHeaders[0]}</div>
+      <div class="vs-cell head">{vsHeaders[1]}</div>
+      <div class="vs-cell head">{vsHeaders[2]}</div>
+      <div class="vs-cell head vs-us-head"><span class="rosso-dot">●</span> {vsHeaders[3]}</div>
 
-    <div style="margin-top:36px;">
+      {/* Data rows */}
+      {vsRows.map((row: any) => (
+        <div class="vs-row" style="display:contents;">
+          <div class="vs-cell label">{row.label}</div>
+          <div class="vs-cell them">
+            {['Always','Yes','Sì','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 – 550','2–3 weeks','2–3 Wochen','2–3 settimane'].includes(row.agency) ? (
+              <span class="vs-check">✓</span>
+            ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom'].includes(row.agency) ? (
+              <span class="vs-check" style="color:var(--stone);">~</span>
+            ) : (
+              <span class="vs-x">✗</span>
+            )}
+            <span style="margin-left:6px;">{row.agency}</span>
+          </div>
+          <div class="vs-cell them">
+            {['Always','Yes','Sì','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 – 550','2–3 weeks','2–3 Wochen','2–3 settimane'].includes(row.builder) ? (
+              <span class="vs-check">✓</span>
+            ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom','Limited add-ons','Begrenzte Add-ons','Add-on limitati'].includes(row.builder) ? (
+              <span class="vs-check" style="color:var(--stone);">~</span>
+            ) : (
+              <span class="vs-x">✗</span>
+            )}
+            <span style="margin-left:6px;">{row.builder}</span>
+          </div>
+          <div class="vs-cell us">
+            <span class="vs-check" style="color:var(--rosso);">✓</span>
+            <span style="margin-left:6px;">{row.astia}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="reveal" style="margin-top:36px;">
       <a class="btn btn-ghost btn-arrow" href={url('how')}>{d.comparison.ctaTech[lang]}</a>
     </div>
   </div>
@@ -157,8 +214,8 @@ const managedPrices = [
 {/* PORTFOLIO */}
 <section class="section">
   <div class="container">
-    <span class="section-num">{d.portfolio.num[lang]}</span>
-    <div class="flex-between" style="align-items:flex-end; margin-bottom:48px;">
+    <span class="section-num reveal">{d.portfolio.num[lang]}</span>
+    <div class="flex-between reveal" style="align-items:flex-end; margin-bottom:48px;">
       <h2 class="display-2" style="max-width:720px; margin-bottom:0;">
         {d.portfolio.h2pre[lang]} <span class="editorial-i">{d.portfolio.h2em[lang]}</span> {d.portfolio.h2post[lang]}
       </h2>
@@ -166,19 +223,21 @@ const managedPrices = [
     </div>
 
     <div class="grid-3">
-      {portfolio.map(p => (
-        <PortfolioCard
-          tag={p.data.tag[lang]}
-          title={p.data.title}
-          sub={p.data.subtitle[lang]}
-          img={p.data.image}
-          alt={p.data.imageAlt[lang]}
-          url={p.data.url}
-        />
+      {portfolio.map((p, i) => (
+        <div class={`reveal reveal-delay-${i + 1}`}>
+          <PortfolioCard
+            tag={p.data.tag[lang]}
+            title={p.data.title}
+            sub={p.data.subtitle[lang]}
+            img={p.data.image}
+            alt={p.data.imageAlt[lang]}
+            url={p.data.url}
+          />
+        </div>
       ))}
     </div>
 
-    <p class="body-sm" style="margin-top:32px; max-width:640px;">
+    <p class="body-sm reveal" style="margin-top:32px; max-width:640px;">
       {d.portfolio.notePre[lang]} <span class="text-ink">{d.portfolio.noteStrong[lang]}</span>{d.portfolio.notePost[lang]}
     </p>
   </div>
@@ -189,13 +248,13 @@ const managedPrices = [
 {/* PRICING TEASER */}
 <section class="section section-cream">
   <div class="container">
-    <span class="section-num">{d.pricingTeaser.num[lang]}</span>
-    <h2 class="display-2" style="margin-bottom:12px;">
+    <span class="section-num reveal">{d.pricingTeaser.num[lang]}</span>
+    <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.pricingTeaser.h2pre[lang]} <span class="editorial-i">{d.pricingTeaser.h2em[lang]}</span>
     </h2>
-    <p class="body" style="max-width:580px; margin-bottom:48px;">{d.pricingTeaser.intro[lang]}</p>
+    <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.pricingTeaser.intro[lang]}</p>
 
-    <div class="grid-2">
+    <div class="grid-2 reveal">
       <PriceTeaserCard
         tier={d.pricingTeaser.selfTier.tier[lang]}
         tagline={d.pricingTeaser.selfTier.tagline[lang]}
@@ -214,7 +273,7 @@ const managedPrices = [
       />
     </div>
 
-    <div style="margin-top:36px;">
+    <div class="reveal" style="margin-top:36px;">
       <a class="btn btn-ghost btn-arrow" href={url('pricing')}>{d.pricingTeaser.cta[lang]}</a>
     </div>
   </div>
@@ -224,7 +283,7 @@ const managedPrices = [
 
 {/* FINAL CTA */}
 <section class="section">
-  <div class="container-narrow" style="text-align:center;">
+  <div class="container-narrow reveal" style="text-align:center;">
     <span class="eyebrow eyebrow-rosso">{d.finalCTA.eyebrow[lang]}</span>
     <h2 class="display-2" style="margin-top:24px; margin-bottom:28px;">
       {d.finalCTA.h2pre[lang]} <span class="editorial-i">{d.finalCTA.h2em[lang]}</span> {d.finalCTA.h2post[lang]}

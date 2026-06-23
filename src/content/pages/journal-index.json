@@ -1,14 +1,14 @@
 {
   "seo": {
     "title": {
-      "en": "Journal · Astia Web",
-      "de": "Journal · Astia Web",
-      "it": "Journal · Astia Web"
+      "en": "Journal · Astia Web — Hotel Website Insights & Tips",
+      "de": "Journal · Astia Web — Einblicke & Tipps zu Hotel-Websites",
+      "it": "Journal · Astia Web — Approfondimenti e consigli sui siti per hotel"
     },
     "description": {
-      "en": "Notes from inside the shift. Short essays on what changed in web development, why hotel websites still cost a fortune, and what the AI era actually means for independent operators.",
-      "de": "Notizen aus dem Wandel. Kurze Essays darüber, was sich in der Webentwicklung geändert hat, warum Hotel-Websites immer noch ein Vermögen kosten, und was die KI-Ära für unabhängige Betreiber bedeutet.",
-      "it": "Note dall'interno del cambiamento. Brevi saggi su cosa è cambiato nello sviluppo web, perché i siti degli hotel costano ancora una fortuna, e cosa significa l'era dell'IA per gli operatori indipendenti."
+      "en": "Insights on affordable hotel websites, AI web development, and how independent hotels can get quality sites without agency prices.",
+      "de": "Einblicke in bezahlbare Hotel-Websites, AI-Webentwicklung und wie unabhängige Hotels qualitative Seiten ohne Agenturpreise erhalten.",
+      "it": "Approfondimenti su siti per hotel convenienti, sviluppo web con IA e come gli hotel indipendenti possono ottenere siti di qualità senza prezzi da agenzia."
     },
     "ogImage": "/images/og-journal.jpg",
     "ogImageAlt": {

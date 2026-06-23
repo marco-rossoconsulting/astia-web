@@ -121,6 +121,31 @@ const orgJsonLd = {
     </main>
     <Footer lang={lang} />
 
+    {/* Sticky mobile CTA */}
+    <div class="sticky-cta">
+      <div class="sticky-cta-inner">
+        <span class="sticky-cta-text"><strong>{siteData.brand.name}</strong> — {siteData.brand.tagline[lang]}</span>
+        <a class="btn btn-primary" href={`${lang === 'en' ? '' : `/${lang}`}/apply`} style="font-size:13px; padding:10px 18px;">{siteData.cta.applyForSite[lang]}</a>
+      </div>
+    </div>
+
+    {/* Scroll reveal */}
+    <script is:inline>
+      (function() {
+        var reveals = document.querySelectorAll('.reveal');
+        if (!reveals.length) return;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function(el) { observer.observe(el); });
+      })();
+    </script>
+
     {/* GA4 event tracking */}
     <script is:inline>
       document.addEventListener('DOMContentLoaded', function () {
