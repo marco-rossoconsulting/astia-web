@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: marcorosso-labs/Astia-Web-Site
+  repo: marco-rossoconsulting/astia-web
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: oauth/auth
