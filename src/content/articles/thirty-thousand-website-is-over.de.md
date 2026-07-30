@@ -11,4 +11,4 @@ published: true
 
 *Dieser Artikel ist derzeit nur auf Englisch verfügbar. Die vollständige deutsche Übersetzung folgt in Kürze.*
 
-[Englische Version lesen](/journal/thirty-thousand-website-is-over)
+[Englische Version lesen](/journal/thirty-thousand-website-is-over-en)

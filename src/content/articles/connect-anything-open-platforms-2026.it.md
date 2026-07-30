@@ -11,4 +11,4 @@ published: true
 
 *Questo articolo è attualmente disponibile solo in inglese. La versione italiana completa sarà disponibile a breve.*
 
-[Leggi la versione inglese](/journal/connect-anything-open-platforms-2026)
+[Leggi la versione inglese](/journal/connect-anything-open-platforms-2026-en)

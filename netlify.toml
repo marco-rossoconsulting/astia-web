@@ -31,3 +31,9 @@
 
 # Astro generates static HTML — no redirects needed for SPA fallback.
 # Language alternates are served as separate routes per Astro i18n config.
+
+# Redirect legacy /sitemap.xml to Astro's sitemap-index.xml
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301

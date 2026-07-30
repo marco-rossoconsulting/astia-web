@@ -11,4 +11,4 @@ published: true
 
 *Questo articolo è attualmente disponibile solo in inglese. La versione italiana completa sarà disponibile a breve.*
 
-[Leggi la versione inglese](/journal/vibe-coding-and-the-new-economics)
+[Leggi la versione inglese](/journal/vibe-coding-and-the-new-economics-en)

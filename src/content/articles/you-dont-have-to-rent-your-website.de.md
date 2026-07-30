@@ -11,4 +11,4 @@ published: true
 
 *Dieser Artikel ist derzeit nur auf Englisch verfügbar. Die vollständige deutsche Übersetzung folgt in Kürze.*
 
-[Englische Version lesen](/journal/you-dont-have-to-rent-your-website)
+[Englische Version lesen](/journal/you-dont-have-to-rent-your-website-en)

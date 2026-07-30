@@ -32,8 +32,21 @@ const seo = {
 const currentPath = `/it/journal/${article.data.route}`;
 const backUrl = '/it/journal';
 const translationNote = j.labels.translationNote[lang];
+
+// Build correct alternates for hreflang
+const siteUrl = 'https://astiaweb.com';
+const allArticles = await getCollection('articles', (entry) => entry.data.published);
+const currentBase = article.data.route.replace(/-(en|de|it)$/, '');
+const alternates: { en?: string; de?: string; it?: string } = {};
+for (const a of allArticles) {
+  const base = a.data.route.replace(/-(en|de|it)$/, '');
+  if (base === currentBase) {
+    const prefix = a.data.lang === 'en' ? '' : `/${a.data.lang}`;
+    alternates[a.data.lang] = `${siteUrl}${prefix}/journal/${a.data.route}`;
+  }
+}
 ---
-<BaseLayout lang={lang} page="article" seo={seo} currentPath={currentPath}>
+<BaseLayout lang={lang} page="article" seo={seo} currentPath={currentPath} alternates={alternates}>
   <section class="section" style="padding-top:80px; padding-bottom:100px;">
     <div class="container-narrow">
       <a href={backUrl} style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--rosso); margin-bottom:48px; display:inline-block;">

@@ -14,9 +14,10 @@ interface Props {
     ogImageAlt?: { en: string; de: string; it: string };
   };
   currentPath: string;
+  alternates?: { en?: string; de?: string; it?: string };
 }
 
-const { lang, page, seo, currentPath } = Astro.props;
+const { lang, page, seo, currentPath, alternates } = Astro.props;
 const site = await getEntry('site', 'general');
 const siteData = site.data as any;
 
@@ -32,7 +33,7 @@ const canonical = `${siteUrl}${currentPath}`;
 const stripLangPrefix = (path: string) =>
   path.replace(/^\/(de|it)\//, '/').replace(/^\/(de|it)$/, '/');
 const basePath = stripLangPrefix(currentPath);
-const altUrls = {
+const altUrls = alternates || {
   en: `${siteUrl}${basePath === '/' ? '/' : basePath}`,
   de: `${siteUrl}/de${basePath === '/' ? '' : basePath}`,
   it: `${siteUrl}/it${basePath === '/' ? '' : basePath}`,
@@ -115,7 +116,7 @@ const orgJsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
   </head>
   <body>
-    <Nav lang={lang} page={page} currentPath={currentPath} />
+    <Nav lang={lang} page={page} currentPath={currentPath} alternates={alternates} />
     <main>
       <slot />
     </main>

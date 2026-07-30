@@ -5,9 +5,10 @@ interface Props {
   lang: 'en' | 'de' | 'it';
   page: string;
   currentPath: string;
+  alternates?: { en?: string; de?: string; it?: string };
 }
 
-const { lang, page, currentPath } = Astro.props;
+const { lang, page, currentPath, alternates } = Astro.props;
 const site = await getEntry('site', 'general');
 const data = site.data as any;
 const nav = data.nav;
@@ -28,6 +29,7 @@ const url = (p: string, l: 'en' | 'de' | 'it' = lang) => {
 
 // For language switcher: get the equivalent page in another language
 const langUrl = (l: 'en' | 'de' | 'it') => {
+  if (alternates?.[l]) return alternates[l];
   // Strip the current language prefix to determine the page
   let cleanPath = currentPath.replace(/^\/(de|it)/, '');
   if (cleanPath === '') cleanPath = '/';

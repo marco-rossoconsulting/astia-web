@@ -7,6 +7,7 @@ const { lang } = Astro.props;
 const apply = await getEntry('pages', 'apply');
 const d = apply.data as any;
 const f = d.form;
+const actionUrl = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
 ---
 {/* HERO */}
 <section class="section" style="padding-top:110px; padding-bottom:56px;">
@@ -25,7 +26,7 @@ const f = d.form;
 {/* FORM */}
 <section class="section">
   <div class="container-narrow">
-    <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you">
+    <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action={actionUrl}>
       <input type="hidden" name="lang" value={lang} />
       <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
