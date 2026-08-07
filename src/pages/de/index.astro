@@ -6,7 +6,106 @@ import { getEntry } from 'astro:content';
 const lang = 'de' as 'en' | 'de' | 'it';
 const page = await getEntry('pages', 'home');
 const seo = page.data.seo;
+
+const siteUrl = 'https://astiaweb.com';
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
+
+const professionalServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Astia Web',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.png`,
+  description: seo.description[lang],
+  provider: {
+    '@type': 'Organization',
+    name: 'Marcorosso Consulting',
+    url: 'https://rossoconsulting.ch',
+  },
+  areaServed: {
+    '@type': 'Industry',
+    name: 'Hotel and Accommodation',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Astia Web Tiers',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Self-Serve — Bis zu 15 Zimmer',
+          description: 'Sie editieren, via Sveltia CMS. Wir hosten, sichern, frischen jährlich auf.',
+        },
+        price: '150',
+        priceCurrency: 'CHF',
+        billingIncrement: 1,
+        priceValidUntil,
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Self-Serve — Bis zu 30 Zimmer',
+          description: 'Sie editieren, via Sveltia CMS. Wir hosten, sichern, frischen jährlich auf.',
+        },
+        price: '200',
+        priceCurrency: 'CHF',
+        billingIncrement: 1,
+        priceValidUntil,
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Self-Serve — 50+ Zimmer',
+          description: 'Sie editieren, via Sveltia CMS. Wir hosten, sichern, frischen jährlich auf.',
+        },
+        price: '300',
+        priceCurrency: 'CHF',
+        billingIncrement: 1,
+        priceValidUntil,
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Managed — Bis zu 15 Zimmer',
+          description: 'Sie schreiben uns. AI-Agenten und wir erledigen jede Anpassung, innerhalb von 24 Stunden.',
+        },
+        price: '250',
+        priceCurrency: 'CHF',
+        billingIncrement: 1,
+        priceValidUntil,
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Managed — Bis zu 30 Zimmer',
+          description: 'Sie schreiben uns. AI-Agenten und wir erledigen jede Anpassung, innerhalb von 24 Stunden.',
+        },
+        price: '350',
+        priceCurrency: 'CHF',
+        billingIncrement: 1,
+        priceValidUntil,
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Managed — 50+ Zimmer',
+          description: 'Sie schreiben uns. AI-Agenten und wir erledigen jede Anpassung, innerhalb von 24 Stunden.',
+        },
+        price: '550',
+        priceCurrency: 'CHF',
+        billingIncrement: 1,
+        priceValidUntil,
+      },
+    ],
+  },
+};
 ---
-<BaseLayout lang={lang} page="home" seo={seo} currentPath="/de">
+<BaseLayout lang={lang} page="home" seo={seo} currentPath="/de" schemas={[professionalServiceSchema]}>
   <HomeContent lang={lang} />
 </BaseLayout>

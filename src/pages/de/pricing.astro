@@ -6,7 +6,165 @@ import { getEntry } from 'astro:content';
 const lang = 'de' as 'en' | 'de' | 'it';
 const page = await getEntry('pages', 'pricing');
 const seo = page.data.seo;
+const d = page.data as any;
+
+const siteUrl = 'https://astiaweb.com';
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
+
+const offerSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: 'Self-Serve — Bis zu 15 Zimmer',
+    description: d.matrix.selfTagline[lang],
+    url: `${siteUrl}/de/pricing`,
+    price: d.matrix.prices.selfSmall,
+    priceCurrency: d.matrix.currency,
+    billingIncrement: 1,
+    priceValidUntil,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: d.matrix.prices.selfSmall,
+      priceCurrency: d.matrix.currency,
+      unitCode: 'MON',
+      description: 'Monatliches Abonnement',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: 'Self-Serve',
+      areaServed: 'Hotel and Accommodation',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: 'Self-Serve — Bis zu 30 Zimmer',
+    description: d.matrix.selfTagline[lang],
+    url: `${siteUrl}/de/pricing`,
+    price: d.matrix.prices.selfMedium,
+    priceCurrency: d.matrix.currency,
+    billingIncrement: 1,
+    priceValidUntil,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: d.matrix.prices.selfMedium,
+      priceCurrency: d.matrix.currency,
+      unitCode: 'MON',
+      description: 'Monatliches Abonnement',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: 'Self-Serve',
+      areaServed: 'Hotel and Accommodation',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: 'Self-Serve — 50+ Zimmer',
+    description: d.matrix.selfTagline[lang],
+    url: `${siteUrl}/de/pricing`,
+    price: d.matrix.prices.selfLarge,
+    priceCurrency: d.matrix.currency,
+    billingIncrement: 1,
+    priceValidUntil,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: d.matrix.prices.selfLarge,
+      priceCurrency: d.matrix.currency,
+      unitCode: 'MON',
+      description: 'Monatliches Abonnement',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: 'Self-Serve',
+      areaServed: 'Hotel and Accommodation',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: 'Managed — Bis zu 15 Zimmer',
+    description: d.matrix.managedTagline[lang],
+    url: `${siteUrl}/de/pricing`,
+    price: d.matrix.prices.managedSmall,
+    priceCurrency: d.matrix.currency,
+    billingIncrement: 1,
+    priceValidUntil,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: d.matrix.prices.managedSmall,
+      priceCurrency: d.matrix.currency,
+      unitCode: 'MON',
+      description: 'Monatliches Abonnement',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: 'Managed',
+      areaServed: 'Hotel and Accommodation',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: 'Managed — Bis zu 30 Zimmer',
+    description: d.matrix.managedTagline[lang],
+    url: `${siteUrl}/de/pricing`,
+    price: d.matrix.prices.managedMedium,
+    priceCurrency: d.matrix.currency,
+    billingIncrement: 1,
+    priceValidUntil,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: d.matrix.prices.managedMedium,
+      priceCurrency: d.matrix.currency,
+      unitCode: 'MON',
+      description: 'Monatliches Abonnement',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: 'Managed',
+      areaServed: 'Hotel and Accommodation',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: 'Managed — 50+ Zimmer',
+    description: d.matrix.managedTagline[lang],
+    url: `${siteUrl}/de/pricing`,
+    price: d.matrix.prices.managedLarge,
+    priceCurrency: d.matrix.currency,
+    billingIncrement: 1,
+    priceValidUntil,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: d.matrix.prices.managedLarge,
+      priceCurrency: d.matrix.currency,
+      unitCode: 'MON',
+      description: 'Monatliches Abonnement',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: 'Managed',
+      areaServed: 'Hotel and Accommodation',
+    },
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: d.faq.items.map((item: any) => ({
+    '@type': 'Question',
+    name: item.q[lang],
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a[lang],
+    },
+  })),
+};
 ---
-<BaseLayout lang={lang} page="pricing" seo={seo} currentPath="/de/pricing">
+<BaseLayout lang={lang} page="pricing" seo={seo} currentPath="/de/pricing" schemas={[...offerSchemas, faqSchema]}>
   <PricingContent lang={lang} />
 </BaseLayout>
