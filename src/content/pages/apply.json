@@ -6,9 +6,9 @@
       "it": "Candidati · Astia Web — Ottieni il tuo sito per hotel conveniente"
     },
     "description": {
-      "en": "Apply for an affordable, high-quality hotel website. We accept two new properties per month, review every application personally, and respond within three business days.",
-      "de": "Bewerben Sie sich für eine bezahlbare, hochwertige Hotel-Website. Wir nehmen zwei neue Häuser pro Monat auf, lesen jede Bewerbung persönlich und antworten innerhalb von drei Werktagen.",
-      "it": "Candidatevi per un sito per hotel conveniente e di alta qualità. Accettiamo due nuove strutture al mese, leggiamo personalmente ogni candidatura e rispondiamo entro tre giorni lavorativi."
+      "en": "Apply for an affordable, high-quality hotel website. Two dedicated build slots per month. We review every application personally, and respond within three business days.",
+      "de": "Bewerben Sie sich für eine bezahlbare, hochwertige Hotel-Website. Zwei dedizierte Build-Slots pro Monat. Wir lesen jede Bewerbung persönlich und antworten innerhalb von drei Werktagen.",
+      "it": "Candidatevi per un sito per hotel conveniente e di alta qualità. Due slot di sviluppo dedicati al mese. Leggiamo personalmente ogni candidatura e rispondiamo entro tre giorni lavorativi."
     },
     "ogImage": "/images/og-apply.jpg",
     "ogImageAlt": {
@@ -23,9 +23,9 @@
     "headlineEm": { "en": "property.", "de": "Haus.", "it": "struttura." },
     "headlinePost": { "en": "", "de": "", "it": "" },
     "lede": {
-      "en": "We accept two new properties a month. We review every application personally, respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
-      "de": "Wir nehmen zwei neue Häuser pro Monat auf. Wir lesen jede Bewerbung persönlich, antworten innerhalb von drei Werktagen, und sagen ehrlich, ob Astia für Sie passt, bevor sich einer von uns verpflichtet.",
-      "it": "Accettiamo due nuove strutture al mese. Leggiamo personalmente ogni candidatura, rispondiamo entro tre giorni lavorativi, e saremo onesti se Astia è la scelta giusta prima che nessuno di noi si impegni."
+      "en": "Two dedicated build slots per month. We review every application personally, respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
+      "de": "Zwei dedizierte Build-Slots pro Monat. Wir lesen jede Bewerbung persönlich, antworten innerhalb von drei Werktagen, und sagen ehrlich, ob Astia für Sie passt, bevor sich einer von uns verpflichtet.",
+      "it": "Due slot di sviluppo dedicati al mese. Leggiamo personalmente ogni candidatura, rispondiamo entro tre giorni lavorativi, e saremo onesti se Astia è la scelta giusta prima che nessuno di noi si impegni."
     },
     "subnote": {
       "en": "All fields optional except the four marked. Takes about three minutes.",
