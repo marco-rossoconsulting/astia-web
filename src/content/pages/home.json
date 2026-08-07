@@ -43,10 +43,15 @@
       "de": "Auf Astro gebaut für Geschwindigkeit. Von AI verwaltet für die Kosten. Für die Hotellerie konzipiert, von Hoteliers.",
       "it": "Costruito su Astro per la velocità. Gestito dall'IA per il costo. Progettato per l'ospitalità, da chi conosce l'ospitalità."
     },
+    "badge": {
+      "en": "Live in 2–3 weeks · No upfront cost",
+      "de": "Live in 2–3 Wochen · Keine Anschaffungskosten",
+      "it": "Live in 2–3 settimane · Nessun costo iniziale"
+    },
     "capacity": {
-      "en": "Currently accepting 2 properties per month",
-      "de": "Wir nehmen aktuell zwei neue Objekte pro Monat auf",
-      "it": "Accettiamo due nuove strutture al mese"
+      "en": "Two dedicated build slots per month — every site gets our full attention",
+      "de": "Zwei dedizierte Build-Slots pro Monat — jedes Projekt bekommt unsere volle Aufmerksamkeit",
+      "it": "Due slot di sviluppo dedicati al mese — ogni sito riceve la nostra piena attenzione"
     }
   },
   "problem": {
@@ -622,29 +627,29 @@
   },
   "finalCTA": {
     "eyebrow": {
-      "en": "Limited intake",
-      "de": "Begrenzte Aufnahme",
-      "it": "Posti limitati"
+      "en": "Dedicated builds",
+      "de": "Dedizierte Builds",
+      "it": "Build dedicati"
     },
     "h2pre": {
-      "en": "We accept",
-      "de": "Wir nehmen",
-      "it": "Accettiamo"
+      "en": "Two properties",
+      "de": "Zwei Häuser",
+      "it": "Due strutture"
     },
     "h2em": {
-      "en": "two new properties",
-      "de": "zwei neue Häuser",
-      "it": "due nuove strutture"
+      "en": "at a time",
+      "de": "auf einmal",
+      "it": "alla volta"
     },
     "h2post": {
-      "en": "a month.",
-      "de": "pro Monat auf.",
-      "it": "al mese."
+      "en": "— every site gets our full attention.",
+      "de": "— jedes Projekt bekommt unsere volle Aufmerksamkeit.",
+      "it": "— ogni sito riceve la nostra piena attenzione."
     },
     "lede": {
-      "en": "Tell us about yours. We respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
-      "de": "Erzählen Sie uns von Ihrem. Wir antworten innerhalb von drei Werktagen — und sind ehrlich, ob Astia für Sie das Richtige ist, bevor sich einer von uns verpflichtet.",
-      "it": "Raccontateci della vostra. Rispondiamo entro tre giorni lavorativi, e saremo onesti su se Astia è la scelta giusta prima che nessuno di noi si impegni."
+      "en": "Limited to two properties so each launch stays within 2–3 weeks. Tell us about yours. We respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
+      "de": "Auf zwei Häuser begrenzt, damit jeder Launch innerhalb von 2–3 Wochen bleibt. Erzählen Sie uns von Ihrem. Wir antworten innerhalb von drei Werktagen — und sind ehrlich, ob Astia für Sie das Richtige ist, bevor sich einer von uns verpflichtet.",
+      "it": "Limitati a due strutture così ogni lancio resta entro 2–3 settimane. Raccontateci della vostra. Rispondiamo entro tre giorni lavorativi, e saremo onesti su se Astia è la scelta giusta prima che nessuno di noi si impegni."
     }
   }
 }

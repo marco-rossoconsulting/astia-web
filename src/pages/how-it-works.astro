@@ -6,7 +6,44 @@ import { getEntry } from 'astro:content';
 const lang = 'en' as 'en' | 'de' | 'it';
 const page = await getEntry('pages', 'how');
 const seo = page.data.seo;
+const d = page.data as any;
+
+const siteUrl = 'https://astiaweb.com';
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How Astia Web works',
+  description: d.hero.lede[lang],
+  totalTime: 'P3W',
+  step: [
+    {
+      '@type': 'HowToStep',
+      name: d.build.phases[0].title[lang],
+      text: d.build.phases[0].body[lang],
+      url: `${siteUrl}/how-it-works#discovery`,
+    },
+    {
+      '@type': 'HowToStep',
+      name: d.build.phases[1].title[lang],
+      text: d.build.phases[1].body[lang],
+      url: `${siteUrl}/how-it-works#design`,
+    },
+    {
+      '@type': 'HowToStep',
+      name: d.build.phases[2].title[lang],
+      text: d.build.phases[2].body[lang],
+      url: `${siteUrl}/how-it-works#build`,
+    },
+    {
+      '@type': 'HowToStep',
+      name: d.build.phases[3].title[lang],
+      text: d.build.phases[3].body[lang],
+      url: `${siteUrl}/how-it-works#launch`,
+    },
+  ],
+};
 ---
-<BaseLayout lang={lang} page="how" seo={seo} currentPath="/how-it-works">
+<BaseLayout lang={lang} page="how" seo={seo} currentPath="/how-it-works" schemas={[howToSchema]}>
   <HowContent lang={lang} />
 </BaseLayout>
