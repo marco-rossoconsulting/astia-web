@@ -29,8 +29,151 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Astro generates static HTML — no redirects needed for SPA fallback.
-# Language alternates are served as separate routes per Astro i18n config.
+# ── Redirects: www and HTTP to canonical HTTPS non-www ──
+[[redirects]]
+  from = "http://astiaweb.com/*"
+  to = "https://astiaweb.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.astiaweb.com/*"
+  to = "https://astiaweb.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.astiaweb.com/*"
+  to = "https://astiaweb.com/:splat"
+  status = 301
+  force = true
+
+# ── Redirects: trailing slash to no-trailing-slash ──
+# (Removed: build.format: 'file' outputs .html files; Netlify Pretty URLs
+# serves them without extension. Legacy trailing-slash URLs in Google's
+# index will 404 and drop naturally; canonical tags prevent duplication.)
+
+# ── Redirects: fix cross-language 404s from Google Search Console ──
+
+# Italian pages linking to wrong-language slugs
+[[redirects]]
+  from = "/it/journal/1995-prices-in-2026-en"
+  to = "/journal/1995-prices-in-2026-en"
+  status = 301
+
+[[redirects]]
+  from = "/it/journal/thirty-thousand-website-is-over-de"
+  to = "/de/journal/thirty-thousand-website-is-over-de"
+  status = 301
+
+[[redirects]]
+  from = "/it/journal/vibe-coding-and-the-new-economics-de"
+  to = "/de/journal/vibe-coding-and-the-new-economics-de"
+  status = 301
+
+[[redirects]]
+  from = "/it/journal/you-dont-have-to-rent-your-website-de"
+  to = "/de/journal/you-dont-have-to-rent-your-website-de"
+  status = 301
+
+[[redirects]]
+  from = "/it/journal/you-dont-have-to-rent-your-website-en"
+  to = "/journal/you-dont-have-to-rent-your-website-en"
+  status = 301
+
+[[redirects]]
+  from = "/it/journal/connect-anything-open-platforms-2026-en"
+  to = "/journal/connect-anything-open-platforms-2026-en"
+  status = 301
+
+[[redirects]]
+  from = "/it/journal/vibe-coding-and-the-new-economics-en"
+  to = "/journal/vibe-coding-and-the-new-economics-en"
+  status = 301
+
+# German pages linking to wrong-language slugs
+[[redirects]]
+  from = "/de/journal/1995-prices-in-2026-en"
+  to = "/journal/1995-prices-in-2026-en"
+  status = 301
+
+[[redirects]]
+  from = "/de/journal/connect-anything-open-platforms-2026-it"
+  to = "/it/journal/connect-anything-open-platforms-2026-it"
+  status = 301
+
+[[redirects]]
+  from = "/de/journal/connect-anything-open-platforms-2026-en"
+  to = "/journal/connect-anything-open-platforms-2026-en"
+  status = 301
+
+[[redirects]]
+  from = "/de/journal/thirty-thousand-website-is-over-en"
+  to = "/journal/thirty-thousand-website-is-over-en"
+  status = 301
+
+[[redirects]]
+  from = "/de/journal/vibe-coding-and-the-new-economics-en"
+  to = "/journal/vibe-coding-and-the-new-economics-en"
+  status = 301
+
+[[redirects]]
+  from = "/de/journal/you-dont-have-to-rent-your-website-en"
+  to = "/journal/you-dont-have-to-rent-your-website-en"
+  status = 301
+
+# English pages linking to wrong-language slugs
+[[redirects]]
+  from = "/journal/connect-anything-open-platforms-2026-it"
+  to = "/it/journal/connect-anything-open-platforms-2026-it"
+  status = 301
+
+[[redirects]]
+  from = "/journal/connect-anything-open-platforms-2026-de"
+  to = "/de/journal/connect-anything-open-platforms-2026-de"
+  status = 301
+
+[[redirects]]
+  from = "/journal/thirty-thousand-website-is-over-de"
+  to = "/de/journal/thirty-thousand-website-is-over-de"
+  status = 301
+
+[[redirects]]
+  from = "/journal/thirty-thousand-website-is-over-it"
+  to = "/it/journal/thirty-thousand-website-is-over-it"
+  status = 301
+
+[[redirects]]
+  from = "/journal/vibe-coding-and-the-new-economics-de"
+  to = "/de/journal/vibe-coding-and-the-new-economics-de"
+  status = 301
+
+[[redirects]]
+  from = "/journal/you-dont-have-to-rent-your-website-de"
+  to = "/de/journal/you-dont-have-to-rent-your-website-de"
+  status = 301
+
+# Slugs without language suffix → English version
+[[redirects]]
+  from = "/journal/vibe-coding-and-the-new-economics"
+  to = "/journal/vibe-coding-and-the-new-economics-en"
+  status = 301
+
+[[redirects]]
+  from = "/journal/you-dont-have-to-rent-your-website"
+  to = "/journal/you-dont-have-to-rent-your-website-en"
+  status = 301
+
+[[redirects]]
+  from = "/journal/thirty-thousand-website-is-over"
+  to = "/journal/thirty-thousand-website-is-over-en"
+  status = 301
+
+# Missing locale thank-you page
+[[redirects]]
+  from = "/it/thank-you"
+  to = "/thank-you"
+  status = 301
 
 # Redirect legacy /sitemap.xml to Astro's sitemap-index.xml
 [[redirects]]
