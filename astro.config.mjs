@@ -12,6 +12,7 @@ export default defineConfig({
   integrations: [],
   trailingSlash: 'never',
   build: {
+    format: 'file',
     inlineStylesheets: 'auto',
   },
 });
