@@ -49,15 +49,9 @@
   force = true
 
 # ── Redirects: trailing slash to no-trailing-slash ──
-[[redirects]]
-  from = "/admin/*/"
-  to = "/admin/:splat"
-  status = 301
-
-[[redirects]]
-  from = "/*/"
-  to = "/:splat"
-  status = 301
+# (Removed: build.format: 'file' outputs .html files; Netlify Pretty URLs
+# serves them without extension. Legacy trailing-slash URLs in Google's
+# index will 404 and drop naturally; canonical tags prevent duplication.)
 
 # ── Redirects: fix cross-language 404s from Google Search Console ──
 
