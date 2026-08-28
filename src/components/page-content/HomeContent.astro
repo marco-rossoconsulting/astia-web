@@ -5,6 +5,7 @@ import StepCard from '@components/StepCard.astro';
 import PortfolioCard from '@components/PortfolioCard.astro';
 import PriceTeaserCard from '@components/PriceTeaserCard.astro';
 import ImageBreaker from '@components/ImageBreaker.astro';
+import Hero24 from '@components/Hero24.tsx';
 
 interface Props {
   lang: 'en' | 'de' | 'it';
@@ -89,39 +90,20 @@ const testimonials = [
 ];
 ---
 
-{/* ===== HERO ===== */}
-<section class="section hero-mesh" style="padding-top:140px; padding-bottom:100px;">
-  <div class="container">
-    <div class="fade-in delay-1"><span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span></div>
-    <h1 class="display-1 fade-in delay-2" style="margin-top:28px; max-width:1000px;">
-      {d.hero.preEm[lang]} <span class="editorial-i">{d.hero.em[lang]}</span> {d.hero.post[lang]}
-    </h1>
-    <p class="lede fade-in delay-3" style="margin-top:32px; max-width:640px;">{d.hero.lede[lang]}</p>
-    <div class="fade-in delay-4" style="margin-top:24px;">
-      <span class="perf-badge">{d.hero.badge[lang]}</span>
-    </div>
-    <div class="fade-in delay-4" style="margin-top:44px; display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
-      <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
-      <a class="btn btn-ghost btn-arrow" href={url('how')}>{cta.seeHow[lang]}</a>
-      <span class="caption" style="margin-left:12px; color:var(--stone);">{d.hero.capacity[lang]}</span>
-    </div>
-
-    <div class="trust-bar fade-in delay-4">
-      <div class="trust-item">
-        <div class="trust-num">&lt;1s</div>
-        <div class="trust-label">{lang === 'en' ? 'Load time' : lang === 'de' ? 'Ladezeit' : 'Tempo di caricamento'}</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-num">CHF 150</div>
-        <div class="trust-label">{lang === 'en' ? 'From per month' : lang === 'de' ? 'Ab pro Monat' : 'Da al mese'}</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-num">2–3 {lang === 'en' ? 'wks' : lang === 'de' ? 'Wo.' : 'sett.'}</div>
-        <div class="trust-label">{lang === 'en' ? 'To launch' : lang === 'de' ? 'Bis zum Launch' : 'Al lancio'}</div>
-      </div>
-    </div>
-  </div>
-</section>
+{/* ===== HERO 24 ===== */}
+<Hero24
+  client:load
+  chipText={lang === 'en' ? "Astia Web \u00b7 AI-managed sites" : lang === 'de' ? "Astia Web \u00b7 AI-verwaltete Sites" : "Astia Web \u00b7 Siti gestiti dall'IA"}
+  headlinePre={d.hero.preEm[lang]}
+  headlineEm={d.hero.em[lang]}
+  headlinePost={" " + d.hero.post[lang]}
+  subheadline={d.hero.lede[lang] + " " + d.hero.badge[lang] + "."}
+  primaryCta={cta.applyForSite[lang]}
+  primaryCtaHref={url('apply')}
+  secondaryCta={cta.seeHow[lang]}
+  secondaryCtaHref={url('how')}
+  partnersLabel={lang === 'en' ? 'Powering websites for' : lang === 'de' ? 'Websites f\u00fcr' : 'Siti per'}
+/>
 
 <hr class="section-divider" />
 
