@@ -1,6 +1,6 @@
 ---
 import { getEntry, getCollection } from 'astro:content';
-import ProblemCard from '@components/ProblemCard.astro';
+import ProblemCards from '@components/ProblemCards.tsx';
 import StepCard from '@components/StepCard.astro';
 import PortfolioCard from '@components/PortfolioCard.astro';
 import PriceTeaserCard from '@components/PriceTeaserCard.astro';
@@ -80,23 +80,18 @@ const faqItems = [
 
 <hr class="section-divider" />
 
-{/* ===== PROBLEM ===== */}
-<section class="section">
-  <div class="container">
-    <h2 class="display-2 reveal" style="max-width:780px; margin-bottom:12px;">
-      {d.problem.h2pre[lang]} <span class="editorial-i text-rosso">{d.problem.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:640px; margin-bottom:64px;">{d.problem.intro[lang]}</p>
-
-    <div class="grid-3">
-      {d.problem.cards.map((c: any, i: number) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <ProblemCard tag={c.tag[lang]} title={c.title[lang]} body={c.body[lang]} tail={c.tail[lang]} />
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+{/* ===== PROBLEM CARDS ===== */}
+<ProblemCards
+  client:load
+  headline={d.problem.h2pre[lang] + " " + d.problem.h2em[lang]}
+  subheadline={d.problem.intro[lang]}
+  cards={d.problem.cards.map((c: any) => ({
+    tag: c.tag[lang],
+    title: c.title[lang],
+    body: c.body[lang],
+    tail: c.tail[lang],
+  }))}
+/>
 
 <hr class="section-divider" />
 
