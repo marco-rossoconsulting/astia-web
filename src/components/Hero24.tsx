@@ -295,55 +295,8 @@ export function Hero24({
             </a>
           </motion.div>
 
-          {/* Partners */}
-          <motion.div variants={item} style={{ marginTop: "56px", width: "100%" }}>
-            <p
-              style={{
-                fontSize: "11px",
-                fontWeight: 500,
-                textTransform: "uppercase",
-                letterSpacing: "0.16em",
-                color: "#9A9A93",
-                fontFamily: "'JetBrains Mono', monospace",
-                margin: 0,
-              }}
-            >
-              {partnersLabel}
-            </p>
-            <div
-              style={{
-                marginTop: "16px",
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "28px 32px",
-              }}
-            >
-              {partners.map((name) => (
-                <span
-                  key={name}
-                  style={{
-                    fontSize: "15px",
-                    fontWeight: 500,
-                    letterSpacing: "-0.01em",
-                    color: "#9A9A93",
-                    transition: "color 0.2s ease",
-                    fontFamily: "'Editorial New', Georgia, serif",
-                    fontStyle: "italic",
-                    cursor: "default",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = "#141414";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = "#9A9A93";
-                  }}
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          {/* Partners removed per user request */}
+
         </motion.div>
       </div>
 

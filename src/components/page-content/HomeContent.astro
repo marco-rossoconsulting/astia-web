@@ -4,7 +4,6 @@ import ProblemCard from '@components/ProblemCard.astro';
 import StepCard from '@components/StepCard.astro';
 import PortfolioCard from '@components/PortfolioCard.astro';
 import PriceTeaserCard from '@components/PriceTeaserCard.astro';
-import ImageBreaker from '@components/ImageBreaker.astro';
 import Hero24 from '@components/Hero24.tsx';
 
 interface Props {
@@ -46,19 +45,19 @@ const vsRows = d.comparison.rows.map((r: any) => ({
 }));
 const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang][2], d.comparison.headers[lang][3] ];
 
-// FAQ data (pulled from pricing page for homepage)
+// FAQ data
 const faqItems = [
   {
     q: { en: "Why is there no upfront cost?", de: "Warum gibt es keine Anschaffungskosten?", it: "Perch\u00e9 non c'\u00e8 un costo iniziale?" },
-    a: { en: "Because the actual cost of building a modern website is small enough that financing it across a year of subscription works for both sides. The upfront-then-retainer model is a relic of when websites took months and required real engineering. They no longer do.", de: "Weil die tats\u00e4chlichen Kosten f\u00fcr den Bau einer modernen Website klein genug sind, dass eine Finanzierung \u00fcber ein Jahr Abonnement f\u00fcr beide Seiten funktioniert.", it: "Perch\u00e9 il costo reale per costruire un sito moderno \u00e8 abbastanza piccolo da poter essere finanziato attraverso un anno di abbonamento per entrambe le parti." }
+    a: { en: "Because the actual cost of building a modern website is small enough that financing it across a year of subscription works for both sides. The upfront model is a relic of when websites took months and required real engineering.", de: "Weil die tats\u00e4chlichen Kosten f\u00fcr den Bau einer modernen Website klein genug sind, dass eine Finanzierung \u00fcber ein Jahr Abonnement f\u00fcr beide Seiten funktioniert.", it: "Perch\u00e9 il costo reale per costruire un sito moderno \u00e8 abbastanza piccolo da poter essere finanziato attraverso un anno di abbonamento per entrambe le parti." }
   },
   {
     q: { en: "What if I cancel?", de: "Was, wenn ich k\u00fcndige?", it: "E se disdico?" },
-    a: { en: "Twelve months to start, month-to-month after that. You keep the code, the content, the Git repository at every stage \u2014 that ownership is permanent. We help you move when you leave. No exit fee.", de: "Mindestlaufzeit zw\u00f6lf Monate, danach monatlich k\u00fcndbar. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase \u2014 dieses Eigentum ist dauerhaft.", it: "Durata iniziale dodici mesi, poi mensile. Voi tenete il codice, i contenuti e il repository Git in ogni fase \u2014 questa propriet\u00e0 \u00e8 permanente." }
+    a: { en: "Twelve months to start, month to month after that. You keep the code, the content, the Git repository at every stage. That ownership is permanent. We help you move when you leave. No exit fee.", de: "Mindestlaufzeit zw\u00f6lf Monate, danach monatlich k\u00fcndbar. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase. Dieses Eigentum ist dauerhaft.", it: "Durata iniziale dodici mesi, poi mensile. Voi tenete il codice, i contenuti e il repository Git in ogni fase. Questa propriet\u00e0 \u00e8 permanente." }
   },
   {
     q: { en: "How does the AI agent actually work?", de: "Wie funktioniert der AI-Agent eigentlich?", it: "Come funziona davvero l'agente IA?" },
-    a: { en: "It reads incoming requests from your email or WhatsApp, identifies the change required, makes the edit as a Git commit on a preview branch, and pushes it for human review. The agent never deploys to production directly \u2014 every change passes a human.", de: "Er liest eingehende Anfragen von Ihrer E-Mail oder WhatsApp, identifiziert die erforderliche \u00c4nderung, macht die Bearbeitung als Git-Commit und pusht sie zur menschlichen Review.", it: "Legge le richieste in arrivo da email o WhatsApp, identifica la modifica necessaria, la prepara come commit Git e la propone per revisione umana." }
+    a: { en: "It reads incoming requests from your email or WhatsApp, identifies the change required, makes the edit as a Git commit on a preview branch, and pushes it for human review. The agent never deploys to production directly. Every change passes a human.", de: "Er liest eingehende Anfragen von Ihrer E-Mail oder WhatsApp, identifiziert die erforderliche \u00c4nderung, macht die Bearbeitung als Git-Commit und pusht sie zur menschlichen Review.", it: "Legge le richieste in arrivo da email o WhatsApp, identifica la modifica necessaria, la prepara come commit Git e la propone per revisione umana." }
   },
   {
     q: { en: "What if my booking engine isn't on your list?", de: "Was, wenn mein Buchungssystem nicht auf Ihrer Liste ist?", it: "E se il mio booking engine non \u00e8 nella vostra lista?" },
@@ -66,26 +65,7 @@ const faqItems = [
   },
   {
     q: { en: "How fast will my site load?", de: "Wie schnell l\u00e4dt meine Seite?", it: "Quanto velocemente si caricher\u00e0 il mio sito?" },
-    a: { en: "Astia sites load in under one second on any device, from anywhere in the world. We build on Astro \u2014 the same framework Google uses for its developer site \u2014 which generates static HTML with zero JavaScript by default.", de: "Astia-Seiten laden auf jedem Ger\u00e4t in unter einer Sekunde, von \u00fcberall auf der Welt. Wir bauen auf Astro \u2014 dem Framework, das Google f\u00fcr seine Entwicklerseite verwendet.", it: "I siti Astia si caricano in meno di un secondo su qualsiasi dispositivo, ovunque nel mondo. Costruiamo su Astro \u2014 lo stesso framework che Google usa per il suo sito sviluppatori." }
-  }
-];
-
-// Testimonials
-const testimonials = [
-  {
-    quote: { en: "We've seen a 40% increase in direct bookings since launching our Astia site. The speed matters \u2014 guests actually complete reservations instead of abandoning.", de: "Seit dem Launch unserer Astia-Seite verzeichnen wir 40 % mehr Direktbuchungen. Die Geschwindigkeit z\u00e4hlt.", it: "Dal lancio del nostro sito Astia abbiamo visto un aumento del 40% nelle prenotazioni dirette. La velocit\u00e0 conta." },
-    name: { en: "Planhotel Hospitality Group", de: "Planhotel Hospitality Group", it: "Planhotel Hospitality Group" },
-    role: { en: "Lugano, Switzerland \u00b7 3 properties", de: "Lugano, Schweiz \u00b7 3 H\u00e4user", it: "Lugano, Svizzera \u00b7 3 strutture" },
-  },
-  {
-    quote: { en: "I used to spend hours updating our WordPress site. Now I send a WhatsApp message and it's done by the next morning. The site is faster, more secure, and I never think about it.", de: "Fr\u00fcher habe ich Stunden damit verbracht, unsere WordPress-Seite zu aktualisieren. Jetzt schicke ich eine WhatsApp-Nachricht und es ist am n\u00e4chsten Morgen erledigt.", it: "Prima passavo ore ad aggiornare il nostro sito WordPress. Ora mando un messaggio WhatsApp e \u00e8 fatto per la mattina dopo." },
-    name: { en: "Independent Boutique Hotel", de: "Unabh\u00e4ngiges Boutique-Hotel", it: "Boutique Hotel Indipendente" },
-    role: { en: "Kenya \u00b7 18 rooms", de: "Kenia \u00b7 18 Zimmer", it: "Kenya \u00b7 18 camere" },
-  },
-  {
-    quote: { en: "The annual design refresh keeps our site looking modern without any effort from our team. Our guests constantly compliment how professional and fast the site feels.", de: "Das j\u00e4hrliche Design-Refresh h\u00e4lt unsere Seite modern, ohne Aufwand von unserem Team. Unsere G\u00e4ste loben st\u00e4ndig, wie professionell und schnell die Seite wirkt.", it: "Il refresh di design annuale mantiene il nostro sito moderno senza alcuno sforzo del nostro team. I nostri ospiti lodano costantemente quanto sia professionale e veloce." },
-    name: { en: "Safari Lodge Operator", de: "Safari-Lodge-Betreiber", it: "Operatore Safari Lodge" },
-    role: { en: "Maasai Mara \u00b7 12 tents", de: "Maasai Mara \u00b7 12 Zelte", it: "Maasai Mara \u00b7 12 tende" },
+    a: { en: "Astia sites load in under one second on any device, from anywhere in the world. We build on Astro, the same framework Google uses for its developer site, which generates static HTML with zero JavaScript by default.", de: "Astia-Seiten laden auf jedem Ger\u00e4t in unter einer Sekunde, von \u00fcberall auf der Welt. Wir bauen auf Astro, dem Framework, das Google f\u00fcr seine Entwicklerseite verwendet.", it: "I siti Astia si caricano in meno di un secondo su qualsiasi dispositivo, ovunque nel mondo. Costruiamo su Astro, lo stesso framework che Google usa per il suo sito sviluppatori." }
   }
 ];
 ---
@@ -93,7 +73,7 @@ const testimonials = [
 {/* ===== HERO 24 ===== */}
 <Hero24
   client:load
-  chipText={lang === 'en' ? "Astia Web \u00b7 AI-managed sites" : lang === 'de' ? "Astia Web \u00b7 AI-verwaltete Sites" : "Astia Web \u00b7 Siti gestiti dall'IA"}
+  chipText={lang === 'en' ? "Astia Web AI-managed sites" : lang === 'de' ? "Astia Web AI-verwaltete Sites" : "Astia Web Siti gestiti dall'IA"}
   headlinePre={d.hero.preEm[lang]}
   headlineEm={d.hero.em[lang]}
   headlinePost={" " + d.hero.post[lang]}
@@ -107,34 +87,9 @@ const testimonials = [
 
 <hr class="section-divider" />
 
-{/* ===== LOGO BAR ===== */}
-<section class="section" style="padding:56px 0;">
-  <div class="container">
-    <p class="eyebrow reveal" style="text-align:center; margin-bottom:32px;">
-      {lang === 'en' ? 'Trusted by hospitality brands worldwide' : lang === 'de' ? 'Vertraut von Hotelmarken weltweit' : 'Scelto da brand ospitalit\u00e0 in tutto il mondo'}
-    </p>
-    <div class="logo-marquee reveal">
-      <div class="logo-track">
-        {/* Duplicate logos for seamless loop */}
-        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Exploreans</span>
-        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Planhotel</span>
-        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">MARA RIVER</span>
-        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">WATAMU</span>
-        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Exploreans</span>
-        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Planhotel</span>
-        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">MARA RIVER</span>
-        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">WATAMU</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider" />
-
 {/* ===== PROBLEM ===== */}
 <section class="section">
   <div class="container">
-    <span class="section-num reveal">{d.problem.num[lang]}</span>
     <h2 class="display-2 reveal" style="max-width:780px; margin-bottom:12px;">
       {d.problem.h2pre[lang]} <span class="editorial-i text-rosso">{d.problem.h2em[lang]}</span>
     </h2>
@@ -155,7 +110,6 @@ const testimonials = [
 {/* ===== SOLUTION ===== */}
 <section class="section section-cream">
   <div class="container-narrow">
-    <span class="section-num reveal">{d.solution.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:32px;">
       {d.solution.h2pre[lang]} <span class="editorial-i">{d.solution.h2em[lang]}</span>
     </h2>
@@ -174,17 +128,11 @@ const testimonials = [
   </div>
 </section>
 
-<ImageBreaker
-  src={d.imageBreaker.image}
-  alt={d.imageBreaker.alt[lang]}
-  caption={d.imageBreaker.caption[lang]}
-  attribution={d.imageBreaker.attribution[lang]}
-/>
+<hr class="section-divider" />
 
 {/* ===== STEPS ===== */}
 <section class="section">
   <div class="container">
-    <span class="section-num reveal">{d.steps.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:64px;">
       {d.steps.h2pre[lang]} <span class="editorial-i">{d.steps.h2em[lang]}</span>
     </h2>
@@ -208,13 +156,12 @@ const testimonials = [
 {/* ===== SHOWCASE TEASER ===== */}
 <section class="section section-cream">
   <div class="container">
-    <span class="section-num reveal">{d.portfolio.num[lang]}</span>
     <div class="flex-between reveal" style="align-items:flex-end; margin-bottom:48px;">
       <h2 class="display-2" style="max-width:720px; margin-bottom:0;">
         {d.portfolio.h2pre[lang]} <span class="editorial-i">{d.portfolio.h2em[lang]}</span> {d.portfolio.h2post[lang]}
       </h2>
       <a href={url('showcase')} class="caption" style="white-space:nowrap; color:var(--rosso); text-decoration:underline; text-underline-offset:3px;">
-        {lang === 'en' ? 'View all showcases →' : lang === 'de' ? 'Alle Showcases →' : 'Tutti gli showcase →'}
+        {lang === 'en' ? 'View all showcases' : lang === 'de' ? 'Alle Showcases' : 'Tutti gli showcase'}
       </a>
     </div>
 
@@ -244,7 +191,6 @@ const testimonials = [
 {/* ===== COMPARISON ===== */}
 <section class="section">
   <div class="container">
-    <span class="section-num reveal">{d.comparison.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.comparison.h2pre[lang]} <span class="editorial-i">{d.comparison.h2em[lang]}</span>
     </h2>
@@ -254,33 +200,33 @@ const testimonials = [
       <div class="vs-cell head">{vsHeaders[0]}</div>
       <div class="vs-cell head">{vsHeaders[1]}</div>
       <div class="vs-cell head">{vsHeaders[2]}</div>
-      <div class="vs-cell head vs-us-head"><span class="rosso-dot">●</span> {vsHeaders[3]}</div>
+      <div class="vs-cell head vs-us-head"><span class="rosso-dot">&#9679;</span> {vsHeaders[3]}</div>
 
       {vsRows.map((row: any) => (
         <div class="vs-row" style="display:contents;">
           <div class="vs-cell label">{row.label}</div>
           <div class="vs-cell them">
-            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 \u2013 550','2\u20133 weeks','2\u20133 Wochen','2\u20133 settimane'].includes(row.agency) ? (
-              <span class="vs-check">✓</span>
+            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 550','2 3 weeks','2 3 Wochen','2 3 settimane'].includes(row.agency) ? (
+              <span class="vs-check">&#10003;</span>
             ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom'].includes(row.agency) ? (
               <span class="vs-check" style="color:var(--stone);">~</span>
             ) : (
-              <span class="vs-x">✗</span>
+              <span class="vs-x">&#10007;</span>
             )}
             <span style="margin-left:6px;">{row.agency}</span>
           </div>
           <div class="vs-cell them">
-            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 \u2013 550','2\u20133 weeks','2\u20133 Wochen','2\u20133 settimane'].includes(row.builder) ? (
-              <span class="vs-check">✓</span>
+            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 550','2 3 weeks','2 3 Wochen','2 3 settimane'].includes(row.builder) ? (
+              <span class="vs-check">&#10003;</span>
             ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom','Limited add-ons','Begrenzte Add-ons','Add-on limitati'].includes(row.builder) ? (
               <span class="vs-check" style="color:var(--stone);">~</span>
             ) : (
-              <span class="vs-x">✗</span>
+              <span class="vs-x">&#10007;</span>
             )}
             <span style="margin-left:6px;">{row.builder}</span>
           </div>
           <div class="vs-cell us">
-            <span class="vs-check" style="color:var(--rosso);">✓</span>
+            <span class="vs-check" style="color:var(--rosso);">&#10003;</span>
             <span style="margin-left:6px;">{row.astia}</span>
           </div>
         </div>
@@ -298,7 +244,6 @@ const testimonials = [
 {/* ===== PRICING ===== */}
 <section class="section section-cream">
   <div class="container">
-    <span class="section-num reveal">{d.pricingTeaser.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.pricingTeaser.h2pre[lang]} <span class="editorial-i">{d.pricingTeaser.h2em[lang]}</span>
     </h2>
@@ -331,41 +276,6 @@ const testimonials = [
 
 <hr class="section-divider" />
 
-{/* ===== TESTIMONIALS ===== */}
-<section class="section">
-  <div class="container">
-    <span class="section-num reveal">
-      {lang === 'en' ? '07 — What clients say' : lang === 'de' ? '07 — Was Kunden sagen' : '07 — Cosa dicono i clienti'}
-    </span>
-    <h2 class="display-2 reveal" style="margin-bottom:56px;">
-      {lang === 'en' ? 'Trusted by ' : lang === 'de' ? 'Vertraut von ' : 'Scelto da '}
-      <span class="editorial-i">{lang === 'en' ? 'hoteliers' : lang === 'de' ? 'Hoteliers' : 'albergatori'}</span>
-      {lang === 'en' ? ' who value speed.' : lang === 'de' ? ', die Wert auf Geschwindigkeit legen.' : ' che danno valore alla velocit\u00e0.'}
-    </h2>
-
-    <div class="grid-3">
-      {testimonials.map((t, i) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <div class="testimonial-card card-hover">
-            <p class="testimonial-quote">"{t.quote[lang]}"</p>
-            <div class="testimonial-author">
-              <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--rosso),var(--wine)); display:flex; align-items:center; justify-content:center; color:var(--paper); font-family:'Editorial New',serif; font-style:italic; font-size:18px;">
-                {t.name[lang].charAt(0)}
-              </div>
-              <div>
-                <p class="testimonial-name">{t.name[lang]}</p>
-                <p class="testimonial-role">{t.role[lang]}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider" />
-
 {/* ===== TECH SHOWCASE ===== */}
 <section class="section tech-showcase">
   <div class="container tech-showcase-inner">
@@ -380,10 +290,10 @@ const testimonials = [
       </h2>
       <p class="lede" style="color:var(--stone-soft); max-width:560px; margin:0 auto;">
         {lang === 'en'
-          ? "The same technology powering this site \u2014 Astro, Netlify, and AI-managed updates \u2014 is what we build for every client. Fast, secure, and maintenance-free."
+          ? "The same technology powering this site (Astro, Netlify, and AI-managed updates) is what we build for every client. Fast, secure, and maintenance-free."
           : lang === 'de'
-          ? "Dieselbe Technologie, die diese Seite antreibt \u2014 Astro, Netlify und AI-verwaltete Updates \u2014 bauen wir f\u00fcr jeden Kunden. Schnell, sicher und wartungsfrei."
-          : "La stessa tecnologia che alimenta questo sito \u2014 Astro, Netlify e aggiornamenti gestiti dall'IA \u2014 la costruiamo per ogni cliente. Veloce, sicuro e senza manutenzione."}
+          ? "Dieselbe Technologie, die diese Seite antreibt (Astro, Netlify und AI-verwaltete Updates), bauen wir f\u00fcr jeden Kunden. Schnell, sicher und wartungsfrei."
+          : "La stessa tecnologia che alimenta questo sito (Astro, Netlify e aggiornamenti gestiti dall'IA) la costruiamo per ogni cliente. Veloce, sicuro e senza manutenzione."}
       </p>
     </div>
 
@@ -419,9 +329,6 @@ const testimonials = [
 {/* ===== FAQ ===== */}
 <section class="section section-cream">
   <div class="container-narrow">
-    <span class="section-num reveal">
-      {lang === 'en' ? '08 — Questions' : lang === 'de' ? '08 — Fragen' : '08 — Domande'}
-    </span>
     <h2 class="display-2 reveal" style="margin-bottom:48px;">
       {lang === 'en' ? 'Honest ' : lang === 'de' ? 'Ehrliche ' : 'Risposte '}
       <span class="editorial-i">{lang === 'en' ? 'answers.' : lang === 'de' ? 'Antworten.' : 'oneste.'}</span>
@@ -466,7 +373,6 @@ const testimonials = [
         var expanded = btn.getAttribute('aria-expanded') === 'true';
         var index = btn.getAttribute('data-faq-index');
         var wrap = document.getElementById('faq-answer-' + index);
-        // Close all others
         buttons.forEach(function(b) {
           if (b !== btn) {
             b.setAttribute('aria-expanded', 'false');
@@ -475,7 +381,6 @@ const testimonials = [
             if (otherWrap) otherWrap.classList.remove('open');
           }
         });
-        // Toggle current
         btn.setAttribute('aria-expanded', !expanded);
         if (wrap) wrap.classList.toggle('open');
       });
