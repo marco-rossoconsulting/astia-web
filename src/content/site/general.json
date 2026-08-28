@@ -24,6 +24,7 @@
     "phone": "+41 76 433 5845"
   },
   "nav": {
+    "showcase": { "en": "Showcase", "de": "Showcase", "it": "Showcase" },
     "how": { "en": "How it works", "de": "So funktioniert es", "it": "Come funziona" },
     "pricing": { "en": "Pricing", "de": "Preise", "it": "Prezzi" },
     "journal": { "en": "Journal", "de": "Journal", "it": "Journal" },

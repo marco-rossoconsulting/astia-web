@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PortfolioCard from '@components/PortfolioCard.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const lang = 'it' as 'en' | 'de' | 'it';
+const site = await getEntry('site', 'general');
+const s = site.data as any;
+const portfolio = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
+
+const seo = {
+  title: { en: 'Showcase', de: 'Showcase', it: 'Showcase \u00b7 Astia Web \u2014 Siti costruiti con lo stack Astia' },
+  description: { en: '', de: '', it: 'Esplora i siti costruiti con lo stack Astia. Veloci, moderni e progettati per convertire.' },
+  ogImage: '/images/og-showcase.jpg',
+  ogImageAlt: { en: '', de: '', it: 'Showcase Astia Web' },
+};
+---
+<BaseLayout lang={lang} page="showcase" seo={seo} currentPath="/it/showcase">
+  <section class="section hero-mesh" style="padding-top:140px; padding-bottom:60px;">
+    <div class="container">
+      <span class="eyebrow eyebrow-rosso fade-in delay-1">Showcase</span>
+      <h1 class="display-1 fade-in delay-2" style="margin-top:24px; max-width:900px;">
+        Siti costruiti con lo <span class="editorial-i">stack Astia</span>
+      </h1>
+      <p class="lede fade-in delay-3" style="margin-top:24px; max-width:600px;">
+        Siti veloci e moderni per brand dell'ospitalit\u00e0. Ognuno si carica in meno di un secondo, ranka pi\u00f9 in alto su Google e converte pi\u00f9 prenotazioni dirette.
+      </p>
+      <div class="fade-in delay-4" style="margin-top:32px;">
+        <span class="perf-badge">{portfolio.length} strutture live · nuovi showcase aggiunti regolarmente</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-3">
+        {portfolio.map((p, i) => (
+          <div class={`reveal reveal-delay-${(i % 3) + 1}`}>
+            <PortfolioCard
+              tag={p.data.tag[lang]}
+              title={p.data.title}
+              sub={p.data.subtitle[lang]}
+              img={p.data.image}
+              alt={p.data.imageAlt[lang]}
+              url={p.data.url}
+            />
+          </div>
+        ))}
+        <div class="reveal reveal-delay-2">
+          <a href="/it/apply" style="text-decoration:none; color:inherit;">
+            <div class="portfolio-card" style="aspect-ratio:4/5; background:var(--ink); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; border:1px solid var(--ink); transition:all 0.3s;">
+              <div style="font-family:'Editorial New',serif; font-style:italic; font-size:48px; color:var(--rosso); margin-bottom:20px;">+</div>
+              <h3 style="font-family:'Editorial New',serif; font-size:28px; color:var(--paper); margin:0 0 12px; font-weight:400;">La tua struttura</h3>
+              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">Unisciti allo showcase. Candidati ora e lancia in 2–3 settimane.</p>
+              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">Candidati →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="section section-cream">
+    <div class="container-narrow reveal" style="text-align:center;">
+      <span class="eyebrow eyebrow-rosso">Inizia</span>
+      <h2 class="display-2" style="margin-top:20px; margin-bottom:20px;">
+        Pronti a <span class="editorial-i">mostrare</span> la vostra struttura?
+      </h2>
+      <p class="lede" style="margin-bottom:36px; max-width:520px; margin-left:auto; margin-right:auto;">
+        Ogni sito che costruiamo diventa parte di questa collezione. Raccontateci della vostra struttura e risponderemo entro tre giorni lavorativi.
+      </p>
+      <a class="btn btn-primary btn-arrow" href="/it/apply">{s.cta.applyForSite[lang]}</a>
+    </div>
+  </section>
+</BaseLayout>
