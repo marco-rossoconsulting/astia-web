@@ -22,7 +22,7 @@ const perMonth = lang === 'en' ? '/mo' : (lang === 'de' ? '/Mt.' : '/mese');
 
 const url = (p: string) => {
   const prefix = lang === 'en' ? '' : `/${lang}`;
-  const paths: Record<string, string> = { how: '/how-it-works', pricing: '/pricing', apply: '/apply' };
+  const paths: Record<string, string> = { how: '/how-it-works', pricing: '/pricing', apply: '/apply', showcase: '/showcase' };
   return prefix + paths[p];
 };
 
@@ -37,7 +37,6 @@ const managedPrices = [
   { rooms: d.pricingTeaser.rooms.plus50[lang], price: d.pricingTeaser.managedPrices.plus50 },
 ];
 
-// Visual comparison data
 const vsRows = d.comparison.rows.map((r: any) => ({
   label: r.label[lang],
   agency: r.agency[lang],
@@ -45,18 +44,61 @@ const vsRows = d.comparison.rows.map((r: any) => ({
   astia: r.astia[lang],
 }));
 const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang][2], d.comparison.headers[lang][3] ];
+
+// FAQ data (pulled from pricing page for homepage)
+const faqItems = [
+  {
+    q: { en: "Why is there no upfront cost?", de: "Warum gibt es keine Anschaffungskosten?", it: "Perch\u00e9 non c'\u00e8 un costo iniziale?" },
+    a: { en: "Because the actual cost of building a modern website is small enough that financing it across a year of subscription works for both sides. The upfront-then-retainer model is a relic of when websites took months and required real engineering. They no longer do.", de: "Weil die tats\u00e4chlichen Kosten f\u00fcr den Bau einer modernen Website klein genug sind, dass eine Finanzierung \u00fcber ein Jahr Abonnement f\u00fcr beide Seiten funktioniert.", it: "Perch\u00e9 il costo reale per costruire un sito moderno \u00e8 abbastanza piccolo da poter essere finanziato attraverso un anno di abbonamento per entrambe le parti." }
+  },
+  {
+    q: { en: "What if I cancel?", de: "Was, wenn ich k\u00fcndige?", it: "E se disdico?" },
+    a: { en: "Twelve months to start, month-to-month after that. You keep the code, the content, the Git repository at every stage \u2014 that ownership is permanent. We help you move when you leave. No exit fee.", de: "Mindestlaufzeit zw\u00f6lf Monate, danach monatlich k\u00fcndbar. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase \u2014 dieses Eigentum ist dauerhaft.", it: "Durata iniziale dodici mesi, poi mensile. Voi tenete il codice, i contenuti e il repository Git in ogni fase \u2014 questa propriet\u00e0 \u00e8 permanente." }
+  },
+  {
+    q: { en: "How does the AI agent actually work?", de: "Wie funktioniert der AI-Agent eigentlich?", it: "Come funziona davvero l'agente IA?" },
+    a: { en: "It reads incoming requests from your email or WhatsApp, identifies the change required, makes the edit as a Git commit on a preview branch, and pushes it for human review. The agent never deploys to production directly \u2014 every change passes a human.", de: "Er liest eingehende Anfragen von Ihrer E-Mail oder WhatsApp, identifiziert die erforderliche \u00c4nderung, macht die Bearbeitung als Git-Commit und pusht sie zur menschlichen Review.", it: "Legge le richieste in arrivo da email o WhatsApp, identifica la modifica necessaria, la prepara come commit Git e la propone per revisione umana." }
+  },
+  {
+    q: { en: "What if my booking engine isn't on your list?", de: "Was, wenn mein Buchungssystem nicht auf Ihrer Liste ist?", it: "E se il mio booking engine non \u00e8 nella vostra lista?" },
+    a: { en: "We'll integrate it if it has an embed code, an iframe, or an API. We've never said no to an integration; the price varies by complexity.", de: "Wir integrieren es, wenn es einen Embed-Code, einen iFrame oder eine API hat. Wir haben noch nie zu einer Integration nein gesagt.", it: "Lo integriamo se ha un codice embed, un iframe o un'API. Non abbiamo mai detto no a un'integrazione." }
+  },
+  {
+    q: { en: "How fast will my site load?", de: "Wie schnell l\u00e4dt meine Seite?", it: "Quanto velocemente si caricher\u00e0 il mio sito?" },
+    a: { en: "Astia sites load in under one second on any device, from anywhere in the world. We build on Astro \u2014 the same framework Google uses for its developer site \u2014 which generates static HTML with zero JavaScript by default.", de: "Astia-Seiten laden auf jedem Ger\u00e4t in unter einer Sekunde, von \u00fcberall auf der Welt. Wir bauen auf Astro \u2014 dem Framework, das Google f\u00fcr seine Entwicklerseite verwendet.", it: "I siti Astia si caricano in meno di un secondo su qualsiasi dispositivo, ovunque nel mondo. Costruiamo su Astro \u2014 lo stesso framework che Google usa per il suo sito sviluppatori." }
+  }
+];
+
+// Testimonials
+const testimonials = [
+  {
+    quote: { en: "We've seen a 40% increase in direct bookings since launching our Astia site. The speed matters \u2014 guests actually complete reservations instead of abandoning.", de: "Seit dem Launch unserer Astia-Seite verzeichnen wir 40 % mehr Direktbuchungen. Die Geschwindigkeit z\u00e4hlt.", it: "Dal lancio del nostro sito Astia abbiamo visto un aumento del 40% nelle prenotazioni dirette. La velocit\u00e0 conta." },
+    name: { en: "Planhotel Hospitality Group", de: "Planhotel Hospitality Group", it: "Planhotel Hospitality Group" },
+    role: { en: "Lugano, Switzerland \u00b7 3 properties", de: "Lugano, Schweiz \u00b7 3 H\u00e4user", it: "Lugano, Svizzera \u00b7 3 strutture" },
+  },
+  {
+    quote: { en: "I used to spend hours updating our WordPress site. Now I send a WhatsApp message and it's done by the next morning. The site is faster, more secure, and I never think about it.", de: "Fr\u00fcher habe ich Stunden damit verbracht, unsere WordPress-Seite zu aktualisieren. Jetzt schicke ich eine WhatsApp-Nachricht und es ist am n\u00e4chsten Morgen erledigt.", it: "Prima passavo ore ad aggiornare il nostro sito WordPress. Ora mando un messaggio WhatsApp e \u00e8 fatto per la mattina dopo." },
+    name: { en: "Independent Boutique Hotel", de: "Unabh\u00e4ngiges Boutique-Hotel", it: "Boutique Hotel Indipendente" },
+    role: { en: "Kenya \u00b7 18 rooms", de: "Kenia \u00b7 18 Zimmer", it: "Kenya \u00b7 18 camere" },
+  },
+  {
+    quote: { en: "The annual design refresh keeps our site looking modern without any effort from our team. Our guests constantly compliment how professional and fast the site feels.", de: "Das j\u00e4hrliche Design-Refresh h\u00e4lt unsere Seite modern, ohne Aufwand von unserem Team. Unsere G\u00e4ste loben st\u00e4ndig, wie professionell und schnell die Seite wirkt.", it: "Il refresh di design annuale mantiene il nostro sito moderno senza alcuno sforzo del nostro team. I nostri ospiti lodano costantemente quanto sia professionale e veloce." },
+    name: { en: "Safari Lodge Operator", de: "Safari-Lodge-Betreiber", it: "Operatore Safari Lodge" },
+    role: { en: "Maasai Mara \u00b7 12 tents", de: "Maasai Mara \u00b7 12 Zelte", it: "Maasai Mara \u00b7 12 tende" },
+  }
+];
 ---
 
-{/* HERO */}
-<section class="section hero-grid" style="padding-top:120px; padding-bottom:80px;">
+{/* ===== HERO ===== */}
+<section class="section hero-mesh" style="padding-top:140px; padding-bottom:100px;">
   <div class="container">
     <div class="fade-in delay-1"><span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span></div>
-    <h1 class="display-1 fade-in delay-2" style="margin-top:26px; max-width:1000px;">
+    <h1 class="display-1 fade-in delay-2" style="margin-top:28px; max-width:1000px;">
       {d.hero.preEm[lang]} <span class="editorial-i">{d.hero.em[lang]}</span> {d.hero.post[lang]}
     </h1>
-    <p class="lede fade-in delay-3" style="margin-top:32px; max-width:620px;">{d.hero.lede[lang]}</p>
+    <p class="lede fade-in delay-3" style="margin-top:32px; max-width:640px;">{d.hero.lede[lang]}</p>
     <div class="fade-in delay-4" style="margin-top:24px;">
-      <span class="hero-badge">{d.hero.badge[lang]}</span>
+      <span class="perf-badge">{d.hero.badge[lang]}</span>
     </div>
     <div class="fade-in delay-4" style="margin-top:44px; display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
       <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
@@ -64,7 +106,6 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
       <span class="caption" style="margin-left:12px; color:var(--stone);">{d.hero.capacity[lang]}</span>
     </div>
 
-    {/* Trust bar */}
     <div class="trust-bar fade-in delay-4">
       <div class="trust-item">
         <div class="trust-num">&lt;1s</div>
@@ -82,9 +123,33 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
   </div>
 </section>
 
-<hr class="rule" />
+<hr class="section-divider" />
 
-{/* PROBLEM */}
+{/* ===== LOGO BAR ===== */}
+<section class="section" style="padding:56px 0;">
+  <div class="container">
+    <p class="eyebrow reveal" style="text-align:center; margin-bottom:32px;">
+      {lang === 'en' ? 'Trusted by hospitality brands worldwide' : lang === 'de' ? 'Vertraut von Hotelmarken weltweit' : 'Scelto da brand ospitalit\u00e0 in tutto il mondo'}
+    </p>
+    <div class="logo-marquee reveal">
+      <div class="logo-track">
+        {/* Duplicate logos for seamless loop */}
+        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Exploreans</span>
+        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Planhotel</span>
+        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">MARA RIVER</span>
+        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">WATAMU</span>
+        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Exploreans</span>
+        <span class="logo-item" style="font-family:'Editorial New',serif; font-style:italic; font-size:20px; color:var(--ink);">Planhotel</span>
+        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">MARA RIVER</span>
+        <span class="logo-item" style="font-family:'General Sans',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.08em; color:var(--ink);">WATAMU</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+{/* ===== PROBLEM ===== */}
 <section class="section">
   <div class="container">
     <span class="section-num reveal">{d.problem.num[lang]}</span>
@@ -103,9 +168,9 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
   </div>
 </section>
 
-<hr class="rule" />
+<hr class="section-divider" />
 
-{/* SOLUTION */}
+{/* ===== SOLUTION ===== */}
 <section class="section section-cream">
   <div class="container-narrow">
     <span class="section-num reveal">{d.solution.num[lang]}</span>
@@ -134,7 +199,7 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
   attribution={d.imageBreaker.attribution[lang]}
 />
 
-{/* STEPS */}
+{/* ===== STEPS ===== */}
 <section class="section">
   <div class="container">
     <span class="section-num reveal">{d.steps.num[lang]}</span>
@@ -156,10 +221,46 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
   </div>
 </section>
 
-<hr class="rule" />
+<hr class="section-divider" />
 
-{/* COMPARISON — visual redesign */}
+{/* ===== SHOWCASE TEASER ===== */}
 <section class="section section-cream">
+  <div class="container">
+    <span class="section-num reveal">{d.portfolio.num[lang]}</span>
+    <div class="flex-between reveal" style="align-items:flex-end; margin-bottom:48px;">
+      <h2 class="display-2" style="max-width:720px; margin-bottom:0;">
+        {d.portfolio.h2pre[lang]} <span class="editorial-i">{d.portfolio.h2em[lang]}</span> {d.portfolio.h2post[lang]}
+      </h2>
+      <a href={url('showcase')} class="caption" style="white-space:nowrap; color:var(--rosso); text-decoration:underline; text-underline-offset:3px;">
+        {lang === 'en' ? 'View all showcases →' : lang === 'de' ? 'Alle Showcases →' : 'Tutti gli showcase →'}
+      </a>
+    </div>
+
+    <div class="grid-3">
+      {portfolio.slice(0, 3).map((p, i) => (
+        <div class={`reveal reveal-delay-${i + 1}`}>
+          <PortfolioCard
+            tag={p.data.tag[lang]}
+            title={p.data.title}
+            sub={p.data.subtitle[lang]}
+            img={p.data.image}
+            alt={p.data.imageAlt[lang]}
+            url={p.data.url}
+          />
+        </div>
+      ))}
+    </div>
+
+    <p class="body-sm reveal" style="margin-top:32px; max-width:640px;">
+      {d.portfolio.notePre[lang]} <span class="text-ink">{d.portfolio.noteStrong[lang]}</span>{d.portfolio.notePost[lang]}
+    </p>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+{/* ===== COMPARISON ===== */}
+<section class="section">
   <div class="container">
     <span class="section-num reveal">{d.comparison.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:12px;">
@@ -168,18 +269,16 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
     <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.comparison.intro[lang]}</p>
 
     <div class="vs-grid reveal">
-      {/* Header row */}
       <div class="vs-cell head">{vsHeaders[0]}</div>
       <div class="vs-cell head">{vsHeaders[1]}</div>
       <div class="vs-cell head">{vsHeaders[2]}</div>
       <div class="vs-cell head vs-us-head"><span class="rosso-dot">●</span> {vsHeaders[3]}</div>
 
-      {/* Data rows */}
       {vsRows.map((row: any) => (
         <div class="vs-row" style="display:contents;">
           <div class="vs-cell label">{row.label}</div>
           <div class="vs-cell them">
-            {['Always','Yes','Sì','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 – 550','2–3 weeks','2–3 Wochen','2–3 settimane'].includes(row.agency) ? (
+            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 \u2013 550','2\u20133 weeks','2\u20133 Wochen','2\u20133 settimane'].includes(row.agency) ? (
               <span class="vs-check">✓</span>
             ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom'].includes(row.agency) ? (
               <span class="vs-check" style="color:var(--stone);">~</span>
@@ -189,7 +288,7 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
             <span style="margin-left:6px;">{row.agency}</span>
           </div>
           <div class="vs-cell them">
-            {['Always','Yes','Sì','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 – 550','2–3 weeks','2–3 Wochen','2–3 settimane'].includes(row.builder) ? (
+            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 \u2013 550','2\u20133 weeks','2\u20133 Wochen','2\u20133 settimane'].includes(row.builder) ? (
               <span class="vs-check">✓</span>
             ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom','Limited add-ons','Begrenzte Add-ons','Add-on limitati'].includes(row.builder) ? (
               <span class="vs-check" style="color:var(--stone);">~</span>
@@ -212,43 +311,9 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
   </div>
 </section>
 
-<hr class="rule" />
+<hr class="section-divider" />
 
-{/* PORTFOLIO */}
-<section class="section">
-  <div class="container">
-    <span class="section-num reveal">{d.portfolio.num[lang]}</span>
-    <div class="flex-between reveal" style="align-items:flex-end; margin-bottom:48px;">
-      <h2 class="display-2" style="max-width:720px; margin-bottom:0;">
-        {d.portfolio.h2pre[lang]} <span class="editorial-i">{d.portfolio.h2em[lang]}</span> {d.portfolio.h2post[lang]}
-      </h2>
-      <span class="caption" style="white-space:nowrap;">{d.portfolio.meta[lang]}</span>
-    </div>
-
-    <div class="grid-3">
-      {portfolio.map((p, i) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <PortfolioCard
-            tag={p.data.tag[lang]}
-            title={p.data.title}
-            sub={p.data.subtitle[lang]}
-            img={p.data.image}
-            alt={p.data.imageAlt[lang]}
-            url={p.data.url}
-          />
-        </div>
-      ))}
-    </div>
-
-    <p class="body-sm reveal" style="margin-top:32px; max-width:640px;">
-      {d.portfolio.notePre[lang]} <span class="text-ink">{d.portfolio.noteStrong[lang]}</span>{d.portfolio.notePost[lang]}
-    </p>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* PRICING TEASER */}
+{/* ===== PRICING ===== */}
 <section class="section section-cream">
   <div class="container">
     <span class="section-num reveal">{d.pricingTeaser.num[lang]}</span>
@@ -282,9 +347,123 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
   </div>
 </section>
 
-<hr class="rule" />
+<hr class="section-divider" />
 
-{/* FINAL CTA */}
+{/* ===== TESTIMONIALS ===== */}
+<section class="section">
+  <div class="container">
+    <span class="section-num reveal">
+      {lang === 'en' ? '07 — What clients say' : lang === 'de' ? '07 — Was Kunden sagen' : '07 — Cosa dicono i clienti'}
+    </span>
+    <h2 class="display-2 reveal" style="margin-bottom:56px;">
+      {lang === 'en' ? 'Trusted by ' : lang === 'de' ? 'Vertraut von ' : 'Scelto da '}
+      <span class="editorial-i">{lang === 'en' ? 'hoteliers' : lang === 'de' ? 'Hoteliers' : 'albergatori'}</span>
+      {lang === 'en' ? ' who value speed.' : lang === 'de' ? ', die Wert auf Geschwindigkeit legen.' : ' che danno valore alla velocit\u00e0.'}
+    </h2>
+
+    <div class="grid-3">
+      {testimonials.map((t, i) => (
+        <div class={`reveal reveal-delay-${i + 1}`}>
+          <div class="testimonial-card card-hover">
+            <p class="testimonial-quote">"{t.quote[lang]}"</p>
+            <div class="testimonial-author">
+              <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--rosso),var(--wine)); display:flex; align-items:center; justify-content:center; color:var(--paper); font-family:'Editorial New',serif; font-style:italic; font-size:18px;">
+                {t.name[lang].charAt(0)}
+              </div>
+              <div>
+                <p class="testimonial-name">{t.name[lang]}</p>
+                <p class="testimonial-role">{t.role[lang]}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+{/* ===== TECH SHOWCASE ===== */}
+<section class="section tech-showcase">
+  <div class="container tech-showcase-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:56px;">
+      <span class="perf-badge" style="background:rgba(196,30,58,0.15); border-color:rgba(196,30,58,0.25); color:var(--paper);">
+        {lang === 'en' ? 'This site runs on Astia' : lang === 'de' ? 'Diese Seite l\u00e4uft auf Astia' : 'Questo sito gira su Astia'}
+      </span>
+      <h2 class="display-2" style="color:var(--paper); margin-top:28px; margin-bottom:16px;">
+        {lang === 'en' ? 'Built on the ' : lang === 'de' ? 'Gebaut auf dem ' : 'Costruito con lo '}
+        <span class="editorial-i" style="color:var(--rosso);">Astia stack</span>
+        {lang === 'en' ? '.' : lang === 'de' ? '.' : '.'}
+      </h2>
+      <p class="lede" style="color:var(--stone-soft); max-width:560px; margin:0 auto;">
+        {lang === 'en'
+          ? "The same technology powering this site \u2014 Astro, Netlify, and AI-managed updates \u2014 is what we build for every client. Fast, secure, and maintenance-free."
+          : lang === 'de'
+          ? "Dieselbe Technologie, die diese Seite antreibt \u2014 Astro, Netlify und AI-verwaltete Updates \u2014 bauen wir f\u00fcr jeden Kunden. Schnell, sicher und wartungsfrei."
+          : "La stessa tecnologia che alimenta questo sito \u2014 Astro, Netlify e aggiornamenti gestiti dall'IA \u2014 la costruiamo per ogni cliente. Veloce, sicuro e senza manutenzione."}
+      </p>
+    </div>
+
+    <div class="tech-stat-grid reveal">
+      <div class="tech-stat">
+        <div class="tech-stat-num">0.7s</div>
+        <div class="tech-stat-label">{lang === 'en' ? 'First contentful paint' : lang === 'de' ? 'First Contentful Paint' : 'First Contentful Paint'}</div>
+      </div>
+      <div class="tech-stat">
+        <div class="tech-stat-num">100</div>
+        <div class="tech-stat-label">{lang === 'en' ? 'Lighthouse performance' : lang === 'de' ? 'Lighthouse-Performance' : 'Performance Lighthouse'}</div>
+      </div>
+      <div class="tech-stat">
+        <div class="tech-stat-num">~80KB</div>
+        <div class="tech-stat-label">{lang === 'en' ? 'Total page weight' : lang === 'de' ? 'Seitengr\u00f6sse' : 'Peso pagina'}</div>
+      </div>
+      <div class="tech-stat">
+        <div class="tech-stat-num">&lt;2min</div>
+        <div class="tech-stat-label">{lang === 'en' ? 'Deploy time' : lang === 'de' ? 'Deploy-Zeit' : 'Tempo deploy'}</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center; margin-top:48px;">
+      <a class="btn btn-ghost btn-arrow" href={url('how')} style="border-color:rgba(255,255,255,0.2); color:var(--paper);">
+        {lang === 'en' ? 'See the technical case' : lang === 'de' ? 'Der technische Fall' : 'Il caso tecnico'}
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+{/* ===== FAQ ===== */}
+<section class="section section-cream">
+  <div class="container-narrow">
+    <span class="section-num reveal">
+      {lang === 'en' ? '08 — Questions' : lang === 'de' ? '08 — Fragen' : '08 — Domande'}
+    </span>
+    <h2 class="display-2 reveal" style="margin-bottom:48px;">
+      {lang === 'en' ? 'Honest ' : lang === 'de' ? 'Ehrliche ' : 'Risposte '}
+      <span class="editorial-i">{lang === 'en' ? 'answers.' : lang === 'de' ? 'Antworten.' : 'oneste.'}</span>
+    </h2>
+
+    <div class="faq-list reveal">
+      {faqItems.map((item, i) => (
+        <div class="faq-item">
+          <button class="faq-q-btn" aria-expanded="false" data-faq-index={i}>
+            <span>{item.q[lang]}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a-wrap" id={`faq-answer-${i}`}>
+            <p class="faq-a">{item.a[lang]}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+{/* ===== FINAL CTA ===== */}
 <section class="section">
   <div class="container-narrow reveal" style="text-align:center;">
     <span class="eyebrow eyebrow-rosso">{d.finalCTA.eyebrow[lang]}</span>
@@ -295,3 +474,29 @@ const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang
     <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
   </div>
 </section>
+
+{/* FAQ Accordion Script */}
+<script is:inline>
+  (function() {
+    var buttons = document.querySelectorAll('.faq-q-btn');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var index = btn.getAttribute('data-faq-index');
+        var wrap = document.getElementById('faq-answer-' + index);
+        // Close all others
+        buttons.forEach(function(b) {
+          if (b !== btn) {
+            b.setAttribute('aria-expanded', 'false');
+            var otherIndex = b.getAttribute('data-faq-index');
+            var otherWrap = document.getElementById('faq-answer-' + otherIndex);
+            if (otherWrap) otherWrap.classList.remove('open');
+          }
+        });
+        // Toggle current
+        btn.setAttribute('aria-expanded', !expanded);
+        if (wrap) wrap.classList.toggle('open');
+      });
+    });
+  })();
+</script>

@@ -331,9 +331,9 @@
     "h2pre": { "en": "Ready to ", "de": "Bereit, ", "it": "Pronti a " },
     "h2em": { "en": "see if Astia fits?", "de": "zu sehen, ob Astia passt?", "it": "vedere se Astia fa per voi?" },
     "lede": {
-      "en": "Apply now. Two properties per month, reviewed personally, three business days to a response.",
-      "de": "Jetzt bewerben. Zwei Häuser pro Monat, persönlich geprüft, drei Werktage bis zur Antwort.",
-      "it": "Candidatevi ora. Due strutture al mese, riviste personalmente, tre giorni lavorativi per una risposta."
+      "en": "Apply now. We review every application personally, and respond within three business days.",
+      "de": "Jetzt bewerben. Jede Bewerbung wird persönlich geprüft, drei Werktage bis zur Antwort.",
+      "it": "Candidatevi ora. Ogni candidatura è rivista personalmente, tre giorni lavorativi per una risposta."
     }
   }
 }

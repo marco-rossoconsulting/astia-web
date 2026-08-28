@@ -1,20 +1,20 @@
 {
   "seo": {
     "title": {
-      "en": "Affordable Hotel Websites | Astia Web — AI-Managed, Fast & Secure",
-      "de": "Bezahlbare Hotel-Websites | Astia Web — AI-verwaltet, schnell & sicher",
-      "it": "Siti web per hotel convenienti | Astia Web — Gestito dall'IA, veloce e sicuro"
+      "en": "Astia Web \u2014 Modern, Affordable Websites for Hospitality & Small Business",
+      "de": "Astia Web \u2014 Moderne, bezahlbare Websites f\u00fcr Hotellerie & KMU",
+      "it": "Astia Web \u2014 Siti moderni e convenienti per ospitalit\u00e0 e piccole imprese"
     },
     "description": {
-      "en": "High-quality, affordable hotel websites from CHF 150/month. Built on Astro for speed. Run by AI for cost. No upfront fees. Designed for independent hotels and B&Bs.",
-      "de": "Hochwertige, bezahlbare Hotel-Websites ab CHF 150/Monat. Auf Astro gebaut für Geschwindigkeit. Von AI verwaltet für niedrige Kosten. Keine Anschaffungskosten. Für unabhängige Hotels und B&Bs.",
-      "it": "Siti web per hotel di alta qualità e convenienti da CHF 150/mese. Costruito su Astro per la velocità. Gestito dall'IA per il costo. Nessun costo iniziale. Per hotel indipendenti e B&B."
+      "en": "High-quality, affordable websites from CHF 150/month. Built on Astro for sub-second speed. AI-managed updates. Perfect for hotels, B&Bs, restaurants, and small businesses. No upfront fees.",
+      "de": "Hochwertige, bezahlbare Websites ab CHF 150/Monat. Auf Astro gebaut f\u00fcr Geschwindigkeit. Von AI verwaltet. Perfekt f\u00fcr Hotels, B&Bs, Restaurants und KMU. Keine Anschaffungskosten.",
+      "it": "Siti web di alta qualit\u00e0 e convenienti da CHF 150/mese. Costruito su Astro per la velocit\u00e0. Gestito dall'IA. Perfetto per hotel, B&B, ristoranti e piccole imprese. Nessun costo iniziale."
     },
     "ogImage": "/images/og-home.jpg",
     "ogImageAlt": {
-      "en": "Astia Web — AI-managed websites for independent hotels",
-      "de": "Astia Web — AI-verwaltete Websites für unabhängige Hotels",
-      "it": "Astia Web — siti gestiti dall'IA per hotel indipendenti"
+      "en": "Astia Web \u2014 AI-managed websites for hospitality and small business",
+      "de": "Astia Web \u2014 AI-verwaltete Websites f\u00fcr Hotellerie und KMU",
+      "it": "Astia Web \u2014 siti gestiti dall'IA per ospitalit\u00e0 e piccole imprese"
     }
   },
   "hero": {
@@ -49,9 +49,9 @@
       "it": "Live in 2–3 settimane · Nessun costo iniziale"
     },
     "capacity": {
-      "en": "Two dedicated build slots per month — every site gets our full attention",
-      "de": "Zwei dedizierte Build-Slots pro Monat — jedes Projekt bekommt unsere volle Aufmerksamkeit",
-      "it": "Due slot di sviluppo dedicati al mese — ogni sito riceve la nostra piena attenzione"
+      "en": "Every site gets our full attention — from first call to launch",
+      "de": "Jedes Projekt bekommt unsere volle Aufmerksamkeit — vom ersten Gespräch bis zum Launch",
+      "it": "Ogni sito riceve la nostra piena attenzione — dalla prima chiamata al lancio"
     }
   },
   "problem": {
@@ -502,39 +502,39 @@
       "it": "05 — Il lavoro"
     },
     "h2pre": {
-      "en": "The standard developed for",
-      "de": "Der Standard, entwickelt für",
-      "it": "Lo standard sviluppato per"
+      "en": "Sites built on the ",
+      "de": "Auf dem ",
+      "it": "Siti costruiti con lo "
     },
     "h2em": {
-      "en": "Planhotel's Exploreans collection,",
-      "de": "die Exploreans-Kollektion von Planhotel,",
-      "it": "la collezione Exploreans di Planhotel,"
+      "en": "Astia stack",
+      "de": "Astia-Stack gebaut",
+      "it": "stack Astia"
     },
     "h2post": {
-      "en": "now available to independent properties.",
-      "de": "jetzt verfügbar für unabhängige Häuser.",
-      "it": "ora disponibile per strutture indipendenti."
+      "en": "— fast, modern, and built to convert.",
+      "de": "— schnell, modern und auf Conversion ausgelegt.",
+      "it": "— veloci, moderni e costruiti per convertire."
     },
     "meta": {
-      "en": "3 properties · built on Astia",
-      "de": "3 Häuser · mit Astia gebaut",
-      "it": "3 strutture · realizzate su Astia"
+      "en": "Showcase · built on Astia",
+      "de": "Showcase · mit Astia gebaut",
+      "it": "Showcase · realizzati con Astia"
     },
     "notePre": {
-      "en": "Exploreans is the nature-led brand of",
-      "de": "Exploreans ist die naturorientierte Marke der",
-      "it": "Exploreans è il brand di natura di"
+      "en": "These properties run on ",
+      "de": "Diese Häuser laufen auf ",
+      "it": "Queste strutture girano su "
     },
     "noteStrong": {
-      "en": "Planhotel Hospitality Group",
-      "de": "Planhotel Hospitality Group",
-      "it": "Planhotel Hospitality Group"
+      "en": "Astia",
+      "de": "Astia",
+      "it": "Astia"
     },
     "notePost": {
-      "en": ", an independent Swiss-Italian hotel group headquartered in Lugano. Three properties, one platform, all built and maintained on the Astia stack.",
-      "de": ", einer unabhängigen Schweizer-italienischen Hotelgruppe mit Sitz in Lugano. Drei Häuser, eine Plattform, alle mit dem Astia-Stack gebaut und gepflegt.",
-      "it": ", un gruppo alberghiero svizzero-italiano indipendente con sede a Lugano. Tre strutture, una piattaforma, tutte costruite e mantenute sullo stack Astia."
+      "en": " — the same stack that powers this site. New showcases added as we launch them.",
+      "de": " — derselbe Stack, der diese Seite antreibt. Neue Showcases werden nach jedem Launch hinzugefügt.",
+      "it": " — lo stesso stack che alimenta questo sito. Nuovi showcase aggiunti ad ogni lancio."
     }
   },
   "pricingTeaser": {
@@ -627,29 +627,29 @@
   },
   "finalCTA": {
     "eyebrow": {
-      "en": "Dedicated builds",
-      "de": "Dedizierte Builds",
-      "it": "Build dedicati"
+      "en": "Get started",
+      "de": "Loslegen",
+      "it": "Inizia"
     },
     "h2pre": {
-      "en": "Two properties",
-      "de": "Zwei Häuser",
-      "it": "Due strutture"
+      "en": "Ready for a website",
+      "de": "Bereit für eine Website",
+      "it": "Pronti per un sito"
     },
     "h2em": {
-      "en": "at a time",
-      "de": "auf einmal",
-      "it": "alla volta"
+      "en": "that works for you",
+      "de": "die für Sie arbeitet",
+      "it": "che lavora per voi"
     },
     "h2post": {
-      "en": "— every site gets our full attention.",
-      "de": "— jedes Projekt bekommt unsere volle Aufmerksamkeit.",
-      "it": "— ogni sito riceve la nostra piena attenzione."
+      "en": "?",
+      "de": "?",
+      "it": "?"
     },
     "lede": {
-      "en": "Limited to two properties so each launch stays within 2–3 weeks. Tell us about yours. We respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
-      "de": "Auf zwei Häuser begrenzt, damit jeder Launch innerhalb von 2–3 Wochen bleibt. Erzählen Sie uns von Ihrem. Wir antworten innerhalb von drei Werktagen — und sind ehrlich, ob Astia für Sie das Richtige ist, bevor sich einer von uns verpflichtet.",
-      "it": "Limitati a due strutture così ogni lancio resta entro 2–3 settimane. Raccontateci della vostra. Rispondiamo entro tre giorni lavorativi, e saremo onesti su se Astia è la scelta giusta prima che nessuno di noi si impegni."
+      "en": "Tell us about your property. We respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
+      "de": "Erzählen Sie uns von Ihrem Haus. Wir antworten innerhalb von drei Werktagen — und sind ehrlich, ob Astia für Sie das Richtige ist, bevor sich einer von uns verpflichtet.",
+      "it": "Raccontateci della vostra struttura. Rispondiamo entro tre giorni lavorativi, e saremo onesti su se Astia è la scelta giusta prima che nessuno di noi si impegni."
     }
   }
 }

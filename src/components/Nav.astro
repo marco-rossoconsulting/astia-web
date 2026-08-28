@@ -23,6 +23,7 @@ const url = (p: string, l: 'en' | 'de' | 'it' = lang) => {
     pricing: '/pricing',
     journal: '/journal',
     apply: '/apply',
+    showcase: '/showcase',
   };
   return prefix + paths[p];
 };
@@ -45,6 +46,7 @@ const langLabels = { en: 'EN', de: 'DE', it: 'IT' };
       <span class="wordmark">astia<span class="dot">·</span>web</span>
     </a>
     <div class="nav-links">
+      <a class={`nav-link ${page === 'showcase' ? 'active' : ''}`} href={url('showcase')}>{nav.showcase?.[lang] || 'Showcase'}</a>
       <a class={`nav-link ${page === 'how' ? 'active' : ''}`} href={url('how')}>{nav.how[lang]}</a>
       <a class={`nav-link ${page === 'pricing' ? 'active' : ''}`} href={url('pricing')}>{nav.pricing[lang]}</a>
       <a class={`nav-link ${page === 'journal' || page === 'article' ? 'active' : ''}`} href={url('journal')}>{nav.journal[lang]}</a>
