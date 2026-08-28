@@ -5,6 +5,7 @@ import StepCard from '@components/StepCard.astro';
 import PortfolioCard from '@components/PortfolioCard.astro';
 import PriceTeaserCard from '@components/PriceTeaserCard.astro';
 import Hero24 from '@components/Hero24.tsx';
+import ComparisonSection from '@components/ComparisonSection.tsx';
 
 interface Props {
   lang: 'en' | 'de' | 'it';
@@ -36,14 +37,6 @@ const managedPrices = [
   { rooms: d.pricingTeaser.rooms.upTo30[lang], price: d.pricingTeaser.managedPrices.upTo30 },
   { rooms: d.pricingTeaser.rooms.plus50[lang], price: d.pricingTeaser.managedPrices.plus50 },
 ];
-
-const vsRows = d.comparison.rows.map((r: any) => ({
-  label: r.label[lang],
-  agency: r.agency[lang],
-  builder: r.builder[lang],
-  astia: r.astia[lang],
-}));
-const vsHeaders = [ '', d.comparison.headers[lang][1], d.comparison.headers[lang][2], d.comparison.headers[lang][3] ];
 
 // FAQ data
 const faqItems = [
@@ -188,56 +181,12 @@ const faqItems = [
 
 <hr class="section-divider" />
 
-{/* ===== COMPARISON ===== */}
-<section class="section">
-  <div class="container">
-    <h2 class="display-2 reveal" style="margin-bottom:12px;">
-      {d.comparison.h2pre[lang]} <span class="editorial-i">{d.comparison.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.comparison.intro[lang]}</p>
-
-    <div class="vs-grid reveal">
-      <div class="vs-cell head">{vsHeaders[0]}</div>
-      <div class="vs-cell head">{vsHeaders[1]}</div>
-      <div class="vs-cell head">{vsHeaders[2]}</div>
-      <div class="vs-cell head vs-us-head"><span class="rosso-dot">&#9679;</span> {vsHeaders[3]}</div>
-
-      {vsRows.map((row: any) => (
-        <div class="vs-row" style="display:contents;">
-          <div class="vs-cell label">{row.label}</div>
-          <div class="vs-cell them">
-            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 550','2 3 weeks','2 3 Wochen','2 3 settimane'].includes(row.agency) ? (
-              <span class="vs-check">&#10003;</span>
-            ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom'].includes(row.agency) ? (
-              <span class="vs-check" style="color:var(--stone);">~</span>
-            ) : (
-              <span class="vs-x">&#10007;</span>
-            )}
-            <span style="margin-left:6px;">{row.agency}</span>
-          </div>
-          <div class="vs-cell them">
-            {['Always','Yes','S\u00ec','Ja','Immer','Built for it','Im Konzept verankert','Pensato per questo','CHF 0','CHF 150 550','2 3 weeks','2 3 Wochen','2 3 settimane'].includes(row.builder) ? (
-              <span class="vs-check">&#10003;</span>
-            ) : ['Sometimes','Maybe','Vielleicht','Forse','Manchmal','A volte','Custom build','Custom-Bau','Sviluppo custom','Limited add-ons','Begrenzte Add-ons','Add-on limitati'].includes(row.builder) ? (
-              <span class="vs-check" style="color:var(--stone);">~</span>
-            ) : (
-              <span class="vs-x">&#10007;</span>
-            )}
-            <span style="margin-left:6px;">{row.builder}</span>
-          </div>
-          <div class="vs-cell us">
-            <span class="vs-check" style="color:var(--rosso);">&#10003;</span>
-            <span style="margin-left:6px;">{row.astia}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <div class="reveal" style="margin-top:36px;">
-      <a class="btn btn-ghost btn-arrow" href={url('how')}>{d.comparison.ctaTech[lang]}</a>
-    </div>
-  </div>
-</section>
+{/* ===== COMPARISON 8 ===== */}
+<ComparisonSection
+  client:load
+  headline={d.comparison.h2pre[lang] + " " + d.comparison.h2em[lang]}
+  subheadline={d.comparison.intro[lang]}
+/>
 
 <hr class="section-divider" />
 
