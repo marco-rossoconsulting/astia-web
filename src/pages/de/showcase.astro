@@ -1,4 +1,3 @@
----
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PortfolioCard from '@components/PortfolioCard.astro';
 import { getCollection, getEntry } from 'astro:content';
@@ -11,7 +10,7 @@ const portfolio = (await getCollection('portfolio')).sort((a, b) => a.data.order
 const seo = {
   title: { en: '', de: 'Showcase · Astia Web — Websites mit dem Astia-Stack', it: '' },
   description: { en: '', de: 'Entdecken Sie Websites, die mit dem Astia-Stack gebaut wurden. Schnell, modern, auf Conversion ausgelegt.', it: '' },
-  ogImage: '/images/og-showcase.jpg',
+  ogImage: '/images/nature-led-experience-exploreans-retreat.jpg',
   ogImageAlt: { en: '', de: 'Astia Web Showcase', it: '' },
 };
 ---
