@@ -223,7 +223,7 @@ export default function ProblemCards({
             padding: 64px 16px !important;
           }
           .problem-cards-grid {
-            gridTemplateColumns: 1fr !important;
+            grid-template-columns: 1fr !important;
             gap: 20px !important;
           }
         }
