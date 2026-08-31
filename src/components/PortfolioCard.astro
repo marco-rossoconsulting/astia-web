@@ -12,7 +12,7 @@ const Wrapper = url ? 'a' : 'div';
 ---
 <Wrapper class="portfolio-card" href={url || undefined} target={url ? '_blank' : undefined} rel={url ? 'noopener' : undefined}>
   {img ? (
-    <img class="portfolio-img" src={img} alt={alt} loading="lazy" />
+    <img class="portfolio-img" src={img} alt={alt} width="800" height="1000" loading="lazy" />
   ) : (
     <div class="portfolio-fallback"></div>
   )}
