@@ -15,11 +15,6 @@
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
 [[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-
-[[headers]]
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
@@ -28,6 +23,12 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Former Sveltia admin — gone, do not rebuild
+[[redirects]]
+  from = "/admin/*"
+  to = "/"
+  status = 410
 
 # ── Redirects: www and HTTP to canonical HTTPS non-www ──
 [[redirects]]
