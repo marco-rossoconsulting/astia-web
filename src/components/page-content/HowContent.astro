@@ -1,8 +1,8 @@
 ---
 import { getEntry } from 'astro:content';
-import ImageBreaker from '@components/ImageBreaker.astro';
 import SpecCard from '@components/SpecCard.astro';
 import MathCard from '@components/MathCard.astro';
+import IncludedFeatures from '@components/IncludedFeatures.tsx';
 
 interface Props { lang: 'en' | 'de' | 'it'; }
 const { lang } = Astro.props;
@@ -13,6 +13,12 @@ const d = how.data as any;
 const cta = (site.data as any).cta;
 
 const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply', pricing: '/pricing' } as any)[p];
+
+const includedFeatures = (d.included.features || []).map((f: any) => ({
+  icon: f.icon,
+  title: f.title[lang],
+  description: f.description[lang],
+}));
 ---
 {/* HERO */}
 <section class="section" style="padding-top:110px; padding-bottom:60px;">
@@ -50,37 +56,16 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
   </div>
 </section>
 
-<ImageBreaker
-  src={d.imageBreaker.image}
-  alt={d.imageBreaker.alt[lang]}
-  caption={d.imageBreaker.caption[lang]}
-  attribution={d.imageBreaker.attribution[lang]}
-/>
+<hr class="rule" />
 
 {/* WHAT'S INCLUDED */}
-<section class="section">
-  <div class="container">
-    <span class="section-num reveal">{d.included.num[lang]}</span>
-    <h2 class="display-2 reveal" style="margin-bottom:48px;">
-      {d.included.h2pre[lang]} <span class="editorial-i">{d.included.h2em[lang]}</span>
-    </h2>
-
-    <div class="grid-4">
-      {d.included.columns.map((col: any, i: number) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <h3 style="font-family:'Editorial New', serif; font-size:20px; margin:0 0 18px; font-weight:400;">{col.title[lang]}</h3>
-          <ul style="list-style:none; padding:0; margin:0;">
-            {col.items[lang].map((item: string) => (
-              <li style="padding:8px 0 8px 20px; position:relative; font-size:14px; line-height:1.55; color:var(--ink-soft);">
-                <span style="position:absolute; left:0; color:var(--rosso);">+</span> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<IncludedFeatures
+  client:visible
+  eyebrow={d.included.num[lang]}
+  headlinePre={d.included.h2pre[lang]}
+  headlineEm={d.included.h2em[lang]}
+  features={includedFeatures}
+/>
 
 <hr class="rule" />
 
