@@ -1,13 +1,12 @@
 # Astia Web
 
 The first AI-managed website service for independent hotels.
-Built on Astro, hosted on Netlify, content managed through Sveltia CMS.
+Built on Astro, hosted on Netlify. This marketing site is edited in GitHub, not a CMS.
 
 ## Stack
 
 - **[Astro](https://astro.build) 4.16+** — static site generator, multi-language routing
 - **[Netlify](https://netlify.com)** — hosting, builds, forms, redirects
-- **[Sveltia CMS](https://github.com/sveltia/sveltia-cms)** — Git-based CMS, fork of Netlify CMS with better i18n
 - Custom CSS — no framework, no Tailwind, design tokens in `src/styles/global.css`
 - Fonts loaded from Fontshare (Editorial New, General Sans) and Google Fonts (JetBrains Mono)
 
@@ -20,10 +19,7 @@ Built on Astro, hosted on Netlify, content managed through Sveltia CMS.
 ├── package.json
 ├── tsconfig.json
 ├── public/
-│   ├── admin/
-│   │   ├── index.html      # Sveltia CMS entry point — visit /admin
-│   │   └── config.yml      # Sveltia CMS field definitions
-│   ├── images/             # All uploaded images live here, CMS-managed
+│   ├── images/             # Site images
 │   ├── favicon.svg
 │   └── robots.txt
 └── src/
@@ -107,63 +103,18 @@ Article files use a different convention: `{slug}.{lang}.md` (e.g. `thirty-thous
 
 Push to your `main` branch — Netlify auto-builds and deploys. Build takes ~30 seconds.
 
-## Sveltia CMS setup
-
-The CMS lives at `/admin` (e.g. `https://astiaweb.com/admin`). Sveltia is a Git-based CMS — it reads and writes files in your GitHub repo directly. Every save is a git commit.
-
-### Authentication setup
-
-You need to allow Sveltia CMS to authenticate with GitHub. Two options:
-
-**Option A — Sveltia's hosted auth (recommended, simplest):**
-
-1. Edit `public/admin/config.yml` and replace `YOUR_GITHUB_USERNAME/astia-web` with your actual `username/repo`.
-2. Visit `https://astiaweb.com/admin`.
-3. Sveltia will route you through GitHub OAuth automatically. The first time you log in, you authorise Sveltia's OAuth app to access this single repo.
-
-**Option B — Self-host the OAuth provider via Netlify:**
-
-1. Create a GitHub OAuth app at [github.com/settings/developers](https://github.com/settings/developers):
-   - Homepage URL: `https://astiaweb.com`
-   - Callback URL: `https://astiaweb.com/oauth/callback`
-2. In Netlify → Site settings → OAuth → add your GitHub credentials.
-3. Update `config.yml` `backend.base_url` to point at your Netlify site.
-
-### Editing content via the CMS
-
-Once authenticated, the CMS presents these collections:
-
-| Collection         | What it edits                                      |
-| ------------------ | -------------------------------------------------- |
-| **Pages**          | Home, How It Works, Pricing, Apply, Journal Index  |
-| **Site Settings**  | Nav labels, footer, brand info, social links       |
-| **Journal Articles** | The 5 evergreen essays + add new ones            |
-| **Portfolio**      | Properties shown on the home page                  |
-
-Every translatable field has three input boxes (one per language) shown side-by-side. Every image field has an alt-text field beneath it — alt text is also translatable. Every page has an SEO section at the top with translatable meta title, description, OG image, and OG alt.
-
-### Adding images
-
-Upload via the CMS media library (gear icon on any image field). Images land in `public/images/` in your repo and are immediately available across the site. Recommended formats:
-
-- **Hero / image breakers**: 2400×1200px JPG, ~200 KB
-- **Portfolio**: 800×1000px portrait JPG, ~120 KB
-- **OG images**: 1200×630px JPG
-
-Astro does not auto-optimize public/ images. For best performance, compress before upload (e.g. squoosh.app).
-
 ## SEO
 
 The build includes:
 
-- **Per-page meta title and description** (translatable, via CMS)
+- **Per-page meta title and description** (translatable, in `src/content/`)
 - **Open Graph + Twitter Card meta** on every page
 - **`hreflang` alternates** on every page (`en`, `de`, `it`, `x-default`)
 - **Canonical URLs**
 - **Organization JSON-LD** site-wide (from `src/content/site/general.json`)
 - **Sitemap** auto-generated at `/sitemap-index.xml` (via `@astrojs/sitemap`)
 - **robots.txt** at `/robots.txt`
-- **Editable alt text on every image** in the CMS
+- **Alt text on every image** in content JSON
 
 ## Apply form
 
@@ -177,26 +128,13 @@ The form redirects to `/thank-you` on submit.
 
 ## Adding a new Journal article
 
-In the CMS, **Journal Articles → New article**. Fill in:
-
-- Title, Slug (lowercase, hyphens — same across all languages), Language (en/de/it)
-- Excerpt, Tag, Date, Reading time
-- Body (markdown editor)
-- Optionally override SEO
-
-To publish in all three languages, create three article entries with the same slug but different `lang` values.
+Add markdown files in `src/content/articles/` named `{slug}.{lang}.md` (same slug across languages). Frontmatter: title, route, lang, excerpt, tag, date, readingTime, published, optional seo.
 
 The article appears automatically on the Journal index in the matching language.
 
 ## Adding a new portfolio property
 
-In the CMS, **Portfolio → New property**:
-
-- Display order (lower = earlier on the page)
-- Title (not translated)
-- Tag, subtitle, image alt — all translatable
-- Image (upload)
-- Optional external URL
+Add a JSON file in `src/content/portfolio/`. Fields: order (lower = earlier), title, tag, subtitle, image, imageAlt, optional url.
 
 The home page renders portfolio entries sorted by `order`.
 
