@@ -124,7 +124,7 @@
     "h2em": { "en": "Roughly three weeks.", "de": "Etwa drei Wochen.", "it": "Circa tre settimane." },
     "lede": {
       "en": "A fixed-scope build in two to three weeks — four phases you can see at every stage. After launch, every change follows the same loop: you ask, an AI agent drafts, we review, Netlify deploys.",
-      "de": "Ein Bau mit festem Umfang in zwei bis tre Wochen — vier Phasen, die Sie in jeder Stufe sehen. Nach dem Launch folgt jede Änderung derselben Schleife: Sie fragen, ein AI-Agent entwirft, wir prüfen, Netlify deployt.",
+      "de": "Ein Bau mit festem Umfang in zwei bis drei Wochen — vier Phasen, die Sie in jeder Stufe sehen. Nach dem Launch folgt jede Änderung derselben Schleife: Sie fragen, ein AI-Agent entwirft, wir prüfen, Netlify deployt.",
       "it": "Una costruzione a scope fisso in due o tre settimane — quattro fasi visibili in ogni momento. Dopo il lancio, ogni modifica segue lo stesso ciclo: voi chiedete, un agente IA prepara, noi rivediamo, Netlify pubblica."
     },
     "items": [
