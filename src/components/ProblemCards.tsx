@@ -15,6 +15,7 @@ interface ProblemCardData {
 
 interface ProblemCardsProps {
   headline?: string;
+  headlineEm?: string;
   subheadline?: string;
   cards?: ProblemCardData[];
 }
@@ -42,6 +43,7 @@ const defaultCards: ProblemCardData[] = [
 
 export default function ProblemCards({
   headline = "Three ways hotels get a website today.",
+  headlineEm = "None of them work.",
   subheadline = "Every independent property eventually faces the same decision, and every option asks them to compromise on something they should not have to.",
   cards = defaultCards,
 }: ProblemCardsProps) {
@@ -83,7 +85,7 @@ export default function ProblemCards({
           >
             {headline}{" "}
             <span style={{ color: "var(--rosso, #C41E3A)", fontStyle: "italic" }}>
-              None of them work.
+              {headlineEm}
             </span>
           </h2>
           <p

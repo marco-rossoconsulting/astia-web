@@ -83,7 +83,8 @@ const faqItems = [
 {/* ===== PROBLEM CARDS ===== */}
 <ProblemCards
   client:load
-  headline={d.problem.h2pre[lang] + " " + d.problem.h2em[lang]}
+  headline={d.problem.h2pre[lang]}
+  headlineEm={d.problem.h2em[lang]}
   subheadline={d.problem.intro[lang]}
   cards={d.problem.cards.map((c: any) => ({
     tag: c.tag[lang],
