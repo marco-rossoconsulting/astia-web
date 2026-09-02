@@ -166,4 +166,4 @@ All design tokens live in `src/styles/global.css`:
 ## Support & questions
 
 This site was built by Marcorosso Consulting. Email: marcorosso.consulting@gmail.com
-# Deploy trigger: 2026-05-21T08:48:22Z
+# Deploy trigger: 2026-09-02T12:50:00Z
