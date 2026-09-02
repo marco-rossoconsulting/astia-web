@@ -21,6 +21,7 @@ const staticRoutes = [
   { path: '/apply', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.8' },
   { path: '/thank-you', locales: ['en'], changefreq: 'yearly', priority: '0.3' },
   { path: '/journal', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '0.7' },
+  { path: '/showcase', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '0.8' },
 ];
 
 // Read all articles and group by base slug
