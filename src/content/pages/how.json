@@ -124,24 +124,6 @@
       }
     ]
   },
-  "imageBreaker": {
-    "image": "/images/safari-vehicle-driving-through-mara-wilderness-exploreans.jpg",
-    "alt": {
-      "en": "A modern hotel reception, quiet in the morning",
-      "de": "Eine moderne Hotelrezeption, ruhig am Morgen",
-      "it": "Una moderna reception alberghiera, tranquilla al mattino"
-    },
-    "caption": {
-      "en": "The boring infrastructure choices are the ones that compound over years.",
-      "de": "Die langweiligen Infrastruktur-Entscheidungen sind diejenigen, die sich über Jahre auszahlen.",
-      "it": "Le scelte infrastrutturali noiose sono quelle che si accumulano negli anni."
-    },
-    "attribution": {
-      "en": "Astia · principle 02",
-      "de": "Astia · Prinzip 02",
-      "it": "Astia · principio 02"
-    }
-  },
   "included": {
     "num": {
       "en": "02 — What's included",
@@ -158,125 +140,109 @@
       "de": "die langweiligen Selbstverständlichkeiten.",
       "it": "le cose noiose ma necessarie."
     },
-    "columns": [
+    "features": [
       {
+        "icon": "Globe",
         "title": {
-          "en": "Hosting & infrastructure",
-          "de": "Hosting & Infrastruktur",
-          "it": "Hosting & infrastruttura"
+          "en": "Global edge hosting",
+          "de": "Globales Edge-Hosting",
+          "it": "Hosting edge globale"
         },
-        "items": {
-          "en": [
-            "Global edge network (Netlify)",
-            "SSL certificates, renewed automatically",
-            "Daily backups, via Git",
-            "DDoS protection at the CDN layer",
-            "100% uptime SLA"
-          ],
-          "de": [
-            "Globales Edge-Netzwerk (Netlify)",
-            "SSL-Zertifikate, automatisch erneuert",
-            "Tägliche Backups, via Git",
-            "DDoS-Schutz auf CDN-Ebene",
-            "100% Uptime-SLA"
-          ],
-          "it": [
-            "Rete edge globale (Netlify)",
-            "Certificati SSL, rinnovati automaticamente",
-            "Backup quotidiani, tramite Git",
-            "Protezione DDoS a livello CDN",
-            "SLA di uptime al 100%"
-          ]
+        "description": {
+          "en": "Your site runs on Netlify's global edge network, with a 100% uptime SLA.",
+          "de": "Ihre Seite läuft auf Netlifys globalem Edge-Netzwerk, mit 100% Uptime-SLA.",
+          "it": "Il sito gira sulla rete edge globale di Netlify, con SLA di uptime al 100%."
         }
       },
       {
+        "icon": "Lock",
         "title": {
-          "en": "Security & maintenance",
-          "de": "Sicherheit & Wartung",
-          "it": "Sicurezza & manutenzione"
+          "en": "SSL, backups, DDoS",
+          "de": "SSL, Backups, DDoS",
+          "it": "SSL, backup, DDoS"
         },
-        "items": {
-          "en": [
-            "No database to compromise",
-            "No plugins to keep updated",
-            "Quarterly performance audits",
-            "Annual accessibility review",
-            "Annual design check-in"
-          ],
-          "de": [
-            "Keine Datenbank, die kompromittiert werden kann",
-            "Keine Plugins, die aktualisiert werden müssen",
-            "Vierteljährliche Performance-Audits",
-            "Jährliche Accessibility-Review",
-            "Jährlicher Design-Check"
-          ],
-          "it": [
-            "Nessun database da compromettere",
-            "Nessun plugin da aggiornare",
-            "Audit di performance trimestrali",
-            "Revisione annuale dell'accessibilità",
-            "Check di design annuale"
-          ]
+        "description": {
+          "en": "SSL certificates, renewed automatically. Daily backups via Git. DDoS protection at the CDN layer.",
+          "de": "SSL-Zertifikate, automatisch erneuert. Tägliche Backups via Git. DDoS-Schutz auf CDN-Ebene.",
+          "it": "Certificati SSL, rinnovati automaticamente. Backup quotidiani tramite Git. Protezione DDoS a livello CDN."
         }
       },
       {
+        "icon": "ShieldCheck",
         "title": {
-          "en": "Content & editing",
-          "de": "Inhalt & Bearbeitung",
-          "it": "Contenuto & modifica"
+          "en": "No database, no plugins",
+          "de": "Keine Datenbank, keine Plugins",
+          "it": "Nessun database, nessun plugin"
         },
-        "items": {
-          "en": [
-            "Sveltia CMS access",
-            "Unlimited team members",
-            "Multi-language editing",
-            "Version history on every change",
-            "Direct booking engine integration"
-          ],
-          "de": [
-            "Sveltia CMS-Zugang",
-            "Unbegrenzte Teammitglieder",
-            "Mehrsprachige Bearbeitung",
-            "Versionshistorie für jede Änderung",
-            "Direktbuchung-Integration"
-          ],
-          "it": [
-            "Accesso a Sveltia CMS",
-            "Membri del team illimitati",
-            "Modifica multilingua",
-            "Cronologia delle modifiche",
-            "Integrazione booking engine diretto"
-          ]
+        "description": {
+          "en": "No database to compromise, and no plugins to keep updated.",
+          "de": "Keine Datenbank, die kompromittiert werden kann, und keine Plugins, die aktualisiert werden müssen.",
+          "it": "Nessun database da compromettere e nessun plugin da aggiornare."
         }
       },
       {
+        "icon": "ClipboardCheck",
         "title": {
-          "en": "AI agents (Managed only)",
-          "de": "AI-Agenten (nur Managed)",
-          "it": "Agenti IA (solo Managed)"
+          "en": "Regular audits",
+          "de": "Regelmässige Audits",
+          "it": "Audit regolari"
         },
-        "items": {
-          "en": [
-            "Email-to-edit workflow",
-            "Booking system monitoring",
-            "Automatic content drafts",
-            "Human review on every change",
-            "Response within 24 hours"
-          ],
-          "de": [
-            "E-Mail-zu-Änderung-Workflow",
-            "Buchungssystem-Überwachung",
-            "Automatische Inhaltsentwürfe",
-            "Menschliche Review bei jeder Änderung",
-            "Antwort innerhalb von 24 Stunden"
-          ],
-          "it": [
-            "Workflow email-to-edit",
-            "Monitoraggio sistema di prenotazione",
-            "Bozze di contenuto automatiche",
-            "Revisione umana su ogni modifica",
-            "Risposta entro 24 ore"
-          ]
+        "description": {
+          "en": "Quarterly performance audits, plus an annual accessibility review and design check-in.",
+          "de": "Vierteljährliche Performance-Audits, plus jährliche Accessibility-Review und Design-Check.",
+          "it": "Audit di performance trimestrali, più revisione annuale dell'accessibilità e check di design."
+        }
+      },
+      {
+        "icon": "Users",
+        "title": {
+          "en": "Sveltia CMS",
+          "de": "Sveltia CMS",
+          "it": "Sveltia CMS"
+        },
+        "description": {
+          "en": "Sveltia CMS access for unlimited team members, with version history on every change.",
+          "de": "Sveltia CMS-Zugang für unbegrenzte Teammitglieder, mit Versionshistorie für jede Änderung.",
+          "it": "Accesso a Sveltia CMS per membri del team illimitati, con cronologia di ogni modifica."
+        }
+      },
+      {
+        "icon": "Languages",
+        "title": {
+          "en": "Languages & bookings",
+          "de": "Sprachen & Buchungen",
+          "it": "Lingue e prenotazioni"
+        },
+        "description": {
+          "en": "Multi-language editing and direct booking-engine integration.",
+          "de": "Mehrsprachige Bearbeitung und Direktbuchung-Integration.",
+          "it": "Modifica multilingua e integrazione booking engine diretto."
+        }
+      },
+      {
+        "icon": "Mail",
+        "title": {
+          "en": "Email-to-edit (Managed)",
+          "de": "E-Mail-zu-Änderung (Managed)",
+          "it": "Email-to-edit (Managed)"
+        },
+        "description": {
+          "en": "An agent drafts changes from email or WhatsApp, including automatic content drafts, and monitors the booking system.",
+          "de": "Ein Agent entwirft Änderungen aus E-Mail oder WhatsApp, inklusive automatischer Inhaltsentwürfe, und überwacht das Buchungssystem.",
+          "it": "Un agente prepara le modifiche da email o WhatsApp, incluse bozze di contenuto automatiche, e monitora il sistema di prenotazione."
+        }
+      },
+      {
+        "icon": "Bot",
+        "title": {
+          "en": "Human review (Managed)",
+          "de": "Menschliche Review (Managed)",
+          "it": "Revisione umana (Managed)"
+        },
+        "description": {
+          "en": "Human review on every change, and a response within 24 hours.",
+          "de": "Menschliche Review bei jeder Änderung, und Antwort innerhalb von 24 Stunden.",
+          "it": "Revisione umana su ogni modifica, e risposta entro 24 ore."
         }
       }
     ]
