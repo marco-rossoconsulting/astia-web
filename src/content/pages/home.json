@@ -10,7 +10,7 @@
       "de": "Hochwertige, bezahlbare Websites ab CHF 150/Monat. Auf Astro gebaut f\u00fcr Geschwindigkeit. Von AI verwaltet. Perfekt f\u00fcr Hotels, B&Bs, Restaurants und KMU. Keine Anschaffungskosten.",
       "it": "Siti web di alta qualit\u00e0 e convenienti da CHF 150/mese. Costruito su Astro per la velocit\u00e0. Gestito dall'IA. Perfetto per hotel, B&B, ristoranti e piccole imprese. Nessun costo iniziale."
     },
-    "ogImage": "/images/og-home.jpg",
+    "ogImage": "/images/Exploreans_Watamu_Beach_Sunset.jpg",
     "ogImageAlt": {
       "en": "Astia Web \u2014 AI-managed websites for hospitality and small business",
       "de": "Astia Web \u2014 AI-verwaltete Websites f\u00fcr Hotellerie und KMU",
@@ -315,158 +315,46 @@
     },
     "rows": [
       {
-        "label": {
-          "en": "Upfront cost",
-          "de": "Anschaffungskosten",
-          "it": "Costo iniziale"
-        },
-        "agency": {
-          "en": "CHF 15k – 40k",
-          "de": "CHF 15k – 40k",
-          "it": "CHF 15k – 40k"
-        },
-        "builder": {
-          "en": "CHF 0",
-          "de": "CHF 0",
-          "it": "CHF 0"
-        },
-        "astia": {
-          "en": "CHF 0",
-          "de": "CHF 0",
-          "it": "CHF 0"
-        }
+        "label": { "en": "Upfront cost", "de": "Anschaffungskosten", "it": "Costo iniziale" },
+        "agency": { "en": "CHF 15k – 40k", "de": "CHF 15k – 40k", "it": "CHF 15k – 40k" },
+        "builder": { "en": "CHF 0", "de": "CHF 0", "it": "CHF 0" },
+        "astia": { "en": "CHF 0", "de": "CHF 0", "it": "CHF 0" }
       },
       {
-        "label": {
-          "en": "Monthly cost",
-          "de": "Monatliche Kosten",
-          "it": "Costo mensile"
-        },
-        "agency": {
-          "en": "CHF 500 – 2,000",
-          "de": "CHF 500 – 2.000",
-          "it": "CHF 500 – 2.000"
-        },
-        "builder": {
-          "en": "CHF 30 – 50",
-          "de": "CHF 30 – 50",
-          "it": "CHF 30 – 50"
-        },
-        "astia": {
-          "en": "CHF 150 – 550",
-          "de": "CHF 150 – 550",
-          "it": "CHF 150 – 550"
-        }
+        "label": { "en": "Monthly cost", "de": "Monatliche Kosten", "it": "Costo mensile" },
+        "agency": { "en": "CHF 500 – 2,000", "de": "CHF 500 – 2.000", "it": "CHF 500 – 2.000" },
+        "builder": { "en": "CHF 30 – 50", "de": "CHF 30 – 50", "it": "CHF 30 – 50" },
+        "astia": { "en": "CHF 150 – 550", "de": "CHF 150 – 550", "it": "CHF 150 – 550" }
       },
       {
-        "label": {
-          "en": "Time to launch",
-          "de": "Zeit bis zum Launch",
-          "it": "Tempo di lancio"
-        },
-        "agency": {
-          "en": "3–6 months",
-          "de": "3–6 Monate",
-          "it": "3–6 mesi"
-        },
-        "builder": {
-          "en": "A weekend (looks it)",
-          "de": "Ein Wochenende (sieht man)",
-          "it": "Un weekend (si vede)"
-        },
-        "astia": {
-          "en": "2–3 weeks",
-          "de": "2–3 Wochen",
-          "it": "2–3 settimane"
-        }
+        "label": { "en": "Time to launch", "de": "Zeit bis zum Launch", "it": "Tempo di lancio" },
+        "agency": { "en": "3–6 months", "de": "3–6 Monate", "it": "3–6 mesi" },
+        "builder": { "en": "A weekend (looks it)", "de": "Ein Wochenende (sieht man)", "it": "Un weekend (si vede)" },
+        "astia": { "en": "2–3 weeks", "de": "2–3 Wochen", "it": "2–3 settimane" }
       },
       {
-        "label": {
-          "en": "Loads in under one second",
-          "de": "Lädt in unter einer Sekunde",
-          "it": "Si carica in meno di un secondo"
-        },
-        "agency": {
-          "en": "Sometimes",
-          "de": "Manchmal",
-          "it": "A volte"
-        },
-        "builder": {
-          "en": "Rarely",
-          "de": "Selten",
-          "it": "Raramente"
-        },
-        "astia": {
-          "en": "Always",
-          "de": "Immer",
-          "it": "Sempre"
-        }
+        "label": { "en": "Loads in under one second", "de": "Lädt in unter einer Sekunde", "it": "Si carica in meno di un secondo" },
+        "agency": { "en": "Sometimes", "de": "Manchmal", "it": "A volte" },
+        "builder": { "en": "Rarely", "de": "Selten", "it": "Raramente" },
+        "astia": { "en": "Always", "de": "Immer", "it": "Sempre" }
       },
       {
-        "label": {
-          "en": "You own the code & content",
-          "de": "Sie besitzen Code & Inhalte",
-          "it": "Possedete codice & contenuti"
-        },
-        "agency": {
-          "en": "Maybe",
-          "de": "Vielleicht",
-          "it": "Forse"
-        },
-        "builder": {
-          "en": "No",
-          "de": "Nein",
-          "it": "No"
-        },
-        "astia": {
-          "en": "Yes",
-          "de": "Ja",
-          "it": "Sì"
-        }
+        "label": { "en": "You own the code & content", "de": "Sie besitzen Code & Inhalte", "it": "Possedete codice & contenuti" },
+        "agency": { "en": "Maybe", "de": "Vielleicht", "it": "Forse" },
+        "builder": { "en": "No", "de": "Nein", "it": "No" },
+        "astia": { "en": "Yes", "de": "Ja", "it": "Sì" }
       },
       {
-        "label": {
-          "en": "Updates handled by",
-          "de": "Updates erledigt von",
-          "it": "Aggiornamenti gestiti da"
-        },
-        "agency": {
-          "en": "You pay per edit",
-          "de": "Sie zahlen pro Änderung",
-          "it": "Pagate ogni modifica"
-        },
-        "builder": {
-          "en": "You, manually",
-          "de": "Sie, manuell",
-          "it": "Voi, manualmente"
-        },
-        "astia": {
-          "en": "AI agent + you",
-          "de": "AI-Agent + Sie",
-          "it": "Agente IA + voi"
-        }
+        "label": { "en": "Updates handled by", "de": "Updates erledigt von", "it": "Aggiornamenti gestiti da" },
+        "agency": { "en": "You pay per edit", "de": "Sie zahlen pro Änderung", "it": "Pagate ogni modifica" },
+        "builder": { "en": "You, manually", "de": "Sie, manuell", "it": "Voi, manualmente" },
+        "astia": { "en": "AI agent + you", "de": "AI-Agent + Sie", "it": "Agente IA + voi" }
       },
       {
-        "label": {
-          "en": "Direct booking integration",
-          "de": "Direktbuchung integriert",
-          "it": "Booking diretto integrato"
-        },
-        "agency": {
-          "en": "Custom build",
-          "de": "Custom-Bau",
-          "it": "Sviluppo custom"
-        },
-        "builder": {
-          "en": "Limited add-ons",
-          "de": "Begrenzte Add-ons",
-          "it": "Add-on limitati"
-        },
-        "astia": {
-          "en": "Built for it",
-          "de": "Im Konzept verankert",
-          "it": "Pensato per questo"
-        }
+        "label": { "en": "Direct booking integration", "de": "Direktbuchung integriert", "it": "Booking diretto integrato" },
+        "agency": { "en": "Custom build", "de": "Custom-Bau", "it": "Sviluppo custom" },
+        "builder": { "en": "Limited add-ons", "de": "Begrenzte Add-ons", "it": "Add-on limitati" },
+        "astia": { "en": "Built for it", "de": "Im Konzept verankert", "it": "Pensato per questo" }
       }
     ],
     "ctaTech": {
@@ -475,24 +363,9 @@
       "it": "Il caso tecnico per Astro"
     },
     "headers": {
-      "it": [
-        "",
-        "Agenzia web",
-        "Wix / Squarespace",
-        "Astia Web"
-      ],
-      "de": [
-        "",
-        "Web-Agentur",
-        "Wix / Squarespace",
-        "Astia Web"
-      ],
-      "en": [
-        "",
-        "Web agency",
-        "Wix / Squarespace",
-        "Astia Web"
-      ]
+      "it": ["", "Agenzia web", "Wix / Squarespace", "Astia Web"],
+      "de": ["", "Web-Agentur", "Wix / Squarespace", "Astia Web"],
+      "en": ["", "Web agency", "Wix / Squarespace", "Astia Web"]
     }
   },
   "portfolio": {
@@ -559,11 +432,7 @@
       "it": "Prezzi in base alla grandezza della struttura e a quanto volete essere coinvolti. Si può cambiare livello in qualsiasi momento."
     },
     "selfTier": {
-      "tier": {
-        "en": "Self-Serve",
-        "de": "Self-Serve",
-        "it": "Self-Serve"
-      },
+      "tier": { "en": "Self-Serve", "de": "Self-Serve", "it": "Self-Serve" },
       "tagline": {
         "en": "You edit. We host, secure, and refresh.",
         "de": "Sie editieren. Wir hosten, sichern, frischen auf.",
@@ -571,54 +440,22 @@
       }
     },
     "managedTier": {
-      "tier": {
-        "en": "Managed",
-        "de": "Managed",
-        "it": "Managed"
-      },
+      "tier": { "en": "Managed", "de": "Managed", "it": "Managed" },
       "tagline": {
         "en": "You email. AI agents and we handle every edit.",
         "de": "Sie schreiben uns. AI-Agenten und wir erledigen jede Anpassung.",
         "it": "Voi scrivete. Agenti IA e noi gestiamo ogni modifica."
       }
     },
-    "recommended": {
-      "en": "Recommended",
-      "de": "Empfohlen",
-      "it": "Consigliato"
-    },
+    "recommended": { "en": "Recommended", "de": "Empfohlen", "it": "Consigliato" },
     "rooms": {
-      "upTo15": {
-        "en": "Up to 15",
-        "de": "Bis zu 15",
-        "it": "Fino a 15"
-      },
-      "upTo30": {
-        "en": "Up to 30",
-        "de": "Bis zu 30",
-        "it": "Fino a 30"
-      },
-      "plus50": {
-        "en": "50+",
-        "de": "50+",
-        "it": "50+"
-      }
+      "upTo15": { "en": "Up to 15", "de": "Bis zu 15", "it": "Fino a 15" },
+      "upTo30": { "en": "Up to 30", "de": "Bis zu 30", "it": "Fino a 30" },
+      "plus50": { "en": "50+", "de": "50+", "it": "50+" }
     },
-    "roomsLabel": {
-      "en": "rooms",
-      "de": "Zimmer",
-      "it": "camere"
-    },
-    "selfPrices": {
-      "upTo15": "150",
-      "upTo30": "200",
-      "plus50": "300"
-    },
-    "managedPrices": {
-      "upTo15": "250",
-      "upTo30": "350",
-      "plus50": "550"
-    },
+    "roomsLabel": { "en": "rooms", "de": "Zimmer", "it": "camere" },
+    "selfPrices": { "upTo15": "150", "upTo30": "200", "plus50": "300" },
+    "managedPrices": { "upTo15": "250", "upTo30": "350", "plus50": "550" },
     "cta": {
       "en": "Full pricing & what's included",
       "de": "Vollständige Preise & Leistungen",
@@ -626,26 +463,10 @@
     }
   },
   "finalCTA": {
-    "eyebrow": {
-      "en": "Get started",
-      "de": "Loslegen",
-      "it": "Inizia"
-    },
-    "h2pre": {
-      "en": "Ready for a website",
-      "de": "Bereit für eine Website",
-      "it": "Pronti per un sito"
-    },
-    "h2em": {
-      "en": "that works for you",
-      "de": "die für Sie arbeitet",
-      "it": "che lavora per voi"
-    },
-    "h2post": {
-      "en": "?",
-      "de": "?",
-      "it": "?"
-    },
+    "eyebrow": { "en": "Get started", "de": "Loslegen", "it": "Inizia" },
+    "h2pre": { "en": "Ready for a website", "de": "Bereit für eine Website", "it": "Pronti per un sito" },
+    "h2em": { "en": "that works for you", "de": "die für Sie arbeitet", "it": "che lavora per voi" },
+    "h2post": { "en": "?", "de": "?", "it": "?" },
     "lede": {
       "en": "Tell us about your property. We respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
       "de": "Erzählen Sie uns von Ihrem Haus. Wir antworten innerhalb von drei Werktagen — und sind ehrlich, ob Astia für Sie das Richtige ist, bevor sich einer von uns verpflichtet.",
