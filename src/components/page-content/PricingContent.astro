@@ -3,6 +3,7 @@ import { getEntry } from 'astro:content';
 import TierDetail from '@components/TierDetail.astro';
 import AddOn from '@components/AddOn.astro';
 import FAQ from '@components/FAQ.astro';
+import PricingExplorer from '@components/PricingExplorer.tsx';
 
 interface Props { lang: 'en' | 'de' | 'it'; }
 const { lang } = Astro.props;
@@ -12,6 +13,12 @@ const site = await getEntry('site', 'general');
 const d = pricing.data as any;
 const cta = (site.data as any).cta;
 const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply' } as any)[p];
+
+const explorerSizes = [
+  { label: d.matrix.sizes.small[lang], self: Number(d.matrix.prices.selfSmall), managed: Number(d.matrix.prices.managedSmall) },
+  { label: d.matrix.sizes.medium[lang], self: Number(d.matrix.prices.selfMedium), managed: Number(d.matrix.prices.managedMedium) },
+  { label: d.matrix.sizes.large[lang], self: Number(d.matrix.prices.selfLarge), managed: Number(d.matrix.prices.managedLarge) },
+];
 ---
 {/* HERO */}
 <section class="section" style="padding-top:110px; padding-bottom:56px;">
@@ -25,44 +32,35 @@ const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply
 
 <hr class="rule" />
 
-{/* MATRIX — visual redesign */}
+{/* INTERACTIVE PRICING */}
 <section class="section">
   <div class="container">
-    <h2 class="display-2 reveal" style="margin-bottom:12px;">
-      {d.matrix.h2pre[lang]} <span class="editorial-i">{d.matrix.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:680px; margin-bottom:48px;">{d.matrix.intro[lang]}</p>
-
-    <div class="matrix-wrap reveal">
-      {/* Header */}
-      <div class="matrix-row">
-        <div class="matrix-cell matrix-head"></div>
-        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.small[lang]}</div>
-        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.medium[lang]}</div>
-        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.large[lang]}</div>
-      </div>
-      {/* Self-Serve */}
-      <div class="matrix-row">
-        <div class="matrix-cell matrix-label">
-          <div class="matrix-tier">{d.matrix.selfTier[lang]}</div>
-          <div class="matrix-tier-sub">{d.matrix.selfTagline[lang]}</div>
-        </div>
-        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfSmall}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfMedium}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfLarge}{d.matrix.perMonth[lang]}</div>
-      </div>
-      {/* Managed */}
-      <div class="matrix-row" style="background:var(--cream);">
-        <div class="matrix-cell matrix-label">
-          <span class="matrix-badge">{d.matrix.recommended[lang]}</span>
-          <div class="matrix-tier">{d.matrix.managedTier[lang]}</div>
-          <div class="matrix-tier-sub">{d.matrix.managedTagline[lang]}</div>
-        </div>
-        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedSmall}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedMedium}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedLarge}{d.matrix.perMonth[lang]}</div>
-      </div>
-    </div>
+    <PricingExplorer
+      client:load
+      lang={lang}
+      headlinePre={d.matrix.h2pre[lang]}
+      headlineEm={d.matrix.h2em[lang]}
+      intro={d.matrix.intro[lang]}
+      sizeAria={d.explorer.sizeAria[lang]}
+      currency={d.matrix.currency}
+      perMonth={d.matrix.perMonth[lang]}
+      yearOne={d.explorer.yearOne[lang]}
+      vatNote={d.explorer.vatNote[lang]}
+      disclaimer={d.explorer.disclaimer[lang]}
+      recommended={d.matrix.recommended[lang]}
+      typicalLabel={d.explorer.typical[lang]}
+      selfTitle={d.matrix.selfTier[lang]}
+      selfTagline={d.matrix.selfTagline[lang]}
+      selfFeatures={d.tierDetail.self.good[lang]}
+      managedTitle={d.matrix.managedTier[lang]}
+      managedTagline={d.matrix.managedTagline[lang]}
+      managedFeatures={d.tierDetail.managed.good[lang]}
+      applyLabel={cta.applyForSite[lang]}
+      applyHref={url('apply')}
+      sizes={explorerSizes}
+      defaultIndex={1}
+      upfrontLabel={d.explorer.upfront[lang]}
+    />
 
     {/* Savings callout */}
     <div class="savings-callout reveal" style="margin-top:48px;">
