@@ -1,1 +1,77 @@
-PLACEHOLDER_ASTRO
+---
+import { getEntry } from 'astro:content';
+import PricingExplorer from '@components/PricingExplorer.tsx';
+
+interface Props { lang: 'en' | 'de' | 'it'; }
+const { lang } = Astro.props;
+
+const pricing = await getEntry('pages', 'pricing');
+const site = await getEntry('site', 'general');
+const d = pricing.data as any;
+const cta = (site.data as any).cta;
+const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply' } as any)[p];
+const b = d.builder;
+
+const explorerSizes = [
+  { label: d.matrix.sizes.small[lang], self: Number(d.matrix.prices.selfSmall), managed: Number(d.matrix.prices.managedSmall) },
+  { label: d.matrix.sizes.medium[lang], self: Number(d.matrix.prices.selfMedium), managed: Number(d.matrix.prices.managedMedium) },
+  { label: d.matrix.sizes.large[lang], self: Number(d.matrix.prices.selfLarge), managed: Number(d.matrix.prices.managedLarge) },
+];
+---
+<section class="section" style="padding-top:110px; padding-bottom:96px;">
+  <div class="container">
+    <header style="max-width:720px; margin:0 0 40px;">
+      <h1 class="display-1" style="margin-top:0; margin-bottom:24px;">
+        {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
+      </h1>
+      <p class="lede" style="margin-bottom:0;">{d.hero.lede[lang]}</p>
+    </header>
+
+    <PricingExplorer
+      client:load
+      lang={lang}
+      sizeAria={d.explorer.sizeAria[lang]}
+      currency={d.matrix.currency}
+      perMonth={d.matrix.perMonth[lang]}
+      yearOne={d.explorer.yearOne[lang]}
+      vatNote={d.explorer.vatNote[lang]}
+      disclaimer={d.explorer.disclaimer[lang]}
+      recommended={d.matrix.recommended[lang]}
+      typicalLabel={d.explorer.typical[lang]}
+      selfTitle={d.matrix.selfTier[lang]}
+      selfTagline={d.matrix.selfTagline[lang]}
+      selfFeatures={d.tierDetail.self.good[lang]}
+      managedTitle={d.matrix.managedTier[lang]}
+      managedTagline={d.matrix.managedTagline[lang]}
+      managedFeatures={d.tierDetail.managed.good[lang]}
+      applyLabel={cta.applyForSite[lang]}
+      applyHref={url('apply')}
+      sizes={explorerSizes}
+      defaultIndex={1}
+      upfrontLabel={d.explorer.upfront[lang]}
+      builderHeadlinePre={d.addons.h2pre[lang]}
+      builderHeadlineEm={d.addons.h2em[lang]}
+      builderLede={d.addons.lede[lang]}
+      coreLabel={b.coreLabel[lang]}
+      includedBadge={b.included[lang]}
+      planTitle={b.planTitle[lang]}
+      billedLabel={b.billed[lang]}
+      totalLabel={b.total[lang]}
+      oneTimeLabel={b.oneTime[lang]}
+      quotedLabel={b.quoted[lang]}
+      languagesName={d.addons.items[0].title[lang]}
+      languagesBlurb={d.addons.items[0].body[lang]}
+      languagesIncluded={b.languagesIncluded[lang]}
+      extraLanguageLabel={b.extraLanguage[lang]}
+      photoName={d.addons.items[1].title[lang]}
+      photoBlurb={d.addons.items[1].body[lang]}
+      photoFromLabel={b.fromLabel[lang]}
+      customName={d.addons.items[2].title[lang]}
+      customBlurb={d.addons.items[2].body[lang]}
+      langMin={b.langMin}
+      langMax={b.langMax}
+      langExtraMonthly={b.langExtraMonthly}
+      photoAmount={b.photoAmount}
+    />
+  </div>
+</section>
