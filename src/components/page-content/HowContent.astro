@@ -1,9 +1,8 @@
 ---
 import { getEntry } from 'astro:content';
-import LifecycleDiagram from '@components/LifecycleDiagram.astro';
-import ImageBreaker from '@components/ImageBreaker.astro';
 import SpecCard from '@components/SpecCard.astro';
 import MathCard from '@components/MathCard.astro';
+import IncludedFeatures from '@components/IncludedFeatures.tsx';
 
 interface Props { lang: 'en' | 'de' | 'it'; }
 const { lang } = Astro.props;
@@ -14,7 +13,12 @@ const d = how.data as any;
 const cta = (site.data as any).cta;
 
 const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply', pricing: '/pricing' } as any)[p];
-const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
+
+const includedFeatures = (d.included.features || []).map((f: any) => ({
+  icon: f.icon,
+  title: f.title[lang],
+  description: f.description[lang],
+}));
 ---
 {/* HERO */}
 <section class="section" style="padding-top:110px; padding-bottom:60px;">
@@ -24,54 +28,6 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
       {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
     </h1>
     <p class="lede">{d.hero.lede[lang]}</p>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* LIFECYCLE */}
-<section class="section">
-  <div class="container">
-    <span class="section-num reveal">{d.lifecycle.num[lang]}</span>
-    <h2 class="display-2 reveal" style="margin-bottom:48px;">
-      {d.lifecycle.h2pre[lang]} <span class="editorial-i">{d.lifecycle.h2em[lang]}</span>
-    </h2>
-
-    <div class="reveal"><LifecycleDiagram labels={lifecycleLabels} /></div>
-
-    <div class="grid-4 timeline-wrap" style="margin-top:48px;">
-      {d.lifecycle.items.map((item: any, i: number) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <span style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--rosso);">{item.num}</span>
-          <h3 style="font-family:'Editorial New', serif; font-size:22px; margin:8px 0 12px; font-weight:400;">{item.title[lang]}</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--ink-soft); margin:0;">{item.body[lang]}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* BUILD PROCESS */}
-<section class="section section-cream">
-  <div class="container">
-    <span class="section-num reveal">{d.build.num[lang]}</span>
-    <h2 class="display-2 reveal" style="margin-bottom:12px;">
-      {d.build.h2pre[lang]} <span class="editorial-i">{d.build.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.build.intro[lang]}</p>
-
-    <div class="grid-4 timeline-wrap">
-      {d.build.phases.map((p: any, i: number) => (
-        <div class={`reveal reveal-delay-${i + 1}`} style="padding:24px; background:var(--paper); border:1px solid var(--bone); position:relative;">
-          <span style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--rosso);">{p.n}</span>
-          <div style="font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--stone); margin:6px 0 14px;">{p.days[lang]}</div>
-          <h3 style="font-family:'Editorial New', serif; font-size:20px; margin:0 0 10px; font-weight:400;">{p.title[lang]}</h3>
-          <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0;">{p.body[lang]}</p>
-        </div>
-      ))}
-    </div>
   </div>
 </section>
 
@@ -100,37 +56,16 @@ const lifecycleLabels = d.lifecycle.items.map((it: any) => it.title[lang]);
   </div>
 </section>
 
-<ImageBreaker
-  src={d.imageBreaker.image}
-  alt={d.imageBreaker.alt[lang]}
-  caption={d.imageBreaker.caption[lang]}
-  attribution={d.imageBreaker.attribution[lang]}
-/>
+<hr class="rule" />
 
 {/* WHAT'S INCLUDED */}
-<section class="section">
-  <div class="container">
-    <span class="section-num reveal">{d.included.num[lang]}</span>
-    <h2 class="display-2 reveal" style="margin-bottom:48px;">
-      {d.included.h2pre[lang]} <span class="editorial-i">{d.included.h2em[lang]}</span>
-    </h2>
-
-    <div class="grid-4">
-      {d.included.columns.map((col: any, i: number) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <h3 style="font-family:'Editorial New', serif; font-size:20px; margin:0 0 18px; font-weight:400;">{col.title[lang]}</h3>
-          <ul style="list-style:none; padding:0; margin:0;">
-            {col.items[lang].map((item: string) => (
-              <li style="padding:8px 0 8px 20px; position:relative; font-size:14px; line-height:1.55; color:var(--ink-soft);">
-                <span style="position:absolute; left:0; color:var(--rosso);">+</span> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<IncludedFeatures
+  client:visible
+  eyebrow={d.included.num[lang]}
+  headlinePre={d.included.h2pre[lang]}
+  headlineEm={d.included.h2em[lang]}
+  features={includedFeatures}
+/>
 
 <hr class="rule" />
 

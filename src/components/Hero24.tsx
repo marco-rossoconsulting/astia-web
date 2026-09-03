@@ -4,11 +4,6 @@ import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { NeuroNoise } from "@paper-design/shaders-react";
 
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.08 } },
-};
-
 const item: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -17,18 +12,6 @@ const item: Variants = {
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
-const headline: Variants = {
-  hidden: { opacity: 0, y: 26, filter: "blur(10px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-const partners = ["Exploreans", "Mara River", "Watamu"];
 
 interface Hero24Props {
   chipText?: string;
@@ -44,11 +27,11 @@ interface Hero24Props {
 }
 
 export function Hero24({
-  chipText = "Astia Web \u00b7 AI-managed sites",
+  chipText = "Astia Web · AI-managed sites",
   headlinePre = "The first ",
   headlineEm = "AI-managed",
   headlinePost = " website service for independent hotels.",
-  subheadline = "Built on Astro for speed. Run by AI for cost. Designed for hospitality. Launch in 2\u20133 weeks. From CHF 150/month.",
+  subheadline = "Built on Astro for speed. Run by AI for cost. Designed for hospitality. Launch in 2–3 weeks. From CHF 150/month.",
   primaryCta = "Apply for a site",
   primaryCtaHref = "/apply",
   secondaryCta = "See how it works",
@@ -73,14 +56,13 @@ export function Hero24({
         display: "flex",
         minHeight: "100vh",
         width: "100%",
-        alignItems: "start",
+        alignItems: "center",
         overflow: "hidden",
         background: "#F7F5F0",
         padding: "64px 16px 80px",
       }}
       className="hero-24-section"
     >
-      {/* NeuroNoise shader background */}
       <NeuroNoise
         className="absolute inset-0 h-full w-full"
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
@@ -94,7 +76,6 @@ export function Hero24({
         speed={reduceMotion ? 0 : 0.55}
       />
 
-      {/* Left-to-right gradient fade */}
       <div
         aria-hidden="true"
         style={{
@@ -102,11 +83,10 @@ export function Hero24({
           inset: 0,
           pointerEvents: "none",
           background:
-            "linear-gradient(to right, rgba(247,245,240,0.96) 18%, rgba(247,245,240,0.72) 46%, rgba(247,245,240,0) 82%)",
+            "radial-gradient(ellipse 72% 58% at 50% 42%, rgba(247,245,240,0.88) 0%, rgba(247,245,240,0.55) 48%, rgba(247,245,240,0.18) 78%, rgba(247,245,240,0) 100%)",
         }}
       />
 
-      {/* Bottom gradient fade */}
       <div
         aria-hidden="true"
         style={{
@@ -125,24 +105,25 @@ export function Hero24({
           margin: "0 auto",
           width: "100%",
           maxWidth: "1240px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
+        <div
           style={{
             display: "flex",
-            maxWidth: "720px",
+            maxWidth: "780px",
+            width: "100%",
             flexDirection: "column",
-            alignItems: "flex-start",
-            textAlign: "left",
+            alignItems: "center",
+            textAlign: "center",
           }}
         >
-          {/* Status chip */}
           <motion.div
             variants={item}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -171,7 +152,7 @@ export function Hero24({
                   borderRadius: "9999px",
                   background: "#C41E3A",
                   opacity: 0.6,
-                  animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
+                  animation: reduceMotion ? "none" : "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
                 }}
               />
               <span
@@ -188,9 +169,7 @@ export function Hero24({
             {chipText}
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            variants={headline}
+          <h1
             style={{
               marginTop: "32px",
               fontSize: "clamp(40px, 5.5vw, 72px)",
@@ -199,19 +178,24 @@ export function Hero24({
               letterSpacing: "-0.02em",
               color: "#141414",
               fontFamily: "'Editorial New', Georgia, serif",
+              opacity: 1,
             }}
           >
             {headlinePre}
             <span style={{ fontStyle: "italic" }}>{headlineEm}</span>
             {headlinePost}
-          </motion.h1>
+          </h1>
 
-          {/* Subheadline */}
           <motion.p
             variants={item}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
             style={{
               marginTop: "24px",
               maxWidth: "540px",
+              marginLeft: "auto",
+              marginRight: "auto",
               fontSize: "clamp(17px, 1.4vw, 20px)",
               lineHeight: 1.55,
               color: "#2A2A2A",
@@ -221,14 +205,18 @@ export function Hero24({
             {subheadline}
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             variants={item}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
             style={{
               marginTop: "40px",
               display: "flex",
               width: "100%",
               flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
               gap: "12px",
             }}
             className="hero-24-ctas"
@@ -294,13 +282,9 @@ export function Hero24({
               {secondaryCta}
             </a>
           </motion.div>
-
-          {/* Partners removed per user request */}
-
-        </motion.div>
+        </div>
       </div>
 
-      {/* Ping animation keyframes */}
       <style>{`
         @keyframes ping {
           75%, 100% {
@@ -312,6 +296,11 @@ export function Hero24({
           .hero-24-section {
             padding: 80px 24px 100px !important;
           }
+          .hero-24-ctas {
+            flex-direction: row !important;
+            width: auto !important;
+            justify-content: center !important;
+          }
         }
         @media (min-width: 1024px) {
           .hero-24-section {
@@ -319,11 +308,8 @@ export function Hero24({
             padding: 0 32px !important;
           }
         }
-        @media (min-width: 640px) {
-          .hero-24-ctas {
-            flex-direction: row !important;
-            width: auto !important;
-          }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-24-section h1 { opacity: 1 !important; }
         }
       `}</style>
     </section>
