@@ -27,7 +27,16 @@ const actionUrl = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
   <div class="container-narrow">
     <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action={actionUrl}>
       <input type="hidden" name="lang" value={lang} />
+      <input type="hidden" name="packageEstimate" id="packageEstimate" value="" />
       <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+      <div id="package-card" class="form-section" hidden>
+        <span class="form-section-title">{f.sections.package[lang]}</span>
+        <div class="package-estimate">
+          <p id="package-summary" class="package-estimate-body"></p>
+          <p class="body-sm" style="margin:12px 0 0;">{f.packageNote[lang]}</p>
+        </div>
+      </div>
 
       {/* Property section */}
       <div class="form-section">
@@ -120,11 +129,44 @@ const actionUrl = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
   </div>
 </section>
 
+<style>
+  .package-estimate {
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    padding: 22px 24px;
+  }
+  .package-estimate-body {
+    font-family: 'Editorial New', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin: 0;
+  }
+</style>
+
 {/* Prefix https:// on website if the applicant omitted a scheme — never block submit */}
 <script is:inline>
   (function () {
     var form = document.querySelector('form[name="apply"]');
     if (!form) return;
+
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("from") === "pricing") {
+      var summary = params.get("summary") || "";
+      if (summary) {
+        var card = document.getElementById("package-card");
+        var body = document.getElementById("package-summary");
+        var hidden = document.getElementById("packageEstimate");
+        if (card) card.hidden = false;
+        if (body) body.textContent = summary;
+        if (hidden) hidden.value = summary;
+      }
+      var size = params.get("size");
+      var rooms = form.querySelector('select[name="rooms"]');
+      var roomIndex = { "0": 1, "1": 2, "2": 4 };
+      if (rooms && roomIndex[size] != null) rooms.selectedIndex = roomIndex[size];
+    }
+
     form.addEventListener('submit', function () {
       var el = form.querySelector('input[name="website"]');
       if (!el) return;
