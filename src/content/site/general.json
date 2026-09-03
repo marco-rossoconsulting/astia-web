@@ -4,9 +4,9 @@
     "wordmarkBefore": "astia",
     "wordmarkAfter": "web",
     "tagline": {
-      "en": "The first AI-managed website service for independent hotels. Built on Astro for speed, run by AI for cost, designed for hospitality.",
-      "de": "Der erste AI-verwaltete Website-Service für unabhängige Hotels. Auf Astro für Geschwindigkeit, von AI für Kosten, für die Hotellerie konzipiert.",
-      "it": "Il primo servizio di siti web gestiti dall'IA per hotel indipendenti. Costruito su Astro per la velocità, gestito dall'IA per il costo, progettato per l'ospitalità."
+      "en": "The first AI-managed website service for independent hotels. Built on Astro, run by AI for cost, designed for hospitality.",
+      "de": "Der erste AI-verwaltete Website-Service für unabhängige Hotels. Auf Astro gebaut, von AI für Kosten, für die Hotellerie konzipiert.",
+      "it": "Il primo servizio di siti web gestiti dall'IA per hotel indipendenti. Costruito su Astro, gestito dall'IA per il costo, progettato per l'ospitalità."
     },
     "parentCompany": "Marcorosso Consulting",
     "parentDescription": {

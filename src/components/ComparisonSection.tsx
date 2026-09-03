@@ -62,9 +62,9 @@ const defaultGroups: Group[] = [
     title: "Performance",
     rows: [
       {
-        feature: "Load time under 1 second",
+        feature: "Sub-1s load (lean page)",
         cells: [
-          { status: "yes", note: "Always" },
+          { status: "yes", note: "Possible" },
           { status: "partial", note: "Sometimes" },
           { status: "partial", note: "Rarely" },
         ],
@@ -72,7 +72,7 @@ const defaultGroups: Group[] = [
       {
         feature: "Lighthouse score",
         cells: [
-          { status: "yes", note: "98-100" },
+          { status: "yes", note: "High 90s possible" },
           { status: "partial", note: "60-85" },
           { status: "partial", note: "50-70" },
         ],
@@ -80,7 +80,7 @@ const defaultGroups: Group[] = [
       {
         feature: "Page weight",
         cells: [
-          { status: "yes", note: "~80 KB" },
+          { status: "yes", note: "From ~80 KB lean" },
           { status: "partial", note: "~1.5 MB" },
           { status: "no", note: "~2.1 MB" },
         ],
