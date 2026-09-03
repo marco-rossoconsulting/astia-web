@@ -61,24 +61,24 @@ const hiwSteps = d.steps.items.map((s: any) => ({
 
 const faqItems = [
   {
-    q: { en: "Why is there no upfront cost?", de: "Warum gibt es keine Anschaffungskosten?", it: "Perché non c'è un costo iniziale?" },
-    a: { en: "Because the actual cost of building a modern website is small enough that financing it across a year of subscription works for both sides. The upfront model is a relic of when websites took months and required real engineering.", de: "Weil die tatsächlichen Kosten für den Bau einer modernen Website klein genug sind, dass eine Finanzierung über ein Jahr Abonnement für beide Seiten funktioniert.", it: "Perché il costo reale per costruire un sito moderno è abbastanza piccolo da poter essere finanziato attraverso un anno di abbonamento per entrambe le parti." }
+    q: { en: "Why is there no upfront cost?", de: "Warum gibt es keine Anschaffungskosten?", it: "Perch\u00e9 non c'\u00e8 un costo iniziale?" },
+    a: { en: "Because the actual cost of building a modern website is small enough that financing it across a year of subscription works for both sides. The upfront model is a relic of when websites took months and required real engineering.", de: "Weil die tats\u00e4chlichen Kosten f\u00fcr den Bau einer modernen Website klein genug sind, dass eine Finanzierung \u00fcber ein Jahr Abonnement f\u00fcr beide Seiten funktioniert.", it: "Perch\u00e9 il costo reale per costruire un sito moderno \u00e8 abbastanza piccolo da poter essere finanziato attraverso un anno di abbonamento per entrambe le parti." }
   },
   {
-    q: { en: "What if I cancel?", de: "Was, wenn ich kündige?", it: "E se disdico?" },
-    a: { en: "Twelve months to start, month to month after that. You keep the code, the content, the Git repository at every stage. That ownership is permanent. We help you move when you leave. No exit fee.", de: "Mindestlaufzeit zwölf Monate, danach monatlich kündbar. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase. Dieses Eigentum ist dauerhaft.", it: "Durata iniziale dodici mesi, poi mensile. Voi tenete il codice, i contenuti e il repository Git in ogni fase. Questa proprietà è permanente." }
+    q: { en: "What if I cancel?", de: "Was, wenn ich k\u00fcndige?", it: "E se disdico?" },
+    a: { en: "Twelve months to start, month to month after that. You keep the code, the content, the Git repository at every stage. That ownership is permanent. We help you move when you leave. No exit fee.", de: "Mindestlaufzeit zw\u00f6lf Monate, danach monatlich k\u00fcndbar. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase. Dieses Eigentum ist dauerhaft.", it: "Durata iniziale dodici mesi, poi mensile. Voi tenete il codice, i contenuti e il repository Git in ogni fase. Questa propriet\u00e0 \u00e8 permanente." }
   },
   {
     q: { en: "How does the AI agent actually work?", de: "Wie funktioniert der AI-Agent eigentlich?", it: "Come funziona davvero l'agente IA?" },
-    a: { en: "It reads incoming requests from your email or WhatsApp, identifies the change required, makes the edit as a Git commit on a preview branch, and pushes it for human review. The agent never deploys to production directly. Every change passes a human.", de: "Er liest eingehende Anfragen von Ihrer E-Mail oder WhatsApp, identifiziert die erforderliche Änderung, macht die Bearbeitung als Git-Commit und pusht sie zur menschlichen Review.", it: "Legge le richieste in arrivo da email o WhatsApp, identifica la modifica necessaria, la prepara come commit Git e la propone per revisione umana." }
+    a: { en: "It reads incoming requests from your email or WhatsApp, identifies the change required, makes the edit as a Git commit on a preview branch, and pushes it for human review. The agent never deploys to production directly. Every change passes a human.", de: "Er liest eingehende Anfragen von Ihrer E-Mail oder WhatsApp, identifiziert die erforderliche \u00c4nderung, macht die Bearbeitung als Git-Commit und pusht sie zur menschlichen Review.", it: "Legge le richieste in arrivo da email o WhatsApp, identifica la modifica necessaria, la prepara come commit Git e la propone per revisione umana." }
   },
   {
-    q: { en: "What if my booking engine isn't on your list?", de: "Was, wenn mein Buchungssystem nicht auf Ihrer Liste ist?", it: "E se il mio booking engine non è nella vostra lista?" },
+    q: { en: "What if my booking engine isn't on your list?", de: "Was, wenn mein Buchungssystem nicht auf Ihrer Liste ist?", it: "E se il mio booking engine non \u00e8 nella vostra lista?" },
     a: { en: "We'll integrate it if it has an embed code, an iframe, or an API. We've never said no to an integration; the price varies by complexity.", de: "Wir integrieren es, wenn es einen Embed-Code, einen iFrame oder eine API hat. Wir haben noch nie zu einer Integration nein gesagt.", it: "Lo integriamo se ha un codice embed, un iframe o un'API. Non abbiamo mai detto no a un'integrazione." }
   },
   {
-    q: { en: "How fast will my site load?", de: "Wie schnell lädt meine Seite?", it: "Quanto velocemente si caricherà il mio sito?" },
-    a: { en: "Astia sites load in under one second on any device, from anywhere in the world. We build on Astro, the same framework Google uses for its developer site, which generates static HTML with zero JavaScript by default.", de: "Astia-Seiten laden auf jedem Gerät in unter einer Sekunde, von überall auf der Welt. Wir bauen auf Astro, dem Framework, das Google für seine Entwicklerseite verwendet.", it: "I siti Astia si caricano in meno di un secondo su qualsiasi dispositivo, ovunque nel mondo. Costruiamo su Astro, lo stesso framework che Google usa per il suo sito sviluppatori." }
+    q: { en: "How fast will my site load?", de: "Wie schnell l\u00e4dt meine Seite?", it: "Quanto velocemente si caricher\u00e0 il mio sito?" },
+    a: { en: "Astia sites load in under one second on any device, from anywhere in the world. We build on Astro, the same framework Google uses for its developer site, which generates static HTML with zero JavaScript by default.", de: "Astia-Seiten laden auf jedem Ger\u00e4t in unter einer Sekunde, von \u00fcberall auf der Welt. Wir bauen auf Astro, dem Framework, das Google f\u00fcr seine Entwicklerseite verwendet.", it: "I siti Astia si caricano in meno di un secondo su qualsiasi dispositivo, ovunque nel mondo. Costruiamo su Astro, lo stesso framework che Google usa per il suo sito sviluppatori." }
   }
 ];
 ---
@@ -95,7 +95,7 @@ const faqItems = [
   primaryCtaHref={url('apply')}
   secondaryCta={cta.seeHow[lang]}
   secondaryCtaHref={url('how')}
-  partnersLabel={lang === 'en' ? 'Powering websites for' : lang === 'de' ? 'Websites für' : 'Siti per'}
+  partnersLabel={lang === 'en' ? 'Powering websites for' : lang === 'de' ? 'Websites f\u00fcr' : 'Siti per'}
 />
 
 <hr class="section-divider" />
@@ -142,7 +142,6 @@ const faqItems = [
 {/* ===== STEPS — How It Works 8–inspired ===== */}
 <HowItWorksSteps
   client:visible
-  eyebrow={d.steps.num[lang]}
   headlinePre={d.steps.h2pre[lang]}
   headlineEm={d.steps.h2em[lang]}
   lede={d.steps.lede[lang]}
@@ -237,7 +236,7 @@ const faqItems = [
   <div class="container tech-showcase-inner">
     <div class="reveal" style="text-align:center; margin-bottom:56px;">
       <span class="perf-badge" style="background:rgba(196,30,58,0.15); border-color:rgba(196,30,58,0.25); color:var(--paper);">
-        {lang === 'en' ? 'This site runs on Astia' : lang === 'de' ? 'Diese Seite läuft auf Astia' : 'Questo sito gira su Astia'}
+        {lang === 'en' ? 'This site runs on Astia' : lang === 'de' ? 'Diese Seite l\u00e4uft auf Astia' : 'Questo sito gira su Astia'}
       </span>
       <h2 class="display-2" style="color:var(--paper); margin-top:28px; margin-bottom:16px;">
         {lang === 'en' ? 'Built on the ' : lang === 'de' ? 'Gebaut auf dem ' : 'Costruito con lo '}
@@ -248,7 +247,7 @@ const faqItems = [
         {lang === 'en'
           ? "The same technology powering this site (Astro, Netlify, and AI-managed updates) is what we build for every client. Fast, secure, and maintenance-free."
           : lang === 'de'
-          ? "Dieselbe Technologie, die diese Seite antreibt (Astro, Netlify und AI-verwaltete Updates), bauen wir für jeden Kunden. Schnell, sicher und wartungsfrei."
+          ? "Dieselbe Technologie, die diese Seite antreibt (Astro, Netlify und AI-verwaltete Updates), bauen wir f\u00fcr jeden Kunden. Schnell, sicher und wartungsfrei."
           : "La stessa tecnologia che alimenta questo sito (Astro, Netlify e aggiornamenti gestiti dall'IA) la costruiamo per ogni cliente. Veloce, sicuro e senza manutenzione."}
       </p>
     </div>
@@ -264,7 +263,7 @@ const faqItems = [
       </div>
       <div class="tech-stat">
         <div class="tech-stat-num">~80KB</div>
-        <div class="tech-stat-label">{lang === 'en' ? 'Total page weight' : lang === 'de' ? 'Seitengrösse' : 'Peso pagina'}</div>
+        <div class="tech-stat-label">{lang === 'en' ? 'Total page weight' : lang === 'de' ? 'Seitengr\u00f6sse' : 'Peso pagina'}</div>
       </div>
       <div class="tech-stat">
         <div class="tech-stat-num">&lt;2min</div>
@@ -311,8 +310,7 @@ const faqItems = [
 {/* ===== FINAL CTA ===== */}
 <section class="section">
   <div class="container-narrow reveal" style="text-align:center;">
-    <span class="eyebrow eyebrow-rosso">{d.finalCTA.eyebrow[lang]}</span>
-    <h2 class="display-2" style="margin-top:24px; margin-bottom:28px;">
+    <h2 class="display-2" style="margin-top:0; margin-bottom:28px;">
       {d.finalCTA.h2pre[lang]} <span class="editorial-i">{d.finalCTA.h2em[lang]}</span> {d.finalCTA.h2post[lang]}
     </h2>
     <p class="lede" style="margin-bottom:40px; max-width:540px; margin-left:auto; margin-right:auto;">{d.finalCTA.lede[lang]}</p>
