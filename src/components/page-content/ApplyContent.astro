@@ -65,7 +65,7 @@ const actionUrl = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
         <div class="form-grid-2">
           <div class="form-field">
             <label class="form-label">{f.fields.website.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
-            <input class="form-input" type="url" name="website" placeholder="https://" />
+            <input class="form-input" type="text" name="website" inputmode="url" autocomplete="url" placeholder="https://" />
           </div>
           <div class="form-field">
             <label class="form-label">{f.fields.bookingEngine.label[lang]} <span class="form-label-optional">({f.optional[lang]})</span></label>
@@ -120,3 +120,20 @@ const actionUrl = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
     </form>
   </div>
 </section>
+
+{/* Prefix https:// on website if the applicant omitted a scheme — never block submit */}
+<script is:inline>
+  (function () {
+    var form = document.querySelector('form[name="apply"]');
+    if (!form) return;
+    form.addEventListener('submit', function () {
+      var el = form.querySelector('input[name="website"]');
+      if (!el) return;
+      var v = (el.value || '').trim();
+      if (!v) return;
+      if (!/^[a-z][a-z0-9+.-]*:/i.test(v)) {
+        el.value = 'https://' + v.replace(/^\/+/, '');
+      }
+    });
+  })();
+</script>
