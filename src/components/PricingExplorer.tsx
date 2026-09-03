@@ -207,22 +207,25 @@ export default function PricingExplorer({
       </div>
 
       <div className="px-grid">
-        <article className={`px-card${tier === "self" ? " is-sel" : ""}`}>
-          <button type="button" className="px-select" onClick={() => setTier("self")} aria-pressed={tier === "self"}>
-            <div className="px-card-head">
-              <PenTool size={16} strokeWidth={1.75} />
-              <h3>{selfTitle}</h3>
-            </div>
-            <p className="px-tagline">{selfTagline}</p>
-            <div className="px-amount">
-              <span className="px-figure">{formatChf(size.self, lang)}</span>
-              <span className="px-suffix">{perMonth}</span>
-            </div>
-            <p className="px-year">
-              {formatChf(selfYear, lang)} · {yearOne}
-            </p>
-            <p className="px-vat">{vatNote}</p>
-          </button>
+        <button
+          type="button"
+          className={`px-card${tier === "self" ? " is-sel" : ""}`}
+          onClick={() => setTier("self")}
+          aria-pressed={tier === "self"}
+        >
+          <div className="px-card-head">
+            <PenTool size={16} strokeWidth={1.75} />
+            <h3>{selfTitle}</h3>
+          </div>
+          <p className="px-tagline">{selfTagline}</p>
+          <div className="px-amount">
+            <span className="px-figure">{formatChf(size.self, lang)}</span>
+            <span className="px-suffix">{perMonth}</span>
+          </div>
+          <p className="px-year">
+            {formatChf(selfYear, lang)} · {yearOne}
+          </p>
+          <p className="px-vat">{vatNote}</p>
           <ul className="px-features">
             {selfFeatures.map((text, i) => {
               const Icon = SELF_ICONS[i] ?? Check;
@@ -234,25 +237,28 @@ export default function PricingExplorer({
               );
             })}
           </ul>
-        </article>
+        </button>
 
-        <article className={`px-card is-rec${tier === "managed" ? " is-sel" : ""}`}>
+        <button
+          type="button"
+          className={`px-card is-rec${tier === "managed" ? " is-sel" : ""}`}
+          onClick={() => setTier("managed")}
+          aria-pressed={tier === "managed"}
+        >
           <span className="px-badge">{recommended}</span>
-          <button type="button" className="px-select" onClick={() => setTier("managed")} aria-pressed={tier === "managed"}>
-            <div className="px-card-head">
-              <Mail size={16} strokeWidth={1.75} />
-              <h3>{managedTitle}</h3>
-            </div>
-            <p className="px-tagline">{managedTagline}</p>
-            <div className="px-amount">
-              <span className="px-figure">{formatChf(size.managed, lang)}</span>
-              <span className="px-suffix">{perMonth}</span>
-            </div>
-            <p className="px-year">
-              {formatChf(managedYear, lang)} · {yearOne}
-            </p>
-            <p className="px-vat">{vatNote}</p>
-          </button>
+          <div className="px-card-head">
+            <Mail size={16} strokeWidth={1.75} />
+            <h3>{managedTitle}</h3>
+          </div>
+          <p className="px-tagline">{managedTagline}</p>
+          <div className="px-amount">
+            <span className="px-figure">{formatChf(size.managed, lang)}</span>
+            <span className="px-suffix">{perMonth}</span>
+          </div>
+          <p className="px-year">
+            {formatChf(managedYear, lang)} · {yearOne}
+          </p>
+          <p className="px-vat">{vatNote}</p>
           <ul className="px-features">
             {managedFeatures.map((text, i) => {
               const Icon = MANAGED_ICONS[i] ?? Check;
@@ -264,7 +270,7 @@ export default function PricingExplorer({
               );
             })}
           </ul>
-        </article>
+        </button>
       </div>
 
       <div className="px-builder">
@@ -531,13 +537,12 @@ export default function PricingExplorer({
         .px-card {
           background: var(--cream, #FAFAF7); border: 1px solid var(--bone, #E5E2DA);
           padding: 32px 28px 28px; display: flex; flex-direction: column; position: relative;
+          width: 100%; text-align: left; color: inherit; font: inherit; cursor: pointer;
         }
+        .px-card:hover { border-color: var(--ink, #141414); }
         .px-card.is-rec { background: var(--paper, #F7F5F0); }
         .px-card.is-sel { border-color: var(--ink, #141414); }
-        .px-card.is-rec.is-sel { border-color: var(--rosso, #C41E3A); }
-        .px-select {
-          display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; color: inherit;
-        }
+        .px-card.is-rec.is-sel, .px-card.is-rec:hover { border-color: var(--rosso, #C41E3A); }
         .px-badge {
           position: absolute; top: -1px; right: -1px; background: var(--rosso, #C41E3A);
           color: var(--paper, #F7F5F0); font-family: 'JetBrains Mono', monospace; font-size: 10px;
