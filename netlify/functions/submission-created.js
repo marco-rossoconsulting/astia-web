@@ -21,7 +21,7 @@ export default async (req, context) => {
     return new Response("Missing configuration", { status: 500 });
   }
 
-  const fields = {
+  let fields = {
     Property: data.propertyName || "—",
     Type: data.propertyType || "—",
     Rooms: data.rooms || "—",
@@ -36,6 +36,13 @@ export default async (req, context) => {
     Phone: data.phone || "—",
     Language: data.lang || "—",
   };
+
+  if (data.packageEstimate) {
+    fields = {
+      "Pricing estimate": data.packageEstimate,
+      ...fields,
+    };
+  }
 
   const htmlRows = Object.entries(fields)
     .map(
