@@ -249,7 +249,7 @@ export default function PricingExplorer({
               <span className="px-suffix">{perMonth}</span>
             </div>
             <p className="px-year">
-              {formatChf(managedYear, lang)} \u00b7 {yearOne}
+              {formatChf(managedYear, lang)} · {yearOne}
             </p>
             <p className="px-vat">{vatNote}</p>
           </button>
@@ -317,7 +317,7 @@ export default function PricingExplorer({
                 disabled={langCount <= langMin}
                 onClick={() => setLangCount((n) => Math.max(langMin, n - 1))}
               >
-                \u2212
+                −
               </button>
               <span>{langCount}</span>
               <button
@@ -408,7 +408,7 @@ export default function PricingExplorer({
                   className="px-line-anim"
                 >
                   <span>
-                    {extraLanguageLabel} \u00d7 {extraLangs}
+                    {extraLanguageLabel} × {extraLangs}
                   </span>
                   <span>+{formatChf(extraMonthly, lang)}</span>
                 </motion.li>
