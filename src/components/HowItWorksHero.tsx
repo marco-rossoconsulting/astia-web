@@ -34,23 +34,23 @@ export default function HowItWorksHero({
         backgroundColor="transparent"
         color="#C41E3A"
         farColor="#7C1D1D"
-        count={64}
-        minSize={0.012}
-        maxSize={0.042}
-        spread={0.95}
-        sway={0.07}
+        count={120}
+        minSize={0.01}
+        maxSize={0.032}
+        spread={1.8}
+        sway={0.08}
         swayRate={0.45}
         depth={0.6}
-        coreSize={0.32}
-        coreSoftness={0.9}
-        glow={0.9}
-        glowFalloff={2.2}
-        fade={0.4}
-        gain={0.85}
-        bloom={0.15}
+        coreSize={0.3}
+        coreSoftness={0.85}
+        glow={0.8}
+        glowFalloff={2.6}
+        fade={0.22}
+        gain={0.9}
+        bloom={0.12}
         grain={0}
         vignette={0}
-        opacity={0.55}
+        opacity={0.68}
         speed={reduceMotion ? 0 : 0.55}
         cursorInteraction={!reduceMotion}
         cursorPush={0.08}
@@ -109,10 +109,10 @@ export default function HowItWorksHero({
           z-index: -1;
           pointer-events: none;
           background: radial-gradient(
-              ellipse 70% 60% at 50% 30%,
-              rgba(247, 245, 240, 0.2) 0%,
-              rgba(247, 245, 240, 0.55) 55%,
-              rgba(247, 245, 240, 0.92) 100%
+              ellipse 65% 60% at 50% 40%,
+              rgba(247, 245, 240, 0.4) 0%,
+              rgba(247, 245, 240, 0.14) 55%,
+              rgba(247, 245, 240, 0) 85%
             );
         }
         .hiw-hero-inner {
