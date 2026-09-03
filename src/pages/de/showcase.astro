@@ -9,7 +9,7 @@ const s = site.data as any;
 const portfolio = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
 
 const seo = {
-  title: { en: '', de: 'Showcase · Astia Web — Websites mit dem Astia-Stack', it: '' },
+  title: { en: '', de: 'Showcase \u00b7 Astia Web \u2014 Websites mit dem Astia-Stack', it: '' },
   description: { en: '', de: 'Entdecken Sie Websites, die mit dem Astia-Stack gebaut wurden. Schnell, modern, auf Conversion ausgelegt.', it: '' },
   ogImage: '/images/nature-led-experience-exploreans-retreat.jpg',
   ogImageAlt: { en: '', de: 'Astia Web Showcase', it: '' },
@@ -18,15 +18,14 @@ const seo = {
 <BaseLayout lang={lang} page="showcase" seo={seo} currentPath="/de/showcase">
   <section class="section hero-mesh" style="padding-top:140px; padding-bottom:60px;">
     <div class="container">
-      <span class="eyebrow eyebrow-rosso fade-in delay-1">Showcase</span>
-      <h1 class="display-1 fade-in delay-2" style="margin-top:24px; max-width:900px;">
+      <h1 class="display-1 fade-in delay-2" style="margin-top:0; max-width:900px;">
         Websites gebaut mit dem <span class="editorial-i">Astia-Stack</span>
       </h1>
       <p class="lede fade-in delay-3" style="margin-top:24px; max-width:600px;">
-        Schnelle, moderne Websites für Hospitality-Marken. Jede lädt in unter einer Sekunde, rankt höher bei Google und bringt mehr Direktbuchungen.
+        {'Schnelle, moderne Websites f\u00fcr Hospitality-Marken. Jede l\u00e4dt in unter einer Sekunde, rankt h\u00f6her bei Google und bringt mehr Direktbuchungen.'}
       </p>
       <div class="fade-in delay-4" style="margin-top:32px;">
-        <span class="perf-badge">{portfolio.length} Unterkünfte live · neue Showcases regelmässig</span>
+        <span class="perf-badge">{portfolio.length}{' Unterk\u00fcnfte live \u00b7 neue Showcases regelm\u00e4ssig'}</span>
       </div>
     </div>
   </section>
@@ -53,8 +52,8 @@ const seo = {
             <div class="portfolio-card" style="aspect-ratio:4/5; background:var(--ink); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; border:1px solid var(--ink); transition:all 0.3s;">
               <div style="font-family:'Editorial New',serif; font-style:italic; font-size:48px; color:var(--rosso); margin-bottom:20px;">+</div>
               <h3 style="font-family:'Editorial New',serif; font-size:28px; color:var(--paper); margin:0 0 12px; font-weight:400;">Ihre Unterkunft</h3>
-              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">Werden Sie Teil des Showcases. Jetzt bewerben und in 2–3 Wochen live.</p>
-              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">Jetzt bewerben →</span>
+              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">{'Werden Sie Teil des Showcases. Jetzt bewerben und in 2\u20133 Wochen live.'}</p>
+              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">{'Jetzt bewerben \u2192'}</span>
             </div>
           </a>
         </div>
@@ -66,12 +65,11 @@ const seo = {
 
   <section class="section section-cream">
     <div class="container-narrow reveal" style="text-align:center;">
-      <span class="eyebrow eyebrow-rosso">Loslegen</span>
-      <h2 class="display-2" style="margin-top:20px; margin-bottom:20px;">
+      <h2 class="display-2" style="margin-top:0; margin-bottom:20px;">
         Bereit, Ihre Unterkunft zu <span class="editorial-i">zeigen</span>?
       </h2>
       <p class="lede" style="margin-bottom:36px; max-width:520px; margin-left:auto; margin-right:auto;">
-        Jede Website, die wir bauen, wird Teil dieser Sammlung. Erzählen Sie uns von Ihrer Unterkunft — Antwort innert drei Arbeitstagen.
+        {'Jede Website, die wir bauen, wird Teil dieser Sammlung. Erz\u00e4hlen Sie uns von Ihrer Unterkunft \u2014 Antwort innert drei Arbeitstagen.'}
       </p>
       <a class="btn btn-primary btn-arrow" href="/de/apply">{s.cta.applyForSite[lang]}</a>
     </div>

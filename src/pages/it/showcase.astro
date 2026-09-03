@@ -18,15 +18,14 @@ const seo = {
 <BaseLayout lang={lang} page="showcase" seo={seo} currentPath="/it/showcase">
   <section class="section hero-mesh" style="padding-top:140px; padding-bottom:60px;">
     <div class="container">
-      <span class="eyebrow eyebrow-rosso fade-in delay-1">Showcase</span>
-      <h1 class="display-1 fade-in delay-2" style="margin-top:24px; max-width:900px;">
+      <h1 class="display-1 fade-in delay-2" style="margin-top:0; max-width:900px;">
         Siti costruiti con lo <span class="editorial-i">stack Astia</span>
       </h1>
       <p class="lede fade-in delay-3" style="margin-top:24px; max-width:600px;">
-        Siti veloci e moderni per brand dell'ospitalit\u00e0. Ognuno si carica in meno di un secondo, ranka pi\u00f9 in alto su Google e converte pi\u00f9 prenotazioni dirette.
+        {'Siti veloci e moderni per brand dell\'ospitalit\u00e0. Ognuno si carica in meno di un secondo, ranka pi\u00f9 in alto su Google e converte pi\u00f9 prenotazioni dirette.'}
       </p>
       <div class="fade-in delay-4" style="margin-top:32px;">
-        <span class="perf-badge">{portfolio.length} strutture live · nuovi showcase aggiunti regolarmente</span>
+        <span class="perf-badge">{portfolio.length}{' strutture live \u00b7 nuovi showcase aggiunti regolarmente'}</span>
       </div>
     </div>
   </section>
@@ -53,8 +52,8 @@ const seo = {
             <div class="portfolio-card" style="aspect-ratio:4/5; background:var(--ink); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; border:1px solid var(--ink); transition:all 0.3s;">
               <div style="font-family:'Editorial New',serif; font-style:italic; font-size:48px; color:var(--rosso); margin-bottom:20px;">+</div>
               <h3 style="font-family:'Editorial New',serif; font-size:28px; color:var(--paper); margin:0 0 12px; font-weight:400;">La tua struttura</h3>
-              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">Unisciti allo showcase. Candidati ora e lancia in 2–3 settimane.</p>
-              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">Candidati →</span>
+              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">{'Unisciti allo showcase. Candidati ora e lancia in 2\u20133 settimane.'}</p>
+              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">{'Candidati \u2192'}</span>
             </div>
           </a>
         </div>
@@ -66,8 +65,7 @@ const seo = {
 
   <section class="section section-cream">
     <div class="container-narrow reveal" style="text-align:center;">
-      <span class="eyebrow eyebrow-rosso">Inizia</span>
-      <h2 class="display-2" style="margin-top:20px; margin-bottom:20px;">
+      <h2 class="display-2" style="margin-top:0; margin-bottom:20px;">
         Pronti a <span class="editorial-i">mostrare</span> la vostra struttura?
       </h2>
       <p class="lede" style="margin-bottom:36px; max-width:520px; margin-left:auto; margin-right:auto;">

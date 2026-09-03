@@ -18,15 +18,14 @@ const seo = {
 <BaseLayout lang={lang} page="showcase" seo={seo} currentPath="/showcase">
   <section class="section hero-mesh" style="padding-top:140px; padding-bottom:60px;">
     <div class="container">
-      <span class="eyebrow eyebrow-rosso fade-in delay-1">Showcase</span>
-      <h1 class="display-1 fade-in delay-2" style="margin-top:24px; max-width:900px;">
+      <h1 class="display-1 fade-in delay-2" style="margin-top:0; max-width:900px;">
         Sites built on the <span class="editorial-i">Astia stack</span>
       </h1>
       <p class="lede fade-in delay-3" style="margin-top:24px; max-width:600px;">
         Fast, modern websites for hospitality brands. Each one loads in under a second, ranks higher on Google, and converts more direct bookings.
       </p>
       <div class="fade-in delay-4" style="margin-top:32px;">
-        <span class="perf-badge">{portfolio.length} properties live · new showcases added regularly</span>
+        <span class="perf-badge">{portfolio.length}{' properties live \u00b7 new showcases added regularly'}</span>
       </div>
     </div>
   </section>
@@ -54,8 +53,8 @@ const seo = {
             <div class="portfolio-card" style="aspect-ratio:4/5; background:var(--ink); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center; border:1px solid var(--ink); transition:all 0.3s;">
               <div style="font-family:'Editorial New',serif; font-style:italic; font-size:48px; color:var(--rosso); margin-bottom:20px;">+</div>
               <h3 style="font-family:'Editorial New',serif; font-size:28px; color:var(--paper); margin:0 0 12px; font-weight:400;">Your property</h3>
-              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">Join the showcase. Apply now and launch in 2–3 weeks.</p>
-              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">Apply →</span>
+              <p style="font-size:14px; color:var(--stone-soft); margin:0 0 24px; line-height:1.5;">{'Join the showcase. Apply now and launch in 2\u20133 weeks.'}</p>
+              <span class="btn btn-primary" style="background:var(--rosso); border-color:var(--rosso);">{'Apply \u2192'}</span>
             </div>
           </a>
         </div>
@@ -67,8 +66,7 @@ const seo = {
 
   <section class="section section-cream">
     <div class="container-narrow reveal" style="text-align:center;">
-      <span class="eyebrow eyebrow-rosso">Get started</span>
-      <h2 class="display-2" style="margin-top:20px; margin-bottom:20px;">
+      <h2 class="display-2" style="margin-top:0; margin-bottom:20px;">
         Ready to <span class="editorial-i">showcase</span> your property?
       </h2>
       <p class="lede" style="margin-bottom:36px; max-width:520px; margin-left:auto; margin-right:auto;">

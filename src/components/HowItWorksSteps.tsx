@@ -31,7 +31,6 @@ export interface HowItWorksStep {
 }
 
 interface HowItWorksStepsProps {
-  eyebrow?: string;
   headlinePre: string;
   headlineEm: string;
   lede: string;
@@ -178,7 +177,6 @@ function Vignette({ step }: { step: HowItWorksStep }) {
 }
 
 export default function HowItWorksSteps({
-  eyebrow,
   headlinePre,
   headlineEm,
   lede,
@@ -198,7 +196,6 @@ export default function HowItWorksSteps({
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: EASE }}
         >
-          {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
           <h2 id="hiw-heading" className="display-2">
             {headlinePre} <span className="editorial-i">{headlineEm}</span>
           </h2>
@@ -283,7 +280,6 @@ export default function HowItWorksSteps({
           max-width: 720px;
           margin: 0 auto 72px;
         }
-        .hiw-header .eyebrow { margin-bottom: 18px; }
         .hiw-header .display-2 { margin-bottom: 16px; }
         .hiw-header .lede { margin: 0 auto; max-width: 580px; }
         .hiw-grid {

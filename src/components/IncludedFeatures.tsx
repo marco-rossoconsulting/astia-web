@@ -40,7 +40,6 @@ export interface IncludedFeature {
 }
 
 interface IncludedFeaturesProps {
-  eyebrow: string;
   headlinePre: string;
   headlineEm: string;
   lede?: string;
@@ -52,7 +51,6 @@ function resolveIcon(name: string) {
 }
 
 export default function IncludedFeatures({
-  eyebrow,
   headlinePre,
   headlineEm,
   lede,
@@ -70,7 +68,6 @@ export default function IncludedFeatures({
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.55, ease: EASE }}
         >
-          {eyebrow ? <span className="section-num">{eyebrow}</span> : null}
           <h2 id="inc-heading" className="display-2">
             {headlinePre} <span className="editorial-i">{headlineEm}</span>
           </h2>

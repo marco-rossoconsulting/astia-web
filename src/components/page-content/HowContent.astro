@@ -23,8 +23,7 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 {/* HERO */}
 <section class="section" style="padding-top:110px; padding-bottom:60px;">
   <div class="container-narrow">
-    <span class="eyebrow eyebrow-rosso">{d.hero.eyebrow[lang]}</span>
-    <h1 class="display-1" style="margin-top:22px; margin-bottom:32px;">
+    <h1 class="display-1" style="margin-top:0; margin-bottom:32px;">
       {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
     </h1>
     <p class="lede">{d.hero.lede[lang]}</p>
@@ -36,7 +35,6 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 {/* TECHNICAL CASE */}
 <section class="section">
   <div class="container">
-    <span class="section-num reveal">{d.technical.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:12px;">
       {d.technical.h2pre[lang]} <span class="editorial-i">{d.technical.h2em[lang]}</span>
     </h2>
@@ -61,7 +59,6 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 {/* WHAT'S INCLUDED */}
 <IncludedFeatures
   client:visible
-  eyebrow={d.included.num[lang]}
   headlinePre={d.included.h2pre[lang]}
   headlineEm={d.included.h2em[lang]}
   features={includedFeatures}
@@ -72,7 +69,6 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 {/* BOOKING MATH */}
 <section class="section section-cream">
   <div class="container">
-    <span class="section-num reveal">{d.bookingMath.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:48px;">
       {d.bookingMath.h2pre[lang]} <span class="editorial-i">{d.bookingMath.h2em[lang]}</span>
     </h2>
@@ -93,7 +89,6 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 {/* ABOUT */}
 <section class="section">
   <div class="container-narrow">
-    <span class="section-num reveal">{d.about.num[lang]}</span>
     <h2 class="display-2 reveal" style="margin-bottom:24px;">
       {d.about.h2pre[lang]} <span class="editorial-i">{d.about.h2em[lang]}</span>
     </h2>
