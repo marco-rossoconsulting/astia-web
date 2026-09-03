@@ -18,10 +18,26 @@
     }
   },
   "hero": {
-    "eyebrow": { "en": "Apply for a site", "de": "Für eine Site bewerben", "it": "Candida la tua struttura" },
-    "headlinePre": { "en": "Tell us about your ", "de": "Erzählen Sie uns von Ihrem ", "it": "Raccontateci della vostra " },
-    "headlineEm": { "en": "property.", "de": "Haus.", "it": "struttura." },
-    "headlinePost": { "en": "", "de": "", "it": "" },
+    "eyebrow": {
+      "en": "Apply for a site",
+      "de": "Für eine Site bewerben",
+      "it": "Candida la tua struttura"
+    },
+    "headlinePre": {
+      "en": "Tell us about your ",
+      "de": "Erzählen Sie uns von Ihrem ",
+      "it": "Raccontateci della vostra "
+    },
+    "headlineEm": {
+      "en": "property.",
+      "de": "Haus.",
+      "it": "struttura."
+    },
+    "headlinePost": {
+      "en": "",
+      "de": "",
+      "it": ""
+    },
     "lede": {
       "en": "We review every application personally, respond within three business days, and we'll be honest about whether Astia is the right fit before either of us commits.",
       "de": "Wir lesen jede Bewerbung persönlich, antworten innerhalb von drei Werktagen, und sagen ehrlich, ob Astia für Sie passt, bevor sich einer von uns verpflichtet.",
@@ -35,42 +51,129 @@
   },
   "form": {
     "sections": {
-      "property": { "en": "Your property", "de": "Ihr Haus", "it": "La vostra struttura" },
-      "broken": { "en": "What's broken", "de": "Was nicht funktioniert", "it": "Cosa non funziona" },
-      "you": { "en": "You", "de": "Sie", "it": "Voi" }
+      "property": {
+        "en": "Your property",
+        "de": "Ihr Haus",
+        "it": "La vostra struttura"
+      },
+      "broken": {
+        "en": "What's broken",
+        "de": "Was nicht funktioniert",
+        "it": "Cosa non funziona"
+      },
+      "you": {
+        "en": "You",
+        "de": "Sie",
+        "it": "Voi"
+      },
+      "package": {
+        "en": "Your estimate",
+        "de": "Ihre Schätzung",
+        "it": "La vostra stima"
+      }
     },
     "fields": {
       "propertyName": {
-        "label": { "en": "Property name", "de": "Name des Hauses", "it": "Nome della struttura" },
+        "label": {
+          "en": "Property name",
+          "de": "Name des Hauses",
+          "it": "Nome della struttura"
+        },
         "required": true
       },
       "propertyType": {
-        "label": { "en": "Type", "de": "Art", "it": "Tipo" },
+        "label": {
+          "en": "Type",
+          "de": "Art",
+          "it": "Tipo"
+        },
         "options": {
-          "en": ["Boutique hotel", "Bed & Breakfast", "Lodge / Camp", "Restaurant", "Retreat", "Multiple properties", "Other"],
-          "de": ["Boutique-Hotel", "Bed & Breakfast", "Lodge / Camp", "Restaurant", "Retreat", "Mehrere Häuser", "Andere"],
-          "it": ["Boutique hotel", "Bed & Breakfast", "Lodge / Camp", "Ristorante", "Retreat", "Più strutture", "Altro"]
+          "en": [
+            "Boutique hotel",
+            "Bed & Breakfast",
+            "Lodge / Camp",
+            "Restaurant",
+            "Retreat",
+            "Multiple properties",
+            "Other"
+          ],
+          "de": [
+            "Boutique-Hotel",
+            "Bed & Breakfast",
+            "Lodge / Camp",
+            "Restaurant",
+            "Retreat",
+            "Mehrere Häuser",
+            "Andere"
+          ],
+          "it": [
+            "Boutique hotel",
+            "Bed & Breakfast",
+            "Lodge / Camp",
+            "Ristorante",
+            "Retreat",
+            "Più strutture",
+            "Altro"
+          ]
         }
       },
       "rooms": {
-        "label": { "en": "Rooms", "de": "Zimmer", "it": "Camere" },
+        "label": {
+          "en": "Rooms",
+          "de": "Zimmer",
+          "it": "Camere"
+        },
         "options": {
-          "en": ["1–15", "16–30", "31–50", "50+", "Not applicable"],
-          "de": ["1–15", "16–30", "31–50", "50+", "Nicht zutreffend"],
-          "it": ["1–15", "16–30", "31–50", "50+", "Non applicabile"]
+          "en": [
+            "1–15",
+            "16–30",
+            "31–50",
+            "50+",
+            "Not applicable"
+          ],
+          "de": [
+            "1–15",
+            "16–30",
+            "31–50",
+            "50+",
+            "Nicht zutreffend"
+          ],
+          "it": [
+            "1–15",
+            "16–30",
+            "31–50",
+            "50+",
+            "Non applicabile"
+          ]
         }
       },
       "location": {
-        "label": { "en": "Location (city, country)", "de": "Standort (Stadt, Land)", "it": "Località (città, paese)" }
+        "label": {
+          "en": "Location (city, country)",
+          "de": "Standort (Stadt, Land)",
+          "it": "Località (città, paese)"
+        }
       },
       "website": {
-        "label": { "en": "Current website (if any)", "de": "Aktuelle Website (falls vorhanden)", "it": "Sito web attuale (se esiste)" }
+        "label": {
+          "en": "Current website (if any)",
+          "de": "Aktuelle Website (falls vorhanden)",
+          "it": "Sito web attuale (se esiste)"
+        }
       },
       "bookingEngine": {
-        "label": { "en": "Booking engine (if any)", "de": "Buchungssystem (falls vorhanden)", "it": "Booking engine (se esiste)" }
+        "label": {
+          "en": "Booking engine (if any)",
+          "de": "Buchungssystem (falls vorhanden)",
+          "it": "Booking engine (se esiste)"
+        }
       },
       "whatsBroken": {
-        "label": { "en": "What's not working with your current setup?", "de": "Was funktioniert mit Ihrem aktuellen Setup nicht?", "it": "Cosa non funziona con il vostro setup attuale?" },
+        "label": {
+          "en": "What's not working with your current setup?",
+          "de": "Was funktioniert mit Ihrem aktuellen Setup nicht?",
+          "it": "Cosa non funziona con il vostro setup attuale?"
+        },
         "required": true,
         "placeholder": {
           "en": "Speed? Costs? Difficult to update? Bad on mobile? Be honest — we've heard everything.",
@@ -79,7 +182,11 @@
         }
       },
       "goal": {
-        "label": { "en": "If everything went well in 90 days, what would have changed?", "de": "Wenn in 90 Tagen alles gut läuft — was hätte sich verändert?", "it": "Se tutto andasse bene tra 90 giorni, cosa sarebbe cambiato?" },
+        "label": {
+          "en": "If everything went well in 90 days, what would have changed?",
+          "de": "Wenn in 90 Tagen alles gut läuft — was hätte sich verändert?",
+          "it": "Se tutto andasse bene tra 90 giorni, cosa sarebbe cambiato?"
+        },
         "placeholder": {
           "en": "More direct bookings? Less time editing? A site you're proud to share?",
           "de": "Mehr Direktbuchungen? Weniger Zeit beim Editieren? Ein Site, den Sie stolz teilen können?",
@@ -87,26 +194,63 @@
         }
       },
       "name": {
-        "label": { "en": "Your name", "de": "Ihr Name", "it": "Il vostro nome" },
+        "label": {
+          "en": "Your name",
+          "de": "Ihr Name",
+          "it": "Il vostro nome"
+        },
         "required": true
       },
       "role": {
-        "label": { "en": "Your role", "de": "Ihre Rolle", "it": "Il vostro ruolo" }
+        "label": {
+          "en": "Your role",
+          "de": "Ihre Rolle",
+          "it": "Il vostro ruolo"
+        }
       },
       "email": {
-        "label": { "en": "Email", "de": "E-Mail", "it": "Email" },
+        "label": {
+          "en": "Email",
+          "de": "E-Mail",
+          "it": "Email"
+        },
         "required": true
       },
       "phone": {
-        "label": { "en": "Phone (optional, for fast response)", "de": "Telefon (optional, für schnelle Antwort)", "it": "Telefono (opzionale, per risposta rapida)" }
+        "label": {
+          "en": "Phone (optional, for fast response)",
+          "de": "Telefon (optional, für schnelle Antwort)",
+          "it": "Telefono (opzionale, per risposta rapida)"
+        }
       }
     },
-    "optional": { "en": "optional", "de": "optional", "it": "opzionale" },
-    "submit": { "en": "Send application", "de": "Bewerbung senden", "it": "Invia candidatura" }
+    "optional": {
+      "en": "optional",
+      "de": "optional",
+      "it": "opzionale"
+    },
+    "submit": {
+      "en": "Send application",
+      "de": "Bewerbung senden",
+      "it": "Invia candidatura"
+    },
+    "packageNote": {
+      "en": "Carried over from the pricing page. Close indication — final pricing depends on scope and is sent after the first discovery conversation.",
+      "de": "Übernommen von der Preisseite. Richtwert — der endgültige Preis hängt vom Umfang ab und wird nach dem ersten Discovery-Gespräch übermittelt.",
+      "it": "Ripreso dalla pagina prezzi. Indicazione di massima — il prezzo finale dipende dallo scope e viene inviato dopo il primo colloquio di discovery."
+    }
   },
   "thankYou": {
-    "eyebrow": { "en": "Received", "de": "Eingegangen", "it": "Ricevuta" },
-    "thanks": { "en": "Thank you,", "de": "Danke,", "it": "Grazie," },
+    "eyebrow": {
+      "en": "Received",
+      "de": "Eingegangen",
+      "it": "Ricevuta"
+    },
+    "thanks": {
+      "en": "Thank you,",
+      "de": "Danke,",
+      "it": "Grazie,"
+    },
     "body1": {
       "en": "We've received your application for ",
       "de": "Wir haben Ihre Bewerbung für ",

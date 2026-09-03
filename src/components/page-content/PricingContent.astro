@@ -1,8 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import TierDetail from '@components/TierDetail.astro';
-import AddOn from '@components/AddOn.astro';
-import FAQ from '@components/FAQ.astro';
+import PricingExplorer from '@components/PricingExplorer.tsx';
 
 interface Props { lang: 'en' | 'de' | 'it'; }
 const { lang } = Astro.props;
@@ -12,159 +10,68 @@ const site = await getEntry('site', 'general');
 const d = pricing.data as any;
 const cta = (site.data as any).cta;
 const url = (p: string) => (lang === 'en' ? '' : `/${lang}`) + ({ apply: '/apply' } as any)[p];
+const b = d.builder;
+
+const explorerSizes = [
+  { label: d.matrix.sizes.small[lang], self: Number(d.matrix.prices.selfSmall), managed: Number(d.matrix.prices.managedSmall) },
+  { label: d.matrix.sizes.medium[lang], self: Number(d.matrix.prices.selfMedium), managed: Number(d.matrix.prices.managedMedium) },
+  { label: d.matrix.sizes.large[lang], self: Number(d.matrix.prices.selfLarge), managed: Number(d.matrix.prices.managedLarge) },
+];
 ---
-{/* HERO */}
-<section class="section" style="padding-top:110px; padding-bottom:56px;">
-  <div class="container-narrow">
-    <h1 class="display-1" style="margin-top:0; margin-bottom:32px;">
-      {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
-    </h1>
-    <p class="lede">{d.hero.lede[lang]}</p>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* MATRIX — visual redesign */}
-<section class="section">
+<section class="section" style="padding-top:110px; padding-bottom:96px;">
   <div class="container">
-    <h2 class="display-2 reveal" style="margin-bottom:12px;">
-      {d.matrix.h2pre[lang]} <span class="editorial-i">{d.matrix.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:680px; margin-bottom:48px;">{d.matrix.intro[lang]}</p>
+    <header style="max-width:720px; margin:0 0 40px;">
+      <h1 class="display-1" style="margin-top:0; margin-bottom:24px;">
+        {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
+      </h1>
+      <p class="lede" style="margin-bottom:0;">{d.hero.lede[lang]}</p>
+    </header>
 
-    <div class="matrix-wrap reveal">
-      {/* Header */}
-      <div class="matrix-row">
-        <div class="matrix-cell matrix-head"></div>
-        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.small[lang]}</div>
-        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.medium[lang]}</div>
-        <div class="matrix-cell matrix-head" style="text-align:center;">{d.matrix.sizes.large[lang]}</div>
-      </div>
-      {/* Self-Serve */}
-      <div class="matrix-row">
-        <div class="matrix-cell matrix-label">
-          <div class="matrix-tier">{d.matrix.selfTier[lang]}</div>
-          <div class="matrix-tier-sub">{d.matrix.selfTagline[lang]}</div>
-        </div>
-        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfSmall}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfMedium}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price">{d.matrix.currency} {d.matrix.prices.selfLarge}{d.matrix.perMonth[lang]}</div>
-      </div>
-      {/* Managed */}
-      <div class="matrix-row" style="background:var(--cream);">
-        <div class="matrix-cell matrix-label">
-          <span class="matrix-badge">{d.matrix.recommended[lang]}</span>
-          <div class="matrix-tier">{d.matrix.managedTier[lang]}</div>
-          <div class="matrix-tier-sub">{d.matrix.managedTagline[lang]}</div>
-        </div>
-        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedSmall}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedMedium}{d.matrix.perMonth[lang]}</div>
-        <div class="matrix-cell matrix-price highlight">{d.matrix.currency} {d.matrix.prices.managedLarge}{d.matrix.perMonth[lang]}</div>
-      </div>
-    </div>
-
-    {/* Savings callout */}
-    <div class="savings-callout reveal" style="margin-top:48px;">
-      <div>
-        <h3>{lang === 'en' ? 'Save CHF 10,000+ in year one' : lang === 'de' ? 'Sparen Sie CHF 10.000+ im ersten Jahr' : 'Risparmiate CHF 10.000+ nel primo anno'}</h3>
-        <p>{lang === 'en' ? 'Compared to a typical agency retainer. Same craft, no upfront cost, no surprise invoices.' : lang === 'de' ? 'Im Vergleich zu einem typischen Agentur-Wartungsvertrag. Gleiche Qualität, keine Anschaffungskosten, keine Überraschungsrechnungen.' : 'Rispetto a un tipico canone di manutenzione di agenzia. Stessa qualità, nessun costo iniziale, nessuna fattura a sorpresa.'}</p>
-      </div>
-      <div style="text-align:right;">
-        <div class="savings-stat">CHF 0</div>
-        <div class="trust-label" style="color:var(--paper); opacity:0.7;">{lang === 'en' ? 'Upfront cost' : lang === 'de' ? 'Anschaffungskosten' : 'Costo iniziale'}</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* TIER DETAIL */}
-<section class="section section-cream">
-  <div class="container">
-    <h2 class="display-2 reveal" style="margin-bottom:48px;">
-      {d.tierDetail.h2pre[lang]} <span class="editorial-i">{d.tierDetail.h2em[lang]}</span>
-    </h2>
-
-    <div class="grid-2 reveal">
-      <TierDetail
-        title={d.tierDetail.self.title[lang]}
-        tagline={d.tierDetail.self.tagline[lang]}
-        good={d.tierDetail.self.good[lang]}
-        bad={d.tierDetail.self.bad[lang]}
-      />
-      <TierDetail
-        title={d.tierDetail.managed.title[lang]}
-        tagline={d.tierDetail.managed.tagline[lang]}
-        good={d.tierDetail.managed.good[lang]}
-        recommended
-      />
-    </div>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* BOOKING ENGINES */}
-<section class="section">
-  <div class="container">
-    <h2 class="display-2 reveal" style="margin-bottom:12px;">
-      {d.bookingEngines.h2pre[lang]} <span class="editorial-i">{d.bookingEngines.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:580px; margin-bottom:48px;">{d.bookingEngines.intro[lang]}</p>
-
-    <div class="grid-2 reveal">
-      <div class="card">
-        <span class="caption text-rosso" style="margin-bottom:12px; display:block;">{d.bookingEngines.simpleBooking.tag[lang]}</span>
-        <h3 style="font-family:'Editorial New', serif; font-size:24px; margin:0 0 14px; font-weight:400;">{d.bookingEngines.simpleBooking.title[lang]}</h3>
-        <p class="body-sm" style="margin-bottom:18px;">{d.bookingEngines.simpleBooking.body[lang]}</p>
-        <div style="font-family:'JetBrains Mono', monospace; color:var(--rosso); font-size:16px;">{d.bookingEngines.simpleBooking.price[lang]}</div>
-      </div>
-      <div class="card card-cream">
-        <h3 style="font-family:'Editorial New', serif; font-size:24px; margin:0 0 14px; font-weight:400;">{d.bookingEngines.others.title[lang]}</h3>
-        <p class="body-sm" style="margin-bottom:14px;">{d.bookingEngines.others.list[lang]}</p>
-        <p class="body-sm" style="margin-bottom:18px;">{d.bookingEngines.others.body[lang]}</p>
-        <div style="font-family:'JetBrains Mono', monospace; color:var(--ink); font-size:14px;">{d.bookingEngines.others.price[lang]}</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* ADD-ONS */}
-<section class="section section-cream">
-  <div class="container-narrow">
-    <h2 class="display-2 reveal" style="margin-bottom:48px;">
-      {d.addons.h2pre[lang]} <span class="editorial-i">{d.addons.h2em[lang]}</span>
-    </h2>
-
-    <div class="reveal">
-      {d.addons.items.map((a: any) => (
-        <AddOn title={a.title[lang]} body={a.body[lang]} price={a.price[lang]} />
-      ))}
-    </div>
-  </div>
-</section>
-
-<hr class="rule" />
-
-{/* FAQ */}
-<section class="section">
-  <div class="container-narrow">
-    <h2 class="display-2 reveal" style="margin-bottom:48px;">
-      {d.faq.h2pre[lang]} <span class="editorial-i">{d.faq.h2em[lang]}</span>
-    </h2>
-
-    <div class="reveal">
-      {d.faq.items.map((item: any) => (
-        <FAQ q={item.q[lang]} a={item.a[lang]} />
-      ))}
-    </div>
-
-    <div class="reveal" style="margin-top:64px; text-align:center;">
-      <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
-    </div>
+    <PricingExplorer
+      client:load
+      lang={lang}
+      sizeAria={d.explorer.sizeAria[lang]}
+      currency={d.matrix.currency}
+      perMonth={d.matrix.perMonth[lang]}
+      yearOne={d.explorer.yearOne[lang]}
+      vatNote={d.explorer.vatNote[lang]}
+      disclaimer={d.explorer.disclaimer[lang]}
+      recommended={d.matrix.recommended[lang]}
+      typicalLabel={d.explorer.typical[lang]}
+      selfTitle={d.matrix.selfTier[lang]}
+      selfTagline={d.matrix.selfTagline[lang]}
+      selfFeatures={d.tierDetail.self.good[lang]}
+      managedTitle={d.matrix.managedTier[lang]}
+      managedTagline={d.matrix.managedTagline[lang]}
+      managedFeatures={d.tierDetail.managed.good[lang]}
+      applyLabel={cta.applyForSite[lang]}
+      applyHref={url('apply')}
+      sizes={explorerSizes}
+      defaultIndex={1}
+      upfrontLabel={d.explorer.upfront[lang]}
+      builderHeadlinePre={d.addons.h2pre[lang]}
+      builderHeadlineEm={d.addons.h2em[lang]}
+      builderLede={d.addons.lede[lang]}
+      coreLabel={b.coreLabel[lang]}
+      includedBadge={b.included[lang]}
+      planTitle={b.planTitle[lang]}
+      billedLabel={b.billed[lang]}
+      totalLabel={b.total[lang]}
+      oneTimeLabel={b.oneTime[lang]}
+      quotedLabel={b.quoted[lang]}
+      languagesName={d.addons.items[0].title[lang]}
+      languagesBlurb={d.addons.items[0].body[lang]}
+      languagesIncluded={b.languagesIncluded[lang]}
+      extraLanguageLabel={b.extraLanguage[lang]}
+      photoName={d.addons.items[1].title[lang]}
+      photoBlurb={d.addons.items[1].body[lang]}
+      photoFromLabel={b.fromLabel[lang]}
+      customName={d.addons.items[2].title[lang]}
+      customBlurb={d.addons.items[2].body[lang]}
+      langMin={b.langMin}
+      langMax={b.langMax}
+      langExtraMonthly={b.langExtraMonthly}
+      photoAmount={b.photoAmount}
+    />
   </div>
 </section>

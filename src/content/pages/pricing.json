@@ -18,27 +18,63 @@
     }
   },
   "hero": {
-    "eyebrow": { "en": "Pricing", "de": "Preise", "it": "Prezzi" },
-    "headlinePre": { "en": "Predictable monthly.", "de": "Planbare Monatsgebühr.", "it": "Mensilità prevedibile." },
-    "headlineEm": { "en": "No surprise invoices.", "de": "Keine Überraschungen.", "it": "Nessuna fattura sorpresa." },
-    "headlinePost": { "en": "", "de": "", "it": "" },
+    "eyebrow": {
+      "en": "Pricing",
+      "de": "Preise",
+      "it": "Prezzi"
+    },
+    "headlinePre": {
+      "en": "Predictable monthly.",
+      "de": "Planbare Monatsgebühr.",
+      "it": "Mensilità prevedibile."
+    },
+    "headlineEm": {
+      "en": "No surprise invoices.",
+      "de": "Keine Überraschungen.",
+      "it": "Nessuna fattura sorpresa."
+    },
+    "headlinePost": {
+      "en": "",
+      "de": "",
+      "it": ""
+    },
     "lede": {
-      "en": "Six prices. Two service tiers. Three property sizes. The grid below covers about 95% of independent hotels and B&Bs. For groups, multi-property arrangements, or properties above 80 rooms, applications are reviewed individually.",
-      "de": "Sechs Preise. Zwei Service-Stufen. Drei Hausgrössen. Das Raster unten deckt etwa 95% der unabhängigen Hotels und B&Bs ab. Für Gruppen, Multi-Property-Arrangements oder Häuser über 80 Zimmer werden Bewerbungen individuell geprüft.",
-      "it": "Sei prezzi. Due livelli di servizio. Tre dimensioni di struttura. La griglia sotto copre circa il 95% degli hotel indipendenti e B&B. Per gruppi, accordi multi-struttura, o strutture sopra 80 camere, le candidature sono valutate individualmente."
+      "en": "Slide to your property size. Two published tiers, three sizes. Figures are close indications — final prices depend on scope and are sent after the first discovery conversation. Groups, multi-property setups, and houses above 80 rooms are quoted individually.",
+      "de": "Schieben Sie auf Ihre Hausgrösse. Zwei Stufen, drei Grössen. Die Beträge sind Richtwerte — der endgültige Preis hängt vom Umfang ab und wird nach dem ersten Discovery-Gespräch übermittelt. Gruppen, Multi-Property-Setups und Häuser über 80 Zimmer werden individuell offeriert.",
+      "it": "Scorrete fino alla dimensione della struttura. Due livelli, tre dimensioni. Le cifre sono indicazioni di massima — il prezzo finale dipende dallo scope e viene inviato dopo il primo colloquio di discovery. Gruppi, setup multi-struttura e case sopra le 80 camere sono quotati individualmente."
     }
   },
   "matrix": {
-    "num": { "en": "01 — The matrix", "de": "01 — Die Matrix", "it": "01 — La matrice" },
-    "h2pre": { "en": "Pick a tier.", "de": "Wählen Sie eine Stufe.", "it": "Scegliete un livello." },
-    "h2em": { "en": "Pick a size.", "de": "Wählen Sie eine Grösse.", "it": "Scegliete una dimensione." },
+    "num": {
+      "en": "01 — The matrix",
+      "de": "01 — Die Matrix",
+      "it": "01 — La matrice"
+    },
+    "h2pre": {
+      "en": "Slide your size.",
+      "de": "Wählen Sie die Grösse.",
+      "it": "Scegliete la dimensione."
+    },
+    "h2em": {
+      "en": "See both tiers.",
+      "de": "Sehen Sie beide Stufen.",
+      "it": "Vedete entrambi i livelli."
+    },
     "intro": {
       "en": "All prices are monthly, in Swiss Francs, ex. VAT. Initial term: twelve months. After year one, month-to-month with 30 days notice. Switch tiers up or down at any month boundary.",
       "de": "Alle Preise sind monatlich, in Schweizer Franken, exkl. MwSt. Mindestlaufzeit: zwölf Monate. Danach monatlich kündbar mit 30 Tagen Frist. Wechsel der Stufe nach oben oder unten zu jedem Monatswechsel.",
       "it": "Tutti i prezzi sono mensili, in franchi svizzeri, IVA esclusa. Durata iniziale: dodici mesi. Dopo il primo anno, mensile con preavviso di 30 giorni. Cambio di livello in su o in giù ad ogni inizio mese."
     },
-    "selfTier": { "en": "Self-Serve", "de": "Self-Serve", "it": "Self-Serve" },
-    "managedTier": { "en": "Managed", "de": "Managed", "it": "Managed" },
+    "selfTier": {
+      "en": "Self-Serve",
+      "de": "Self-Serve",
+      "it": "Self-Serve"
+    },
+    "managedTier": {
+      "en": "Managed",
+      "de": "Managed",
+      "it": "Managed"
+    },
     "selfTagline": {
       "en": "You edit, via Sveltia CMS. We host, secure, refresh annually.",
       "de": "Sie editieren, via Sveltia CMS. Wir hosten, sichern, frischen jährlich auf.",
@@ -49,11 +85,27 @@
       "de": "Sie schreiben uns. AI-Agenten und wir erledigen jede Anpassung, innerhalb von 24 Stunden.",
       "it": "Voi scrivete. Agenti IA e noi gestiamo ogni modifica, entro 24 ore."
     },
-    "recommended": { "en": "Recommended", "de": "Empfohlen", "it": "Consigliato" },
+    "recommended": {
+      "en": "Recommended",
+      "de": "Empfohlen",
+      "it": "Consigliato"
+    },
     "sizes": {
-      "small": { "en": "Up to 15 rooms", "de": "Bis zu 15 Zimmer", "it": "Fino a 15 camere" },
-      "medium": { "en": "Up to 30 rooms", "de": "Bis zu 30 Zimmer", "it": "Fino a 30 camere" },
-      "large": { "en": "50+ rooms", "de": "50+ Zimmer", "it": "50+ camere" }
+      "small": {
+        "en": "Up to 15 rooms",
+        "de": "Bis zu 15 Zimmer",
+        "it": "Fino a 15 camere"
+      },
+      "medium": {
+        "en": "Up to 30 rooms",
+        "de": "Bis zu 30 Zimmer",
+        "it": "Fino a 30 camere"
+      },
+      "large": {
+        "en": "50+ rooms",
+        "de": "50+ Zimmer",
+        "it": "50+ camere"
+      }
     },
     "prices": {
       "selfSmall": "150",
@@ -64,65 +116,162 @@
       "managedLarge": "550"
     },
     "currency": "CHF",
-    "perMonth": { "en": "/ month", "de": "/ Monat", "it": "/ mese" }
+    "perMonth": {
+      "en": "/ month",
+      "de": "/ Monat",
+      "it": "/ mese"
+    }
   },
   "tierDetail": {
-    "num": { "en": "02 — What each tier includes", "de": "02 — Was jede Stufe enthält", "it": "02 — Cosa include ogni livello" },
-    "h2pre": { "en": "Self-Serve or", "de": "Self-Serve oder", "it": "Self-Serve o" },
-    "h2em": { "en": "Managed.", "de": "Managed.", "it": "Managed." },
+    "num": {
+      "en": "02 — What each tier includes",
+      "de": "02 — Was jede Stufe enthält",
+      "it": "02 — Cosa include ogni livello"
+    },
+    "h2pre": {
+      "en": "Self-Serve or",
+      "de": "Self-Serve oder",
+      "it": "Self-Serve o"
+    },
+    "h2em": {
+      "en": "Managed.",
+      "de": "Managed.",
+      "it": "Managed."
+    },
     "self": {
-      "title": { "en": "Self-Serve", "de": "Self-Serve", "it": "Self-Serve" },
+      "title": {
+        "en": "Self-Serve",
+        "de": "Self-Serve",
+        "it": "Self-Serve"
+      },
       "tagline": {
         "en": "Sites where the team is comfortable editing content themselves.",
         "de": "Seiten, bei denen das Team selbst Inhalte editieren möchte.",
         "it": "Siti dove il team è a suo agio modificando i contenuti."
       },
       "good": {
-        "en": ["Full Sveltia CMS access — unlimited team members", "Hosting, SSL, daily Git backups", "Performance monitoring + quarterly reports", "Annual design check-in", "Email support, 24h response"],
-        "de": ["Voller Sveltia-CMS-Zugang — unbegrenzte Teammitglieder", "Hosting, SSL, tägliche Git-Backups", "Performance-Monitoring + Quartalsberichte", "Jährlicher Design-Check", "E-Mail-Support, 24h-Antwort"],
-        "it": ["Accesso completo a Sveltia CMS — membri del team illimitati", "Hosting, SSL, backup Git quotidiani", "Monitoraggio performance + report trimestrali", "Check di design annuale", "Supporto via email, risposta in 24h"]
+        "en": [
+          "Full Sveltia CMS access — unlimited team members",
+          "Hosting, SSL, daily Git backups",
+          "Performance monitoring + quarterly reports",
+          "Annual design check-in",
+          "Email support, 24h response"
+        ],
+        "de": [
+          "Voller Sveltia-CMS-Zugang — unbegrenzte Teammitglieder",
+          "Hosting, SSL, tägliche Git-Backups",
+          "Performance-Monitoring + Quartalsberichte",
+          "Jährlicher Design-Check",
+          "E-Mail-Support, 24h-Antwort"
+        ],
+        "it": [
+          "Accesso completo a Sveltia CMS — membri del team illimitati",
+          "Hosting, SSL, backup Git quotidiani",
+          "Monitoraggio performance + report trimestrali",
+          "Check di design annuale",
+          "Supporto via email, risposta in 24h"
+        ]
       },
       "bad": {
-        "en": ["No AI-managed edits", "No email-to-edit workflow"],
-        "de": ["Keine AI-verwalteten Anpassungen", "Kein E-Mail-zu-Änderung-Workflow"],
-        "it": ["Nessuna modifica gestita dall'IA", "Nessun workflow email-to-edit"]
+        "en": [
+          "No AI-managed edits",
+          "No email-to-edit workflow"
+        ],
+        "de": [
+          "Keine AI-verwalteten Anpassungen",
+          "Kein E-Mail-zu-Änderung-Workflow"
+        ],
+        "it": [
+          "Nessuna modifica gestita dall'IA",
+          "Nessun workflow email-to-edit"
+        ]
       }
     },
     "managed": {
-      "title": { "en": "Managed", "de": "Managed", "it": "Managed" },
+      "title": {
+        "en": "Managed",
+        "de": "Managed",
+        "it": "Managed"
+      },
       "tagline": {
         "en": "Sites where you want to send a message and have it handled.",
         "de": "Seiten, bei denen Sie eine Nachricht senden und es erledigen lassen möchten.",
         "it": "Siti dove volete inviare un messaggio e farlo gestire."
       },
       "good": {
-        "en": ["Everything in Self-Serve", "AI agents handle daily edits — email, WhatsApp, or CMS", "Human review on every change", "Booking-engine monitoring", "Direct line for urgent requests"],
-        "de": ["Alles aus Self-Serve", "AI-Agenten erledigen tägliche Anpassungen — E-Mail, WhatsApp oder CMS", "Menschliche Review bei jeder Änderung", "Buchungssystem-Überwachung", "Direkte Leitung für dringende Anfragen"],
-        "it": ["Tutto quello di Self-Serve", "Agenti IA gestiscono le modifiche quotidiane — email, WhatsApp o CMS", "Revisione umana su ogni modifica", "Monitoraggio booking engine", "Linea diretta per richieste urgenti"]
+        "en": [
+          "Everything in Self-Serve",
+          "AI agents handle daily edits — email, WhatsApp, or CMS",
+          "Human review on every change",
+          "Booking-engine monitoring",
+          "Direct line for urgent requests"
+        ],
+        "de": [
+          "Alles aus Self-Serve",
+          "AI-Agenten erledigen tägliche Anpassungen — E-Mail, WhatsApp oder CMS",
+          "Menschliche Review bei jeder Änderung",
+          "Buchungssystem-Überwachung",
+          "Direkte Leitung für dringende Anfragen"
+        ],
+        "it": [
+          "Tutto quello di Self-Serve",
+          "Agenti IA gestiscono le modifiche quotidiane — email, WhatsApp o CMS",
+          "Revisione umana su ogni modifica",
+          "Monitoraggio booking engine",
+          "Linea diretta per richieste urgenti"
+        ]
       }
     }
   },
   "bookingEngines": {
-    "num": { "en": "03 — Booking engines", "de": "03 — Booking-Systeme", "it": "03 — Booking engine" },
-    "h2pre": { "en": "We integrate with", "de": "Wir integrieren mit", "it": "Integriamo con" },
-    "h2em": { "en": "whatever you already run.", "de": "was Sie bereits einsetzen.", "it": "qualunque sistema usiate già." },
+    "num": {
+      "en": "03 — Booking engines",
+      "de": "03 — Booking-Systeme",
+      "it": "03 — Booking engine"
+    },
+    "h2pre": {
+      "en": "We integrate with",
+      "de": "Wir integrieren mit",
+      "it": "Integriamo con"
+    },
+    "h2em": {
+      "en": "whatever you already run.",
+      "de": "was Sie bereits einsetzen.",
+      "it": "qualunque sistema usiate già."
+    },
     "intro": {
       "en": "We don't tie you to a booking engine. Pick the one that fits your operation; we'll integrate it.",
       "de": "Wir binden Sie nicht an ein Buchungssystem. Wählen Sie das, das zu Ihrem Betrieb passt; wir integrieren es.",
       "it": "Non vi vincoliamo a un booking engine. Scegliete quello che si adatta alla vostra operatività; lo integriamo noi."
     },
     "simpleBooking": {
-      "title": { "en": "SimpleBooking", "de": "SimpleBooking", "it": "SimpleBooking" },
-      "tag": { "en": "Partner integration", "de": "Partner-Integration", "it": "Integrazione partner" },
+      "title": {
+        "en": "SimpleBooking",
+        "de": "SimpleBooking",
+        "it": "SimpleBooking"
+      },
+      "tag": {
+        "en": "Partner integration",
+        "de": "Partner-Integration",
+        "it": "Integrazione partner"
+      },
       "body": {
         "en": "Through our partnership with Bocco Group, SimpleBooking integration is free at setup and ongoing — no separate integration fee.",
         "de": "Durch unsere Partnerschaft mit Bocco Group ist die SimpleBooking-Integration kostenlos bei Einrichtung und laufend — keine separate Integrationsgebühr.",
         "it": "Grazie alla nostra partnership con Bocco Group, l'integrazione SimpleBooking è gratuita all'attivazione e nel tempo — nessun costo di integrazione separato."
       },
-      "price": { "en": "Free", "de": "Kostenlos", "it": "Gratuita" }
+      "price": {
+        "en": "Free",
+        "de": "Kostenlos",
+        "it": "Gratuita"
+      }
     },
     "others": {
-      "title": { "en": "Other booking engines", "de": "Andere Buchungssysteme", "it": "Altri booking engine" },
+      "title": {
+        "en": "Other booking engines",
+        "de": "Andere Buchungssysteme",
+        "it": "Altri booking engine"
+      },
       "list": {
         "en": "Cloudbeds, Lodgify, SiteMinder, Mews, Hotel-Spider, ReservIT, and most others.",
         "de": "Cloudbeds, Lodgify, SiteMinder, Mews, Hotel-Spider, ReservIT und die meisten anderen.",
@@ -133,50 +282,111 @@
         "de": "Einmalige Integrationsgebühr, dann eine kleine monatliche Wartungsgebühr. Wir testen auf einer Staging-Site, Sie genehmigen, wir gehen live.",
         "it": "Una tariffa di integrazione una tantum, poi un piccolo canone mensile di manutenzione. Testiamo su un sito di staging, voi approvate, andiamo live."
       },
-      "price": { "en": "CHF 300 setup + CHF 25/mo", "de": "CHF 300 Setup + CHF 25/Mt.", "it": "CHF 300 setup + CHF 25/mese" }
+      "price": {
+        "en": "CHF 300 setup + CHF 25/mo",
+        "de": "CHF 300 Setup + CHF 25/Mt.",
+        "it": "CHF 300 setup + CHF 25/mese"
+      }
     }
   },
   "addons": {
-    "num": { "en": "04 — Add-ons", "de": "04 — Zusatzleistungen", "it": "04 — Componenti aggiuntivi" },
-    "h2pre": { "en": "Available on", "de": "Verfügbar bei", "it": "Disponibili in" },
-    "h2em": { "en": "any subscription.", "de": "jedem Abonnement.", "it": "qualsiasi abbonamento." },
+    "num": {
+      "en": "04 — Add-ons",
+      "de": "04 — Zusatzleistungen",
+      "it": "04 — Componenti aggiuntivi"
+    },
+    "h2pre": {
+      "en": "Start with the site.",
+      "de": "Beginnen Sie mit der Site.",
+      "it": "Partite dal sito."
+    },
+    "h2em": {
+      "en": "Add only what you use.",
+      "de": "Ergänzen Sie nur, was Sie brauchen.",
+      "it": "Aggiungete solo ciò che usate."
+    },
     "items": [
       {
-        "title": { "en": "Multi-language site (DE/IT/FR)", "de": "Mehrsprachiges Site (DE/IT/FR)", "it": "Sito multilingua (DE/IT/FR)" },
-        "body": {
-          "en": "Translation infrastructure plus the first translation pass for your existing content. Ongoing translation handled by AI with human review.",
-          "de": "Übersetzungsinfrastruktur plus erste Übersetzungsrunde Ihrer bestehenden Inhalte. Laufende Übersetzungen via AI mit menschlicher Review.",
-          "it": "Infrastruttura di traduzione più prima traduzione dei contenuti esistenti. Traduzioni successive gestite dall'IA con revisione umana."
+        "title": {
+          "en": "Languages",
+          "de": "Sprachen",
+          "it": "Lingue"
         },
-        "price": { "en": "CHF 300 setup + CHF 20/mo per language", "de": "CHF 300 Setup + CHF 20/Mt. pro Sprache", "it": "CHF 300 setup + CHF 20/mese per lingua" }
+        "body": {
+          "en": "Two languages included. From the third onwards: CHF 20/month each. Translation by AI, with human review.",
+          "de": "Zwei Sprachen inklusive. Ab der dritten: CHF 20/Monat je Sprache. Übersetzung per AI, mit menschlicher Review.",
+          "it": "Due lingue incluse. Dalla terza in poi: CHF 20/mese ciascuna. Traduzione via IA, con revisione umana."
+        },
+        "price": {
+          "en": "CHF 20/mo from the 3rd language",
+          "de": "CHF 20/Mt. ab der 3. Sprache",
+          "it": "CHF 20/mese dalla 3ª lingua"
+        }
       },
       {
-        "title": { "en": "Property photography", "de": "Hausfotografie", "it": "Fotografia della struttura" },
+        "title": {
+          "en": "Property photography",
+          "de": "Hausfotografie",
+          "it": "Fotografia della struttura"
+        },
         "body": {
           "en": "Half-day or full-day photography by a hospitality specialist. Edited and delivered ready for the site.",
           "de": "Halbtages- oder Ganztagesfotografie durch einen Hotellerie-Spezialisten. Bearbeitet und site-fertig geliefert.",
           "it": "Servizio fotografico di mezza giornata o giornata intera con uno specialista di hotellerie. Modificato e consegnato pronto per il sito."
         },
-        "price": { "en": "From CHF 1,200", "de": "Ab CHF 1.200", "it": "Da CHF 1.200" }
+        "price": {
+          "en": "From CHF 1,200",
+          "de": "Ab CHF 1.200",
+          "it": "Da CHF 1.200"
+        }
       },
       {
-        "title": { "en": "Custom integrations", "de": "Custom-Integrationen", "it": "Integrazioni custom" },
+        "title": {
+          "en": "Custom integrations",
+          "de": "Custom-Integrationen",
+          "it": "Integrazioni custom"
+        },
         "body": {
           "en": "CRM, email marketing, revenue management, loyalty, restaurant booking, gift cards. We connect whatever you need.",
           "de": "CRM, E-Mail-Marketing, Revenue Management, Loyalty, Restaurant-Buchung, Gutscheine. Wir verbinden alles, was Sie brauchen.",
           "it": "CRM, email marketing, revenue management, loyalty, prenotazione ristorante, gift card. Colleghiamo qualunque sistema serva."
         },
-        "price": { "en": "Quoted individually", "de": "Individuell offeriert", "it": "Quotato individualmente" }
+        "price": {
+          "en": "Quoted individually",
+          "de": "Individuell offeriert",
+          "it": "Quotato individualmente"
+        }
       }
-    ]
+    ],
+    "lede": {
+      "en": "Two languages ship with every plan. From the third language onwards it is CHF 20 per month each. Toggle photography or custom work and the summary on the right keeps up.",
+      "de": "Zwei Sprachen sind in jedem Plan enthalten. Ab der dritten Sprache: CHF 20 pro Monat und Sprache. Fotografie oder Custom-Arbeit dazuschalten — die Summe rechts aktualisiert sich live.",
+      "it": "Due lingue sono incluse in ogni piano. Dalla terza lingua in poi: CHF 20 al mese ciascuna. Attivate fotografia o lavoro custom e il riepilogo a destra si aggiorna."
+    }
   },
   "faq": {
-    "num": { "en": "05 — Questions worth answering", "de": "05 — Fragen, die eine Antwort verdienen", "it": "05 — Domande che meritano risposta" },
-    "h2pre": { "en": "Honest", "de": "Ehrliche", "it": "Risposte" },
-    "h2em": { "en": "answers.", "de": "Antworten.", "it": "oneste." },
+    "num": {
+      "en": "05 — Questions worth answering",
+      "de": "05 — Fragen, die eine Antwort verdienen",
+      "it": "05 — Domande che meritano risposta"
+    },
+    "h2pre": {
+      "en": "Honest",
+      "de": "Ehrliche",
+      "it": "Risposte"
+    },
+    "h2em": {
+      "en": "answers.",
+      "de": "Antworten.",
+      "it": "oneste."
+    },
     "items": [
       {
-        "q": { "en": "Why is there no upfront cost?", "de": "Warum gibt es keine Anschaffungskosten?", "it": "Perché non c'è un costo iniziale?" },
+        "q": {
+          "en": "Why is there no upfront cost?",
+          "de": "Warum gibt es keine Anschaffungskosten?",
+          "it": "Perché non c'è un costo iniziale?"
+        },
         "a": {
           "en": "Because the actual cost of building a modern hotel website is small enough that financing it across a year of subscription works for both sides. The upfront-then-retainer model is a relic of when websites took months and required real engineering. They no longer do.",
           "de": "Weil die tatsächlichen Kosten für den Bau einer modernen Hotel-Website klein genug sind, dass eine Finanzierung über ein Jahr Abonnement für beide Seiten funktioniert. Das Upfront-dann-Retainer-Modell ist ein Relikt aus einer Zeit, in der Websites Monate dauerten und echte Ingenieursarbeit erforderten. Tun sie nicht mehr.",
@@ -184,7 +394,11 @@
         }
       },
       {
-        "q": { "en": "What if I cancel?", "de": "Was, wenn ich kündige?", "it": "E se disdico?" },
+        "q": {
+          "en": "What if I cancel?",
+          "de": "Was, wenn ich kündige?",
+          "it": "E se disdico?"
+        },
         "a": {
           "en": "Twelve months to start, month-to-month after that. We do the build work upfront with no upfront fee — the twelve-month initial term is how that work gets paid for. After year one, thirty days notice cancels the subscription. You keep the code, the content, the Git repository at every stage — that ownership is permanent, not contingent on staying with us. We help you move when you leave. No exit fee.",
           "de": "Mindestlaufzeit zwölf Monate, danach monatlich kündbar. Wir leisten die Aufbauarbeit im Voraus ohne Anschaffungskosten — die zwölfmonatige Laufzeit ist die Gegenleistung dafür. Nach dem ersten Jahr beendet eine Kündigungsfrist von dreissig Tagen das Abonnement. Sie behalten den Code, die Inhalte und das Git-Repository in jeder Phase — dieses Eigentum ist dauerhaft, nicht an die Zusammenarbeit gebunden. Wir helfen beim Wechsel. Keine Exit-Gebühr.",
@@ -192,7 +406,11 @@
         }
       },
       {
-        "q": { "en": "How does the AI agent actually work?", "de": "Wie funktioniert der AI-Agent eigentlich?", "it": "Come funziona davvero l'agente IA?" },
+        "q": {
+          "en": "How does the AI agent actually work?",
+          "de": "Wie funktioniert der AI-Agent eigentlich?",
+          "it": "Come funziona davvero l'agente IA?"
+        },
         "a": {
           "en": "It reads incoming requests from your email, WhatsApp, or the CMS, identifies the change required, makes the edit as a Git commit on a preview branch, and pushes it for human review. We approve or revise within hours. The agent never deploys to production directly — every change passes a human.",
           "de": "Er liest eingehende Anfragen von Ihrer E-Mail, WhatsApp oder dem CMS, identifiziert die erforderliche Änderung, macht die Bearbeitung als Git-Commit auf einem Preview-Branch und pusht sie zur menschlichen Review. Wir genehmigen oder überarbeiten innerhalb von Stunden. Der Agent deployt nie direkt in die Produktion — jede Änderung passiert einen Menschen.",
@@ -200,7 +418,11 @@
         }
       },
       {
-        "q": { "en": "What if my booking engine isn't on your list?", "de": "Was, wenn mein Buchungssystem nicht auf Ihrer Liste ist?", "it": "E se il mio booking engine non è nella vostra lista?" },
+        "q": {
+          "en": "What if my booking engine isn't on your list?",
+          "de": "Was, wenn mein Buchungssystem nicht auf Ihrer Liste ist?",
+          "it": "E se il mio booking engine non è nella vostra lista?"
+        },
         "a": {
           "en": "We'll integrate it if it has an embed code, an iframe, or an API. We've never said no to an integration; the price varies by complexity. Tell us during the application what you're using and we'll quote integration up front.",
           "de": "Wir integrieren es, wenn es einen Embed-Code, einen iFrame oder eine API hat. Wir haben noch nie zu einer Integration nein gesagt; der Preis variiert je nach Komplexität. Sagen Sie uns bei der Bewerbung, was Sie verwenden, und wir offerieren die Integration im Voraus.",
@@ -208,7 +430,11 @@
         }
       },
       {
-        "q": { "en": "What's not included?", "de": "Was ist nicht enthalten?", "it": "Cosa non è incluso?" },
+        "q": {
+          "en": "What's not included?",
+          "de": "Was ist nicht enthalten?",
+          "it": "Cosa non è incluso?"
+        },
         "a": {
           "en": "Things we don't pretend to do well: paid ad management, social media content, email marketing campaigns, OTA channel optimisation. We do websites well; we stay out of everything else. Most subscribers run those with specialist agencies and we integrate cleanly with whatever they choose.",
           "de": "Dinge, von denen wir nicht behaupten, sie gut zu können: Paid-Ad-Management, Social-Media-Inhalte, E-Mail-Marketing-Kampagnen, OTA-Channel-Optimierung. Wir machen Websites gut; wir halten uns aus allem anderen raus. Die meisten Abonnenten führen diese mit Spezialagenturen, und wir integrieren sauber mit dem, was sie wählen.",
@@ -216,5 +442,93 @@
         }
       }
     ]
+  },
+  "explorer": {
+    "sizeAria": {
+      "en": "Property size",
+      "de": "Hausgrösse",
+      "it": "Dimensione della struttura"
+    },
+    "typical": {
+      "en": "Typical size",
+      "de": "Typische Grösse",
+      "it": "Dimensione tipica"
+    },
+    "yearOne": {
+      "en": "Year one · 12-month initial term",
+      "de": "Erstes Jahr · 12 Monate Mindestlaufzeit",
+      "it": "Primo anno · durata iniziale 12 mesi"
+    },
+    "vatNote": {
+      "en": "Monthly, CHF, ex. VAT",
+      "de": "Monatlich, CHF, exkl. MwSt.",
+      "it": "Mensile, CHF, IVA esclusa"
+    },
+    "upfront": {
+      "en": "Upfront",
+      "de": "Anschaffung",
+      "it": "Costo iniziale"
+    },
+    "disclaimer": {
+      "en": "Figures are close indications for a typical property of this size. Final pricing depends on scope and is sent after the first discovery conversation. Groups, multi-property setups, and houses above 80 rooms are quoted individually.",
+      "de": "Die Beträge sind Richtwerte für eine typische Liegenschaft dieser Grösse. Der endgültige Preis hängt vom Umfang ab und wird nach dem ersten Discovery-Gespräch übermittelt. Gruppen, Multi-Property-Setups und Häuser über 80 Zimmer werden individuell offeriert.",
+      "it": "Le cifre sono indicazioni di massima per una struttura tipica di questa dimensione. Il prezzo finale dipende dallo scope e viene inviato dopo il primo colloquio di discovery. Gruppi, setup multi-struttura e case sopra le 80 camere sono quotati individualmente."
+    }
+  },
+  "builder": {
+    "coreLabel": {
+      "en": "Your site",
+      "de": "Ihre Site",
+      "it": "Il vostro sito"
+    },
+    "included": {
+      "en": "Included",
+      "de": "Inklusive",
+      "it": "Incluso"
+    },
+    "planTitle": {
+      "en": "Your plan",
+      "de": "Ihr Plan",
+      "it": "Il vostro piano"
+    },
+    "billed": {
+      "en": "Billed monthly",
+      "de": "Monatlich",
+      "it": "Fatturato mensile"
+    },
+    "total": {
+      "en": "Total per month",
+      "de": "Total pro Monat",
+      "it": "Totale al mese"
+    },
+    "oneTime": {
+      "en": "One-time",
+      "de": "Einmalig",
+      "it": "Una tantum"
+    },
+    "quoted": {
+      "en": "Quoted",
+      "de": "Offerte",
+      "it": "Da quotare"
+    },
+    "languagesIncluded": {
+      "en": "2 languages included",
+      "de": "2 Sprachen inklusive",
+      "it": "2 lingue incluse"
+    },
+    "extraLanguage": {
+      "en": "Extra language",
+      "de": "Zusätzliche Sprache",
+      "it": "Lingua extra"
+    },
+    "fromLabel": {
+      "en": "from",
+      "de": "ab",
+      "it": "da"
+    },
+    "langMin": 2,
+    "langMax": 4,
+    "langExtraMonthly": 20,
+    "photoAmount": 1200
   }
 }
