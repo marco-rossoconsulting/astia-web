@@ -1,1 +1,215 @@
-PLACEHOLDER
+{
+  "seo": {
+    "title": {
+      "en": "How it Works · Astia Web — Affordable Hotel Website Service",
+      "de": "So funktioniert es · Astia Web — Bezahlbarer Hotel-Website-Service",
+      "it": "Come funziona · Astia Web — Servizio di siti web per hotel convenienti"
+    },
+    "description": {
+      "en": "Discover how Astia builds affordable, high-quality hotel websites in 2–3 weeks. Built on Astro, AI-managed updates, and transparent pricing. Performance varies by site.",
+      "de": "Entdecken Sie, wie Astia in 2–3 Wochen bezahlbare, hochwertige Hotel-Websites erstellt. Gebaut auf Astro, AI-verwaltete Updates und transparente Preise. Die Performance hängt vom jeweiligen Site ab.",
+      "it": "Scoprite come Astia costruisce siti web per hotel convenienti e di alta qualità in 2–3 settimane. Costruiti su Astro, aggiornamenti gestiti dall'IA e prezzi trasparenti. Le prestazioni variano da sito a sito."
+    },
+    "ogImage": "/images/safari-vehicle-driving-through-mara-wilderness-exploreans.jpg",
+    "ogImageAlt": {
+      "en": "How Astia Web works",
+      "de": "So funktioniert Astia Web",
+      "it": "Come funziona Astia Web"
+    }
+  },
+  "hero": {
+    "eyebrow": {
+      "en": "How it works",
+      "de": "So funktioniert es",
+      "it": "Come funziona"
+    },
+    "headlinePre": { "en": "", "de": "", "it": "" },
+    "headlineEm": { "en": "AI-managed", "de": "AI-verwaltet", "it": "Gestito dall'IA" },
+    "headlinePost": {
+      "en": " means something specific.",
+      "de": " bedeutet etwas Konkretes.",
+      "it": " significa qualcosa di preciso."
+    },
+    "lede": {
+      "en": "Every Astia site goes through the same lifecycle: you tell us what to change, an AI agent drafts the change, we review it, and Netlify deploys it. That loop runs on every property we manage. Here is what each step looks like in practice.",
+      "de": "Jede Astia-Seite durchläuft denselben Lebenszyklus: Sie sagen uns, was sich ändern soll, ein AI-Agent entwirft die Änderung, wir prüfen sie, und Netlify deployt sie. Diese Schleife läuft für jedes Haus, das wir betreuen. So sieht jeder Schritt in der Praxis aus.",
+      "it": "Ogni sito Astia segue lo stesso ciclo: voi dite cosa cambiare, un agente IA prepara la modifica, noi la rivediamo, Netlify la pubblica. Questo loop funziona per ogni struttura che gestiamo. Ecco come si presenta ogni passaggio in pratica."
+    }
+  },
+  "technical": {
+    "num": {
+      "en": "01 — The technical case",
+      "de": "01 — Der technische Fall",
+      "it": "01 — Il caso tecnico"
+    },
+    "h2pre": { "en": "Why ", "de": "Warum ", "it": "Perché " },
+    "h2em": { "en": "Astro.", "de": "Astro.", "it": "Astro." },
+    "intro": {
+      "en": "Astro is the framework behind some of the fastest websites on the public web — Google's own developer site, Netflix's job board, parts of NASA, Figma, Microsoft. A pure Astro site can ship as static HTML at build time: no database query on every visit, no server-side app to attack, and little or no JavaScript until you choose to add it. That is what the stack makes possible, not a guarantee for every Astia site. Booking widgets, galleries, or React animations add weight, and every build is different. The figures below are illustrative of a lean content page.",
+      "de": "Astro ist das Framework hinter einigen der schnellsten Websites im öffentlichen Web — Googles eigene Entwicklerseite, Netflix' Job Board, Teile von NASA, Figma, Microsoft. Eine reine Astro-Seite kann als statisches HTML zur Bauzeit ausgeliefert werden: keine Datenbankabfrage bei jedem Besuch, keine angreifbare Server-App und wenig oder kein JavaScript, bis Sie es bewusst hinzufügen. Das ist, was der Stack möglich macht — keine Garantie für jedes Astia-Site. Buchungs-Widgets, Galerien oder React-Animationen erhöhen das Gewicht, und jeder Bau ist anders. Die Zahlen unten sind beispielhaft für eine schlanke Inhaltsseite.",
+      "it": "Astro è il framework dietro alcuni dei siti più veloci del web pubblico — il sito sviluppatori di Google, la job board di Netflix, parti di NASA, Figma, Microsoft. Un sito Astro puro può essere pubblicato come HTML statico al momento della build: nessuna query al database a ogni visita, nessuna app server-side da attaccare, e poco o nessun JavaScript finché non scegliete di aggiungerlo. Questo è ciò che lo stack rende possibile, non una garanzia per ogni sito Astia. Widget di prenotazione, gallerie o animazioni React aggiungono peso, e ogni build è diversa. Le cifre sotto sono illustrative di una pagina di contenuti essenziale."
+    },
+    "specs": [
+      {
+        "label": { "en": "First contentful paint", "de": "First Contentful Paint", "it": "First Contentful Paint" },
+        "us": "0.7s",
+        "them": {
+          "en": "Possible on a lean content page",
+          "de": "Möglich auf einer schlanken Inhaltsseite",
+          "it": "Possibile su una pagina di contenuti essenziale"
+        }
+      },
+      {
+        "label": { "en": "Total page weight", "de": "Gesamte Seitengrösse", "it": "Peso totale pagina" },
+        "us": "~80 KB",
+        "them": {
+          "en": "Before media, widgets, or animations",
+          "de": "Vor Medien, Widgets oder Animationen",
+          "it": "Prima di media, widget o animazioni"
+        }
+      },
+      {
+        "label": { "en": "Lighthouse performance", "de": "Lighthouse-Performance", "it": "Performance Lighthouse" },
+        "us": "98–100",
+        "them": {
+          "en": "On a page that stays close to static HTML",
+          "de": "Auf einer Seite, die nah am statischen HTML bleibt",
+          "it": "Su una pagina che resta vicina all'HTML statico"
+        }
+      },
+      {
+        "label": { "en": "Time to deploy a change", "de": "Zeit, eine Änderung zu deployen", "it": "Tempo per pubblicare una modifica" },
+        "us": { "en": "< 2 min", "de": "< 2 Min.", "it": "< 2 min" },
+        "them": {
+          "en": "Typical for a static deploy, not a page-speed promise",
+          "de": "Typisch für ein statisches Deploy, kein Page-Speed-Versprechen",
+          "it": "Tipico di un deploy statico, non una promessa di velocità"
+        }
+      }
+    ],
+    "caveat": {
+      "en": "These are not SLAs. Visual-heavy pages and client-side motion will land above these numbers — we measure each site after launch.",
+      "de": "Das sind keine SLAs. Bildlastige Seiten und clientseitige Animationen liegen darüber — wir messen jedes Site nach dem Launch.",
+      "it": "Non sono SLA. Pagine ricche di visual e motion lato client supereranno questi numeri — misuriamo ogni sito dopo il lancio."
+    }
+  },
+  "included": {
+    "num": { "en": "02 — What's included", "de": "02 — Was enthalten ist", "it": "02 — Cosa è incluso" },
+    "h2pre": { "en": "Every Astia subscription includes ", "de": "Jedes Astia-Abonnement umfasst ", "it": "Ogni abbonamento Astia include " },
+    "h2em": { "en": "the boring necessities.", "de": "die langweiligen Selbstverständlichkeiten.", "it": "le cose noiose ma necessarie." },
+    "features": [
+      {
+        "icon": "Globe",
+        "title": { "en": "Global edge hosting", "de": "Globales Edge-Hosting", "it": "Hosting edge globale" },
+        "description": {
+          "en": "Your site runs on Netlify's global edge network, with a 100% uptime SLA.",
+          "de": "Ihre Seite läuft auf Netlifys globalem Edge-Netzwerk, mit 100% Uptime-SLA.",
+          "it": "Il sito gira sulla rete edge globale di Netlify, con SLA di uptime al 100%."
+        }
+      },
+      {
+        "icon": "Lock",
+        "title": { "en": "SSL, backups, DDoS", "de": "SSL, Backups, DDoS", "it": "SSL, backup, DDoS" },
+        "description": {
+          "en": "SSL certificates, renewed automatically. Daily backups via Git. DDoS protection at the CDN layer.",
+          "de": "SSL-Zertifikate, automatisch erneuert. Tägliche Backups via Git. DDoS-Schutz auf CDN-Ebene.",
+          "it": "Certificati SSL, rinnovati automaticamente. Backup quotidiani tramite Git. Protezione DDoS a livello CDN."
+        }
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": { "en": "No database, no plugins", "de": "Keine Datenbank, keine Plugins", "it": "Nessun database, nessun plugin" },
+        "description": {
+          "en": "No database to compromise, and no plugins to keep updated.",
+          "de": "Keine Datenbank, die kompromittiert werden kann, und keine Plugins, die aktualisiert werden müssen.",
+          "it": "Nessun database da compromettere e nessun plugin da aggiornare."
+        }
+      },
+      {
+        "icon": "ClipboardCheck",
+        "title": { "en": "Regular audits", "de": "Regelmässige Audits", "it": "Audit regolari" },
+        "description": {
+          "en": "Quarterly performance audits, plus an annual accessibility review and design check-in.",
+          "de": "Vierteljährliche Performance-Audits, plus jährliche Accessibility-Review und Design-Check.",
+          "it": "Audit di performance trimestrali, più revisione annuale dell'accessibilità e check di design."
+        }
+      },
+      {
+        "icon": "Users",
+        "title": { "en": "Sveltia CMS", "de": "Sveltia CMS", "it": "Sveltia CMS" },
+        "description": {
+          "en": "Sveltia CMS access for unlimited team members, with version history on every change.",
+          "de": "Sveltia CMS-Zugang für unbegrenzte Teammitglieder, mit Versionshistorie für jede Änderung.",
+          "it": "Accesso a Sveltia CMS per membri del team illimitati, con cronologia di ogni modifica."
+        }
+      },
+      {
+        "icon": "Languages",
+        "title": { "en": "Languages & bookings", "de": "Sprachen & Buchungen", "it": "Lingue e prenotazioni" },
+        "description": {
+          "en": "Multi-language editing and direct booking-engine integration.",
+          "de": "Mehrsprachige Bearbeitung und Direktbuchung-Integration.",
+          "it": "Modifica multilingua e integrazione booking engine diretto."
+        }
+      },
+      {
+        "icon": "Mail",
+        "title": { "en": "Email-to-edit (Managed)", "de": "E-Mail-zu-Änderung (Managed)", "it": "Email-to-edit (Managed)" },
+        "description": {
+          "en": "An agent drafts changes from email or WhatsApp, including automatic content drafts, and monitors the booking system.",
+          "de": "Ein Agent entwirft Änderungen aus E-Mail oder WhatsApp, inklusive automatischer Inhaltsentwürfe, und überwacht das Buchungssystem.",
+          "it": "Un agente prepara le modifiche da email o WhatsApp, incluse bozze di contenuto automatiche, e monitora il sistema di prenotazione."
+        }
+      },
+      {
+        "icon": "Bot",
+        "title": { "en": "Human review (Managed)", "de": "Menschliche Review (Managed)", "it": "Revisione umana (Managed)" },
+        "description": {
+          "en": "Human review on every change, and a response within 24 hours.",
+          "de": "Menschliche Review bei jeder Änderung, und Antwort innerhalb von 24 Stunden.",
+          "it": "Revisione umana su ogni modifica, e risposta entro 24 ore."
+        }
+      }
+    ]
+  },
+  "bookingMath": {
+    "num": { "en": "03 — The math", "de": "03 — Die Rechnung", "it": "03 — La matematica" },
+    "h2pre": { "en": "What direct bookings ", "de": "Was Direktbuchungen ", "it": "Cosa le prenotazioni dirette " },
+    "h2em": { "en": "actually save.", "de": "wirklich sparen.", "it": "fanno davvero risparmiare." },
+    "stat": "CHF 3,240",
+    "statLabel": { "en": "Saved per month", "de": "Pro Monat gespart", "it": "Risparmiati al mese" },
+    "vs": {
+      "en": "vs. paying booking.com commission on 18 average bookings.",
+      "de": "ggü. Booking.com-Kommissionen auf 18 durchschnittlichen Buchungen.",
+      "it": "rispetto alle commissioni Booking.com su 18 prenotazioni medie."
+    },
+    "body": {
+      "en": "Assume a 30-room property, 65% occupancy, average rate CHF 240, 30% of bookings via OTAs at 15% commission. Shifting 18 of those bookings per month to direct via a fast website saves CHF 3,240/month. Astia Managed costs CHF 350/month. The math compounds.",
+      "de": "Annahme: ein 30-Zimmer-Haus, 65% Auslastung, Durchschnittsrate CHF 240, 30% der Buchungen über OTAs zu 15% Kommission. 18 dieser Buchungen pro Monat über eine schnelle Website auf Direkt umzustellen, spart CHF 3.240/Monat. Astia Managed kostet CHF 350/Monat. Die Rechnung verstärkt sich mit der Zeit.",
+      "it": "Ipotesi: una struttura da 30 camere, 65% di occupazione, tariffa media CHF 240, 30% delle prenotazioni via OTA al 15% di commissione. Spostare 18 di quelle prenotazioni al mese su canale diretto tramite un sito veloce fa risparmiare CHF 3.240/mese. Astia Managed costa CHF 350/mese. La matematica si accumula nel tempo."
+    }
+  },
+  "about": {
+    "num": { "en": "04 — Behind Astia", "de": "04 — Hinter Astia", "it": "04 — Dietro Astia" },
+    "h2pre": { "en": "Astia is a product of ", "de": "Astia ist ein Produkt der ", "it": "Astia è un prodotto di " },
+    "h2em": { "en": "Marcorosso Consulting.", "de": "Marcorosso Consulting.", "it": "Marcorosso Consulting." },
+    "logoSrc": "/images/marcorosso-consulting-logo.png",
+    "logoAlt": { "en": "Marcorosso Consulting logo", "de": "Marcorosso Consulting Logo", "it": "Logo Marcorosso Consulting" },
+    "ctaLabel": { "en": "Visit Marcorosso Consulting", "de": "Marcorosso Consulting besuchen", "it": "Visita Marcorosso Consulting" },
+    "ctaHref": "https://rossoconsulting.ch",
+    "body": {
+      "en": "We're a small team based in Lugano with two decades of combined experience across hospitality technology — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. The Exploreans collection was the first portfolio of properties built on this stack. Astia is the productisation of that work.",
+      "de": "Wir sind ein kleines Team mit Sitz in Lugano und zwei Jahrzehnten gemeinsamer Erfahrung in der Hotellerie-Technologie — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. Die Exploreans-Kollektion war das erste Portfolio von Häusern, die auf diesem Stack gebaut wurden. Astia ist die Produktisierung dieser Arbeit.",
+      "it": "Siamo un piccolo team con sede a Lugano e vent'anni di esperienza combinata nella tecnologia per l'ospitalità — Triptease, SiteMinder, Cloudbeds, Canary Technologies, Planhotel. La collezione Exploreans è stato il primo portfolio di strutture costruito su questo stack. Astia è la prodottizzazione di quel lavoro."
+    }
+  },
+  "finalCTA": {
+    "h2pre": { "en": "Ready to ", "de": "Bereit, ", "it": "Pronti a " },
+    "h2em": { "en": "see if Astia fits?", "de": "zu sehen, ob Astia passt?", "it": "vedere se Astia fa per voi?" },
+    "lede": {
+      "en": "Apply now. We review every application personally, and respond within three business days.",
+      "de": "Jetzt bewerben. Jede Bewerbung wird persönlich geprüft, drei Werktage bis zur Antwort.",
+      "it": "Candidatevi ora. Ogni candidatura è rivista personalmente, tre giorni lavorativi per una risposta."
+    }
+  }
+}
