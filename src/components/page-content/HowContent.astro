@@ -3,6 +3,7 @@ import { getEntry } from 'astro:content';
 import SpecCard from '@components/SpecCard.astro';
 import MathCard from '@components/MathCard.astro';
 import IncludedFeatures from '@components/IncludedFeatures.tsx';
+import HowItWorksHero from '@components/HowItWorksHero.tsx';
 
 interface Props { lang: 'en' | 'de' | 'it'; }
 const { lang } = Astro.props;
@@ -21,14 +22,14 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 }));
 ---
 {/* HERO */}
-<section class="section" style="padding-top:110px; padding-bottom:60px;">
-  <div class="container-narrow">
-    <h1 class="display-1" style="margin-top:0; margin-bottom:32px;">
-      {d.hero.headlinePre[lang]} <span class="editorial-i">{d.hero.headlineEm[lang]}</span> {d.hero.headlinePost[lang]}
-    </h1>
-    <p class="lede">{d.hero.lede[lang]}</p>
-  </div>
-</section>
+<HowItWorksHero
+  client:load
+  eyebrow={d.hero.eyebrow?.[lang]}
+  headlinePre={d.hero.headlinePre[lang]}
+  headlineEm={d.hero.headlineEm[lang]}
+  headlinePost={d.hero.headlinePost[lang]}
+  lede={d.hero.lede[lang]}
+/>
 
 <hr class="rule" />
 
