@@ -48,7 +48,6 @@ const orgJsonLd = {
   logo: `${siteUrl}/images/marcorosso-consulting-logo.png`,
   description: siteData.schema.organizationDescription[lang],
   email: siteData.brand.email,
-  telephone: siteData.brand.phone,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Via Don Gagliardi 23',
@@ -69,6 +68,23 @@ const orgJsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+
+    {/*
+      Scroll-reveal opt-in. Reveal styles are scoped to .js so content is
+      visible by default: if scripting is unavailable or the observer never
+      runs, nothing is left stuck at opacity 0. Runs before first paint, so
+      there is no flash of visible-then-hidden content. Readers who ask for
+      reduced motion keep everything visible immediately.
+    */}
+    <script is:inline>
+      (function () {
+        try {
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('js');
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     {/* Google tag (gtag.js) */}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EREW8N0F4N"></script>

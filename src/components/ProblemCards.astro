@@ -1,0 +1,166 @@
+---
+import Icon from '@components/icons/Icon.astro';
+
+interface ProblemCardData {
+  tag: string;
+  title: string;
+  body: string;
+  tail: string;
+}
+
+interface Props {
+  headline: string;
+  headlineEm: string;
+  subheadline: string;
+  cards: ProblemCardData[];
+}
+
+const { headline, headlineEm, subheadline, cards } = Astro.props;
+---
+<section class="problem-cards-section">
+  <div class="problem-cards-inner">
+    <div class="problem-cards-header reveal">
+      <h2 class="problem-cards-h2">
+        {headline} <span class="problem-cards-em">{headlineEm}</span>
+      </h2>
+      <p class="problem-cards-lede">{subheadline}</p>
+    </div>
+
+    <div class="problem-cards-grid">
+      {cards.map((card, i) => (
+        <article class={`problem-card reveal reveal-delay-${i + 1}`}>
+          <span class="problem-card-tag">{card.tag}</span>
+
+          <div class="problem-card-content">
+            <h3 class="problem-card-title">{card.title}</h3>
+            <p class="problem-card-body">{card.body}</p>
+          </div>
+
+          <div class="problem-card-tail">
+            <span class="problem-card-tail-text">{card.tail}</span>
+            <Icon name="arrow-up-right" size={20} class="problem-card-arrow" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .problem-cards-section {
+    width: 100%;
+    background: var(--paper, #F7F5F0);
+    padding: 96px 16px;
+  }
+  .problem-cards-inner {
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--container-max, 1240px);
+  }
+  .problem-cards-header { margin-bottom: 64px; }
+  .problem-cards-h2 {
+    font-family: 'Editorial New', Georgia, serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    color: var(--ink, #141414);
+    margin: 0;
+    max-width: 780px;
+  }
+  .problem-cards-em {
+    color: var(--rosso, #C41E3A);
+    font-style: italic;
+  }
+  .problem-cards-lede {
+    margin-top: 20px;
+    max-width: 640px;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft, #2A2A2A);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .problem-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .problem-card {
+    position: relative;
+    border-radius: 0;
+    border: 1px solid var(--bone, #E5E2DA);
+    background: var(--cream, #FAFAF7);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    cursor: default;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .problem-card:hover {
+    background: var(--paper, #F7F5F0);
+    border-color: var(--rosso, #C41E3A);
+    box-shadow: 0 4px 12px rgba(20, 20, 20, 0.08), 0 20px 60px rgba(20, 20, 20, 0.12);
+    transform: translateY(-6px);
+  }
+  .problem-card:hover .problem-card-arrow { color: var(--rosso, #C41E3A); }
+  .problem-card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stone-soft, #9A9A93);
+  }
+  .problem-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .problem-card-title {
+    font-family: 'Editorial New', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink, #141414);
+    margin: 0;
+  }
+  .problem-card-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft, #2A2A2A);
+    font-family: 'General Sans', -apple-system, sans-serif;
+    margin: 0;
+  }
+  .problem-card-tail {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--bone, #E5E2DA);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .problem-card-tail-text {
+    font-family: 'Editorial New', Georgia, serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--rosso, #C41E3A);
+  }
+  .problem-card-arrow {
+    color: var(--stone, #6B6B66);
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+  @media (max-width: 880px) {
+    .problem-cards-section { padding: 64px 16px; }
+    .problem-cards-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .problem-card:hover { transform: none; }
+  }
+</style>

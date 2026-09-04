@@ -57,9 +57,7 @@ const year = new Date().getFullYear();
       <div>
         <h4>{brand.location[lang]}</h4>
         <p style="font-size:14px; opacity:0.85; line-height:1.55;">
-          {brand.address}<br /><br />
           <a href={`mailto:${brand.email}`} style="display:block;">{brand.email}</a>
-          <a href={`tel:${brand.phone.replace(/\s/g, '')}`} style="display:block; margin-top:4px;">{brand.phone}</a>
         </p>
       </div>
     </div>

@@ -1,0 +1,296 @@
+---
+import Icon from '@components/icons/Icon.astro';
+
+interface Props {
+  chipText?: string;
+  headlinePre?: string;
+  headlineEm?: string;
+  headlinePost?: string;
+  subheadline?: string;
+  badgeText?: string;
+  primaryCta?: string;
+  primaryCtaHref?: string;
+  secondaryCta?: string;
+  secondaryCtaHref?: string;
+}
+
+const {
+  chipText = 'Astia Web AI-managed sites',
+  headlinePre = 'The first',
+  headlineEm = 'AI built and managed',
+  headlinePost = ' website service for Hospitality.',
+  subheadline = 'The AI-centric website service built for independent hotels.',
+  badgeText = 'Built on Astro · Live in 2–3 weeks · No upfront cost',
+  primaryCta = 'Apply for a site',
+  primaryCtaHref = '/apply',
+  secondaryCta = 'See how it works',
+  secondaryCtaHref = '/how-it-works',
+} = Astro.props;
+---
+<section class="hero-24-section">
+  {/* Static first frame: approximates the shader palette, painted immediately. */}
+  <div aria-hidden="true" class="hero-24-backdrop"></div>
+
+  {/* The shader mounts here after load, then crossfades in over the backdrop. */}
+  <div aria-hidden="true" class="hero-24-canvas" data-hero-shader></div>
+
+  <div aria-hidden="true" class="hero-24-scrim"></div>
+  <div aria-hidden="true" class="hero-24-fade"></div>
+
+  <div class="hero-24-outer">
+    <div class="hero-24-content">
+      <div class="hero-24-rise hero-24-chip">
+        <span class="hero-24-dot-wrap">
+          <span class="hero-24-ping"></span>
+          <span class="hero-24-dot"></span>
+        </span>
+        {chipText}
+      </div>
+
+      <h1 class="hero-24-h1">
+        {headlinePre} <span class="hero-24-em">{headlineEm}</span>{headlinePost}
+      </h1>
+
+      <p class="hero-24-rise hero-24-sub">{subheadline}</p>
+
+      {badgeText && <p class="hero-24-rise hero-24-badge">{badgeText}</p>}
+
+      <div class="hero-24-rise hero-24-ctas">
+        <a href={primaryCtaHref} class="hero-24-btn hero-24-btn-primary">
+          {primaryCta}
+          <Icon name="arrow-right" size={16} />
+        </a>
+        <a href={secondaryCtaHref} class="hero-24-btn hero-24-btn-ghost">
+          {secondaryCta}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { ShaderMount, neuroNoiseFragmentShader, getShaderColorFromString } from '@paper-design/shaders';
+
+  const host = document.querySelector<HTMLElement>('[data-hero-shader]');
+
+  if (host) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Same palette and sizing the React <NeuroNoise> wrapper produced.
+    const uniforms = {
+      u_colorFront: getShaderColorFromString('#C41E3A'),
+      u_colorMid: getShaderColorFromString('#D4CFC5'),
+      u_colorBack: getShaderColorFromString('#F7F5F0'),
+      u_brightness: 0.55,
+      u_contrast: 0.42,
+      u_fit: 0,
+      u_scale: 1.15,
+      u_rotation: 0,
+      u_offsetX: 0.42,
+      u_offsetY: 0,
+      u_originX: 0.5,
+      u_originY: 0.5,
+      u_worldWidth: 0,
+      u_worldHeight: 0,
+    };
+
+    new ShaderMount(host, neuroNoiseFragmentShader, uniforms, undefined, reduceMotion ? 0 : 0.55);
+
+    // Give it a frame to paint before fading up, so it never pops in.
+    requestAnimationFrame(() => requestAnimationFrame(() => host.classList.add('is-ready')));
+  }
+</script>
+
+<style is:global>
+  .hero-24-section {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+    padding: 64px 16px 80px;
+  }
+  .hero-24-backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 60% at 68% 38%, rgba(196, 30, 58, 0.10) 0%, rgba(196, 30, 58, 0) 70%),
+      radial-gradient(ellipse 60% 70% at 58% 46%, rgba(212, 207, 197, 0.55) 0%, rgba(212, 207, 197, 0) 72%),
+      radial-gradient(ellipse 50% 60% at 24% 64%, rgba(212, 207, 197, 0.38) 0%, rgba(212, 207, 197, 0) 70%),
+      #F7F5F0;
+  }
+  .hero-24-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 700ms ease-out;
+  }
+  .hero-24-canvas.is-ready { opacity: 1; }
+  .hero-24-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 72% 58% at 50% 42%,
+      rgba(247, 245, 240, 0.88) 0%,
+      rgba(247, 245, 240, 0.55) 48%,
+      rgba(247, 245, 240, 0.18) 78%,
+      rgba(247, 245, 240, 0) 100%
+    );
+  }
+  .hero-24-fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(247, 245, 240, 0) 60%, rgba(247, 245, 240, 0.92));
+  }
+  .hero-24-outer {
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-24-content {
+    display: flex;
+    max-width: 780px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-24-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 9999px;
+    border: 1px solid rgba(229, 226, 218, 0.8);
+    background: rgba(250, 250, 247, 0.75);
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #2A2A2A;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 3px rgba(20, 20, 20, 0.04);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .hero-24-dot-wrap { position: relative; display: flex; height: 8px; width: 8px; }
+  .hero-24-ping {
+    position: absolute;
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 9999px;
+    background: #C41E3A;
+    opacity: 0.6;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .hero-24-dot {
+    position: relative;
+    display: inline-flex;
+    height: 8px;
+    width: 8px;
+    border-radius: 9999px;
+    background: #C41E3A;
+  }
+  @keyframes ping {
+    75%, 100% { transform: scale(2.5); opacity: 0; }
+  }
+  .hero-24-h1 {
+    margin-top: 32px;
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: #141414;
+    font-family: 'Editorial New', Georgia, serif;
+  }
+  .hero-24-em { font-style: italic; }
+  .hero-24-sub {
+    margin-top: 24px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.55;
+    color: #2A2A2A;
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .hero-24-badge {
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6B6B66;
+  }
+  .hero-24-ctas {
+    margin-top: 40px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .hero-24-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 0;
+    padding: 16px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'General Sans', sans-serif;
+    cursor: pointer;
+  }
+  .hero-24-btn-primary {
+    background: #141414;
+    color: #F7F5F0;
+    transition: background 0.2s ease;
+  }
+  .hero-24-btn-primary:hover { background: #C41E3A; }
+  .hero-24-btn-ghost {
+    border: 1px solid #E5E2DA;
+    background: rgba(250, 250, 247, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #141414;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .hero-24-btn-ghost:hover { border-color: #C41E3A; color: #C41E3A; }
+
+  /* Entrance animation is CSS so it runs on first paint, with no JS. */
+  @keyframes hero24Rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hero-24-rise { animation: hero24Rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-24-chip  { animation-delay: 0.05s; }
+  .hero-24-sub   { animation-delay: 0.14s; }
+  .hero-24-badge { animation-delay: 0.20s; }
+  .hero-24-ctas  { animation-delay: 0.26s; }
+
+  @media (min-width: 640px) {
+    .hero-24-section { padding: 80px 24px 100px; }
+    .hero-24-ctas { flex-direction: row; width: auto; justify-content: center; }
+  }
+  @media (min-width: 1024px) {
+    .hero-24-section { align-items: center; padding: 0 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-24-rise { animation: none !important; opacity: 1 !important; transform: none !important; }
+    .hero-24-ping { animation: none !important; }
+    .hero-24-canvas { transition: none !important; }
+  }
+</style>

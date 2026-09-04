@@ -1,0 +1,400 @@
+---
+import Icon from '@components/icons/Icon.astro';
+
+interface Props {
+  headline?: string;
+  subheadline?: string;
+}
+
+const {
+  headline = 'Astia versus the alternatives',
+  subheadline = 'The honest comparison. Numbers are industry averages pulled from public benchmarks, our own work, and twenty years of hospitality web pricing.',
+} = Astro.props;
+
+const columns = [
+  { name: 'Astia Web', detail: 'AI-managed, Astro-powered', featured: true },
+  { name: 'Web agency', detail: 'Custom builds, retainers', featured: false },
+  { name: 'Wix / Squarespace', detail: 'DIY website builders', featured: false },
+];
+
+const groups = [
+  {
+    title: 'Pricing',
+    rows: [
+      { feature: 'Upfront cost', cells: [
+        { status: 'yes', note: 'CHF 0' },
+        { status: 'no', note: 'CHF 15k - 40k' },
+        { status: 'yes', note: 'CHF 0' },
+      ]},
+      { feature: 'Monthly cost', cells: [
+        { status: 'yes', note: 'CHF 150 - 550' },
+        { status: 'no', note: 'CHF 500 - 2,000' },
+        { status: 'partial', note: 'CHF 30 - 50' },
+      ]},
+      { feature: 'Annual total (year 1)', cells: [
+        { status: 'yes', note: 'CHF 1,800 - 6,600' },
+        { status: 'no', note: 'CHF 21k - 64k' },
+        { status: 'partial', note: 'CHF 360 - 600' },
+      ]},
+    ],
+  },
+  {
+    title: 'Performance',
+    rows: [
+      { feature: 'Sub-1s load (lean page)', cells: [
+        { status: 'yes', note: 'Possible' },
+        { status: 'partial', note: 'Sometimes' },
+        { status: 'partial', note: 'Rarely' },
+      ]},
+      { feature: 'Lighthouse score', cells: [
+        { status: 'yes', note: 'High 90s possible' },
+        { status: 'partial', note: '60-85' },
+        { status: 'partial', note: '50-70' },
+      ]},
+      { feature: 'Page weight', cells: [
+        { status: 'yes', note: 'From ~80 KB lean' },
+        { status: 'partial', note: '~1.5 MB' },
+        { status: 'no', note: '~2.1 MB' },
+      ]},
+      { feature: 'Time to deploy a change', cells: [
+        { status: 'yes', note: '< 2 minutes' },
+        { status: 'partial', note: '3 - 14 days' },
+        { status: 'partial', note: 'Manual edits' },
+      ]},
+    ],
+  },
+  {
+    title: 'Features',
+    rows: [
+      { feature: 'You own the code', cells: [
+        { status: 'yes', note: 'Git repo + CMS' },
+        { status: 'partial', note: 'Maybe' },
+        { status: 'no', note: 'No' },
+      ]},
+      { feature: 'AI-managed updates', cells: [
+        { status: 'yes', note: 'Included' },
+        { status: 'no', note: 'Extra cost' },
+        { status: 'no', note: 'Manual only' },
+      ]},
+      { feature: 'Direct booking integration', cells: [
+        { status: 'yes', note: 'Built for it' },
+        { status: 'partial', note: 'Custom build' },
+        { status: 'partial', note: 'Limited add-ons' },
+      ]},
+      { feature: 'Multi-language support', cells: [
+        { status: 'yes', note: 'Included' },
+        { status: 'partial', note: 'Extra cost' },
+        { status: 'partial', note: 'Basic' },
+      ]},
+    ],
+  },
+];
+
+const legend = [
+  { status: 'yes', label: 'Included' },
+  { status: 'partial', label: 'Partial or add-on' },
+  { status: 'no', label: 'Not available' },
+];
+
+const lastGroup = groups.length - 1;
+---
+<section class="comparison-section">
+  <div class="cmp-inner">
+    <div class="comparison-header reveal">
+      <div>
+        <h2 class="cmp-h2">{headline}</h2>
+        <p class="cmp-lede">{subheadline}</p>
+      </div>
+      <ul class="cmp-legend">
+        {legend.map((item) => (
+          <li>
+            <span class={`cmp-chip is-${item.status}`}>
+              {item.status === 'yes' && <Icon name="check" size={14} />}
+              {item.status === 'partial' && <Icon name="minus" size={14} />}
+              {item.status === 'no' && <Icon name="x" size={14} />}
+            </span>
+            <span class="cmp-legend-label">{item.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="cmp-table reveal">
+      <div class="cmp-scroll">
+        <div class="cmp-min">
+          <div class="cmp-grid cmp-head">
+            <div class="cmp-sticky cmp-head-label">
+              <span class="cmp-kicker">Capability</span>
+            </div>
+            {columns.map((column) => (
+              <div class={`cmp-colhead${column.featured ? ' is-featured' : ''}`}>
+                <div class="cmp-colhead-top">
+                  {column.featured && (
+                    <span class="cmp-zap"><Icon name="zap" size={14} /></span>
+                  )}
+                  <span class={`cmp-colname${column.featured ? ' is-featured' : ''}`}>{column.name}</span>
+                </div>
+                <p class="cmp-coldetail">{column.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          {groups.map((group, groupIndex) => (
+            <div>
+              <div class="cmp-grid cmp-grouphead">
+                <div class="cmp-sticky cmp-grouphead-label">
+                  <h3 class="cmp-kicker">{group.title}</h3>
+                </div>
+                <div class="cmp-grouphead-featured" />
+                <div />
+                <div />
+              </div>
+
+              {group.rows.map((row, rowIndex) => (
+                <div
+                  class={`cmp-grid cmp-row${
+                    groupIndex === lastGroup && rowIndex === group.rows.length - 1 ? ' is-last' : ''
+                  }`}
+                >
+                  <div class="cmp-sticky cmp-feature">
+                    <span class="cmp-feature-text">{row.feature}</span>
+                  </div>
+                  {row.cells.map((cell, cellIndex) => (
+                    <div class={`cmp-cell${columns[cellIndex].featured ? ' is-featured' : ''}`}>
+                      <div class="cmp-cell-inner">
+                        <span
+                          class={`cmp-chip is-${cell.status}${
+                            columns[cellIndex].featured && cell.status === 'yes' ? ' is-featured' : ''
+                          }`}
+                        >
+                          {cell.status === 'yes' && (
+                            <Icon name="check" size={14} strokeWidth={columns[cellIndex].featured ? 2.5 : 2} />
+                          )}
+                          {cell.status === 'partial' && <Icon name="minus" size={14} />}
+                          {cell.status === 'no' && <Icon name="x" size={14} />}
+                        </span>
+                        <span class={`cmp-note${columns[cellIndex].featured ? ' is-featured' : ''}`}>
+                          {cell.note}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="comparison-mobile-fade" aria-hidden="true" />
+    </div>
+
+    <p class="cmp-footnote reveal">
+      Assessment based on vendor documentation and public pricing, 2026.{' '}
+      <span class="comparison-mobile-hint">Swipe sideways to see every column.</span>
+    </p>
+  </div>
+</section>
+
+<style is:global>
+  .comparison-section {
+    width: 100%;
+    background: var(--paper, #F7F5F0);
+    padding: 80px 16px;
+  }
+  .cmp-inner {
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--container-max, 1240px);
+  }
+  .comparison-header {
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cmp-h2 {
+    font-family: 'Editorial New', Georgia, serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    color: var(--ink, #141414);
+    margin: 0;
+  }
+  .cmp-lede {
+    margin-top: 16px;
+    max-width: 640px;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft, #2A2A2A);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .cmp-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 28px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cmp-legend li { display: flex; align-items: center; gap: 8px; }
+  .cmp-legend-label {
+    font-size: 13px;
+    color: var(--stone, #6B6B66);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+
+  .cmp-chip {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+  }
+  .cmp-chip.is-yes {
+    background: transparent;
+    color: var(--rosso, #C41E3A);
+    border: 1px solid var(--bone, #E5E2DA);
+  }
+  .cmp-chip.is-yes.is-featured {
+    background: var(--ink, #141414);
+    color: var(--paper, #F7F5F0);
+    border: none;
+  }
+  .cmp-chip.is-partial {
+    border: 1px dashed var(--bone, #E5E2DA);
+    color: var(--stone, #6B6B66);
+  }
+  .cmp-chip.is-no {
+    background: var(--bone-soft, #EDEAE2);
+    color: var(--stone-soft, #9A9A93);
+  }
+
+  .cmp-table {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    border: 1px solid var(--bone, #E5E2DA);
+    background: var(--paper, #F7F5F0);
+    box-shadow: 0 1px 2px rgba(20, 20, 20, 0.05), 0 12px 32px rgba(20, 20, 20, 0.06);
+  }
+  .cmp-scroll { overflow-x: auto; }
+  .cmp-min { min-width: 720px; }
+  .cmp-grid {
+    display: grid;
+    grid-template-columns:
+      minmax(190px, 1.5fr) minmax(180px, 1.1fr) minmax(170px, 1fr) minmax(170px, 1fr);
+  }
+  .cmp-head { border-bottom: 1px solid var(--bone, #E5E2DA); }
+  .cmp-sticky { position: sticky; left: 0; z-index: 10; }
+  .cmp-head-label {
+    display: flex;
+    align-items: flex-end;
+    background: var(--paper, #F7F5F0);
+    padding: 20px 24px;
+  }
+  .cmp-kicker {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--stone, #6B6B66);
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+  }
+  .cmp-colhead { padding: 20px; }
+  .cmp-colhead.is-featured {
+    background: rgba(196, 30, 58, 0.04);
+    border-left: 1px solid var(--bone, #E5E2DA);
+    border-right: 1px solid var(--bone, #E5E2DA);
+  }
+  .cmp-colhead-top { display: flex; align-items: center; gap: 8px; }
+  .cmp-zap {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: var(--rosso, #C41E3A);
+    color: var(--paper, #F7F5F0);
+  }
+  .cmp-colname {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--stone, #6B6B66);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .cmp-colname.is-featured { color: var(--ink, #141414); }
+  .cmp-coldetail {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--stone-soft, #9A9A93);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+
+  .cmp-grouphead { border-bottom: 1px solid var(--bone, #E5E2DA); }
+  .cmp-grouphead-label { background: var(--cream, #FAFAF7); padding: 16px 24px; }
+  .cmp-grouphead-featured {
+    border-left: 1px solid var(--bone, #E5E2DA);
+    border-right: 1px solid var(--bone, #E5E2DA);
+    background: rgba(196, 30, 58, 0.04);
+  }
+
+  .cmp-row { border-bottom: 1px solid var(--bone, #E5E2DA); }
+  .cmp-row.is-last { border-bottom: none; }
+  .cmp-feature {
+    display: flex;
+    align-items: center;
+    background: var(--paper, #F7F5F0);
+    padding: 14px 24px;
+  }
+  .cmp-feature-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink, #141414);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .cmp-cell { display: flex; align-items: center; padding: 14px 20px; }
+  .cmp-cell.is-featured {
+    background: rgba(196, 30, 58, 0.04);
+    border-left: 1px solid var(--bone, #E5E2DA);
+    border-right: 1px solid var(--bone, #E5E2DA);
+  }
+  .cmp-cell-inner { display: flex; align-items: center; gap: 10px; }
+  .cmp-note {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--stone, #6B6B66);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .cmp-note.is-featured { font-weight: 500; color: var(--ink, #141414); }
+
+  .comparison-mobile-fade {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 40px;
+    background: linear-gradient(to left, var(--paper, #F7F5F0), transparent);
+    pointer-events: none;
+    display: none;
+  }
+  .cmp-footnote {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--stone-soft, #9A9A93);
+    font-family: 'General Sans', -apple-system, sans-serif;
+  }
+  .comparison-mobile-hint { display: none; }
+
+  @media (max-width: 880px) {
+    .comparison-section { padding: 56px 16px; }
+    .comparison-mobile-fade { display: block; }
+    .comparison-mobile-hint { display: inline; }
+  }
+</style>

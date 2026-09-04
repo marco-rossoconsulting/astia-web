@@ -1,10 +1,10 @@
 ---
 import { getEntry } from 'astro:content';
-import ProblemCards from '@components/ProblemCards.tsx';
+import ProblemCards from '@components/ProblemCards.astro';
 import PriceTeaserCard from '@components/PriceTeaserCard.astro';
-import Hero24 from '@components/Hero24.tsx';
-import ComparisonSection from '@components/ComparisonSection.tsx';
-import HowItWorksSteps from '@components/HowItWorksSteps.tsx';
+import Hero24 from '@components/Hero24.astro';
+import ComparisonSection from '@components/ComparisonSection.astro';
+import HowItWorksSteps from '@components/HowItWorksSteps.astro';
 
 interface Props {
   lang: 'en' | 'de' | 'it';
@@ -60,24 +60,22 @@ const hiwSteps = d.steps.items.map((s: any) => ({
 
 {/* ===== HERO 24 ===== */}
 <Hero24
-  client:load
   chipText={lang === 'en' ? "Astia Web AI-managed sites" : lang === 'de' ? "Astia Web AI-verwaltete Sites" : "Astia Web Siti gestiti dall'IA"}
   headlinePre={d.hero.preEm[lang]}
   headlineEm={d.hero.em[lang]}
   headlinePost={" " + d.hero.post[lang]}
-  subheadline={d.hero.lede[lang] + " " + d.hero.badge[lang] + "."}
+  subheadline={d.hero.lede[lang]}
+  badgeText={d.hero.badge[lang]}
   primaryCta={cta.applyForSite[lang]}
   primaryCtaHref={url('apply')}
   secondaryCta={cta.seeHow[lang]}
   secondaryCtaHref={url('how')}
-  partnersLabel={lang === 'en' ? 'Powering websites for' : lang === 'de' ? 'Websites f\u00fcr' : 'Siti per'}
 />
 
 <hr class="section-divider" />
 
 {/* ===== PROBLEM CARDS ===== */}
 <ProblemCards
-  client:load
   headline={d.problem.h2pre[lang]}
   headlineEm={d.problem.h2em[lang]}
   subheadline={d.problem.intro[lang]}
@@ -116,7 +114,6 @@ const hiwSteps = d.steps.items.map((s: any) => ({
 
 {/* ===== STEPS — How It Works 8–inspired ===== */}
 <HowItWorksSteps
-  client:visible
   headlinePre={d.steps.h2pre[lang]}
   headlineEm={d.steps.h2em[lang]}
   lede={d.steps.lede[lang]}
@@ -129,7 +126,6 @@ const hiwSteps = d.steps.items.map((s: any) => ({
 
 {/* ===== COMPARISON 8 ===== */}
 <ComparisonSection
-  client:load
   headline={d.comparison.h2pre[lang] + " " + d.comparison.h2em[lang]}
   subheadline={d.comparison.intro[lang]}
 />
@@ -171,6 +167,36 @@ const hiwSteps = d.steps.items.map((s: any) => ({
 
 <hr class="section-divider" />
 
+{/* ===== FAQ ===== */}
+<section class="section section-cream">
+  <div class="container-narrow">
+    <h2 class="display-2 reveal" style="margin-top:0; margin-bottom:48px;">
+      {d.faq.h2pre[lang]} <span class="editorial-i">{d.faq.h2em[lang]}</span>
+    </h2>
+
+    <div class="faq-list reveal">
+      {d.faq.items.map((item: any, i: number) => (
+        <div class="faq-item">
+          <button
+            class="faq-q-btn"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${i}`}
+            data-faq-index={i}
+          >
+            <span>{item.q[lang]}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a-wrap" id={`faq-answer-${i}`}>
+            <p class="faq-a">{item.a[lang]}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
 {/* ===== FINAL CTA ===== */}
 <section class="section">
   <div class="container-narrow reveal" style="text-align:center;">
@@ -181,3 +207,27 @@ const hiwSteps = d.steps.items.map((s: any) => ({
     <a class="btn btn-primary btn-arrow" href={url('apply')}>{cta.applyForSite[lang]}</a>
   </div>
 </section>
+
+{/* FAQ Accordion Script */}
+<script is:inline>
+  (function () {
+    var buttons = document.querySelectorAll('.faq-q-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var index = btn.getAttribute('data-faq-index');
+        var wrap = document.getElementById('faq-answer-' + index);
+        buttons.forEach(function (b) {
+          if (b !== btn) {
+            b.setAttribute('aria-expanded', 'false');
+            var otherIndex = b.getAttribute('data-faq-index');
+            var otherWrap = document.getElementById('faq-answer-' + otherIndex);
+            if (otherWrap) otherWrap.classList.remove('open');
+          }
+        });
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (wrap) wrap.classList.toggle('open');
+      });
+    });
+  })();
+</script>
