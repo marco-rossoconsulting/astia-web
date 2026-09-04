@@ -2,8 +2,8 @@
 import { getEntry } from 'astro:content';
 import SpecCard from '@components/SpecCard.astro';
 import MathCard from '@components/MathCard.astro';
-import IncludedFeatures from '@components/IncludedFeatures.tsx';
-import HowItWorksHero from '@components/HowItWorksHero.tsx';
+import IncludedFeatures from '@components/IncludedFeatures.astro';
+import HowItWorksHero from '@components/HowItWorksHero.astro';
 
 interface Props { lang: 'en' | 'de' | 'it'; }
 const { lang } = Astro.props;
@@ -23,7 +23,6 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 ---
 {/* HERO */}
 <HowItWorksHero
-  client:load
   eyebrow={d.hero.eyebrow?.[lang]}
   headlinePre={d.hero.headlinePre[lang]}
   headlineEm={d.hero.headlineEm[lang]}
@@ -61,7 +60,6 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 
 {/* WHAT'S INCLUDED */}
 <IncludedFeatures
-  client:visible
   headlinePre={d.included.h2pre[lang]}
   headlineEm={d.included.h2em[lang]}
   features={includedFeatures}

@@ -1,0 +1,129 @@
+---
+interface Props {
+  eyebrow?: string;
+  headlinePre?: string;
+  headlineEm?: string;
+  headlinePost?: string;
+  lede?: string;
+}
+
+const { eyebrow, headlinePre = '', headlineEm = '', headlinePost = '', lede = '' } = Astro.props;
+---
+<section class="hiw-hero">
+  {/* Static first frame: a hint of the particle tint, painted immediately. */}
+  <div aria-hidden="true" class="hiw-hero-backdrop"></div>
+
+  {/* Particles mount here, then fade up over the backdrop. */}
+  <div aria-hidden="true" class="hiw-hero-particles" data-rising-particles></div>
+
+  <div aria-hidden="true" class="hiw-hero-scrim"></div>
+
+  <div class="container-narrow hiw-hero-inner">
+    <span class="eyebrow eyebrow-rosso hiw-rise hiw-rise-eyebrow">{eyebrow}</span>
+
+    <h1 class="display-1 hiw-rise hiw-rise-title" style="margin-top:0; margin-bottom:32px;">
+      {headlinePre}<span class="editorial-i">{headlineEm}</span>{headlinePost}
+    </h1>
+
+    <p class="lede hiw-rise hiw-rise-lede">{lede}</p>
+  </div>
+</section>
+
+<script>
+  import { mountRisingParticles } from '@/scripts/rising-particles';
+
+  const host = document.querySelector<HTMLElement>('[data-rising-particles]');
+
+  if (host) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    mountRisingParticles(host, {
+      backgroundColor: 'transparent',
+      color: '#C41E3A',
+      farColor: '#7C1D1D',
+      count: 120,
+      minSize: 0.01,
+      maxSize: 0.032,
+      spread: 1.8,
+      sway: 0.08,
+      swayRate: 0.45,
+      depth: 0.6,
+      coreSize: 0.3,
+      coreSoftness: 0.85,
+      glow: 0.8,
+      glowFalloff: 2.6,
+      fade: 0.22,
+      gain: 0.9,
+      bloom: 0.12,
+      grain: 0,
+      vignette: 0,
+      opacity: 0.68,
+      speed: reduceMotion ? 0 : 0.55,
+      cursorInteraction: !reduceMotion,
+      cursorPush: 0.08,
+      cursorRadius: 0.3,
+      paused: reduceMotion,
+      dpr: 1.5,
+    });
+
+    requestAnimationFrame(() => requestAnimationFrame(() => host.classList.add('is-ready')));
+  }
+</script>
+
+<style is:global>
+  .hiw-hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding-top: 110px;
+    padding-bottom: 72px;
+    background: var(--paper, #F7F5F0);
+  }
+  .hiw-hero-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 40% 50% at 78% 26%, rgba(196, 30, 58, 0.055) 0%, rgba(196, 30, 58, 0) 70%),
+      radial-gradient(ellipse 45% 55% at 16% 72%, rgba(196, 30, 58, 0.045) 0%, rgba(196, 30, 58, 0) 70%);
+  }
+  .hiw-hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 700ms ease-out;
+  }
+  .hiw-hero-particles.is-ready { opacity: 1; }
+  .hiw-hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 65% 60% at 50% 40%,
+      rgba(247, 245, 240, 0.4) 0%,
+      rgba(247, 245, 240, 0.14) 55%,
+      rgba(247, 245, 240, 0) 85%
+    );
+  }
+  .hiw-hero-inner { position: relative; }
+
+  @keyframes hiwRise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hiw-rise { animation: hiwRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hiw-rise-eyebrow { animation-delay: 0.02s; }
+  .hiw-rise-title   { animation-delay: 0.08s; }
+  .hiw-rise-lede    { animation-delay: 0.16s; }
+
+  @media (max-width: 640px) {
+    .hiw-hero { padding-top: 88px; padding-bottom: 56px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hiw-rise { animation: none !important; opacity: 1 !important; transform: none !important; }
+    .hiw-hero-particles { transition: none !important; }
+  }
+</style>

@@ -1,0 +1,439 @@
+---
+import Icon from '@components/icons/Icon.astro';
+
+export interface HowItWorksVignetteRow {
+  title: string;
+  meta: string;
+  active?: boolean;
+}
+
+export interface HowItWorksDetail {
+  n: string;
+  label: string;
+  days?: string;
+}
+
+export interface HowItWorksStep {
+  num: string;
+  title: string;
+  days: string;
+  body: string;
+  kind: 'apply' | 'build' | 'run';
+  vignetteLabel: string;
+  vignetteHeader: string;
+  vignetteBadge: string;
+  vignetteRows: HowItWorksVignetteRow[];
+  details: HowItWorksDetail[];
+}
+
+interface Props {
+  headlinePre: string;
+  headlineEm: string;
+  lede: string;
+  steps: HowItWorksStep[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const { headlinePre, headlineEm, lede, steps, ctaLabel, ctaHref } = Astro.props;
+---
+<section class="hiw-section" aria-labelledby="hiw-heading">
+  <div class="hiw-inner">
+    <header class="hiw-header reveal">
+      <h2 id="hiw-heading" class="display-2">
+        {headlinePre} <span class="editorial-i">{headlineEm}</span>
+      </h2>
+      <p class="lede">{lede}</p>
+    </header>
+
+    <div class="hiw-grid">
+      <div class="hiw-connector" aria-hidden="true">
+        <span class="hiw-connector-line reveal"></span>
+      </div>
+
+      {steps.map((step, i) => (
+        <article class={`hiw-col reveal hiw-col-${i + 1}`}>
+          <div class="hiw-vignette">
+            <div class="hiw-chrome">
+              <span class="hiw-traffic" aria-hidden="true"><i /><i /><i /></span>
+              <span class="hiw-chrome-label">{step.vignetteLabel}</span>
+            </div>
+            <div class="hiw-vignette-body">
+              <div class="hiw-vignette-head">
+                <span class="hiw-vignette-title">
+                  {step.kind === 'apply' && <Icon name="inbox" size={13} strokeWidth={1.75} />}
+                  {step.kind === 'build' && <Icon name="pen-tool" size={13} strokeWidth={1.75} />}
+                  {step.kind === 'run' && <Icon name="bot" size={13} strokeWidth={1.75} />}
+                  {step.vignetteHeader}
+                </span>
+                {step.kind === 'run' ? (
+                  <span class="hiw-vignette-badge hiw-badge-live">
+                    <Icon name="radio" size={11} />
+                    {step.vignetteBadge}
+                  </span>
+                ) : (
+                  <span class="hiw-vignette-badge">{step.vignetteBadge}</span>
+                )}
+              </div>
+
+              <ul class={`hiw-vignette-list${step.kind === 'build' ? ' hiw-build-list' : ''}`}>
+                {step.vignetteRows.map((row) => (
+                  <li class={row.active ? 'is-active' : undefined}>
+                    {step.kind === 'apply' && (
+                      <span class="hiw-row-icon" aria-hidden="true">
+                        {row.active ? <Icon name="mail" size={12} /> : <Icon name="building-2" size={12} />}
+                      </span>
+                    )}
+                    {step.kind === 'build' && (
+                      <span class="hiw-bar" aria-hidden="true">
+                        <span style={`width:${row.active ? '78%' : '46%'}`} />
+                      </span>
+                    )}
+                    {step.kind === 'run' && (
+                      <span class={`hiw-pulse-dot${row.active ? ' is-on' : ''}`} aria-hidden="true" />
+                    )}
+                    <span>
+                      <strong>{row.title}</strong>
+                      <em>{row.meta}</em>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="hiw-node-row">
+            <span class="hiw-node">{step.num}</span>
+          </div>
+
+          <h3 class="hiw-title">{step.title}</h3>
+          <div class="hiw-days">{step.days}</div>
+          <p class="hiw-body">{step.body}</p>
+
+          {step.details.length > 0 && (
+            <ol class="hiw-details">
+              {step.details.map((detail) => (
+                <li>
+                  <span class="hiw-detail-n">{detail.n}</span>
+                  <span class="hiw-detail-label">{detail.label}</span>
+                  {detail.days && <span class="hiw-detail-days">{detail.days}</span>}
+                </li>
+              ))}
+            </ol>
+          )}
+        </article>
+      ))}
+    </div>
+
+    {ctaLabel && ctaHref && (
+      <div class="hiw-cta">
+        <a class="btn btn-ghost btn-arrow" href={ctaHref}>{ctaLabel}</a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style is:global>
+  .hiw-section {
+    width: 100%;
+    background: var(--paper, #F7F5F0);
+    padding: 96px 0;
+  }
+  .hiw-inner {
+    max-width: var(--container-max, 1240px);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .hiw-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 72px;
+  }
+  .hiw-header .display-2 { margin-bottom: 16px; }
+  .hiw-header .lede { margin: 0 auto; max-width: 580px; }
+  .hiw-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 36px;
+  }
+  .hiw-connector {
+    display: block;
+    position: absolute;
+    left: 16.666%;
+    right: 16.666%;
+    top: calc(176px + 8px);
+    height: 44px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Draws itself in once scrolled into view — the .visible class comes from
+     the shared reveal observer in BaseLayout. */
+  .hiw-connector-line {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(to right, var(--bone, #E5E2DA) 0%, var(--rosso, #C41E3A) 50%, var(--bone, #E5E2DA) 100%);
+    transform-origin: left center;
+    opacity: 1;
+    transform: scaleX(0);
+    transition: transform 1.15s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) 0.15s;
+  }
+  .hiw-connector-line.visible { transform: scaleX(1); }
+  .hiw-col-2 { transition-delay: 0.12s; }
+  .hiw-col-3 { transition-delay: 0.24s; }
+  .hiw-col {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
+  }
+  .hiw-vignette {
+    width: 100%;
+    height: 176px;
+    min-height: 176px;
+    background: var(--cream, #FAFAF7);
+    border: 1px solid var(--bone, #E5E2DA);
+    box-shadow: var(--shadow-soft, 0 1px 3px rgba(20,20,20,0.04), 0 8px 24px rgba(20,20,20,0.04));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .hiw-chrome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--bone, #E5E2DA);
+    background: var(--paper, #F7F5F0);
+  }
+  .hiw-traffic { display: flex; gap: 5px; }
+  .hiw-traffic i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--bone, #E5E2DA);
+  }
+  .hiw-traffic i:nth-child(1) { background: #D4A5A5; }
+  .hiw-traffic i:nth-child(2) { background: #D4CFC5; }
+  .hiw-traffic i:nth-child(3) { background: #C5D4C8; }
+  .hiw-chrome-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone, #6B6B66);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hiw-vignette-body {
+    padding: 12px 14px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hiw-vignette-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .hiw-vignette-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink, #141414);
+  }
+  .hiw-vignette-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rosso, #C41E3A);
+    background: rgba(196, 30, 58, 0.08);
+    border: 1px solid rgba(196, 30, 58, 0.16);
+    padding: 3px 7px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .hiw-vignette-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hiw-vignette-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+    padding: 6px 8px;
+    background: var(--paper, #F7F5F0);
+    border: 1px solid transparent;
+  }
+  .hiw-vignette-list li.is-active {
+    border-color: rgba(196, 30, 58, 0.22);
+    background: rgba(196, 30, 58, 0.04);
+  }
+  .hiw-vignette-list strong {
+    display: block;
+    font-family: 'General Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink, #141414);
+    line-height: 1.3;
+  }
+  .hiw-vignette-list em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--stone, #6B6B66);
+    line-height: 1.35;
+    margin-top: 1px;
+  }
+  .hiw-row-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rosso, #C41E3A);
+    background: var(--cream, #FAFAF7);
+    border: 1px solid var(--bone, #E5E2DA);
+  }
+  .hiw-bar {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 3px;
+    background: var(--cream, #FAFAF7);
+    border: 1px solid var(--bone, #E5E2DA);
+  }
+  .hiw-bar span { display: block; height: 7px; background: var(--rosso, #C41E3A); opacity: 0.75; }
+  .hiw-pulse-dot {
+    width: 8px;
+    height: 8px;
+    margin: 7px 7px 0 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--bone, #E5E2DA);
+  }
+  .hiw-pulse-dot.is-on {
+    background: var(--rosso, #C41E3A);
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.12);
+  }
+  .hiw-node-row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    margin: 8px 0 4px;
+  }
+  .hiw-node {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper, #F7F5F0);
+    border: 1.5px solid var(--rosso, #C41E3A);
+    color: var(--rosso, #C41E3A);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .hiw-title {
+    font-family: 'Editorial New', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink, #141414);
+    margin: 8px 0 6px;
+  }
+  .hiw-days {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rosso, #C41E3A);
+    margin-bottom: 14px;
+  }
+  .hiw-body {
+    font-family: 'General Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft, #2A2A2A);
+    margin: 0 0 18px;
+    max-width: 340px;
+  }
+  .hiw-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 340px;
+    border-top: 1px solid var(--bone, #E5E2DA);
+  }
+  .hiw-details li {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 8px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--bone, #E5E2DA);
+    text-align: left;
+  }
+  .hiw-detail-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--rosso, #C41E3A);
+  }
+  .hiw-detail-label { font-size: 13px; color: var(--ink, #141414); }
+  .hiw-detail-days {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--stone, #6B6B66);
+  }
+  .hiw-cta { display: flex; justify-content: center; margin-top: 56px; }
+  @media (max-width: 880px) {
+    .hiw-section { padding: 64px 0; }
+    .hiw-inner { padding: 0 24px; }
+    .hiw-header { margin-bottom: 40px; }
+    .hiw-grid { grid-template-columns: 1fr; gap: 0; }
+    .hiw-connector { display: none; }
+    .hiw-col {
+      border-top: 1px solid var(--bone, #E5E2DA);
+      padding: 36px 0 8px;
+    }
+    .hiw-col:first-of-type { border-top: 0; padding-top: 0; }
+    .hiw-body, .hiw-details { max-width: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hiw-connector-line { transform: scaleX(1) !important; transition: none !important; }
+  }
+</style>
