@@ -1,17 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { NeuroNoise } from "@paper-design/shaders-react";
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+/**
+ * Entrance animations here are CSS, not JS. The markup ships from the server
+ * already visible and starts animating on first paint, so the hero no longer
+ * waits for React (and the shader bundle) to hydrate before it appears.
+ */
 
 interface Hero24Props {
   chipText?: string;
@@ -19,6 +16,7 @@ interface Hero24Props {
   headlineEm?: string;
   headlinePost?: string;
   subheadline?: string;
+  badgeText?: string;
   primaryCta?: string;
   primaryCtaHref?: string;
   secondaryCta?: string;
@@ -26,19 +24,47 @@ interface Hero24Props {
   partnersLabel?: string;
 }
 
+function usePrefersReducedMotion() {
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduce(media.matches);
+    const onChange = () => setReduce(media.matches);
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  return reduce;
+}
+
 export function Hero24({
   chipText = "Astia Web · AI-managed sites",
-  headlinePre = "The first ",
-  headlineEm = "AI-managed",
-  headlinePost = " website service for independent hotels.",
-  subheadline = "Built on Astro for speed. Run by AI for cost. Designed for hospitality. Launch in 2–3 weeks. From CHF 150/month.",
+  headlinePre = "The first",
+  headlineEm = "AI built and managed",
+  headlinePost = " website service for Hospitality.",
+  subheadline = "The AI-centric website service built for independent hotels.",
+  badgeText = "Built on Astro · Live in 2–3 weeks · No upfront cost",
   primaryCta = "Apply for a site",
   primaryCtaHref = "/apply",
   secondaryCta = "See how it works",
   secondaryCtaHref = "/how-it-works",
-  partnersLabel = "Powering websites for",
 }: Hero24Props) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
+  const [shaderReady, setShaderReady] = useState(false);
+
+  // Reveal the canvas only once it has had a frame to paint, so it crossfades
+  // out of the static backdrop below instead of popping in over it.
+  useEffect(() => {
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setShaderReady(true));
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, []);
 
   // Astia brand palette — warm light mode
   const neuro = {
@@ -58,23 +84,29 @@ export function Hero24({
         width: "100%",
         alignItems: "center",
         overflow: "hidden",
-        background: "#F7F5F0",
         padding: "64px 16px 80px",
       }}
       className="hero-24-section"
     >
-      <NeuroNoise
-        className="absolute inset-0 h-full w-full"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
-        colorBack={neuro.colorBack}
-        colorMid={neuro.colorMid}
-        colorFront={neuro.colorFront}
-        brightness={neuro.brightness}
-        contrast={neuro.contrast}
-        scale={1.15}
-        offsetX={0.42}
-        speed={reduceMotion ? 0 : 0.55}
-      />
+      {/* Static first frame: approximates the shader palette, painted immediately. */}
+      <div aria-hidden="true" className="hero-24-backdrop" />
+
+      <div
+        aria-hidden="true"
+        className={`hero-24-canvas${shaderReady ? " is-ready" : ""}`}
+      >
+        <NeuroNoise
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+          colorBack={neuro.colorBack}
+          colorMid={neuro.colorMid}
+          colorFront={neuro.colorFront}
+          brightness={neuro.brightness}
+          contrast={neuro.contrast}
+          scale={1.15}
+          offsetX={0.42}
+          speed={reduceMotion ? 0 : 0.55}
+        />
+      </div>
 
       <div
         aria-hidden="true"
@@ -119,11 +151,8 @@ export function Hero24({
             textAlign: "center",
           }}
         >
-          <motion.div
-            variants={item}
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
+          <div
+            className="hero-24-rise hero-24-chip"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -143,18 +172,7 @@ export function Hero24({
             }}
           >
             <span style={{ position: "relative", display: "flex", height: "8px", width: "8px" }}>
-              <span
-                style={{
-                  position: "absolute",
-                  display: "inline-flex",
-                  height: "100%",
-                  width: "100%",
-                  borderRadius: "9999px",
-                  background: "#C41E3A",
-                  opacity: 0.6,
-                  animation: reduceMotion ? "none" : "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
-                }}
-              />
+              <span className="hero-24-ping" />
               <span
                 style={{
                   position: "relative",
@@ -167,7 +185,7 @@ export function Hero24({
               />
             </span>
             {chipText}
-          </motion.div>
+          </div>
 
           <h1
             style={{
@@ -181,19 +199,16 @@ export function Hero24({
               opacity: 1,
             }}
           >
-            {headlinePre}
+            {headlinePre}{" "}
             <span style={{ fontStyle: "italic" }}>{headlineEm}</span>
             {headlinePost}
           </h1>
 
-          <motion.p
-            variants={item}
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
+          <p
+            className="hero-24-rise hero-24-sub"
             style={{
               marginTop: "24px",
-              maxWidth: "540px",
+              maxWidth: "620px",
               marginLeft: "auto",
               marginRight: "auto",
               fontSize: "clamp(17px, 1.4vw, 20px)",
@@ -203,13 +218,27 @@ export function Hero24({
             }}
           >
             {subheadline}
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={item}
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
+          {badgeText ? (
+            <p
+              className="hero-24-rise hero-24-badge"
+              style={{
+                marginTop: "18px",
+                marginBottom: 0,
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "11px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#6B6B66",
+              }}
+            >
+              {badgeText}
+            </p>
+          ) : null}
+
+          <div
+            className="hero-24-rise hero-24-ctas"
             style={{
               marginTop: "40px",
               display: "flex",
@@ -219,7 +248,6 @@ export function Hero24({
               justifyContent: "center",
               gap: "12px",
             }}
-            className="hero-24-ctas"
           >
             <a
               href={primaryCtaHref}
@@ -281,11 +309,52 @@ export function Hero24({
             >
               {secondaryCta}
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       <style>{`
+        .hero-24-backdrop {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background:
+            radial-gradient(ellipse 55% 60% at 68% 38%, rgba(196, 30, 58, 0.10) 0%, rgba(196, 30, 58, 0) 70%),
+            radial-gradient(ellipse 60% 70% at 58% 46%, rgba(212, 207, 197, 0.55) 0%, rgba(212, 207, 197, 0) 72%),
+            radial-gradient(ellipse 50% 60% at 24% 64%, rgba(212, 207, 197, 0.38) 0%, rgba(212, 207, 197, 0) 70%),
+            #F7F5F0;
+        }
+        .hero-24-canvas {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 700ms ease-out;
+        }
+        .hero-24-canvas.is-ready { opacity: 1; }
+
+        @keyframes hero24Rise {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: none; }
+        }
+        .hero-24-rise {
+          animation: hero24Rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .hero-24-chip  { animation-delay: 0.05s; }
+        .hero-24-sub   { animation-delay: 0.14s; }
+        .hero-24-badge { animation-delay: 0.20s; }
+        .hero-24-ctas  { animation-delay: 0.26s; }
+
+        .hero-24-ping {
+          position: absolute;
+          display: inline-flex;
+          height: 100%;
+          width: 100%;
+          border-radius: 9999px;
+          background: #C41E3A;
+          opacity: 0.6;
+          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
         @keyframes ping {
           75%, 100% {
             transform: scale(2.5);
@@ -310,6 +379,9 @@ export function Hero24({
         }
         @media (prefers-reduced-motion: reduce) {
           .hero-24-section h1 { opacity: 1 !important; }
+          .hero-24-rise { animation: none !important; opacity: 1 !important; transform: none !important; }
+          .hero-24-ping { animation: none !important; }
+          .hero-24-canvas { transition: none !important; }
         }
       `}</style>
     </section>

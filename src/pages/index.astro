@@ -105,7 +105,20 @@ const professionalServiceSchema = {
     ],
   },
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: (page.data as any).faq.items.map((item: any) => ({
+    '@type': 'Question',
+    name: item.q[lang],
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a[lang],
+    },
+  })),
+};
 ---
-<BaseLayout lang={lang} page="home" seo={seo} currentPath="/" schemas={[professionalServiceSchema]}>
+<BaseLayout lang={lang} page="home" seo={seo} currentPath="/" schemas={[professionalServiceSchema, faqSchema]}>
   <HomeContent lang={lang} />
 </BaseLayout>
