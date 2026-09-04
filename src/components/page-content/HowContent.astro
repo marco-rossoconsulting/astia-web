@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import SpecCard from '@components/SpecCard.astro';
+import WhyAstro from '@components/WhyAstro.astro';
 import MathCard from '@components/MathCard.astro';
 import IncludedFeatures from '@components/IncludedFeatures.astro';
 import HowItWorksHero from '@components/HowItWorksHero.astro';
@@ -33,30 +33,25 @@ const includedFeatures = (d.included.features || []).map((f: any) => ({
 <hr class="rule" />
 
 {/* TECHNICAL CASE */}
-<section class="section">
-  <div class="container">
-    <h2 class="display-2 reveal" style="margin-bottom:12px;">
-      {d.technical.h2pre[lang]} <span class="editorial-i">{d.technical.h2em[lang]}</span>
-    </h2>
-    <p class="body reveal" style="max-width:720px; margin-bottom:48px;">{d.technical.intro[lang]}</p>
-
-    <div class="grid-4">
-      {d.technical.specs.map((spec: any, i: number) => (
-        <div class={`reveal reveal-delay-${i + 1}`}>
-          <SpecCard
-            label={spec.label[lang]}
-            us={typeof spec.us === 'string' ? spec.us : spec.us[lang]}
-            them={spec.them[lang]}
-          />
-        </div>
-      ))}
-    </div>
-
-    <p class="body-sm reveal" style="max-width:720px; margin-top:24px; color:var(--stone);">{d.technical.caveat[lang]}</p>
-  </div>
-</section>
-
-<hr class="rule" />
+<WhyAstro
+  eyebrow={d.technical.stack.eyebrow[lang]}
+  headlinePre={d.technical.h2pre[lang]}
+  headlineEm={d.technical.h2em[lang]}
+  intro={d.technical.intro[lang]}
+  caveat={d.technical.caveat[lang]}
+  hubLabel={d.technical.stack.hubLabel[lang]}
+  hubNote={d.technical.stack.hubNote[lang]}
+  nodes={d.technical.stack.nodes.map((n: any) => ({
+    icon: n.icon,
+    label: n.label[lang],
+    note: n.note[lang],
+  }))}
+  specs={d.technical.specs.map((spec: any) => ({
+    label: spec.label[lang],
+    us: typeof spec.us === 'string' ? spec.us : spec.us[lang],
+    them: spec.them[lang],
+  }))}
+/>
 
 {/* WHAT'S INCLUDED */}
 <IncludedFeatures
