@@ -176,6 +176,23 @@
   to = "/thank-you"
   status = 301
 
+
+# Bare connect-anything slug (GSC 404)
+[[redirects]]
+  from = "/journal/connect-anything-open-platforms-2026"
+  to = "/journal/connect-anything-open-platforms-2026-en"
+  status = 301
+
+[[redirects]]
+  from = "/journal/connect-anything-open-platforms-2026/"
+  to = "/journal/connect-anything-open-platforms-2026-en"
+  status = 301
+
+[[redirects]]
+  from = "/de/journal/thirty-thousand-website-is-over-it"
+  to = "/it/journal/thirty-thousand-website-is-over-it"
+  status = 301
+
 # Redirect legacy /sitemap.xml to Astro's sitemap-index.xml
 [[redirects]]
   from = "/sitemap.xml"
