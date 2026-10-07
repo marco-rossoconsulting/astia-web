@@ -1,0 +1,344 @@
+import type { Lang } from './index';
+
+const en = {
+  seo: {
+    title: 'Astia Web · One price for everything your website needs',
+    description:
+      'We write your brand guide, build your website and run it for 150 a month. Every change, every language, live within a day. For independent hotels and small businesses.',
+  },
+  hero: {
+    eyebrow: 'One price · Everything included',
+    title: 'One price for *everything* your website needs.',
+    lede: 'We write your brand guide, build your site and run it for 150 a month. Every change, every language, live within a day.',
+  },
+  pillars: [
+    { num: '01 — Price', title: 'One fair *price*' },
+    { num: '02 — People', title: 'A person, *always*' },
+    { num: '03 — Future', title: 'A site that keeps *up*' },
+  ],
+  changed: {
+    num: '01 — What changed',
+    title: 'Your guests no longer just search. They *ask*.',
+    body: 'A website now has to be read and understood by machines as well as people. Fast pages, clean structure and clear facts decide whether an AI assistant mentions your hotel or a competitor.',
+    kicker: 'A site built for 2019 was not built for this.',
+    tabs: ['Without an AI summary', 'With an AI summary'],
+    values: [15, 8],
+    valueLabel: 'of every 100 Google visits led to a click on a result.',
+    stats: [
+      { v: '1%', l: 'of visits included a click on a link inside the AI summary itself.' },
+      { v: '1 in 5', l: 'Google searches already showed an AI summary in March 2025.' },
+    ],
+    source: 'Pew Research Center, July 2025. 68,879 Google searches by 900 US adults, March 2025.',
+    bridge: 'Nobody knows what search will look like in two years. Your website should not need replacing to find out.',
+  },
+  cycle: {
+    num: '02 — The rebuild cycle',
+    title: 'A one-off website starts ageing the day it *launches*.',
+    tabs: ['A one-off build', 'Astia Web'],
+    oneOff: [
+      { when: 'Launch', what: 'Looks new. Paid in full.' },
+      { when: 'Months 1 to 12', what: 'Small changes become invoices and waiting.' },
+      { when: 'Year 2', what: 'Plugins pile up. Speed drops. Design dates.' },
+      { when: 'Year 3', what: 'The web has moved: AI search, new rules, new devices.' },
+      { when: 'Years 3 to 5', what: 'Start again: new agency, new build, new bill.' },
+    ],
+    astia: [
+      { when: 'Launch', what: 'Built from your brand guide. No setup fee.' },
+      { when: 'Any weekday', what: 'Changes by email, live within a day.' },
+      { when: 'Every year', what: 'A review of the site, the content and the technology.' },
+      { when: 'When the web moves', what: 'Rebuilt on new technology. Included.' },
+      { when: 'Whatever comes next', what: 'If websites give way to something new, we move you to it.' },
+    ],
+    panelTitle: 'With Astia Web there is no *cycle*.',
+    panelBody:
+      'The site is updated every month, reviewed every year, and rebuilt on new technology when the web moves on. Included in the 150. If websites as we know them give way to something new, we move you to it.',
+  },
+  routes: {
+    num: '03 — The decision',
+    title: 'Three ways to get a website. One keeps *up*.',
+    items: [
+      {
+        label: 'Route A',
+        title: 'Build it yourself',
+        sub: 'Wix, Squarespace and similar builders',
+        pros: ['Low monthly fee'],
+        cons: ['You do the work, evenings and weekends', 'The site lives on their platform, not yours'],
+      },
+      {
+        label: 'Route B',
+        title: 'A cheap WordPress agency',
+        sub: 'A one-off build, then hosting and updates',
+        pros: ['Low price to start'],
+        cons: ['Every change after launch is an invoice', 'Plugins, patches and a rebuild every few years'],
+      },
+      {
+        label: 'Route C',
+        title: 'Astia Web',
+        sub: 'One subscription, everything included',
+        pros: ['150 a month, no setup fee', 'Changes by email, live within a day', 'Kept current, and yours to keep'],
+        cons: [],
+      },
+    ],
+    fair: 'To be fair: builder sites are often fast, and a lean one-off build you rarely change can cost less. If that is you, we will say so.',
+    link: 'Compare them in detail',
+  },
+  price: {
+    num: '04 — The price',
+    title: '150 a month. No tiers, no add-ons, no *surprises*.',
+    lede: 'Same price for one site or fifty. Per site, excluding VAT, in CHF, EUR or USD depending on your market.',
+    link: 'See the five-year cost',
+  },
+  how: {
+    num: '05 — How it works',
+    title: 'Brand first, then the site. Live in two to three *weeks*.',
+    steps: [
+      { t: 'A 30-minute call', d: 'We learn your business: who you serve, what makes you different, how you speak to guests.' },
+      { t: 'Your brand guide', d: 'We write it for you: voice, colours, type, imagery. You approve it, and keep it.' },
+      { t: 'Your website', d: 'Built from the guide, shown on a private link, revised until you are happy.' },
+      { t: 'Changes by email', d: 'Send what you want changed. AI drafts it, a person checks it, it is live within a day.' },
+    ],
+    note: 'Why brand first? A site without a clear direction comes out generic. A site built from your own brand guide sounds and looks like your business, not like AI.',
+  },
+  work: {
+    num: '06 — Work',
+    caption: 'Exploreans: one brand guide, three sites, from the Maasai Mara to the Kenyan coast.',
+    alt: 'Sunset over the beach at Watamu, on the Kenyan coast.',
+    link: 'See the work',
+  },
+  final: {
+    num: '07 — Next step',
+    title: 'Book a call. Leave with the start of your brand *guide*.',
+    lede: 'Thirty minutes. We learn your business, answer every question honestly, and tell you plainly if Astia Web is not the right fit.',
+    or: 'Or write to',
+  },
+};
+
+export type HomeCopy = typeof en;
+
+const de: HomeCopy = {
+  seo: {
+    title: 'Astia Web · Ein Preis für alles, was Ihre Website braucht',
+    description:
+      'Wir schreiben Ihren Markenleitfaden, bauen Ihre Website und betreiben sie für 150 pro Monat. Jede Änderung, jede Sprache, live innerhalb eines Tages. Für unabhängige Hotels und kleine Unternehmen.',
+  },
+  hero: {
+    eyebrow: 'Ein Preis · Alles inklusive',
+    title: 'Ein Preis für *alles*, was Ihre Website braucht.',
+    lede: 'Wir schreiben Ihren Markenleitfaden, bauen Ihre Website und betreiben sie für 150 pro Monat. Jede Änderung, jede Sprache, live innerhalb eines Tages.',
+  },
+  pillars: [
+    { num: '01 — Preis', title: 'Ein fairer *Preis*' },
+    { num: '02 — Menschen', title: 'Immer ein *Mensch*' },
+    { num: '03 — Zukunft', title: 'Eine Website, die *mithält*' },
+  ],
+  changed: {
+    num: '01 — Was sich verändert hat',
+    title: 'Ihre Gäste suchen nicht mehr nur. Sie *fragen*.',
+    body: 'Eine Website muss heute von Maschinen genauso gelesen und verstanden werden wie von Menschen. Schnelle Seiten, klare Struktur und eindeutige Fakten entscheiden, ob ein AI-Assistent Ihr Hotel nennt oder die Konkurrenz.',
+    kicker: 'Eine Website von 2019 wurde dafür nicht gebaut.',
+    tabs: ['Ohne AI-Zusammenfassung', 'Mit AI-Zusammenfassung'],
+    values: [15, 8],
+    valueLabel: 'von 100 Google-Besuchen führten zu einem Klick auf ein Ergebnis.',
+    stats: [
+      { v: '1%', l: 'der Besuche enthielten einen Klick auf einen Link in der AI-Zusammenfassung selbst.' },
+      { v: '1 von 5', l: 'Google-Suchen zeigten bereits im März 2025 eine AI-Zusammenfassung.' },
+    ],
+    source: 'Pew Research Center, Juli 2025. 68’879 Google-Suchen von 900 Erwachsenen in den USA, März 2025.',
+    bridge: 'Niemand weiss, wie Suche in zwei Jahren aussieht. Ihre Website sollte nicht ersetzt werden müssen, um es herauszufinden.',
+  },
+  cycle: {
+    num: '02 — Der Neubau-Zyklus',
+    title: 'Eine Einmal-Website beginnt am Tag des Starts zu *altern*.',
+    tabs: ['Einmal-Bau', 'Astia Web'],
+    oneOff: [
+      { when: 'Start', what: 'Sieht neu aus. Vollständig bezahlt.' },
+      { when: 'Monat 1 bis 12', what: 'Kleine Änderungen werden zu Rechnungen und Wartezeit.' },
+      { when: 'Jahr 2', what: 'Plugins häufen sich. Die Seite wird langsamer. Das Design altert.' },
+      { when: 'Jahr 3', what: 'Das Web hat sich bewegt: AI-Suche, neue Regeln, neue Geräte.' },
+      { when: 'Jahr 3 bis 5', what: 'Von vorn: neue Agentur, neuer Bau, neue Rechnung.' },
+    ],
+    astia: [
+      { when: 'Start', what: 'Aus Ihrem Markenleitfaden gebaut. Keine Einrichtungsgebühr.' },
+      { when: 'Jeden Werktag', what: 'Änderungen per E-Mail, live innerhalb eines Tages.' },
+      { when: 'Jedes Jahr', what: 'Eine Überprüfung von Website, Inhalten und Technologie.' },
+      { when: 'Wenn sich das Web bewegt', what: 'Neu gebaut auf neuer Technologie. Inklusive.' },
+      { when: 'Was auch immer kommt', what: 'Wenn Websites etwas Neuem weichen, bringen wir Sie dorthin.' },
+    ],
+    panelTitle: 'Mit Astia Web gibt es keinen *Zyklus*.',
+    panelBody:
+      'Die Website wird jeden Monat aktualisiert, jedes Jahr überprüft und auf neuer Technologie neu gebaut, wenn sich das Web weiterbewegt. In den 150 enthalten. Wenn Websites, wie wir sie kennen, etwas Neuem weichen, bringen wir Sie dorthin.',
+  },
+  routes: {
+    num: '03 — Die Entscheidung',
+    title: 'Drei Wege zu einer Website. Einer hält *mit*.',
+    items: [
+      {
+        label: 'Weg A',
+        title: 'Selbst bauen',
+        sub: 'Wix, Squarespace und ähnliche Baukästen',
+        pros: ['Niedrige Monatsgebühr'],
+        cons: ['Sie machen die Arbeit, abends und am Wochenende', 'Die Website lebt auf deren Plattform, nicht auf Ihrer'],
+      },
+      {
+        label: 'Weg B',
+        title: 'Eine günstige WordPress-Agentur',
+        sub: 'Ein Einmal-Bau, danach Hosting und Updates',
+        pros: ['Niedriger Einstiegspreis'],
+        cons: ['Jede Änderung nach dem Start ist eine Rechnung', 'Plugins, Patches und alle paar Jahre ein Neubau'],
+      },
+      {
+        label: 'Weg C',
+        title: 'Astia Web',
+        sub: 'Ein Abonnement, alles inklusive',
+        pros: ['150 pro Monat, keine Einrichtungsgebühr', 'Änderungen per E-Mail, live innerhalb eines Tages', 'Immer aktuell, und Ihr Eigentum'],
+        cons: [],
+      },
+    ],
+    fair: 'Fairerweise: Baukasten-Websites sind oft schnell, und ein schlanker Einmal-Bau, den Sie selten ändern, kann weniger kosten. Wenn das auf Sie zutrifft, sagen wir es Ihnen.',
+    link: 'Im Detail vergleichen',
+  },
+  price: {
+    num: '04 — Der Preis',
+    title: '150 pro Monat. Keine Stufen, keine Extras, keine *Überraschungen*.',
+    lede: 'Derselbe Preis für eine Website oder fünfzig. Pro Website, exkl. MwSt., in CHF, EUR oder USD, je nach Ihrem Markt.',
+    link: 'Die Kosten über fünf Jahre',
+  },
+  how: {
+    num: '05 — So funktioniert es',
+    title: 'Erst die Marke, dann die Website. Live in zwei bis drei *Wochen*.',
+    steps: [
+      { t: 'Ein 30-minütiges Gespräch', d: 'Wir lernen Ihr Unternehmen kennen: wen Sie bedienen, was Sie unterscheidet, wie Sie mit Gästen sprechen.' },
+      { t: 'Ihr Markenleitfaden', d: 'Wir schreiben ihn für Sie: Tonalität, Farben, Schrift, Bildsprache. Sie geben ihn frei und behalten ihn.' },
+      { t: 'Ihre Website', d: 'Aus dem Leitfaden gebaut, auf einem privaten Link gezeigt und überarbeitet, bis Sie zufrieden sind.' },
+      { t: 'Änderungen per E-Mail', d: 'Schreiben Sie, was Sie ändern möchten. AI entwirft es, ein Mensch prüft es, und es ist innerhalb eines Tages live.' },
+    ],
+    note: 'Warum zuerst die Marke? Eine Website ohne klare Richtung wird beliebig. Eine Website aus Ihrem eigenen Markenleitfaden klingt und wirkt wie Ihr Unternehmen, nicht wie AI.',
+  },
+  work: {
+    num: '06 — Arbeiten',
+    caption: 'Exploreans: ein Markenleitfaden, drei Websites, von der Maasai Mara bis an die kenianische Küste.',
+    alt: 'Sonnenuntergang am Strand von Watamu an der kenianischen Küste.',
+    link: 'Arbeiten ansehen',
+  },
+  final: {
+    num: '07 — Nächster Schritt',
+    title: 'Buchen Sie ein Gespräch. Dort beginnt Ihr *Markenleitfaden*.',
+    lede: 'Dreissig Minuten. Wir lernen Ihr Unternehmen kennen, beantworten jede Frage ehrlich und sagen Ihnen offen, wenn Astia Web nicht das Richtige ist.',
+    or: 'Oder schreiben Sie an',
+  },
+};
+
+const it: HomeCopy = {
+  seo: {
+    title: 'Astia Web · Un prezzo per tutto ciò che serve al vostro sito',
+    description:
+      'Scriviamo le linee guida del vostro brand, costruiamo il vostro sito e lo gestiamo per 150 al mese. Ogni modifica, ogni lingua, online entro un giorno. Per hotel indipendenti e piccole imprese.',
+  },
+  hero: {
+    eyebrow: 'Un prezzo · Tutto incluso',
+    title: 'Un prezzo per *tutto* ciò che serve al vostro sito.',
+    lede: 'Scriviamo le linee guida del vostro brand, costruiamo il sito e lo gestiamo per 150 al mese. Ogni modifica, ogni lingua, online entro un giorno.',
+  },
+  pillars: [
+    { num: '01 — Prezzo', title: 'Un prezzo *giusto*' },
+    { num: '02 — Persone', title: 'Sempre una *persona*' },
+    { num: '03 — Futuro', title: 'Un sito sempre *aggiornato*' },
+  ],
+  changed: {
+    num: '01 — Cosa è cambiato',
+    title: 'I vostri ospiti non si limitano più a cercare. *Chiedono*.',
+    body: 'Oggi un sito deve essere letto e capito dalle macchine oltre che dalle persone. Pagine veloci, una struttura pulita e informazioni chiare decidono se un assistente IA nomina il vostro hotel o un concorrente.',
+    kicker: 'Un sito costruito nel 2019 non è stato pensato per questo.',
+    tabs: ['Senza riassunto IA', 'Con riassunto IA'],
+    values: [15, 8],
+    valueLabel: 'visite su 100 a Google hanno portato a un clic su un risultato.',
+    stats: [
+      { v: '1%', l: 'delle visite ha incluso un clic su un link all’interno del riassunto IA.' },
+      { v: '1 su 5', l: 'ricerche su Google mostrava già un riassunto IA a marzo 2025.' },
+    ],
+    source: 'Pew Research Center, luglio 2025. 68’879 ricerche Google di 900 adulti negli Stati Uniti, marzo 2025.',
+    bridge: 'Nessuno sa come sarà la ricerca tra due anni. Per scoprirlo, il vostro sito non dovrebbe aver bisogno di essere sostituito.',
+  },
+  cycle: {
+    num: '02 — Il ciclo del rifacimento',
+    title: 'Un sito una tantum inizia a invecchiare il giorno del *lancio*.',
+    tabs: ['Sito una tantum', 'Astia Web'],
+    oneOff: [
+      { when: 'Lancio', what: 'Sembra nuovo. Pagato per intero.' },
+      { when: 'Mesi da 1 a 12', what: 'Le piccole modifiche diventano fatture e attese.' },
+      { when: 'Anno 2', what: 'I plugin si accumulano. La velocità cala. Il design invecchia.' },
+      { when: 'Anno 3', what: 'Il web è cambiato: ricerca con IA, nuove regole, nuovi dispositivi.' },
+      { when: 'Anni da 3 a 5', what: 'Si ricomincia: nuova agenzia, nuovo sito, nuova fattura.' },
+    ],
+    astia: [
+      { when: 'Lancio', what: 'Costruito dalle vostre linee guida del brand. Nessun costo di attivazione.' },
+      { when: 'Ogni giorno feriale', what: 'Modifiche via email, online entro un giorno.' },
+      { when: 'Ogni anno', what: 'Una revisione del sito, dei contenuti e della tecnologia.' },
+      { when: 'Quando il web cambia', what: 'Ricostruito su una nuova tecnologia. Incluso.' },
+      { when: 'Qualunque cosa arrivi', what: 'Se i siti lasceranno il posto a qualcosa di nuovo, vi ci portiamo noi.' },
+    ],
+    panelTitle: 'Con Astia Web non c’è nessun *ciclo*.',
+    panelBody:
+      'Il sito viene aggiornato ogni mese, rivisto ogni anno e ricostruito su una nuova tecnologia quando il web va avanti. Incluso nei 150. Se i siti come li conosciamo lasceranno il posto a qualcosa di nuovo, vi ci portiamo noi.',
+  },
+  routes: {
+    num: '03 — La scelta',
+    title: 'Tre modi per avere un sito. Uno tiene il *passo*.',
+    items: [
+      {
+        label: 'Strada A',
+        title: 'Farlo da soli',
+        sub: 'Wix, Squarespace e strumenti simili',
+        pros: ['Canone mensile basso'],
+        cons: ['Il lavoro lo fate voi, la sera e nei fine settimana', 'Il sito vive sulla loro piattaforma, non sulla vostra'],
+      },
+      {
+        label: 'Strada B',
+        title: 'Un’agenzia WordPress economica',
+        sub: 'Un sito una tantum, poi hosting e aggiornamenti',
+        pros: ['Prezzo d’ingresso basso'],
+        cons: ['Ogni modifica dopo il lancio è una fattura', 'Plugin, patch e un rifacimento ogni pochi anni'],
+      },
+      {
+        label: 'Strada C',
+        title: 'Astia Web',
+        sub: 'Un abbonamento, tutto incluso',
+        pros: ['150 al mese, nessun costo di attivazione', 'Modifiche via email, online entro un giorno', 'Sempre aggiornato, e vostro'],
+        cons: [],
+      },
+    ],
+    fair: 'Per essere onesti: i siti fatti con questi strumenti sono spesso veloci, e un sito una tantum essenziale che cambiate raramente può costare meno. Se è il vostro caso, ve lo diremo.',
+    link: 'Il confronto nel dettaglio',
+  },
+  price: {
+    num: '04 — Il prezzo',
+    title: '150 al mese. Niente fasce, niente extra, niente *sorprese*.',
+    lede: 'Stesso prezzo per un sito o cinquanta. Per sito, IVA esclusa, in CHF, EUR o USD secondo il vostro mercato.',
+    link: 'Il costo su cinque anni',
+  },
+  how: {
+    num: '05 — Come funziona',
+    title: 'Prima il brand, poi il sito. Online in due o tre *settimane*.',
+    steps: [
+      { t: 'Una chiamata di 30 minuti', d: 'Conosciamo la vostra attività: chi servite, cosa vi distingue, come parlate ai vostri ospiti.' },
+      { t: 'Le linee guida del brand', d: 'Le scriviamo per voi: tono, colori, caratteri, immagini. Le approvate e restano vostre.' },
+      { t: 'Il vostro sito', d: 'Costruito dalle linee guida, mostrato su un link privato, rivisto finché siete soddisfatti.' },
+      { t: 'Modifiche via email', d: 'Scrivete cosa volete cambiare. L’IA prepara la modifica, una persona la controlla, ed è online entro un giorno.' },
+    ],
+    note: 'Perché prima il brand? Un sito senza una direzione chiara risulta generico. Un sito costruito dalle vostre linee guida parla e appare come la vostra attività, non come l’IA.',
+  },
+  work: {
+    num: '06 — Lavori',
+    caption: 'Exploreans: un’unica guida del brand, tre siti, dal Maasai Mara alla costa del Kenya.',
+    alt: 'Tramonto sulla spiaggia di Watamu, sulla costa del Kenya.',
+    link: 'Vedi i lavori',
+  },
+  final: {
+    num: '07 — Il prossimo passo',
+    title: 'Prenotate una chiamata. Le vostre linee guida del brand *iniziano* lì.',
+    lede: 'Trenta minuti. Conosciamo la vostra attività, rispondiamo onestamente a ogni domanda e vi diciamo chiaramente se Astia Web non fa per voi.',
+    or: 'Oppure scrivete a',
+  },
+};
+
+export const home: Record<Lang, HomeCopy> = { en, de, it };

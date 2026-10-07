@@ -1,0 +1,186 @@
+---
+/**
+ * 02 — One change, start to finish. A typical morning, told as a short log:
+ * your email, the AI draft, the person who checks it, live, the reply.
+ * It plays once when it comes into view; "Play again" replays it. Without
+ * script or with reduced motion, every line is simply there.
+ */
+import Icon from '@components/Icon.astro';
+import { em, type Lang } from '@/i18n';
+import { how } from '@/i18n/how';
+import { shared } from '@/i18n/shared';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = how[lang].change;
+const replay = shared[lang].common.replay;
+const example = shared[lang].common.example;
+const kinds = ['you', 'ai', 'person', 'live', 'reply'];
+---
+<section class="section section--paper" aria-labelledby="change-title">
+  <div class="container change-grid">
+    <div class="change-copy">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="change-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+      <p class="lede reveal" style="--d:0.1s">{t.lede}</p>
+      <p class="change-note reveal" style="--d:0.15s">{t.note}</p>
+    </div>
+
+    <figure class="log reveal" data-log>
+      <div class="log-head">
+        <span class="mono-label">{example}</span>
+        <button type="button" class="log-replay" data-log-replay>
+          <Icon name="rotate-ccw" size={14} />{replay}
+        </button>
+      </div>
+      <ol class="log-list">
+        {t.events.map((ev, i) => (
+          <li class:list={['log-row', `log-row--${kinds[i]}`]} data-log-row>
+            <span class="log-time mono">{ev.time}</span>
+            <span class="log-dot" aria-hidden="true"></span>
+            <div class="log-body">
+              <span class="log-who mono-label">{ev.who}</span>
+              <p class:list={['log-what', { 'log-quote': ev.quote }]}>{ev.what}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </figure>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-log]').forEach((log) => {
+    const rows = Array.from(log.querySelectorAll<HTMLElement>('[data-log-row]'));
+    const replay = log.querySelector<HTMLButtonElement>('[data-log-replay]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let timers: number[] = [];
+
+    const play = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      log.classList.add('is-playing');
+      rows.forEach((row) => row.classList.remove('is-shown', 'is-current'));
+      rows.forEach((row, i) => {
+        timers.push(window.setTimeout(() => {
+          rows.forEach((r) => r.classList.remove('is-current'));
+          row.classList.add('is-shown', 'is-current');
+          if (i === rows.length - 1) {
+            timers.push(window.setTimeout(() => row.classList.remove('is-current'), 1600));
+          }
+        }, 300 + i * 950));
+      });
+    };
+
+    if (reduce || !('IntersectionObserver' in window)) {
+      if (replay) replay.hidden = true;
+      return;
+    }
+
+    log.classList.add('is-armed');
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        io.disconnect();
+        play();
+      }
+    }, { threshold: 0.45 });
+    io.observe(log);
+    replay?.addEventListener('click', play);
+  });
+</script>
+
+<style>
+  .change-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 80px;
+    align-items: center;
+  }
+  .change-copy .lede { margin-top: 28px; }
+  .change-note {
+    margin-top: 28px;
+    padding-left: 18px;
+    border-left: 2px solid var(--rosso);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 46ch;
+  }
+
+  .log {
+    margin: 0;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 24px 28px 28px;
+  }
+  .log-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .log-replay {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    background: transparent;
+    padding: 6px 0;
+    font-size: 13.5px;
+    color: var(--stone);
+    transition: color 0.2s ease;
+  }
+  .log-replay:hover { color: var(--rosso); }
+
+  .log-list { position: relative; }
+  .log-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 52px 14px minmax(0, 1fr);
+    gap: 16px;
+    padding: 16px 0;
+  }
+  .log-row::before {
+    content: '';
+    position: absolute;
+    left: calc(52px + 16px + 6.5px);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--bone);
+  }
+  .log-row:first-child::before { top: 24px; }
+  .log-row:last-child::before { bottom: calc(100% - 24px); }
+  .log-time { padding-top: 3px; font-size: 13px; color: var(--stone); }
+  .log-dot {
+    position: relative;
+    z-index: 1;
+    margin-top: 7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink);
+    background: var(--cream);
+    transition: background-color 0.3s ease, transform 0.3s var(--ease);
+  }
+  .log-row--live .log-dot { border-color: var(--rosso); background: var(--rosso); }
+  .log-who { display: block; color: var(--stone); }
+  .log-row--ai .log-who, .log-row--person .log-who { color: var(--ink); }
+  .log-row--live .log-who { color: var(--rosso); }
+  .log-what { margin-top: 6px; font-size: 16px; line-height: 1.55; color: var(--ink-soft); }
+  .log-quote { font-family: var(--font-display); font-size: 21px; line-height: 1.35; color: var(--ink); }
+
+  /* Playback: rows arrive one by one; the current one is marked. */
+  .log.is-armed .log-row { opacity: 0.18; transition: opacity 0.5s var(--ease); }
+  .log.is-armed .log-row.is-shown { opacity: 1; }
+  .log-row.is-current .log-dot { transform: scale(1.25); background: var(--ink); }
+  .log-row--live.is-current .log-dot { background: var(--rosso); box-shadow: 0 0 0 6px rgba(196, 30, 58, 0.14); }
+
+  @media (max-width: 1023px) {
+    .change-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  }
+  @media (max-width: 479px) {
+    .log { padding: 18px 16px 20px; }
+    .log-row { grid-template-columns: 42px 12px minmax(0, 1fr); gap: 12px; }
+    .log-row::before { left: calc(42px + 12px + 5.5px); }
+    .log-dot { width: 12px; height: 12px; }
+    .log-quote { font-size: 19px; }
+  }
+</style>

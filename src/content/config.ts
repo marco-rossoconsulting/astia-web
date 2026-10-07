@@ -1,40 +1,10 @@
 import { defineCollection, z } from 'astro:content';
 
-// Reusable schemas
 const i18nString = z.object({ en: z.string(), de: z.string(), it: z.string() });
-const i18nText = z.object({ en: z.string(), de: z.string(), it: z.string() });
 
-const seoSchema = z.object({
-  title: i18nString,
-  description: i18nText,
-  ogImage: z.string().optional(),
-  ogImageAlt: i18nString.optional(),
-});
-
-const imageWithAlt = z.object({
-  src: z.string(),
-  alt: i18nString,
-  attribution: i18nString.optional(),
-});
-
-// PAGES collection — singletons (one file per page, JSON, all 3 languages inside)
-const pages = defineCollection({
-  type: 'data',
-  schema: z.object({
-    seo: seoSchema,
-    // Everything else is page-specific; we use z.any() to allow flexible content
-    // while still validating SEO consistently.
-  }).passthrough(),
-});
-
-// SITE collection — global settings (nav labels, footer, social, brand)
-const site = defineCollection({
-  type: 'data',
-  schema: z.object({}).passthrough(),
-});
-
-// ARTICLES collection — markdown files with language suffix in filename
-// e.g. thirty-thousand.en.md, thirty-thousand.de.md, thirty-thousand.it.md
+// ARTICLES: markdown with the language in the filename, e.g. one-price.en.md.
+// `route` is the URL slug; the same base slug (minus -en/-de/-it) links the
+// translations for hreflang and the language switcher.
 const articles = defineCollection({
   type: 'content',
   schema: z.object({
@@ -46,16 +16,19 @@ const articles = defineCollection({
     date: z.string(),
     readingTime: z.string(),
     published: z.boolean().default(true),
-    seo: z.object({
-      title: z.string().optional(),
-      description: z.string().optional(),
-      ogImage: z.string().optional(),
-      ogImageAlt: z.string().optional(),
-    }).optional(),
+    /** True when the body is a stub pointing to another language. */
+    translationPending: z.boolean().default(false),
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+        ogImage: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 
-// PORTFOLIO collection — single JSON per property
+// PORTFOLIO: one JSON per site on the Work page, sorted by `order`.
 const portfolio = defineCollection({
   type: 'data',
   schema: z.object({
@@ -63,10 +36,11 @@ const portfolio = defineCollection({
     tag: i18nString,
     title: z.string(),
     subtitle: i18nString,
+    /** 800 × 1000 card image (brand spec), in /public/images. */
     image: z.string(),
     imageAlt: i18nString,
     url: z.string().optional(),
   }),
 });
 
-export const collections = { pages, site, articles, portfolio };
+export const collections = { articles, portfolio };

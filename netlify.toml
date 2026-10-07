@@ -13,6 +13,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 [[headers]]
   for = "/fonts/*"
@@ -23,6 +24,38 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Brand v2 (October 2026): renamed pages ──
+# "Apply" became "Book a call"; "Showcase" became "Work".
+[[redirects]]
+  from = "/apply"
+  to = "/book-a-call"
+  status = 301
+
+[[redirects]]
+  from = "/de/apply"
+  to = "/de/book-a-call"
+  status = 301
+
+[[redirects]]
+  from = "/it/apply"
+  to = "/it/book-a-call"
+  status = 301
+
+[[redirects]]
+  from = "/showcase"
+  to = "/work"
+  status = 301
+
+[[redirects]]
+  from = "/de/showcase"
+  to = "/de/work"
+  status = 301
+
+[[redirects]]
+  from = "/it/showcase"
+  to = "/it/work"
+  status = 301
 
 # Former Sveltia admin — gone, do not rebuild
 [[redirects]]
@@ -168,12 +201,6 @@
 [[redirects]]
   from = "/journal/thirty-thousand-website-is-over"
   to = "/journal/thirty-thousand-website-is-over-en"
-  status = 301
-
-# Missing locale thank-you page
-[[redirects]]
-  from = "/it/thank-you"
-  to = "/thank-you"
   status = 301
 
 

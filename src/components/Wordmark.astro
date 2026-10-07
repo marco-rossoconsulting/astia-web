@@ -1,0 +1,17 @@
+---
+/**
+ * astia·web — Instrument Serif Italic, lowercase, ink letters, Signal Red dot.
+ * The only correct form of the mark. On Ink, the letters turn Paper; the dot
+ * stays Signal Red. Never boxed, letter-spaced, recoloured or set upright.
+ */
+interface Props {
+  tone?: 'ink' | 'paper';
+  size?: number;
+}
+const { tone = 'ink', size } = Astro.props;
+---
+<span
+  class:list={['wordmark', { 'wordmark--paper': tone === 'paper' }]}
+  style={size ? `font-size:${size}px` : undefined}
+  translate="no"
+>astia<span class="dot">·</span>web</span>

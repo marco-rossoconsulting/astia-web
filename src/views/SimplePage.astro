@@ -1,0 +1,67 @@
+---
+/**
+ * Thank-you and 404: one message, the next useful step, nothing else.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Icon from '@components/Icon.astro';
+import { em, href, type Lang } from '@/i18n';
+import { pages, CALENDAR_URL } from '@/i18n/pages';
+import { shared } from '@/i18n/shared';
+
+interface Props {
+  lang: Lang;
+  kind: 'thanks' | 'notFound';
+}
+const { lang, kind } = Astro.props;
+const p = pages[lang];
+const s = shared[lang];
+const t = kind === 'thanks' ? p.thanks : p.notFound;
+const path = kind === 'thanks' ? href(lang, 'thanks') : '/404';
+---
+<BaseLayout lang={lang} title={t.seo.title} description={t.seo.description} path={path} noindex switchPaths={kind === "notFound" ? { en: "/", de: "/de", it: "/it" } : undefined}>
+  <section class="simple">
+    <div class="container-narrow">
+      <h1 class="d1 rise" style="--d:0.06s" set:html={em(t.title)} />
+      <p class="lede rise" style="--d:0.14s">{t.lede}</p>
+
+      {kind === 'thanks' ? (
+        <div class="cta-row rise" style="--d:0.22s">
+          <a href={CALENDAR_URL} target="_blank" rel="noopener" class="btn btn--primary" data-track="calendar_open_thanks">
+            {s.cta.calendar}<Icon name="arrow-up-right" size={16} />
+          </a>
+          <a href={href(lang, 'home')} class="btn btn--ghost">{p.thanks.home}</a>
+        </div>
+      ) : (
+        <nav class="links rise" style="--d:0.22s" aria-label={p.notFound.links}>
+          <p class="mono-label">{p.notFound.links}</p>
+          <ul>
+            <li><a href={href(lang, 'home')}>{s.nav.homeShort}</a></li>
+            <li><a href={href(lang, 'how')}>{s.nav.how}</a></li>
+            <li><a href={href(lang, 'pricing')}>{s.nav.pricing}</a></li>
+            <li><a href={href(lang, 'journal')}>{s.nav.journal}</a></li>
+            <li><a href={href(lang, 'book')}>{s.nav.book}</a></li>
+          </ul>
+        </nav>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .simple { padding: 120px 0 140px; min-height: 60vh; }
+  .simple .lede { margin-top: 32px; }
+  .simple .cta-row { margin-top: 44px; }
+  .links { margin-top: 48px; }
+  .links ul { margin-top: 14px; border-top: 1px solid var(--bone); }
+  .links li { border-bottom: 1px solid var(--bone); }
+  .links a {
+    display: block;
+    padding: 14px 0;
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--ink);
+    transition: color 0.2s ease, padding-left 0.3s var(--ease);
+  }
+  .links a:hover { color: var(--rosso); padding-left: 8px; }
+  @media (max-width: 767px) { .simple { padding: 72px 0 96px; } }
+</style>

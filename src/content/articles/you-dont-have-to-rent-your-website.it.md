@@ -7,6 +7,7 @@ tag: Ownership
 date: "2026-01-29"
 readingTime: "6 min"
 published: true
+translationPending: true
 ---
 
 *Questo articolo è attualmente disponibile solo in inglese. La versione italiana completa sarà disponibile a breve.*

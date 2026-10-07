@@ -1,70 +1,127 @@
 ---
-import { getEntry } from 'astro:content';
+import Wordmark from '@components/Wordmark.astro';
+import { LANGS, LANG_NAMES, href, type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
 
 interface Props {
-  lang: 'en' | 'de' | 'it';
+  lang: Lang;
+  altPaths: Partial<Record<Lang, string>>;
 }
-
-const { lang } = Astro.props;
-const site = await getEntry('site', 'general');
-const data = site.data as any;
-const f = data.footer;
-const brand = data.brand;
-const nav = data.nav;
-
-const url = (p: string) => {
-  const prefix = lang === 'en' ? '' : `/${lang}`;
-  const paths: Record<string, string> = {
-    home: '/',
-    how: '/how-it-works',
-    pricing: '/pricing',
-    journal: '/journal',
-    apply: '/apply',
-  };
-  return prefix + paths[p];
-};
-
+const { lang, altPaths } = Astro.props;
+const t = shared[lang];
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <span class="footer-wordmark">astia<span class="dot">·</span>web</span>
-        <p style="font-size:14px; opacity:0.85; max-width:380px; line-height:1.55; margin-top:8px;">
-          {brand.tagline[lang]}
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href={href(lang, 'home')} aria-label={t.nav.home}><Wordmark tone="paper" size={30} /></a>
+        <p class="footer-promise">
+          {t.promise.map((line) => <span>{line}</span>)}
         </p>
       </div>
 
-      <div>
-        <h4>{f.siteHeading[lang]}</h4>
-        <ul>
-          <li><a href={url('how')}>{nav.how[lang]}</a></li>
-          <li><a href={url('pricing')}>{nav.pricing[lang]}</a></li>
-          <li><a href={url('journal')}>{nav.journal[lang]}</a></li>
-          <li><a href={url('apply')}>{nav.apply[lang]}</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>{brand.parentCompany}</h4>
-        <p style="font-size:14px; opacity:0.85; line-height:1.55;">
-          {data.brand.parentDescription[lang]}<br />
-          <span style="color:#FAFAF7; opacity:1;">{brand.parentCompany}</span>
-        </p>
-      </div>
-
-      <div>
-        <h4>{brand.location[lang]}</h4>
-        <p style="font-size:14px; opacity:0.85; line-height:1.55;">
-          <a href={`mailto:${brand.email}`} style="display:block;">{brand.email}</a>
-        </p>
+      <div class="footer-cols">
+        <div>
+          <h2 class="footer-h">{t.footer.site}</h2>
+          <ul>
+            <li><a href={href(lang, 'how')}>{t.nav.how}</a></li>
+            <li><a href={href(lang, 'pricing')}>{t.nav.pricing}</a></li>
+            <li><a href={href(lang, 'work')}>{t.nav.work}</a></li>
+            <li><a href={href(lang, 'journal')}>{t.nav.journal}</a></li>
+            <li><a href={href(lang, 'book')}>{t.nav.book}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-h">{t.footer.contact}</h2>
+          <ul>
+            <li>{t.person.name}</li>
+            <li><a class="mono" href={`mailto:${t.person.email}`}>{t.person.email}</a></li>
+            <li><a class="mono" href={`tel:${t.person.phoneHref}`}>{t.person.phone}</a></li>
+          </ul>
+          <address>
+            {t.footer.address.map((line) => <span>{line}</span>)}
+          </address>
+        </div>
+        <div>
+          <h2 class="footer-h">{t.footer.languages}</h2>
+          <ul>
+            {LANGS.map((l) => (
+              <li>
+                <a href={altPaths[l] ?? href(l, 'home')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{LANG_NAMES[l]}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div>© {year} {brand.parentCompany} · {f.rights[lang]}</div>
-      <div>{f.legalLinks[lang]}</div>
+      <span>© {year} Marco Rosso Consulting. {t.footer.rights}</span>
+      <span>{t.footer.company} {t.footer.vat}</span>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: 88px 0 36px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+    gap: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--on-ink-line);
+  }
+  .footer-promise {
+    margin-top: 28px;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 2.6vw, 32px);
+    line-height: 1.2;
+    color: var(--on-ink);
+  }
+  .footer-promise span { display: block; }
+  .footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .footer-h {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--on-ink-mute);
+    margin-bottom: 18px;
+  }
+  .footer ul li { padding: 4px 0; font-size: 15px; color: var(--on-ink-soft); }
+  .footer ul a { color: var(--on-ink-soft); transition: color 0.2s ease; }
+  .footer ul a:hover, .footer ul a[aria-current='true'] { color: var(--on-ink); }
+  .footer .mono { font-size: 13px; }
+  address {
+    margin-top: 16px;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--on-ink-mute);
+  }
+  address span { display: block; }
+  .footer-bottom {
+    padding-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 32px;
+    font-size: 12.5px;
+    color: var(--on-ink-mute);
+  }
+
+  @media (max-width: 1023px) {
+    .footer-top { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  }
+  @media (max-width: 599px) {
+    .footer { padding-top: 64px; }
+    .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .footer-cols > div:nth-child(2) { grid-column: 1 / -1; order: 3; }
+  }
+</style>

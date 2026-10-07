@@ -1,0 +1,240 @@
+---
+/**
+ * Home hero. The price and the promise in one breath, over the faint Rosso
+ * square grid (Brand Guidelines v2: the grid lives only in the home-page hero).
+ *
+ * The grid lines are plain CSS, so they paint immediately and without script.
+ * A canvas on top adds the quiet behaviour: cells warm under the pointer and,
+ * now and then, one fills on its own and fades, like a site being kept current.
+ */
+import Icon from '@components/Icon.astro';
+import { em, href, type Lang } from '@/i18n';
+import { home } from '@/i18n/home';
+import { shared } from '@/i18n/shared';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = home[lang];
+const s = shared[lang];
+const pillarLinks = [href(lang, 'pricing'), href(lang, 'how', 'person'), '#keeps-up'];
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-stage" data-hero>
+    <div class="hero-grid" aria-hidden="true">
+      <canvas data-hero-canvas></canvas>
+    </div>
+
+    <div class="container-narrow hero-content">
+      <p class="eyebrow eyebrow--rosso rise" style="--d:0.05s">{t.hero.eyebrow}</p>
+      <h1 id="hero-title" class="d1 hero-title rise" style="--d:0.1s" set:html={em(t.hero.title)} />
+      <p class="lede hero-lede rise" style="--d:0.2s">{t.hero.lede}</p>
+      <div class="cta-row hero-ctas rise" style="--d:0.28s">
+        <a href={href(lang, 'book')} class="btn btn--primary" data-track="book_call_hero">
+          {s.cta.book}<Icon name="arrow-right" size={16} />
+        </a>
+        <a href={href(lang, 'how')} class="btn btn--ghost">{s.cta.seeHow}</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="pillars" aria-label={t.hero.eyebrow}>
+    <div class="container pillars-grid">
+      {t.pillars.map((p, i) => (
+        <a href={pillarLinks[i]} class="pillar rise" style={`--d:${0.36 + i * 0.06}s`}>
+          <span class="secnum">{p.num}</span>
+          <span class="pillar-title d3" set:html={em(p.title)} />
+          <span class="pillar-arrow" aria-hidden="true"><Icon name="arrow-right" size={18} /></span>
+        </a>
+      ))}
+    </div>
+  </nav>
+</section>
+
+<script>
+  const CELL_DESKTOP = 56;
+  const CELL_MOBILE = 40;
+  const ROSSO = '196, 30, 58';
+
+  const stage = document.querySelector<HTMLElement>('[data-hero]');
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+  const ctx = canvas?.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (stage && canvas && ctx && !reduceMotion) {
+    let width = 0;
+    let height = 0;
+    let cell = CELL_DESKTOP;
+    let cols = 0;
+    let rows = 0;
+    let energy = new Float32Array(0);
+    let running = false;
+    let visible = true;
+    let raf = 0;
+    let lastAmbient = 0;
+    let pointer: { x: number; y: number } | null = null;
+
+    const resize = () => {
+      const rect = stage.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      cell = width < 768 ? CELL_MOBILE : CELL_DESKTOP;
+      stage.style.setProperty('--cell', `${cell}px`);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cols = Math.ceil(width / cell);
+      rows = Math.ceil(height / cell);
+      energy = new Float32Array(cols * rows);
+      start();
+    };
+
+    const warm = (x: number, y: number) => {
+      const cx = Math.floor(x / cell);
+      const cy = Math.floor(y / cell);
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const gx = cx + dx;
+          const gy = cy + dy;
+          if (gx < 0 || gy < 0 || gx >= cols || gy >= rows) continue;
+          const i = gy * cols + gx;
+          const target = dx === 0 && dy === 0 ? 1 : 0.32;
+          if (energy[i] < target) energy[i] = target;
+        }
+      }
+    };
+
+    const frame = (now: number) => {
+      raf = 0;
+      if (!visible) { running = false; return; }
+
+      if (pointer) warm(pointer.x, pointer.y);
+
+      // A cell fills on its own every so often, then fades slowly.
+      if (now - lastAmbient > 1100) {
+        lastAmbient = now;
+        const i = Math.floor(Math.random() * energy.length);
+        if (energy[i] < 0.7) energy[i] = 0.7;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+      let active = false;
+      for (let i = 0; i < energy.length; i++) {
+        const e = energy[i];
+        if (e <= 0.004) { energy[i] = 0; continue; }
+        active = true;
+        const x = (i % cols) * cell;
+        const y = Math.floor(i / cols) * cell;
+        ctx.fillStyle = `rgba(${ROSSO}, ${(e * 0.085).toFixed(3)})`;
+        ctx.fillRect(x + 1, y + 1, cell - 1, cell - 1);
+        energy[i] = e * 0.965;
+      }
+
+      if (active || pointer) {
+        raf = requestAnimationFrame(frame);
+      } else {
+        // Nothing lit: sleep until the next ambient cell is due.
+        running = false;
+        window.setTimeout(start, Math.max(60, 1100 - (now - lastAmbient)));
+      }
+    };
+
+    function start() {
+      if (running || !visible) return;
+      running = true;
+      raf = requestAnimationFrame(frame);
+    }
+
+    stage.addEventListener('pointermove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      start();
+    });
+    stage.addEventListener('pointerleave', () => { pointer = null; });
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && !document.hidden;
+      if (visible) start();
+    }).observe(stage);
+
+    document.addEventListener('visibilitychange', () => {
+      visible = !document.hidden;
+      if (visible) start();
+      else if (raf) { cancelAnimationFrame(raf); raf = 0; running = false; }
+    });
+
+    new ResizeObserver(() => resize()).observe(stage);
+    resize();
+    canvas.classList.add('is-ready');
+  }
+</script>
+
+<style>
+  .hero { position: relative; background: var(--paper); }
+  .hero-stage {
+    --cell: 56px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(520px, calc(100svh - var(--nav-h) - 132px), 720px);
+    padding: 72px 0 88px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(196, 30, 58, 0.085) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(196, 30, 58, 0.085) 1px, transparent 1px);
+    background-size: var(--cell) var(--cell);
+    background-position: 0 0;
+    -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 42%, #000 35%, transparent 100%);
+    mask-image: radial-gradient(ellipse 85% 80% at 50% 42%, #000 35%, transparent 100%);
+  }
+  .hero-grid canvas { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
+  .hero-grid canvas.is-ready { opacity: 1; }
+
+  .hero-content { position: relative; text-align: center; }
+  .hero-title { margin: 22px auto 0; max-width: 13.5em; }
+  .hero-lede { margin: 32px auto 0; max-width: 40em; }
+  .hero-ctas { margin-top: 44px; justify-content: center; }
+
+  /* ---------- The three pillars ---------- */
+  .pillars { position: relative; background: var(--cream); border-top: 1px solid var(--bone); border-bottom: 1px solid var(--bone); }
+  .pillars-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pillar {
+    position: relative;
+    display: block;
+    padding: 30px 32px 34px;
+    border-left: 1px solid var(--bone);
+    transition: background-color 0.3s ease;
+  }
+  .pillar:first-child { border-left: 0; padding-left: 0; }
+  .pillar .secnum { margin-bottom: 12px; transition: color 0.2s ease; }
+  .pillar-title { display: block; color: var(--ink); }
+  .pillar-arrow {
+    position: absolute;
+    right: 28px;
+    bottom: 36px;
+    color: var(--rosso);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.3s ease, transform 0.35s var(--ease);
+  }
+  .pillar:hover .secnum { color: var(--rosso); }
+  .pillar:hover .pillar-arrow { opacity: 1; transform: none; }
+
+  @media (max-width: 767px) {
+    .hero-stage { min-height: 0; padding: 56px 0 64px; }
+    .hero-title { margin-top: 18px; }
+    .hero-lede { margin-top: 24px; }
+    .hero-ctas { margin-top: 32px; }
+    .pillars-grid { grid-template-columns: minmax(0, 1fr); }
+    .pillar, .pillar:first-child { padding: 20px 0 22px; border-left: 0; border-top: 1px solid var(--bone); }
+    .pillar:first-child { border-top: 0; }
+    .pillar-arrow { opacity: 1; transform: none; right: 0; bottom: 26px; }
+  }
+</style>

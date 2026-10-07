@@ -7,6 +7,7 @@ tag: Economics
 date: "2026-01-15"
 readingTime: "7 min"
 published: true
+translationPending: true
 ---
 
 *Questo articolo è attualmente disponibile solo in inglese. La versione italiana completa sarà disponibile a breve.*

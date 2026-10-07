@@ -1,0 +1,193 @@
+---
+/**
+ * 01 — What changed. Pew Research data on AI summaries in Google, shown as
+ * 100 visits: how many end in a click on a result with and without an AI
+ * summary. When the section comes into view it plays once, from 15 to 8;
+ * after that the reader switches between the two.
+ */
+import { em, type Lang } from '@/i18n';
+import { home } from '@/i18n/home';
+import { shared } from '@/i18n/shared';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = home[lang].changed;
+const s = shared[lang].common;
+const [withoutAi] = t.values;
+const PEW_URL =
+  'https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/';
+---
+<section class="section section--paper ai" aria-labelledby="ai-title">
+  <div class="container ai-grid">
+    <div class="ai-copy">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="ai-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+      <p class="body ai-body reveal" style="--d:0.1s">{t.body}</p>
+      <p class="ai-kicker reveal" style="--d:0.15s">{t.kicker}</p>
+    </div>
+
+    <figure class="ai-viz reveal" style="--d:0.1s" data-ai-viz data-values={JSON.stringify(t.values)}>
+      <div class="seg ai-tabs" role="group" aria-label={t.valueLabel}>
+        {t.tabs.map((tab, i) => (
+          <button type="button" data-ai-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>{tab}</button>
+        ))}
+      </div>
+
+      <div class="ai-readout" aria-live="polite">
+        <span class="ai-number" data-ai-number>{withoutAi}</span>
+        <span class="ai-label">{t.valueLabel}</span>
+      </div>
+
+      <div class="ai-dots" aria-hidden="true">
+        {Array.from({ length: 100 }, (_, i) => (
+          <span class:list={['ai-dot', { 'is-on': i < withoutAi }]} style={`--i:${i}`}></span>
+        ))}
+      </div>
+
+      <dl class="ai-stats">
+        {t.stats.map((stat) => (
+          <div>
+            <dt class="ai-stat-v">{stat.v}</dt>
+            <dd>{stat.l}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <figcaption class="source">
+        {s.source}: <a href={PEW_URL} target="_blank" rel="noopener">{t.source}</a>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="container">
+    <p class="ai-bridge d3 reveal">{t.bridge}</p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ai-viz]').forEach((root) => {
+    const values: number[] = JSON.parse(root.dataset.values || '[15, 8]');
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-ai-tab]'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('.ai-dot'));
+    const number = root.querySelector<HTMLElement>('[data-ai-number]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+    let counter = 0;
+    let touched = false;
+
+    const show = (index: number) => {
+      if (index === current) return;
+      const from = values[current];
+      const to = values[index];
+      current = index;
+      tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === index)));
+      dots.forEach((dot, i) => dot.classList.toggle('is-on', i < to));
+      if (!number) return;
+      window.clearInterval(counter);
+      if (reduce) { number.textContent = String(to); return; }
+      let n = from;
+      const step = to > from ? 1 : -1;
+      counter = window.setInterval(() => {
+        n += step;
+        number.textContent = String(n);
+        if (n === to) window.clearInterval(counter);
+      }, 55);
+    };
+
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => { touched = true; show(i); }));
+
+    // Play the drop once, when the figure is properly in view.
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        window.setTimeout(() => { if (!touched) show(1); }, 1400);
+      }, { threshold: 0.6 });
+      io.observe(root);
+    }
+  });
+</script>
+
+<style>
+  .ai-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 80px;
+    align-items: center;
+  }
+  .ai-body { margin-top: 32px; }
+  .ai-kicker {
+    margin-top: 28px;
+    padding-left: 18px;
+    border-left: 2px solid var(--rosso);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .ai-viz {
+    margin: 0;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 32px;
+  }
+  .ai-tabs { flex-wrap: wrap; }
+  .ai-readout { display: flex; align-items: baseline; gap: 18px; margin-top: 28px; }
+  .ai-number {
+    font-family: var(--font-display);
+    font-size: clamp(76px, 8vw, 112px);
+    line-height: 0.9;
+    color: var(--ink);
+    min-width: 1.15em;
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-label { font-size: 15px; line-height: 1.5; color: var(--ink-soft); max-width: 24ch; }
+
+  .ai-dots {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .ai-dot {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--bone);
+    background: transparent;
+    transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease);
+    transition-delay: calc(var(--i) * 12ms);
+  }
+  .ai-dot.is-on { background: var(--rosso); border-color: var(--rosso); transform: scale(1.06); }
+
+  .ai-stats {
+    margin: 30px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--bone);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .ai-stats dd { margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: var(--stone); }
+  .ai-stat-v { font-family: var(--font-display); font-size: 36px; line-height: 1; color: var(--ink); }
+  .ai-viz .source { margin-top: 22px; }
+
+  .ai-bridge {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--bone);
+    max-width: 28em;
+    color: var(--ink);
+  }
+
+  @media (max-width: 1023px) {
+    .ai-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  }
+  @media (max-width: 599px) {
+    .ai-viz { padding: 22px 18px; }
+    .ai-dots { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 7px; max-width: 250px; }
+    .ai-stats { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .ai-bridge { margin-top: 56px; padding-top: 28px; }
+    .ai-tabs button { padding: 8px 10px; letter-spacing: 0.06em; }
+  }
+</style>

@@ -1,73 +1,12 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ArticlePage from '@/views/ArticlePage.astro';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles', (entry) => entry.data.lang === 'en' && entry.data.published);
-  return articles.map(article => ({
-    params: { slug: article.data.route },
-    props: { article },
-  }));
+  const articles = await getCollection('articles', (a) => a.data.lang === 'en' && a.data.published);
+  return articles.map((article) => ({ params: { slug: article.data.route }, props: { article } }));
 }
 
 const { article } = Astro.props;
-const lang = 'en' as 'en' | 'de' | 'it';
-const journal = await getEntry('pages', 'journal-index');
-const j = journal.data as any;
-const { Content } = await article.render();
-
-const seo = {
-  title: {
-    en: article.data.title,
-    de: article.data.title,
-    it: article.data.title,
-  },
-  description: {
-    en: article.data.excerpt,
-    de: article.data.excerpt,
-    it: article.data.excerpt,
-  },
-};
-
-const currentPath = `/journal/${article.data.route}`;
-const backUrl = '/journal';
-const translationNote = j.labels.translationNote[lang];
-
-// Build correct alternates for hreflang
-const siteUrl = 'https://astiaweb.com';
-const allArticles = await getCollection('articles', (entry) => entry.data.published);
-const currentBase = article.data.route.replace(/-(en|de|it)$/, '');
-const alternates: { en?: string; de?: string; it?: string } = {};
-for (const a of allArticles) {
-  const base = a.data.route.replace(/-(en|de|it)$/, '');
-  if (base === currentBase) {
-    const prefix = a.data.lang === 'en' ? '' : `/${a.data.lang}`;
-    alternates[a.data.lang] = `${siteUrl}${prefix}/journal/${a.data.route}`;
-  }
-}
 ---
-<BaseLayout lang={lang} page="article" seo={seo} currentPath={currentPath} alternates={alternates}>
-  <section class="section" style="padding-top:80px; padding-bottom:100px;">
-    <div class="container-narrow">
-      <a href={backUrl} style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; color:var(--rosso); margin-bottom:48px; display:inline-block;">
-        ← {j.labels.backToJournal[lang]}
-      </a>
-
-      <article class="article-body">
-        <div class="article-meta-row">
-          <span class="article-card-tag">{article.data.tag}</span>
-          <span class="article-card-date">{article.data.date}</span>
-          <span class="article-card-date">{article.data.readingTime}</span>
-        </div>
-
-        <h1>{article.data.title}</h1>
-
-        {translationNote && (
-          <p class="article-translation-note">{translationNote}</p>
-        )}
-
-        <Content />
-      </article>
-    </div>
-  </section>
-</BaseLayout>
+<ArticlePage article={article} />

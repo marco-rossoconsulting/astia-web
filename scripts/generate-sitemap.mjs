@@ -14,14 +14,14 @@ const siteUrl = 'https://astiaweb.com';
 const today = new Date().toISOString().split('T')[0];
 
 // Static routes with their locales
+// Thank-you and 404 are noindex, so they stay out.
 const staticRoutes = [
   { path: '/', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '1.0' },
+  { path: '/pricing', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.9' },
   { path: '/how-it-works', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.8' },
-  { path: '/pricing', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '0.9' },
-  { path: '/apply', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.8' },
-  { path: '/thank-you', locales: ['en'], changefreq: 'yearly', priority: '0.3' },
+  { path: '/book-a-call', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.8' },
+  { path: '/work', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.7' },
   { path: '/journal', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '0.7' },
-  { path: '/showcase', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '0.8' },
 ];
 
 // Read all articles and group by base slug
@@ -45,7 +45,9 @@ const articles = articleFiles.map(file => {
     }).filter(Boolean)
   );
   return data;
-}).filter(a => a && a.published !== false);
+}).filter(a => a && a.published !== false && a.translationPending !== true);
+// Stubs that only point to another language (translationPending) are noindex
+// pages, so they are left out of the sitemap and of hreflang.
 
 // Group articles by base slug
 const articleGroups = {};
@@ -95,7 +97,7 @@ for (const route of staticRoutes) {
 }
 
 // Articles
-for (const [base, group] of Object.entries(articleGroups)) {
+for (const group of Object.values(articleGroups)) {
   const locales = Object.keys(group);
   const alternates = {};
   for (const lang of locales) {

@@ -1,0 +1,194 @@
+---
+/**
+ * 02 — The real cost. The deck's five-year comparison, including the case
+ * where a lean one-off build is cheaper (brand rule: every comparison we
+ * publish includes it). Interactive chart, callouts, the answer in order, and
+ * the same numbers as a table.
+ */
+import Money from '@components/Money.astro';
+import { em, type Lang } from '@/i18n';
+import { pricing, COST_SERIES } from '@/i18n/pricing';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = pricing[lang].cost;
+const keys = ['typical', 'astia', 'lean'] as const;
+const chart = {
+  lang,
+  x: t.x,
+  series: keys.map((key) => ({ key, label: t.series[key], values: [...COST_SERIES[key]] })),
+};
+const last = (k: (typeof keys)[number]) => COST_SERIES[k][COST_SERIES[k].length - 1];
+
+/** Splits a sentence on {token} placeholders and returns parts for rendering money inline. */
+function parts(s: string) {
+  return s.split(/(\{\w+\})/g).filter(Boolean);
+}
+const amounts: Record<string, number> = { '{lean}': last('lean'), '{astia}': last('astia'), '{typical}': last('typical'), '{larger}': 35000 };
+---
+<section id="cost" class="section section--cream" aria-labelledby="cost-title">
+  <div class="container">
+    <div class="sec-head">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="cost-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+      <p class="lede reveal" style="--d:0.1s">{t.lede}</p>
+    </div>
+
+    <div class="cost-grid">
+      <figure class="cost-chart reveal" data-cost-chart data-chart={JSON.stringify(chart)}>
+        <ul class="cc-legend">
+          {keys.map((k) => (
+            <li><span class={`cc-key cc-key--${k}`} aria-hidden="true"></span>{t.series[k]}</li>
+          ))}
+        </ul>
+        <div class="cc-plot-wrap">
+          <div class="cc-plot" data-chart-plot tabindex="0" role="img" aria-label={`${t.title.replace(/\*/g, '')} ${t.hint}`}></div>
+          <div class="cc-tip" data-chart-tip hidden></div>
+        </div>
+        <figcaption class="cc-hint">{t.hint}</figcaption>
+
+        <details class="cc-table">
+          <summary class="mono-label">{t.tableCaption}</summary>
+          <div class="cc-table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">{t.yearCol}</th>
+                  {keys.map((k) => <th scope="col">{t.series[k]}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {t.x.map((x, i) => (
+                  <tr>
+                    <th scope="row">{x}</th>
+                    {keys.map((k) => <td><Money n={COST_SERIES[k][i]} lang={lang} /></td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </figure>
+
+      <div class="cost-side">
+        <div class="callout reveal">
+          <p class="callout-n"><Money n={last('typical')} lang={lang} format="number" /></p>
+          <p class="callout-l">{t.callouts.typical}</p>
+        </div>
+        <div class="callout callout--astia reveal" style="--d:0.06s">
+          <p class="callout-n"><Money n={last('astia')} lang={lang} format="number" /></p>
+          <p class="callout-l">{t.callouts.astia}</p>
+        </div>
+        <p class="honest reveal" style="--d:0.12s">
+          {parts(t.honest).map((p) => amounts[p] !== undefined ? <Money n={amounts[p]} lang={lang} /> : p)}
+        </p>
+        <p class="larger reveal" style="--d:0.16s">
+          {parts(t.larger).map((p) => amounts[p] !== undefined ? <Money n={amounts[p]} lang={lang} /> : p)}
+        </p>
+      </div>
+    </div>
+
+    <div class="answer">
+      <h3 class="mono-label answer-h reveal">{t.answerTitle}</h3>
+      <ol class="answer-list">
+        {t.answers.map((a, i) => (
+          <li class="reveal" style={`--d:${i * 0.06}s`}>
+            <span class="answer-n mono">{i + 1}</span>
+            <p><strong>{a.t}</strong> {parts(a.d).map((p) => amounts[p] !== undefined ? <Money n={amounts[p]} lang={lang} /> : p)}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="source footnote">{t.footnote}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { mountCostChart } from '@/scripts/cost-chart';
+  document.querySelectorAll<HTMLElement>('[data-cost-chart]').forEach(mountCostChart);
+</script>
+
+<style>
+  .cost-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .cost-chart {
+    margin: 0;
+    background: var(--paper);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 26px 26px 18px;
+  }
+  .cc-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--ink-soft); margin-bottom: 18px; }
+  .cc-legend li { display: inline-flex; align-items: center; gap: 10px; }
+  :global(.cc-key) { display: inline-block; width: 20px; height: 0; border-top: 2px solid var(--ink); flex: none; }
+  :global(.cc-key--astia) { border-top: 2.5px solid var(--rosso); }
+  :global(.cc-key--lean) { border-top: 2px dashed var(--stone); }
+
+  .cc-plot-wrap { position: relative; }
+  .cc-plot { min-height: 300px; outline-offset: 6px; touch-action: pan-y; cursor: crosshair; }
+  .cc-plot :global(.cc-tick) { font-family: var(--font-mono); font-size: 11px; fill: var(--stone); }
+  .cc-plot :global(.cc-end-label) { font-family: var(--font-mono); font-size: 12px; font-weight: 500; fill: var(--ink); }
+  .cc-tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    min-width: 210px;
+    padding: 12px 14px;
+    background: var(--paper);
+    border: 1px solid var(--bone);
+    border-radius: 6px;
+    box-shadow: 0 12px 28px -14px rgba(20, 20, 20, 0.28);
+    pointer-events: none;
+    transition: transform 0.18s var(--ease);
+  }
+  .cc-tip :global(.cc-tip-head) { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; }
+  .cc-tip :global(.cc-tip-row) { display: grid; grid-template-columns: 20px auto; column-gap: 10px; align-items: center; padding: 3px 0; }
+  .cc-tip :global(.cc-tip-row strong) { font-family: var(--font-mono); font-weight: 500; font-size: 13px; color: var(--ink); }
+  .cc-tip :global(.cc-tip-row span:last-child) { grid-column: 2; font-size: 12.5px; color: var(--stone); }
+  .cc-hint { margin-top: 10px; font-size: 13px; color: var(--stone); }
+
+  .cc-table { margin-top: 14px; border-top: 1px solid var(--bone); padding-top: 12px; }
+  .cc-table summary { cursor: pointer; padding: 4px 0; list-style: none; }
+  .cc-table summary::-webkit-details-marker { display: none; }
+  .cc-table summary::after { content: ' +'; }
+  .cc-table[open] summary::after { content: ' \2212'; }
+  .cc-table-scroll { overflow-x: auto; margin-top: 12px; }
+  .cc-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .cc-table th, .cc-table td { padding: 8px 10px 8px 0; text-align: left; border-bottom: 1px solid var(--bone-soft); white-space: nowrap; }
+  .cc-table thead th { font-weight: 500; color: var(--stone); font-size: 13px; }
+  .cc-table td { font-family: var(--font-mono); font-size: 13px; }
+
+  .cost-side { display: grid; gap: 30px; padding-top: 8px; }
+  .callout-n { font-family: var(--font-display); font-size: clamp(56px, 6vw, 76px); line-height: 1; color: var(--ink); }
+  .callout--astia .callout-n { color: var(--rosso); }
+  .callout-l { margin-top: 10px; font-size: 16px; line-height: 1.55; color: var(--ink-soft); }
+  .honest, .larger { font-size: 15px; line-height: 1.6; color: var(--stone); }
+  .honest { padding-top: 22px; border-top: 1px solid var(--bone); }
+
+  .answer { margin-top: 88px; }
+  .answer-h { display: block; margin-bottom: 18px; }
+  .answer-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+  .answer-list li { padding-top: 18px; border-top: 1px solid var(--ink); }
+  .answer-n { font-size: 12px; color: var(--rosso); }
+  .answer-list p { margin-top: 10px; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+  .answer-list strong { display: block; margin-bottom: 4px; font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.2; color: var(--ink); }
+  .footnote { margin-top: 36px; }
+
+  @media (max-width: 1023px) {
+    .cost-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .cost-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .honest, .larger { grid-column: 1 / -1; }
+    .answer-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 599px) {
+    .cost-chart { padding: 18px 14px 12px; }
+    .cost-side { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .answer { margin-top: 64px; }
+    .answer-list { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  }
+</style>

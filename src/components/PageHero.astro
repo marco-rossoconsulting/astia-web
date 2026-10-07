@@ -1,0 +1,113 @@
+---
+/**
+ * Inner-page hero: eyebrow, one headline, one lede, and an optional slot on
+ * the right (the price card on the price page).
+ *
+ * particles: the Rising Particles field (raw WebGL, a few KB), kept from the
+ * previous site and toned to the v2 palette. Rosso specks drift upward behind
+ * the copy: the work keeps moving while you get on with yours. Static for
+ * reduced motion; the cursor gently parts them.
+ */
+import { em } from '@/i18n';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  particles?: boolean;
+  split?: boolean;
+}
+const { eyebrow, title, lede, particles = false, split = false } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+<section class:list={['page-hero', { 'page-hero--particles': particles, 'page-hero--split': split && hasAside }]}>
+  {particles && <div class="page-hero-particles" aria-hidden="true" data-rising-particles></div>}
+  <div class="container page-hero-grid">
+    <div class="page-hero-copy">
+      {eyebrow && <p class="eyebrow eyebrow--rosso rise" style="--d:0.04s">{eyebrow}</p>}
+      <h1 class="d1 rise" style="--d:0.1s" set:html={em(title)} />
+      {lede && <p class="lede rise" style="--d:0.18s">{lede}</p>}
+      <slot />
+    </div>
+    {hasAside && <div class="page-hero-aside rise" style="--d:0.26s"><slot name="aside" /></div>}
+  </div>
+</section>
+
+<script>
+    import { mountRisingParticles } from '@/scripts/rising-particles';
+
+    const host = document.querySelector<HTMLElement>('[data-rising-particles]');
+    if (host) {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const small = window.matchMedia('(max-width: 767px)').matches;
+      mountRisingParticles(host, {
+        backgroundColor: 'transparent',
+        color: '#C41E3A',
+        farColor: '#7C1D1D',
+        count: small ? 60 : 110,
+        minSize: 0.01,
+        maxSize: 0.03,
+        spread: 1.8,
+        sway: 0.08,
+        swayRate: 0.45,
+        depth: 0.6,
+        coreSize: 0.3,
+        coreSoftness: 0.85,
+        glow: 0.7,
+        glowFalloff: 2.6,
+        fade: 0.22,
+        gain: 0.85,
+        bloom: 0.1,
+        grain: 0,
+        vignette: 0,
+        opacity: 0.55,
+        speed: reduce ? 0 : 0.5,
+        cursorInteraction: !reduce,
+        cursorPush: 0.08,
+        cursorRadius: 0.3,
+        paused: reduce,
+        dpr: 1.5,
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => host.classList.add('is-ready')));
+    }
+</script>
+
+<style>
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 96px 0 88px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--bone);
+  }
+  .page-hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.9s ease-out;
+  }
+  .page-hero-particles.is-ready { opacity: 1; }
+  .page-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; }
+  .page-hero-copy { max-width: 880px; }
+  .page-hero-copy .d1 { margin-top: 22px; }
+  .page-hero-copy .eyebrow + .d1 { margin-top: 22px; }
+  .page-hero-copy > .d1:first-child { margin-top: 0; }
+  .page-hero-copy .lede { margin-top: 32px; }
+
+  .page-hero--split .page-hero-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    gap: 72px;
+  }
+
+  @media (max-width: 1023px) {
+    .page-hero--split .page-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .page-hero-aside { max-width: 520px; }
+  }
+  @media (max-width: 767px) {
+    .page-hero { padding: 64px 0 64px; }
+    .page-hero-copy .lede { margin-top: 24px; }
+  }
+</style>

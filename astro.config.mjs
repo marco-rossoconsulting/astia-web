@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://astiaweb.com',
@@ -10,7 +9,6 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [react()],
   trailingSlash: 'never',
   build: {
     format: 'file',

@@ -1,0 +1,170 @@
+---
+/**
+ * 02 — The rebuild cycle. The same five-year timeline told twice: a one-off
+ * build that ages from launch, and an Astia site that keeps moving with the
+ * web. A switch swaps the two; the line draws in when the section arrives.
+ */
+import { em, type Lang } from '@/i18n';
+import { home } from '@/i18n/home';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = home[lang].cycle;
+const tracks = [
+  { key: 'oneoff', items: t.oneOff },
+  { key: 'astia', items: t.astia },
+];
+---
+<section id="keeps-up" class="section section--cream cycle" aria-labelledby="cycle-title">
+  <div class="container">
+    <div class="sec-head">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="cycle-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+    </div>
+
+    <div class="cycle-body reveal" data-cycle data-mode="oneoff">
+      <div class="seg seg--lg cycle-switch" role="group" aria-label={t.tabs.join(' / ')}>
+        {tracks.map((track, i) => (
+          <button type="button" data-cycle-btn={track.key} aria-pressed={i === 0 ? 'true' : 'false'}>{t.tabs[i]}</button>
+        ))}
+      </div>
+
+      <div class="cycle-stage">
+        <div class="cycle-line" aria-hidden="true"><span class="cycle-pulse"></span></div>
+        {tracks.map((track) => (
+          <ol class="cycle-track" data-track-key={track.key} hidden={track.key !== 'oneoff' ? true : undefined}>
+            {track.items.map((item, i) => (
+              <li class:list={['cycle-step', { 'is-last': i === track.items.length - 1 }]} style={`--s:${i}`}>
+                <span class="cycle-node" aria-hidden="true"></span>
+                <span class="cycle-when mono-label">{item.when}</span>
+                <span class="cycle-what">{item.what}</span>
+              </li>
+            ))}
+          </ol>
+        ))}
+      </div>
+    </div>
+
+    <div class="cycle-panel reveal">
+      <h3 class="d3" set:html={em(t.panelTitle)} />
+      <p>{t.panelBody}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-cycle]').forEach((root) => {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-cycle-btn]');
+    const tracksEls = root.querySelectorAll<HTMLElement>('[data-track-key]');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.cycleBtn!;
+        if (root.dataset.mode === mode) return;
+        root.dataset.mode = mode;
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        tracksEls.forEach((el) => {
+          const show = el.dataset.trackKey === mode;
+          el.hidden = !show;
+          if (show) {
+            el.classList.remove('is-entering');
+            void el.offsetWidth; // restart the entrance
+            el.classList.add('is-entering');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .cycle-body { margin-top: 8px; }
+  .cycle-switch { margin-bottom: 56px; }
+
+  .cycle-stage { position: relative; }
+  .cycle-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 37px;
+    height: 1px;
+    background: var(--ink);
+    transform-origin: left;
+    overflow: hidden;
+  }
+  .cycle-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .cycle-step { display: flex; flex-direction: column; align-items: flex-start; }
+  .cycle-when { order: -1; height: 18px; margin-bottom: 12px; white-space: nowrap; }
+  .cycle-node {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink);
+    background: var(--cream);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .cycle-what { margin-top: 20px; font-size: 16px; line-height: 1.5; color: var(--ink-soft); max-width: 22ch; }
+
+  /* One-off: the end of the line is the start of the next bill. */
+  [data-mode='oneoff'] .is-last .cycle-node { background: var(--rosso); border-color: var(--rosso); }
+  [data-mode='oneoff'] .is-last .cycle-when { color: var(--rosso); }
+
+  /* Astia: every point is filled, and the line keeps moving. */
+  [data-mode='astia'] .cycle-line { background: var(--rosso); }
+  [data-mode='astia'] .cycle-node { background: var(--ink); }
+  [data-mode='astia'] .is-last .cycle-node { background: var(--rosso); border-color: var(--rosso); }
+  .cycle-pulse {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 48px;
+    height: 5px;
+    background: var(--cream);
+    opacity: 0;
+  }
+  [data-mode='astia'] .cycle-pulse { opacity: 1; animation: cyclePulse 3.2s var(--ease-io) infinite; }
+  @keyframes cyclePulse { from { transform: translateX(-48px); } to { transform: translateX(calc(100vw)); } }
+
+  /* Draw-in once the section reveals, and a stagger on each switch. */
+  :global(.js) .cycle-body .cycle-line { transform: scaleX(0); transition: transform 1.2s var(--ease) 0.15s; }
+  :global(.js) .cycle-body.is-in .cycle-line { transform: scaleX(1); }
+  :global(.js) .cycle-body .cycle-step { opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); transition-delay: calc(0.25s + var(--s) * 0.12s); }
+  :global(.js) .cycle-body.is-in .cycle-step { opacity: 1; transform: none; }
+  .cycle-track.is-entering .cycle-step { animation: rise 0.55s var(--ease) both; animation-delay: calc(var(--s) * 0.07s); }
+
+  .cycle-panel {
+    margin-top: 72px;
+    background: var(--ink);
+    color: var(--on-ink);
+    border-radius: var(--r-card);
+    padding: 44px 48px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .cycle-panel p { color: var(--on-ink-soft); font-size: 17px; line-height: 1.6; }
+
+  @media (max-width: 1023px) {
+    .cycle-switch { margin-bottom: 40px; }
+    .cycle-line { left: 7px; right: auto; top: 6px; bottom: 6px; width: 1px; height: auto; transform-origin: top; }
+    :global(.js) .cycle-body .cycle-line { transform: scaleY(0); }
+    :global(.js) .cycle-body.is-in .cycle-line { transform: scaleY(1); }
+    .cycle-track { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .cycle-step {
+      display: grid;
+      grid-template-columns: 15px minmax(0, 1fr);
+      column-gap: 20px;
+      align-items: start;
+    }
+    .cycle-node { grid-row: 1 / span 2; margin-top: 1px; }
+    .cycle-when { order: 0; margin-bottom: 6px; height: auto; white-space: normal; }
+    .cycle-what { margin-top: 0; max-width: 40ch; }
+    [data-mode='astia'] .cycle-pulse { display: none; }
+    .cycle-panel { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 32px 28px; margin-top: 56px; }
+  }
+</style>

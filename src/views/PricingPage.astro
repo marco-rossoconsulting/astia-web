@@ -1,0 +1,62 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/PageHero.astro';
+import PriceCard from '@components/PriceCard.astro';
+import IncludedLists from '@components/IncludedLists.astro';
+import CostSection from '@components/pricing/CostSection.astro';
+import FiveQuestions from '@components/FiveQuestions.astro';
+import Faq from '@components/Faq.astro';
+import FinalCta from '@components/FinalCta.astro';
+import SecHead from '@components/SecHead.astro';
+import { SITE_URL, href, type Lang } from '@/i18n';
+import { pricing } from '@/i18n/pricing';
+import { shared } from '@/i18n/shared';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = pricing[lang];
+const s = shared[lang];
+const path = href(lang, 'pricing');
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  nav="pricing"
+  schemas={[
+    serviceSchema(lang, t.seo.description, `${SITE_URL}${path}`),
+    faqSchema(s.faq),
+    breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.pricing, path }]),
+  ]}
+>
+  <PageHero eyebrow={t.hero.eyebrow} title={t.hero.title} lede={t.hero.lede} split>
+    <PriceCard lang={lang} slot="aside" />
+  </PageHero>
+
+  <section id="included" class="section section--paper" aria-labelledby="included-title">
+    <div class="container">
+      <SecHead num={t.included.num} title={t.included.title} id="included-title" />
+      <IncludedLists lang={lang} variant="full" />
+    </div>
+  </section>
+
+  <CostSection lang={lang} />
+
+  <section class="section section--paper" aria-labelledby="questions-title">
+    <div class="container">
+      <SecHead num={t.questions.num} title={t.questions.title} lede={t.questions.lede} id="questions-title" />
+      <FiveQuestions lang={lang} />
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="faq-title">
+    <div class="container-text">
+      <SecHead num={t.faq.num} title={t.faq.title} id="faq-title" />
+      <Faq lang={lang} />
+    </div>
+  </section>
+
+  <FinalCta lang={lang} />
+</BaseLayout>

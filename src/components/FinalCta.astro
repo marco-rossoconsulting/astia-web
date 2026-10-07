@@ -1,0 +1,73 @@
+---
+/**
+ * The closing section on every page: the person card sits beside (on phones,
+ * above) the final call to action.
+ */
+import Icon from '@components/Icon.astro';
+import PersonCard from '@components/PersonCard.astro';
+import { em, href, type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+import { home } from '@/i18n/home';
+
+interface Props {
+  lang: Lang;
+  num?: string;
+  title?: string;
+  lede?: string;
+  surface?: 'paper' | 'cream';
+  person?: boolean;
+}
+const t = shared[Astro.props.lang];
+const h = home[Astro.props.lang].final;
+const {
+  lang,
+  num,
+  title = h.title,
+  lede = h.lede,
+  surface = 'paper',
+  person = true,
+} = Astro.props;
+---
+<section class:list={['section', `section--${surface}`, 'section--rule', 'final']} aria-labelledby="final-title">
+  <div class:list={['container', 'final-grid', { 'final-grid--solo': !person }]}>
+    {person && (
+      <div class="final-person reveal">
+        <PersonCard lang={lang} />
+      </div>
+    )}
+    <div class="final-copy">
+      {num && <span class="secnum reveal">{num}</span>}
+      <h2 id="final-title" class="d2 reveal" style="--d:0.05s" set:html={em(title)} />
+      <p class="lede reveal" style="--d:0.1s">{lede}</p>
+      <div class="cta-row reveal" style="--d:0.15s">
+        <a href={href(lang, 'book')} class="btn btn--primary" data-track="book_call_final">
+          {t.cta.book}<Icon name="arrow-right" size={16} />
+        </a>
+        <a href={`mailto:${t.person.email}`} class="final-mail">
+          {h.or} <span class="mono">{t.person.email}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 72px;
+    align-items: center;
+  }
+  .final-grid--solo { grid-template-columns: minmax(0, 1fr); max-width: calc(880px + var(--gutter) * 2); }
+  .final-copy .lede { margin-top: 28px; }
+  .final-copy .cta-row { margin-top: 44px; gap: 24px; }
+  .final-mail { font-size: 15px; color: var(--stone); transition: color 0.2s ease; }
+  .final-mail .mono { font-size: 13.5px; color: var(--ink); border-bottom: 1px solid var(--bone); padding-bottom: 2px; }
+  .final-mail:hover .mono { color: var(--rosso); border-color: var(--rosso); }
+  @media (max-width: 1023px) {
+    .final-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  }
+  @media (max-width: 479px) {
+    .final-mail { text-align: center; }
+  }
+</style>

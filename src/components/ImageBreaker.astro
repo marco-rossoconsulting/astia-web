@@ -1,16 +1,76 @@
 ---
+/**
+ * Image-breaker (Brand Guidelines v2, 11 Imagery): 2:1, overlay
+ * rgba(20,20,20,0.65) on the lower-left half, caption of 12 to 18 words on two
+ * lines, nothing critical near the edges. Phones get a 4:5 crop.
+ */
+import Icon from '@components/Icon.astro';
+
 interface Props {
   src: string;
+  srcSmall: string;
+  srcPortrait: string;
   alt: string;
+  num?: string;
   caption: string;
-  attribution?: string;
+  linkLabel?: string;
+  linkHref?: string;
 }
-const { src, alt, caption, attribution } = Astro.props;
+const { src, srcSmall, srcPortrait, alt, num, caption, linkLabel, linkHref } = Astro.props;
 ---
-<section class="img-breaker">
-  <img src={src} alt={alt} loading="lazy" />
-  <div class="img-breaker-overlay">
-    <p class="img-breaker-caption">{caption}</p>
+<section class="breaker" aria-label={alt}>
+  <picture>
+    <source media="(max-width: 767px)" srcset={srcPortrait} width="800" height="1000" />
+    <img src={src} srcset={`${srcSmall} 1200w, ${src} 2000w`} sizes="100vw" alt={alt} width="2000" height="1000" loading="lazy" decoding="async" />
+  </picture>
+  <div class="breaker-shade" aria-hidden="true"></div>
+  <div class="container breaker-copy">
+    {num && <span class="secnum">{num}</span>}
+    <p class="breaker-caption">{caption}</p>
+    {linkLabel && linkHref && (
+      <a href={linkHref} class="arrow-link breaker-link">{linkLabel}<Icon name="arrow-right" size={16} /></a>
+    )}
   </div>
-  {attribution && <span class="img-breaker-attribution">{attribution}</span>}
 </section>
+
+<style>
+  .breaker { position: relative; overflow: hidden; background: var(--ink); color: var(--on-ink); }
+  .breaker img {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .breaker img { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 50%; }
+      @keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+    }
+  }
+  .breaker-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right, rgba(20, 20, 20, 0.65) 0%, rgba(20, 20, 20, 0.45) 32%, rgba(20, 20, 20, 0) 62%);
+  }
+  .breaker-copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: clamp(32px, 6vw, 72px);
+  }
+  .breaker .secnum { color: rgba(247, 245, 240, 0.78); }
+  .breaker-caption {
+    max-width: 22em;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 40px);
+    line-height: 1.15;
+    color: var(--on-ink);
+    text-wrap: balance;
+  }
+  .breaker-link { margin-top: 24px; color: var(--on-ink); border-color: rgba(247, 245, 240, 0.4); }
+  .breaker-link:hover { color: var(--paper); border-color: var(--paper); }
+
+  @media (max-width: 767px) {
+    .breaker img { aspect-ratio: 4 / 5; }
+    .breaker-shade { background: linear-gradient(to top, rgba(20, 20, 20, 0.72) 0%, rgba(20, 20, 20, 0.4) 45%, rgba(20, 20, 20, 0) 70%); }
+  }
+</style>

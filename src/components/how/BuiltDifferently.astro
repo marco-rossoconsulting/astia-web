@@ -1,0 +1,245 @@
+---
+/**
+ * 03 — Built differently. The orbital diagram from the previous site, kept
+ * and re-pointed: instead of explaining the framework, it shows what is (and
+ * is not) on the live site. Signals run from each property into the hub.
+ * Below it, the deck's comparison of WordPress, a DIY builder and Astia.
+ */
+import Icon from '@components/Icon.astro';
+import { em, type Lang } from '@/i18n';
+import { how } from '@/i18n/how';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = how[lang].built;
+
+const RADIUS = 38;
+const positions = t.nodes.map((_, i) => {
+  const angle = (Math.PI * 2 * i) / t.nodes.length - Math.PI / 2;
+  return { x: 50 + RADIUS * Math.cos(angle), y: 50 + RADIUS * Math.sin(angle) };
+});
+const markIcon = { good: 'check', bad: 'x', mid: 'minus' } as Record<string, string>;
+---
+<section id="built" class="section section--ink built" aria-labelledby="built-title">
+  <div class="container">
+    <div class="built-split">
+      <div class="built-copy">
+        <span class="secnum reveal">{t.num}</span>
+        <h2 id="built-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+        <p class="body built-intro reveal" style="--d:0.1s">{t.intro}</p>
+      </div>
+
+      <div class="orbit-wrap reveal" role="img" aria-label={`${t.hub}: ${t.nodes.map((n) => `${n.label}, ${n.note}`).join('; ')}`}>
+        <div class="orbit">
+          <svg viewBox="0 0 100 100" class="orbit-svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="38" fill="none" vector-effect="non-scaling-stroke" class="o-ring" />
+            <g class="o-spin">
+              <circle cx="50" cy="50" r="25" fill="none" vector-effect="non-scaling-stroke" stroke-dasharray="0.4 2.6" stroke-linecap="round" class="o-ring-dashed" />
+            </g>
+            {positions.map((p, i) => (
+              <line x1="50" y1="50" x2={p.x} y2={p.y} vector-effect="non-scaling-stroke" class="o-spoke" style={`--i:${i}`} />
+            ))}
+            {positions.map((p, i) => (
+              <line x1={p.x} y1={p.y} x2="50" y2="50" stroke-linecap="round" class="o-signal" style={`--i:${i}`} />
+            ))}
+          </svg>
+
+          <div class="o-hub">
+            <div class="o-hub-tile">
+              <span class="o-hub-pulse" aria-hidden="true"></span>
+              <Icon name="boxes" size={32} strokeWidth={1.35} />
+            </div>
+            <span class="o-hub-label">{t.hub}</span>
+            <span class="o-hub-note">{t.hubNote}</span>
+          </div>
+
+          {t.nodes.map((node, i) => (
+            <div class="o-node" style={`left:${positions[i].x}%; top:${positions[i].y}%; --i:${i}`}>
+              <div class="o-node-float">
+                <span class="o-node-tile"><Icon name={node.icon} size={20} strokeWidth={1.5} /></span>
+                <span class="o-node-label">{node.label}</span>
+                <span class="o-node-note">{node.note}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp reveal">
+      <table>
+        <caption class="sr-only">{t.tableCaption}</caption>
+        <thead>
+          <tr>
+            <td></td>
+            {t.cols.map((c, i) => <th scope="col" class:list={{ 'is-astia': i === 2 }}>{c}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {t.rows.map((row) => (
+            <tr>
+              <th scope="row">{row.label}</th>
+              {row.cells.map(([text, tone], i) => (
+                <td class:list={[`tone-${tone}`, { 'is-astia': i === 2 }]} data-col={t.cols[i]}>
+                  <span class="cmp-mark" aria-hidden="true"><Icon name={markIcon[tone]} size={13} strokeWidth={2.25} /></span>
+                  <span>{text}</span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .built-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 64px;
+    align-items: center;
+  }
+  .built-intro { margin-top: 28px; }
+
+  /* ---------- Orbit ---------- */
+  .orbit-wrap { display: flex; justify-content: center; }
+  .orbit { position: relative; width: 100%; max-width: 500px; aspect-ratio: 1; }
+  .orbit-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .o-ring { stroke: rgba(247, 245, 240, 0.18); stroke-width: 1; }
+  .o-ring-dashed { stroke: rgba(247, 245, 240, 0.32); stroke-width: 1; }
+  .o-spin { transform-origin: 50% 50%; animation: oSpin 90s linear infinite; }
+  @keyframes oSpin { to { transform: rotate(360deg); } }
+  .o-spoke { stroke: rgba(247, 245, 240, 0.22); stroke-width: 1; }
+  :global(.js) .o-spoke { stroke-dasharray: 40; stroke-dashoffset: 40; }
+  :global(.js) .orbit-wrap.is-in .o-spoke { animation: oDraw 0.85s var(--ease) forwards; animation-delay: calc(0.1s + var(--i) * 0.08s); }
+  @keyframes oDraw { to { stroke-dashoffset: 0; } }
+  .o-signal { stroke: var(--rosso); stroke-width: 0.7; stroke-dasharray: 1.6 100; stroke-dashoffset: -38; opacity: 0; }
+  .orbit-wrap.is-in .o-signal { animation: oSignal 3.4s cubic-bezier(0.5, 0, 0.5, 1) infinite; animation-delay: calc(var(--i) * 0.55s); }
+  @keyframes oSignal {
+    0% { stroke-dashoffset: -38; opacity: 0; }
+    12% { opacity: 0.95; }
+    82% { opacity: 0.95; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  .o-hub {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .o-hub-tile {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    color: var(--rosso);
+    border-radius: var(--r-card);
+  }
+  .o-hub-pulse {
+    position: absolute;
+    inset: -1px;
+    border: 1px solid var(--rosso);
+    border-radius: var(--r-card);
+    animation: oPulse 3.4s ease-in-out infinite;
+  }
+  @keyframes oPulse { 0%, 100% { transform: scale(1); opacity: 0.55; } 50% { transform: scale(1.18); opacity: 0; } }
+  .o-hub-label { margin-top: 14px; font-family: var(--font-display); font-size: 22px; line-height: 1.1; color: var(--on-ink); }
+  .o-hub-note { margin-top: 4px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-ink-mute); }
+
+  .o-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); }
+  .o-node-float { display: flex; flex-direction: column; align-items: center; text-align: center; animation: oFloat 5.2s ease-in-out infinite; animation-delay: calc(var(--i) * -0.8s); }
+  @keyframes oFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .o-node-tile {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1E1E1E;
+    border: 1px solid var(--on-ink-line);
+    border-radius: var(--r-card);
+    color: var(--on-ink);
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .o-node:hover .o-node-tile { border-color: var(--rosso); color: var(--paper); transform: translateY(-3px); }
+  .o-node-label { margin-top: 10px; font-size: 13px; font-weight: 500; color: var(--on-ink); white-space: nowrap; }
+  .o-node-note { margin-top: 2px; font-size: 12px; line-height: 1.35; color: var(--on-ink-mute); white-space: nowrap; }
+
+  /* ---------- Comparison table ---------- */
+  .cmp { margin-top: 96px; }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    padding: 0 20px 18px;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--on-ink-mute);
+  }
+  thead th.is-astia { color: var(--paper); }
+  tbody th {
+    width: 32%;
+    padding: 18px 20px 18px 0;
+    text-align: left;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--on-ink);
+  }
+  tbody tr { border-top: 1px solid var(--on-ink-line); }
+  tbody tr:last-child { border-bottom: 1px solid var(--on-ink-line); }
+  tbody td { padding: 18px 20px; font-size: 15px; color: var(--on-ink-soft); vertical-align: top; }
+  tbody td > span:last-child { display: inline; }
+  td.is-astia, th.is-astia { background: rgba(247, 245, 240, 0.05); }
+  td.is-astia { color: var(--on-ink); }
+  .cmp-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: -4px;
+  }
+  .tone-good .cmp-mark { background: rgba(247, 245, 240, 0.14); color: var(--paper); }
+  .is-astia.tone-good .cmp-mark { background: var(--rosso); }
+  .tone-bad .cmp-mark { border: 1px solid var(--on-ink-line); color: var(--on-ink-mute); }
+  .tone-mid .cmp-mark { border: 1px solid var(--on-ink-line); color: var(--on-ink-mute); }
+
+  @media (max-width: 1023px) {
+    .built-split { grid-template-columns: minmax(0, 1fr); gap: 56px; }
+    .orbit { max-width: 440px; }
+  }
+  @media (max-width: 767px) {
+    .cmp { margin-top: 64px; }
+    thead { display: none; }
+    table, tbody, tr, th, td { display: block; width: 100%; }
+    tbody tr { padding: 18px 0; }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody th { width: 100%; padding: 0 0 12px; font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
+    tbody td { display: grid; grid-template-columns: 30px 110px minmax(0, 1fr); align-items: start; padding: 8px 10px; border-radius: 4px; }
+    tbody td::before { content: attr(data-col); order: -1; grid-column: 2; grid-row: 1; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-ink-mute); padding-top: 3px; }
+    tbody td .cmp-mark { grid-column: 1; grid-row: 1; margin: 0; vertical-align: 0; }
+    tbody td > span:last-child { grid-column: 3; grid-row: 1; }
+  }
+  @media (max-width: 479px) {
+    .orbit { max-width: 340px; }
+    .o-node-tile { width: 42px; height: 42px; }
+    .o-node-note { display: none; }
+    .o-node-label { font-size: 12px; }
+    .o-hub-tile { width: 72px; height: 72px; }
+    .o-hub-label { font-size: 19px; }
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/PageHero.astro';
+import FinalCta from '@components/FinalCta.astro';
+import Icon from '@components/Icon.astro';
+import { href, type Lang } from '@/i18n';
+import { pages } from '@/i18n/pages';
+import { shared } from '@/i18n/shared';
+import { breadcrumbSchema } from '@/lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = pages[lang].work;
+const s = shared[lang];
+const path = href(lang, 'work');
+const projects = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  nav="work"
+  ogImage="/images/og-astia-web.jpg"
+  schemas={[breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.work, path }])]}
+>
+  <PageHero title={t.title} lede={t.lede} />
+
+  <section class="section section--paper" aria-label={t.num}>
+    <div class="container">
+      <span class="secnum reveal">{t.num}</span>
+      <ul class="work-grid">
+        {projects.map((p, i) => (
+          <li class="work reveal" style={`--d:${i * 0.08}s`}>
+            <a href={p.data.url} target="_blank" rel="noopener" class="work-link">
+              <div class="work-img">
+                <img src={p.data.image} alt={p.data.imageAlt[lang]} width="800" height="1000" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+              </div>
+              <span class="mono-label work-tag">{p.data.tag[lang]}</span>
+              <h2 class="work-title">{p.data.title}</h2>
+              <p class="work-sub">{p.data.subtitle[lang]}</p>
+              {p.data.url && (
+                <span class="work-visit">{t.visit}<Icon name="arrow-up-right" size={15} /></span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <FinalCta lang={lang} title={t.nextTitle} lede={t.nextLede} surface="cream" />
+</BaseLayout>
+
+<style>
+  .work-grid {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    align-items: start;
+  }
+  /* Editorial stagger: the middle card sits lower. */
+  .work:nth-child(3n + 2) { margin-top: 72px; }
+  .work-link { display: block; }
+  .work-img {
+    overflow: hidden;
+    border-radius: var(--r-card);
+    background: var(--bone-soft);
+    aspect-ratio: 4 / 5;
+  }
+  .work-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s var(--ease);
+  }
+  .work-link:hover .work-img img { transform: scale(1.04); }
+  .work-tag { display: block; margin-top: 22px; }
+  .work-title {
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 2.6vw, 34px);
+    line-height: 1.1;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+  .work-sub { margin-top: 6px; font-size: 15px; color: var(--stone); }
+  .work-visit {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--bone);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .work-link:hover .work-visit { color: var(--rosso); border-color: var(--rosso); }
+
+  @media (max-width: 1023px) {
+    .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .work:nth-child(3n + 2) { margin-top: 0; }
+    .work:nth-child(2n) { margin-top: 56px; }
+  }
+  @media (max-width: 599px) {
+    .work-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .work:nth-child(2n) { margin-top: 0; }
+  }
+</style>
