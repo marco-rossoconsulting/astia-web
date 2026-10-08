@@ -6,7 +6,6 @@ import RebuildCycle from '@components/home/RebuildCycle.astro';
 import Routes from '@components/home/Routes.astro';
 import PriceCard from '@components/PriceCard.astro';
 import IncludedLists from '@components/IncludedLists.astro';
-import ImageBreaker from '@components/ImageBreaker.astro';
 import FinalCta from '@components/FinalCta.astro';
 import Icon from '@components/Icon.astro';
 import { SITE_URL, em, href, type Lang } from '@/i18n';
@@ -73,18 +72,6 @@ const path = href(lang, 'home');
       </div>
     </div>
   </section>
-
-  {/* 06 — Work */}
-  <ImageBreaker
-    src="/images/watamu-sunset-2000.jpg"
-    srcSmall="/images/watamu-sunset-1200.jpg"
-    srcPortrait="/images/watamu-sunset-portrait-800.jpg"
-    alt={t.work.alt}
-    num={t.work.num}
-    caption={t.work.caption}
-    linkLabel={t.work.link}
-    linkHref={href(lang, 'work')}
-  />
 
   <FinalCta lang={lang} num={t.final.num} surface="cream" />
 </BaseLayout>

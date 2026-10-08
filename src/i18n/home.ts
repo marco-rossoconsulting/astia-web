@@ -110,14 +110,8 @@ const en = {
     ],
     note: 'Why brand first? A site without a clear direction comes out generic. A site built from your own brand guide sounds and looks like your business, not like AI.',
   },
-  work: {
-    num: '06 — Work',
-    caption: 'Exploreans: one brand guide, three sites, from the Maasai Mara to the Kenyan coast.',
-    alt: 'Sunset over the beach at Watamu, on the Kenyan coast.',
-    link: 'See the work',
-  },
   final: {
-    num: '07 — Next step',
+    num: '06 — Next step',
     title: 'Book a call. Leave with the start of your brand *guide*.',
     lede: 'Thirty minutes. We learn your business, answer every question honestly, and tell you plainly if Astia Web is not the right fit.',
     or: 'Or write to',
@@ -236,14 +230,8 @@ const de: HomeCopy = {
     ],
     note: 'Warum zuerst die Marke? Eine Website ohne klare Richtung wird beliebig. Eine Website aus Ihrem eigenen Markenleitfaden klingt und wirkt wie Ihr Unternehmen, nicht wie AI.',
   },
-  work: {
-    num: '06 — Arbeiten',
-    caption: 'Exploreans: ein Markenleitfaden, drei Websites, von der Maasai Mara bis an die kenianische Küste.',
-    alt: 'Sonnenuntergang am Strand von Watamu an der kenianischen Küste.',
-    link: 'Arbeiten ansehen',
-  },
   final: {
-    num: '07 — Nächster Schritt',
+    num: '06 — Nächster Schritt',
     title: 'Buchen Sie ein Gespräch. Dort beginnt Ihr *Markenleitfaden*.',
     lede: 'Dreissig Minuten. Wir lernen Ihr Unternehmen kennen, beantworten jede Frage ehrlich und sagen Ihnen offen, wenn Astia Web nicht das Richtige ist.',
     or: 'Oder schreiben Sie an',
@@ -360,14 +348,8 @@ const it: HomeCopy = {
     ],
     note: 'Perché prima il brand? Un sito senza una direzione chiara risulta generico. Un sito costruito dalle vostre linee guida parla e appare come la vostra attività, non come l’IA.',
   },
-  work: {
-    num: '06 — Lavori',
-    caption: 'Exploreans: un’unica guida del brand, tre siti, dal Maasai Mara alla costa del Kenya.',
-    alt: 'Tramonto sulla spiaggia di Watamu, sulla costa del Kenya.',
-    link: 'Vedi i lavori',
-  },
   final: {
-    num: '07 — Il prossimo passo',
+    num: '06 — Il prossimo passo',
     title: 'Prenotate una chiamata. Le vostre linee guida del brand *iniziano* lì.',
     lede: 'Trenta minuti. Conosciamo la vostra attività, rispondiamo onestamente a ogni domanda e vi diciamo chiaramente se Astia Web non fa per voi.',
     or: 'Oppure scrivete a',
