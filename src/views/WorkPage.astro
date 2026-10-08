@@ -22,7 +22,7 @@ const projects = (await getCollection('portfolio')).sort((a, b) => a.data.order 
   description={t.seo.description}
   path={path}
   nav="work"
-  ogImage="/images/og-astia-web.jpg"
+  ogImage={`/images/og/work-${lang}.jpg`}
   schemas={[breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.work, path }])]}
 >
   <PageHero title={t.title} lede={t.lede} />

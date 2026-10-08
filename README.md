@@ -139,6 +139,20 @@ without JavaScript.
 
 ## SEO and machines
 
+- **Share cards:** one 1200 × 630 card per page and language, and per article, in
+  `public/images/og/`. Titles come from the site copy. After changing a headline or
+  adding an article: `node scripts/og/manifest.mjs && python3 scripts/og/render.py`
+  (needs `pip install pillow fonttools brotli`).
+- **AI search:** `public/llms.txt` (index) and `/llms-full.txt` (the whole offer,
+  generated from `src/i18n` at build). `robots.txt` names the AI crawlers explicitly.
+- **IndexNow:** `netlify/functions/deploy-succeeded.js` pings IndexNow (Bing, which
+  also feeds ChatGPT search and Copilot) with the sitemap after each production deploy.
+  The key file is `public/8002eeb36e922237e75962bc4209652d.txt`.
+- **Clean URLs:** the build writes `dist/_redirects` so `/pricing.html` 301s to `/pricing`.
+- **Preferred sources:** the Journal and every article link to Google's preferred-source
+  page for astiaweb.com (a plain link, no script).
+
+
 - Per-page titles and descriptions in all three languages; canonical and hreflang
 - JSON-LD: Organization, WebSite, Service with the 150 offer in CHF, EUR and USD,
   FAQPage, BreadcrumbList, Article

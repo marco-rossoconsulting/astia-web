@@ -9,9 +9,9 @@ export const COST_SERIES = {
 
 const en = {
   seo: {
-    title: 'Price · Astia Web · 150 a month, everything included',
+    title: 'Website price: 150 a month, everything included · Astia Web',
     description:
-      'One price for every site: 150 a month in CHF, EUR or USD, excluding VAT. Brand guide, custom website, every change, every language, hosting and upkeep included. No setup fee.',
+      'One price per site: 150 a month in CHF, EUR or USD, excl. VAT. Brand guide, design, every change and language, hosting and upkeep included. No setup fee.',
   },
   hero: {
     eyebrow: 'One price · Everything included',
@@ -65,9 +65,9 @@ export type PricingCopy = typeof en;
 
 const de: PricingCopy = {
   seo: {
-    title: 'Preis · Astia Web · 150 pro Monat, alles inklusive',
+    title: 'Website-Preis: 150 pro Monat, alles inklusive · Astia Web',
     description:
-      'Ein Preis für jede Website: 150 pro Monat in CHF, EUR oder USD, exkl. MwSt. Markenleitfaden, individuelle Website, jede Änderung, jede Sprache, Hosting und Pflege inklusive. Keine Einrichtungsgebühr.',
+      'Ein Preis pro Website: 150 pro Monat in CHF, EUR oder USD, exkl. MwSt. Markenleitfaden, Design, jede Änderung und Sprache, Hosting und Pflege inklusive.',
   },
   hero: {
     eyebrow: 'Ein Preis · Alles inklusive',
@@ -119,9 +119,9 @@ const de: PricingCopy = {
 
 const it: PricingCopy = {
   seo: {
-    title: 'Prezzo · Astia Web · 150 al mese, tutto incluso',
+    title: 'Prezzo del sito: 150 al mese, tutto incluso · Astia Web',
     description:
-      'Un prezzo per ogni sito: 150 al mese in CHF, EUR o USD, IVA esclusa. Linee guida del brand, sito su misura, ogni modifica, ogni lingua, hosting e manutenzione inclusi. Nessun costo di attivazione.',
+      'Un prezzo per sito: 150 al mese in CHF, EUR o USD, IVA esclusa. Linee guida del brand, design, ogni modifica e lingua, hosting e manutenzione inclusi.',
   },
   hero: {
     eyebrow: 'Un prezzo · Tutto incluso',

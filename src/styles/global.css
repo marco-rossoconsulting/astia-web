@@ -442,6 +442,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* Hero entrance runs on first paint, CSS only. */
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise 0.8s var(--ease) both; animation-delay: var(--d, 0s); }
+/* Headlines and ledes are the page's main content (LCP). Text that starts
+   invisible is not counted until it appears, so these only move, never fade. */
+@keyframes rise-move { from { transform: translateY(14px); } to { transform: none; } }
+.d1.rise, .lede.rise { animation-name: rise-move; animation-delay: 0s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

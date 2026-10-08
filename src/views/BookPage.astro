@@ -30,6 +30,7 @@ const FAQ_PICK = [1, 0, 6];
   description={t.seo.description}
   path={path}
   nav="book"
+  ogImage={`/images/og/book-${lang}.jpg`}
   schemas={[
     faqSchema(FAQ_PICK.map((i) => s.faq[i])),
     breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.book, path }]),

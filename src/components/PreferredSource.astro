@@ -1,0 +1,46 @@
+---
+/**
+ * "Add Astia Web as a preferred source on Google": Google's official deeplink
+ * (developers.google.com/search/docs/appearance/preferred-sources). A plain
+ * link, so no third-party script and nothing to consent to. Readers who pick
+ * a preferred source see it more often in Top Stories, AI Overviews and AI Mode.
+ */
+import Icon from '@components/Icon.astro';
+import { type Lang } from '@/i18n';
+import { pages, PREFERRED_SOURCE_URL } from '@/i18n/pages';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = pages[lang].journal.preferred;
+---
+<p class="pref">
+  <span>{t.text}</span>
+  <a href={PREFERRED_SOURCE_URL} target="_blank" rel="noopener" data-track="preferred_source">
+    {t.link}<Icon name="arrow-up-right" size={15} />
+  </a>
+</p>
+
+<style>
+  .pref {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+    padding: 18px 0;
+    border-top: 1px solid var(--bone);
+    border-bottom: 1px solid var(--bone);
+    font-size: 15px;
+    color: var(--stone);
+  }
+  .pref a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--bone);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .pref a:hover { color: var(--rosso); border-color: var(--rosso); }
+</style>

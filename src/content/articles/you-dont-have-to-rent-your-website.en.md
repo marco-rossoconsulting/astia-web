@@ -7,6 +7,9 @@ tag: Ownership
 date: "2026-01-29"
 readingTime: "6 min"
 published: true
+seo:
+  title: "You don’t have to rent your website · Astia Web"
+  description: "Pay a site builder every month and you are renting. What owning your website’s code really means, a simple portability test, and why it now costs less."
 ---
 
 Here is a question worth asking anyone selling you a website. *If I stop paying you, what happens?*
@@ -15,7 +18,7 @@ If the honest answer is "your site disappears" — you are renting, not owning. 
 
 For some businesses, renting is fine. For an independent hotel investing in a long-term brand asset, it's often the worst possible option — because the moment your business depends on the site, the platform has all the leverage.
 
-### What "owning your code" actually means
+## What "owning your code" actually means
 
 Owning a website means three concrete things.
 
@@ -27,7 +30,7 @@ Owning a website means three concrete things.
 
 All three of these were once developer-only conveniences. None of them are anymore.
 
-### The portability test
+## The portability test
 
 Try this with whoever currently hosts or maintains your website. Send them a single sentence email: *Please send me an export of everything required to host my website elsewhere.*
 
@@ -39,7 +42,7 @@ If they send you a vague reply about "what would you like to do" or quote you a 
 
 If they tell you it's technically possible but practically very difficult — you're renting, and you've just learned the cost of the lease.
 
-### Why this is cheaper than renting in 2026
+## Why this is cheaper than renting in 2026
 
 The intuition is wrong on this one. Most operators assume "owning code" means hiring a developer to maintain it, which sounds expensive. In 2026 that's no longer true.
 

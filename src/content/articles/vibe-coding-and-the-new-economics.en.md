@@ -7,6 +7,9 @@ tag: AI Era
 date: "2026-02-05"
 readingTime: "6 min"
 published: true
+seo:
+  title: "Vibe coding and the new economics of websites · Astia Web"
+  description: "AI agents now write much of a website’s code. What that means for small business websites, what still needs a person, and what the work should cost."
 ---
 
 The term started as a joke. *Vibe coding* — the practice of building software by describing what you want in natural language to an AI agent and refining the result — sounded too casual to be serious. Six months later, it's the default workflow for a significant fraction of working developers, and the implications for small business websites are unusually clear.
@@ -15,7 +18,7 @@ For most of web development's history, building a website required two distinct 
 
 Vibe coding collapsed the first category. Engineering skill is no longer rare. An AI agent can write working code from a clear description of intent, debug its own output, and integrate with most common services. What's left, the binding constraint, is design and product judgment — knowing what to ask for in the first place.
 
-### What this means for hospitality
+## What this means for hospitality
 
 The hospitality web industry is structurally unprepared for this shift, and it shows.
 
@@ -23,7 +26,7 @@ Agencies still charge engineering rates for engineering work that AI agents now 
 
 The customers who notice are starting to do uncomfortable math. *If the agent that drafts the code is free, and the hosting is free, and the CMS is free, and the build is the work of a thoughtful operator with taste — what exactly am I paying €30,000 for?*
 
-### The new shape of the work
+## The new shape of the work
 
 The most valuable work in a 2026 hotel website project is no longer engineering. It's decisions.
 
@@ -31,7 +34,7 @@ Which booking flow converts? What does your brand actually look like, in pixels?
 
 These are not engineering problems. They're hospitality problems, with a web interface. And they're exactly the kind of problems that get solved better by someone who knows hospitality than by an agency that knows web.
 
-### The economic shift, in numbers
+## The economic shift, in numbers
 
 A reasonable estimate of where the cost of a custom hotel website actually sits in 2026:
 
