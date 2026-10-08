@@ -1,169 +1,134 @@
 # Astia Web
 
-The first AI-managed website service for independent hotels.
-Built on Astro, hosted on Netlify. This marketing site is edited in GitHub, not a CMS.
+**astiaweb.com**: one price for everything your website needs.
+
+The marketing site for Astia Web, a product of Marco Rosso Consulting. Built with
+[Astro](https://astro.build), hosted on [Netlify](https://netlify.com), edited in
+GitHub. The brand rules it follows are in *Astia Web Brand Guidelines v2.0*
+(October 2026).
 
 ## Stack
 
-- **[Astro](https://astro.build) 4.16+** — static site generator, multi-language routing
-- **[Netlify](https://netlify.com)** — hosting, builds, forms, redirects
-- Custom CSS — no framework, no Tailwind, design tokens in `src/styles/global.css`
-- Fonts loaded from Fontshare (Editorial New, General Sans) and Google Fonts (JetBrains Mono)
-
-## Project structure
-
-```
-.
-├── astro.config.mjs        # i18n config, sitemap integration
-├── netlify.toml            # build & security headers
-├── package.json
-├── tsconfig.json
-├── public/
-│   ├── images/             # Site images
-│   ├── favicon.svg
-│   └── robots.txt
-└── src/
-    ├── content/
-    │   ├── config.ts       # Astro Content Collections schemas (Zod)
-    │   ├── pages/          # One JSON per page, all 3 languages inside
-    │   │   ├── home.json
-    │   │   ├── how.json
-    │   │   ├── pricing.json
-    │   │   ├── apply.json
-    │   │   └── journal-index.json
-    │   ├── site/
-    │   │   └── general.json   # Nav, footer, brand, social
-    │   ├── articles/       # 5 articles × 3 languages = 15 markdown files
-    │   │   └── {slug}.{lang}.md
-    │   └── portfolio/      # One JSON per property
-    │       ├── exploreans.json
-    │       ├── mara-river-camp.json
-    │       └── watamu.json
-    ├── components/
-    │   ├── Nav.astro       # Top nav + language switcher
-    │   ├── Footer.astro
-    │   ├── page-content/   # One per page: HomeContent, HowContent, etc.
-    │   └── ...             # All UI components (ProblemCard, FAQ, etc.)
-    ├── layouts/
-    │   └── BaseLayout.astro    # <head>, JSON-LD, hreflang, fonts
-    ├── pages/
-    │   ├── index.astro           # EN root
-    │   ├── how-it-works.astro    # EN /how-it-works
-    │   ├── pricing.astro
-    │   ├── apply.astro
-    │   ├── thank-you.astro       # form submit destination
-    │   ├── journal/
-    │   │   ├── index.astro
-    │   │   └── [slug].astro      # dynamic article route
-    │   ├── de/                   # German mirror
-    │   └── it/                   # Italian mirror
-    └── styles/
-        └── global.css
-```
+- **Astro 4** static site, three languages (EN at `/`, DE at `/de`, IT at `/it`)
+- **Netlify** hosting, Netlify Forms for "Book a call", a function that emails each submission (Resend)
+- **No CSS framework, no React.** Design tokens and shared components in `src/styles/global.css`; section styles are scoped inside each component
+- **Self-hosted fonts** in `public/fonts`: Instrument Serif (display), General Sans (text), JetBrains Mono (labels, prices). Nothing loads from a font CDN
 
 ## Local development
 
 ```bash
 npm install
-npm run dev          # http://localhost:4321
-npm run build        # builds to ./dist
-npm run preview      # preview the production build locally
+npm run dev        # http://localhost:4321
+npm run build      # builds to ./dist and writes the sitemap
+npx astro check    # type-checks pages and every translation
 ```
 
-Node 20+ required.
+Node 20+.
 
-## Multi-language
+## Where things live
 
-URL structure:
+```
+src/
+├── i18n/                 All page copy, one module per page, EN/DE/IT side by side
+│   ├── index.ts          Languages, routes, href(), money formatting, em()
+│   ├── shared.ts         Nav, footer, price card, included lists, person, FAQ, five questions
+│   ├── home.ts · how.ts · pricing.ts · pages.ts (work, journal, book, thank-you, 404)
+├── views/                One view per page, shared by all three languages
+├── pages/                Thin route files: /, /de, /it × each page
+├── components/           Shared blocks (PriceCard, PersonCard, Faq, FinalCta, …)
+│   ├── home/             Hero with Rosso grid, AI shift, rebuild cycle, three routes
+│   ├── how/              Steps, change walkthrough, built-differently orbit, ready-for-next
+│   └── pricing/          Five-year cost section
+├── scripts/              site.ts (nav, menu, reveal, currency, analytics),
+│                         cost-chart.ts, rising-particles.ts (WebGL)
+├── content/
+│   ├── articles/         Journal: {slug}.{lang}.md
+│   └── portfolio/        Work page entries (JSON)
+├── lib/                  schema.ts (JSON-LD), articles.ts
+└── styles/global.css     Tokens, type, layout, buttons, lists
+```
 
-| Language | Home URL    | Pricing URL          |
-| -------- | ----------- | -------------------- |
-| English  | `/`         | `/pricing`           |
-| German   | `/de`       | `/de/pricing`        |
-| Italian  | `/it`       | `/it/pricing`        |
+## Editing copy
 
-Content is stored once per page in `src/content/pages/*.json`, with each translatable field shaped as `{ en: "...", de: "...", it: "..." }`. The page templates consume the appropriate language slice at build time.
+Copy is in `src/i18n/*.ts`. The German and Italian blocks are typed against the
+English one, so `npx astro check` fails if a key is missing in any language.
 
-Article files use a different convention: `{slug}.{lang}.md` (e.g. `thirty-thousand-website-is-over.en.md`). Same `slug` across languages keeps the URL identical.
+- **The italic word.** Each headline marks its one italic word with asterisks:
+  `'One price for *everything* your website needs.'`. One per headline, never two.
+- **Prices** are whole numbers. Anything that shows an amount uses `<Money n={9000} />`
+  so it follows the visitor's CHF / EUR / USD choice and the language's format
+  (EN `9,000`; DE/IT `9’000` in CHF and `9.000` in EUR).
+- **German** uses formal *Sie* and Swiss spelling (ss, not ß). **Italian** uses formal *voi*.
+- Words to avoid, and the voice in general: Brand Guidelines v2, Part II.
 
-## Deploying to Netlify
+## Journal
 
-### One-time setup
+Add `src/content/articles/{slug}.{lang}.md` with the frontmatter: `title`, `route`,
+`lang`, `excerpt`, `tag`, `date`, `readingTime`, `published`. Use the same base
+slug with `-en`, `-de`, `-it` for the `route` so translations link up.
 
-1. **Push this repo to GitHub.**
-2. **Connect repo to Netlify** (New site from Git).
-3. **Build settings** are picked up from `netlify.toml`:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-   - Node version: 20
-4. **Enable Netlify Forms** in site settings (handles the apply form automatically — the `data-netlify="true"` attribute on the form is the trigger).
-5. **Set custom domain** in Netlify → Domain settings.
+If a translation is not written yet, set `translationPending: true`. The page stays
+reachable but is `noindex`, and is left out of hreflang and the sitemap.
 
-### Subsequent deploys
+## Work
 
-Push to your `main` branch — Netlify auto-builds and deploys. Build takes ~30 seconds.
+One JSON per site in `src/content/portfolio/` with an 800 × 1000 image in
+`public/images/`. Sorted by `order`.
 
-## SEO
+## Marco's portrait
 
-The build includes:
+The person card shows a monogram until a real portrait exists. Add
+`public/images/marco-rosso.jpg` (a real photo, ideally 1200 × 1500, under 200 KB) and
+rebuild. It appears everywhere the card is used.
 
-- **Per-page meta title and description** (translatable, in `src/content/`)
-- **Open Graph + Twitter Card meta** on every page
-- **`hreflang` alternates** on every page (`en`, `de`, `it`, `x-default`)
-- **Canonical URLs**
-- **Organization JSON-LD** site-wide (from `src/content/site/general.json`)
-- **Sitemap** auto-generated at `/sitemap-index.xml` (via `@astrojs/sitemap`)
-- **robots.txt** at `/robots.txt`
-- **Alt text on every image** in content JSON
+## Book a call
 
-## Apply form
+- **Calendar:** `CALENDAR_URL` in `src/i18n/pages.ts`.
+- **Form:** `book-a-call` on Netlify Forms (Name, Email, Business, Website). Keep the
+  field names in sync with `public/__form.html`, which exists so Netlify always
+  detects the form.
+- **Email:** `netlify/functions/submission-created.js` sends each submission through
+  Resend. It needs `NOTIFY_EMAIL` and `RESEND_API_KEY` in Netlify's environment
+  variables. Replies go straight to the person who filled in the form.
 
-The form on `/apply` posts to Netlify Forms. To receive submissions:
+## Brand rules held in code
 
-1. Netlify auto-detects the form on first build (the `data-netlify="true"` attribute).
-2. View submissions in Netlify dashboard → Forms.
-3. Optionally configure email notifications in Netlify → Forms → Notifications.
+- Signal Red `#E62127` appears only on the wordmark dot (`Wordmark.astro`). Rosso
+  `#C41E3A` everywhere else.
+- Palette colours only; no pure black or white. Paper and Cream alternate by section.
+- One primary button per section. Every major section opens with a mono section
+  number (`01 — The price`), restarting on each page.
+- The faint Rosso grid lives only in the home hero.
+- Every cost comparison includes the case where a lean one-off build is cheaper.
 
-The form redirects to `/thank-you` on submit.
+## Interactive pieces
 
-## Adding a new Journal article
+| Where | What | Notes |
+|---|---|---|
+| Home hero | Rosso grid; cells warm under the pointer, one fills now and then | Canvas, sleeps when idle or off-screen |
+| Home 01 | 100 Google visits, with and without an AI summary (Pew, 2025) | Plays once, then switchable |
+| Home 02 | The rebuild cycle: one-off build vs Astia Web | Toggle; line draws in |
+| Price | Currency switch CHF / EUR / USD | Remembered per visitor |
+| Price 02 | Five-year cost chart | Crosshair readout, keyboard arrows, table view |
+| Price 03 | Five questions, copy to clipboard | |
+| How hero | Rising particles | Raw WebGL, a few KB |
+| How 02 | One change, start to finish | Plays once, replayable |
+| How 03 | What is (and isn't) on the live site | Orbit diagram |
+| How 04 | What a guest sees vs what an AI reads (JSON-LD) | Toggle |
 
-Add markdown files in `src/content/articles/` named `{slug}.{lang}.md` (same slug across languages). Frontmatter: title, route, lang, excerpt, tag, date, readingTime, published, optional seo.
+All motion respects `prefers-reduced-motion`, and every section reads correctly
+without JavaScript.
 
-The article appears automatically on the Journal index in the matching language.
+## SEO and machines
 
-## Adding a new portfolio property
+- Per-page titles and descriptions in all three languages; canonical and hreflang
+- JSON-LD: Organization, WebSite, Service with the 150 offer in CHF, EUR and USD,
+  FAQPage, BreadcrumbList, Article
+- `public/llms.txt` and `public/ai.txt` describe the offer plainly for AI crawlers
+- Sitemap written by `scripts/generate-sitemap.mjs` after each build
+- Old URLs: `/apply` → `/book-a-call`, `/showcase` → `/work` (301, in `netlify.toml`)
 
-Add a JSON file in `src/content/portfolio/`. Fields: order (lower = earlier), title, tag, subtitle, image, imageAlt, optional url.
+## Deploying
 
-The home page renders portfolio entries sorted by `order`.
-
-## Brand & design tokens
-
-All design tokens live in `src/styles/global.css`:
-
-- **Surfaces**: `--paper #F7F5F0`, `--cream #FAFAF7`, `--bone #E5E2DA`
-- **Ink**: `--ink #141414`, `--stone #6B6B66`
-- **Brand reds**: `--rosso #C41E3A` (daily accent), `--wine #7C1D1D` (hover), `--signal #E62127` (only on the wordmark dot)
-- **Typography**: Editorial New (display), General Sans (body), JetBrains Mono (specs/labels)
-
-## Performance targets
-
-- Lighthouse: 98–100 across the board
-- First Contentful Paint: < 1s
-- Total page weight: ~80–150 KB
-- Build time: < 30s for the full multi-language site
-
-## Roadmap (work for the next pass)
-
-- Full DE/IT translation of all 5 journal article bodies (currently English only with a translation notice)
-- Localized URL slugs (e.g. `/de/so-funktioniert-es` instead of `/de/how-it-works`)
-- Astro `<Image>` component on portfolio images for automatic responsive sizing
-- Add structured data for FAQ page (FAQPage JSON-LD)
-- Add structured data for articles (Article JSON-LD)
-- Cookie consent banner (if pursuing EU markets seriously)
-
-## Support & questions
-
-This site was built by Marcorosso Consulting. Email: marcorosso.consulting@gmail.com
-# Deploy trigger: 2026-09-02T12:50:00Z
+Pushing to `main` deploys to production. Open a pull request first: Netlify builds
+a deploy preview for every PR.

@@ -1,0 +1,196 @@
+---
+/**
+ * Journal article (Brand Guidelines v2, 16 Journal): 720px text column, a lede
+ * that sets up the argument, subheads in Instrument Serif Italic, one pulled
+ * quote at most, and an ending that hands the reader a decision.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FinalCta from '@components/FinalCta.astro';
+import Icon from '@components/Icon.astro';
+import { LANGS, formatDate, href, type Lang } from '@/i18n';
+import { pages } from '@/i18n/pages';
+import { shared } from '@/i18n/shared';
+import { articleAlternates, articlePath, articlesFor, minutes, baseSlug, type Article } from '@/lib/articles';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
+import { getCollection } from 'astro:content';
+
+interface Props { article: Article }
+const { article } = Astro.props;
+const lang = article.data.lang as Lang;
+const t = pages[lang].journal;
+const s = shared[lang];
+const { Content } = await article.render();
+const path = articlePath(article);
+const alternates = await articleAlternates(article);
+
+// The switcher can still reach a pending translation (it says so itself).
+const siblings = await getCollection('articles', (a) => a.data.published && baseSlug(a.data.route) === baseSlug(article.data.route));
+const switchPaths = Object.fromEntries(
+  LANGS.map((l) => {
+    const match = siblings.find((a) => a.data.lang === l);
+    return [l, match ? articlePath(match) : href(l, 'journal')];
+  }),
+);
+
+const more = (await articlesFor(lang)).filter((a) => a.id !== article.id).slice(0, 2);
+const title = article.data.seo?.title ?? `${article.data.title} · Astia Web`;
+const description = article.data.seo?.description ?? article.data.excerpt;
+const pending = article.data.translationPending;
+---
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  path={path}
+  nav="journal"
+  alternates={alternates}
+  switchPaths={switchPaths}
+  ogType="article"
+  noindex={pending}
+  schemas={[
+    articleSchema({ lang, title: article.data.title, description, path, date: article.data.date, image: '/images/og-astia-web.jpg' }),
+    breadcrumbSchema([
+      { name: 'Astia Web', path: href(lang, 'home') },
+      { name: s.nav.journal, path: href(lang, 'journal') },
+      { name: article.data.title, path },
+    ]),
+  ]}
+>
+  <article class="article">
+    <header class="container-text article-head">
+      <a href={href(lang, 'journal')} class="back"><Icon name="arrow-left" size={15} />{t.back}</a>
+      <p class="meta mono rise" style="--d:0.04s">
+        <span>{s.nav.journal}</span>
+        <span>{minutes(article.data.readingTime)} {t.minRead}</span>
+        <span>{formatDate(article.data.date, lang)}</span>
+      </p>
+      <h1 class="article-title rise" style="--d:0.1s">{article.data.title}</h1>
+      {!pending && <p class="article-lede rise" style="--d:0.16s">{article.data.excerpt}</p>}
+      <div class="byline rise" style="--d:0.22s">
+        <span class="byline-mono" aria-hidden="true">MR</span>
+        <span><strong>{t.byline}</strong><br />{t.bylineRole}</span>
+      </div>
+    </header>
+
+    <div class="container-text prose">
+      <Content />
+    </div>
+
+  </article>
+
+  {more.length > 0 && (
+    <section class="section section--paper section--rule more" aria-label={t.back}>
+      <div class="container">
+        <ul class="more-grid">
+          {more.map((a) => (
+            <li>
+              <a href={articlePath(a)} class="more-item">
+                <p class="meta mono"><span>{a.data.tag}</span><span>{formatDate(a.data.date, lang)}</span></p>
+                <h2 class="more-title">{a.data.title}</h2>
+                <span class="more-read">{s.common.readMore}<Icon name="arrow-right" size={16} /></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <FinalCta lang={lang} title={t.endTitle} lede={t.endLede} surface="cream" />
+</BaseLayout>
+
+<style>
+  .article { padding: 64px 0 96px; }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--stone);
+    transition: color 0.2s ease;
+  }
+  .back:hover { color: var(--rosso); }
+  .meta { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; letter-spacing: 0.04em; color: var(--stone); }
+  .meta span:first-child { color: var(--rosso); }
+  .article-title {
+    margin-top: 18px;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5vw, 56px);
+    line-height: 1.06;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .article-lede { margin-top: 28px; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; color: var(--ink-soft); }
+  .byline {
+    margin-top: 32px;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid var(--bone);
+    border-bottom: 1px solid var(--bone);
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--stone);
+  }
+  .byline strong { font-weight: 500; color: var(--ink); }
+  .byline-mono {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bone-soft);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--stone);
+  }
+
+  .prose { margin-top: 48px; font-size: 18px; line-height: 1.7; color: var(--ink-soft); }
+  .prose :global(p) { margin: 0 0 1.25em; }
+  .prose :global(h2), .prose :global(h3) {
+    margin: 2em 0 0.6em;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 2.6vw, 32px);
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .prose :global(em) { font-style: italic; }
+  .prose :global(strong) { font-weight: 500; color: var(--ink); }
+  .prose :global(a) { color: var(--rosso); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .prose :global(blockquote) {
+    margin: 2em 0;
+    padding: 0;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 2.8vw, 34px);
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 1.25em; padding-left: 1.2em; list-style: disc; }
+  .prose :global(ol) { list-style: decimal; }
+  .prose :global(li) { margin-bottom: 0.4em; }
+
+  .more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+  .more-item { display: block; }
+  .more-item .meta { margin-top: 0; }
+  .more-title {
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.2vw, 30px);
+    line-height: 1.15;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+  .more-item:hover .more-title { color: var(--rosso); }
+  .more-read { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; }
+
+  @media (max-width: 767px) {
+    .article { padding: 40px 0 64px; }
+    .prose { font-size: 17px; }
+    .more-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+/**
+ * 03 — The decision. Three ways to get a website, side by side. Astia is set
+ * on Ink; the fair note about when the others cost less stays visible.
+ */
+import Icon from '@components/Icon.astro';
+import { em, href, type Lang } from '@/i18n';
+import { home } from '@/i18n/home';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = home[lang].routes;
+---
+<section class="section section--paper routes" aria-labelledby="routes-title">
+  <div class="container">
+    <div class="sec-head">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="routes-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+    </div>
+
+    <ol class="routes-grid">
+      {t.items.map((r, i) => (
+        <li class:list={['route', 'reveal', { 'route--astia': i === 2 }]} style={`--d:${i * 0.08}s`}>
+          <span class="mono-label route-label">{r.label}</span>
+          <h3 class="route-title">{r.title}</h3>
+          <p class="route-sub">{r.sub}</p>
+          <ul class="route-list">
+            {r.pros.map((p) => (
+              <li class="is-pro"><span class="route-mark"><Icon name="check" size={14} strokeWidth={2.25} /></span>{p}</li>
+            ))}
+            {r.cons.map((c) => (
+              <li class="is-con"><span class="route-mark"><Icon name="x" size={14} strokeWidth={2.25} /></span>{c}</li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
+
+    <div class="routes-foot reveal">
+      <p class="body">{t.fair}</p>
+      <a href={href(lang, 'how', 'built')} class="arrow-link">{t.link}<Icon name="arrow-right" size={16} /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .routes-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.18fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+  .route {
+    display: flex;
+    flex-direction: column;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 30px 28px 32px;
+  }
+  .route-label { display: block; margin-bottom: 18px; }
+  .route-title { font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 30px); line-height: 1.15; color: var(--ink); }
+  .route-sub { margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--stone); }
+  .route-list { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--bone); display: grid; gap: 12px; }
+  .route-list li { display: grid; grid-template-columns: 24px 1fr; gap: 8px; font-size: 15.5px; line-height: 1.5; color: var(--ink-soft); }
+  .route-mark {
+    width: 20px; height: 20px; margin-top: 1px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  .is-pro .route-mark { color: var(--ink); background: var(--bone-soft); }
+  .is-con .route-mark { color: var(--stone); border: 1px solid var(--bone); }
+
+  .route--astia {
+    background: var(--ink);
+    border-color: var(--ink);
+    padding: 36px 34px 38px;
+    margin-top: -16px;
+    margin-bottom: -16px;
+    box-shadow: 0 30px 60px -30px rgba(20, 20, 20, 0.45);
+  }
+  .route--astia .route-label { color: var(--on-ink-mute); }
+  .route--astia .route-title { color: var(--on-ink); font-size: clamp(30px, 2.8vw, 36px); }
+  .route--astia .route-sub { color: var(--on-ink-mute); }
+  .route--astia .route-list { border-color: var(--on-ink-line); }
+  .route--astia .route-list li { color: var(--on-ink); font-size: 16px; }
+  .route--astia .is-pro .route-mark { background: var(--rosso); color: var(--paper); }
+
+  .routes-foot {
+    margin-top: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px 48px;
+    flex-wrap: wrap;
+  }
+  .routes-foot .body { color: var(--stone); max-width: 60ch; }
+
+  @media (max-width: 1023px) {
+    .routes-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .route--astia { margin: 6px 0 0; }
+  }
+</style>

@@ -7,6 +7,7 @@ tag: Architecture
 date: "2026-02-12"
 readingTime: "5 min"
 published: true
+translationPending: true
 ---
 
 *Dieser Artikel ist derzeit nur auf Englisch verfügbar. Die vollständige deutsche Übersetzung folgt in Kürze.*

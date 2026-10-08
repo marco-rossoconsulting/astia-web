@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "description": "The first AI-managed website service for independent hotels. Built on Astro, hosted on Netlify.",
+  "description": "astiaweb.com: one price for everything your website needs. Built with Astro, hosted on Netlify.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,15 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.4",
     "@astrojs/sitemap": "^3.2.0",
-    "@paper-design/shaders": "^0.0.80",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
-    "astro": "^4.16.0",
-    "framer-motion": "^13.1.1",
-    "lucide-react": "^1.35.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^5.9.3"
   }
 }

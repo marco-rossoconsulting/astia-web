@@ -1,0 +1,78 @@
+---
+/**
+ * The price card. One card replaces the old tier matrix: no "recommended"
+ * badge, no crossed-out prices, no "from". The currency toggle only changes
+ * the code; the number is always 150.
+ */
+import Icon from '@components/Icon.astro';
+import { CURRENCIES, DEFAULT_CURRENCY, href, type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+
+interface Props {
+  lang: Lang;
+  showCta?: boolean;
+}
+const { lang, showCta = true } = Astro.props;
+const t = shared[lang];
+---
+<div class="price-card">
+  <div class="pc-top">
+    <span class="eyebrow eyebrow--rosso">{t.price.label}</span>
+    <div class="seg" role="group" aria-label={t.price.currency}>
+      {CURRENCIES.map((c) => (
+        <button type="button" data-currency-btn={c} aria-pressed={c === DEFAULT_CURRENCY ? 'true' : 'false'}>{c}</button>
+      ))}
+    </div>
+  </div>
+
+  <p class="pc-price">
+    <span class="pc-amount mono"><span data-currency-code>{DEFAULT_CURRENCY}</span> 150</span>
+    <span class="pc-per mono">{t.price.perMonth}</span>
+  </p>
+
+  <p class="pc-lines">
+    {t.price.lines.map((line) => <span>{line}</span>)}
+  </p>
+
+  <ul class="plus-list pc-list">
+    {t.price.items.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <p class="pc-note">{t.price.note}</p>
+
+  {showCta && (
+    <a href={href(lang, 'book')} class="btn btn--primary pc-cta" data-track="book_call_price">
+      {t.cta.book}<Icon name="arrow-right" size={16} />
+    </a>
+  )}
+</div>
+
+<style>
+  .price-card {
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 36px;
+    box-shadow: 0 1px 0 rgba(20, 20, 20, 0.02), 0 24px 48px -32px rgba(60, 50, 30, 0.18);
+  }
+  :global(.section--cream) .price-card { background: var(--paper); }
+  .pc-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .pc-price { margin-top: 28px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .pc-amount {
+    font-size: clamp(40px, 4.4vw, 48px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .pc-per { font-size: 17px; color: var(--stone); }
+  .pc-lines { margin-top: 16px; font-size: 18px; line-height: 1.5; color: var(--ink); }
+  .pc-lines span { display: block; }
+  .pc-list { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--bone); }
+  .pc-note { margin-top: 16px; font-size: 14px; color: var(--stone); }
+  .pc-cta { margin-top: 28px; }
+  @media (max-width: 479px) {
+    .price-card { padding: 26px 22px; }
+    .pc-cta { width: 100%; }
+  }
+</style>

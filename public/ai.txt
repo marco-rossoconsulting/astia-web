@@ -1,23 +1,14 @@
-# AI Crawler Guidance for Astia Web
+# AI crawler guidance for astiaweb.com
+
+All AI and search crawlers are welcome to read and cite this site.
+A plain summary of the offer, written for machines, is at https://astiaweb.com/llms.txt
 
 ## Contact
 
-- Email: marcorosso.consulting@gmail.com
-- Phone: +41 76 433 5845
+- hello@astiaweb.com
+- +41 76 433 5845
 
-## Allowed crawlers
+## Content
 
-- ChatGPT-User
-- Claude-Web
-- PerplexityBot
-- Google-Extended
-
-## Disallowed crawlers
-
-- No crawlers are explicitly blocked at this time.
-
-## Content policy
-
-- All content is original and proprietary.
-- Case studies are published with client permission.
-- Pricing is subject to change.
+- All content is original. Client work is shown with the client's permission.
+- Prices are stated on https://astiaweb.com/pricing and exclude VAT.

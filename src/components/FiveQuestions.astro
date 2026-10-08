@@ -1,0 +1,100 @@
+---
+/**
+ * Five questions to ask any website provider, with Astia's answers beside
+ * them, and a button that copies the questions to take to anyone else.
+ */
+import Icon from '@components/Icon.astro';
+import Money from '@components/Money.astro';
+import { type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const q = shared[lang].questions;
+const clipboardText = [q.copyIntro, '', ...q.items.map((item, i) => `${i + 1}. ${item.q}`)].join('\n');
+---
+<div class="fq" data-five-questions>
+  <ol class="fq-list">
+    {q.items.map((item, i) => {
+      const [before, after] = item.a.split('{money}');
+      return (
+        <li class="fq-row reveal" style={`--d:${i * 0.05}s`}>
+          <span class="fq-n mono">{String(i + 1).padStart(2, '0')}</span>
+          <p class="fq-q">{item.q}</p>
+          <p class="fq-a">
+            <span class="mono-label fq-label">{q.answerLabel}</span>
+            <span>
+              {item.money !== undefined ? (
+                <Fragment>{before}<Money n={item.money} lang={lang} />{after}</Fragment>
+              ) : item.a}
+            </span>
+          </p>
+        </li>
+      );
+    })}
+  </ol>
+  <div class="fq-actions">
+    <button type="button" class="btn btn--ghost" data-copy={clipboardText} data-track="copy_five_questions">
+      <Icon name="copy" size={16} />
+      <span data-copy-label data-default={q.copy} data-done={q.copied}>{q.copy}</span>
+    </button>
+    <span class="sr-only" role="status" aria-live="polite" data-copy-status></span>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-five-questions]').forEach((root) => {
+    const btn = root.querySelector<HTMLButtonElement>('[data-copy]');
+    const label = root.querySelector<HTMLElement>('[data-copy-label]');
+    const status = root.querySelector<HTMLElement>('[data-copy-status]');
+    if (!btn || !label) return;
+    let timer = 0;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy || '';
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        try { document.execCommand('copy'); } catch { /* nothing more to try */ }
+        area.remove();
+      }
+      label.textContent = label.dataset.done || '';
+      if (status) status.textContent = label.dataset.done || '';
+      btn.classList.add('is-done');
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        label.textContent = label.dataset.default || '';
+        btn.classList.remove('is-done');
+      }, 2200);
+    });
+  });
+</script>
+
+<style>
+  .fq-list { border-top: 1px solid var(--bone); counter-reset: none; }
+  .fq-row {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: baseline;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--bone);
+  }
+  .fq-n { font-size: 12px; color: var(--stone); letter-spacing: 0.08em; }
+  .fq-q { font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 27px); line-height: 1.22; color: var(--ink); }
+  .fq-a { display: grid; gap: 6px; font-size: 16px; line-height: 1.55; color: var(--ink-soft); }
+  .fq-label { color: var(--rosso); }
+  .fq-actions { margin-top: 32px; }
+  .btn.is-done { --btn-bd: var(--ink); }
+
+  @media (max-width: 767px) {
+    .fq-row { grid-template-columns: 36px minmax(0, 1fr); gap: 10px 14px; padding: 22px 0; }
+    .fq-a { grid-column: 2; margin-top: 4px; }
+  }
+</style>

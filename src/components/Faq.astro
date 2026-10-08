@@ -1,0 +1,71 @@
+---
+/**
+ * Fair questions, as native <details>: keyboard and screen-reader friendly
+ * with no script. Pair with faqSchema() from src/lib/schema.ts on the page.
+ */
+import { type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+
+interface Props {
+  lang: Lang;
+  /** Indexes into the shared FAQ list; all of them by default. */
+  pick?: number[];
+}
+const { lang, pick } = Astro.props;
+const all = shared[lang].faq;
+const items = pick ? pick.map((i) => all[i]) : all;
+---
+<div class="faq">
+  {items.map((item, i) => (
+    <details class="faq-item reveal" style={`--d:${Math.min(i, 6) * 0.03}s`} open={i === 0 ? true : undefined}>
+      <summary>
+        <span class="faq-q">{item.q}</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <p class="faq-a">{item.a}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq { border-top: 1px solid var(--bone); }
+  .faq-item { border-bottom: 1px solid var(--bone); }
+  summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px 0;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: clamp(21px, 2vw, 25px);
+    line-height: 1.25;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+  summary:hover .faq-q { color: var(--rosso); }
+  .faq-icon { position: relative; flex: none; width: 14px; height: 14px; }
+  .faq-icon::before, .faq-icon::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 1.5px;
+    margin-top: -0.75px;
+    background: var(--ink);
+    transition: transform 0.3s var(--ease);
+  }
+  .faq-icon::after { transform: rotate(90deg); }
+  details[open] .faq-icon::after { transform: rotate(0deg); }
+  .faq-a {
+    max-width: 62ch;
+    padding: 0 0 26px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  details[open] .faq-a { animation: rise 0.45s var(--ease) both; }
+</style>

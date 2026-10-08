@@ -1,0 +1,110 @@
+---
+/**
+ * The person card: a real portrait, a name, one line, and the direct ways to
+ * reach them. The visual proof of "a person, always".
+ *
+ * Portrait: drop a real photo (no stock, no AI) at public/images/marco-rosso.jpg,
+ * ideally 1200 × 1500, max 200 KB. Until it exists, a monogram holds the slot.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import Icon from '@components/Icon.astro';
+import { type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+
+interface Props {
+  lang: Lang;
+  tone?: 'light' | 'ink';
+}
+const { lang, tone = 'light' } = Astro.props;
+const p = shared[lang].person;
+
+const PORTRAIT = '/images/marco-rosso.jpg';
+const hasPortrait = fs.existsSync(path.join(process.cwd(), 'public', PORTRAIT));
+---
+<div class:list={['person', `person--${tone}`]}>
+  <div class="person-top">
+    {hasPortrait ? (
+      <img class="person-photo" src={PORTRAIT} alt={p.portraitAlt} width="240" height="300" loading="lazy" decoding="async" />
+    ) : (
+      <div class="person-photo person-mono" role="img" aria-label={p.portraitAlt}>
+        <span aria-hidden="true">MR</span>
+      </div>
+    )}
+    <div>
+      <p class="person-name">{p.name}</p>
+      <p class="person-role">{p.role}</p>
+      <p class="person-bio">{p.bio}</p>
+    </div>
+  </div>
+  <ul class="person-contact">
+    <li><a href={`mailto:${p.email}`} class="mono"><Icon name="mail" size={14} />{p.email}</a></li>
+    <li><a href={`tel:${p.phoneHref}`} class="mono"><Icon name="phone" size={14} />{p.phone}</a></li>
+  </ul>
+</div>
+
+<style>
+  .person {
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 26px;
+    max-width: 460px;
+  }
+  :global(.section--cream) .person { background: var(--paper); }
+  .person-top { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start; }
+  .person-photo {
+    width: 96px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: var(--bone-soft);
+  }
+  .person-mono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bone);
+  }
+  .person-mono span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 40px;
+    color: var(--stone);
+  }
+  .person-name { font-family: var(--font-display); font-size: 32px; line-height: 1.05; color: var(--ink); }
+  .person-role { margin-top: 8px; font-size: 15px; line-height: 1.45; color: var(--stone); }
+  .person-bio { margin-top: 6px; font-size: 14px; line-height: 1.5; color: var(--stone); }
+  .person-contact {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--bone);
+    display: grid;
+    gap: 6px;
+  }
+  .person-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--ink);
+    padding: 3px 0;
+    transition: color 0.2s ease;
+  }
+  .person-contact a :global(svg) { color: var(--stone); transition: color 0.2s ease; }
+  .person-contact a:hover, .person-contact a:hover :global(svg) { color: var(--rosso); }
+
+  .person--ink { background: rgba(247, 245, 240, 0.04); border-color: var(--on-ink-line); }
+  .person--ink .person-name, .person--ink .person-contact a { color: var(--on-ink); }
+  .person--ink .person-role, .person--ink .person-bio { color: var(--on-ink-mute); }
+  .person--ink .person-contact { border-color: var(--on-ink-line); }
+  .person--ink .person-mono { background: rgba(247, 245, 240, 0.06); border-color: var(--on-ink-line); }
+  .person--ink .person-mono span { color: var(--on-ink-mute); }
+
+  @media (max-width: 399px) {
+    .person { padding: 20px; }
+    .person-top { grid-template-columns: 76px 1fr; gap: 16px; }
+    .person-photo { width: 76px; height: 96px; }
+    .person-name { font-size: 28px; }
+  }
+</style>

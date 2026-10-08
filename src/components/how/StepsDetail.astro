@@ -1,0 +1,143 @@
+---
+/**
+ * 01 — From call to launch. The heading stays pinned on the left while the
+ * four steps pass on the right; the rail fills as each step is reached.
+ */
+import { em, type Lang } from '@/i18n';
+import { how } from '@/i18n/how';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = how[lang].steps;
+---
+<section class="section section--cream" aria-labelledby="steps-title">
+  <div class="container steps-wrap">
+    <div class="steps-head">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="steps-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+    </div>
+
+    <ol class="steps-list" data-steps>
+      {t.items.map((item, i) => (
+        <li class="sd" data-step>
+          <span class="sd-rail" aria-hidden="true"><span class="sd-node mono">{String(i + 1).padStart(2, '0')}</span></span>
+          <div class="sd-body">
+            <span class="mono-label sd-when">{item.when}</span>
+            <h3 class="sd-title">{item.t}</h3>
+            <p class="sd-d">{item.d}</p>
+            {i === 1 && (
+              <div class="sd-guide">
+                <p class="mono-label">{t.guideTitle}</p>
+                <ul>
+                  {t.guide.map((g) => <li>{g}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-steps]').forEach((list) => {
+    const steps = list.querySelectorAll<HTMLElement>('[data-step]');
+    if (!('IntersectionObserver' in window)) {
+      steps.forEach((s) => s.classList.add('is-reached'));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-reached'); }),
+      { rootMargin: '0px 0px -45% 0px' },
+    );
+    steps.forEach((s) => io.observe(s));
+  });
+</script>
+
+<style>
+  .steps-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 80px;
+    align-items: start;
+  }
+  .steps-head { position: sticky; top: calc(var(--nav-h) + 48px); }
+
+  .sd { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 24px; }
+  .sd-rail { position: relative; display: flex; justify-content: center; }
+  .sd-rail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--bone);
+  }
+  .sd-rail::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: var(--ink);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.9s var(--ease);
+  }
+  .sd:last-child .sd-rail::before, .sd:last-child .sd-rail::after { bottom: auto; height: 44px; }
+  .sd.is-reached .sd-rail::after { transform: scaleY(1); }
+  .sd-node {
+    position: relative;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--bone);
+    background: var(--cream);
+    font-size: 12px;
+    color: var(--stone);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  }
+  .sd.is-reached .sd-node { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .sd:last-child.is-reached .sd-node { background: var(--rosso); border-color: var(--rosso); }
+
+  .sd-body { padding: 8px 0 64px; }
+  .sd:last-child .sd-body { padding-bottom: 0; }
+  .sd-title { margin-top: 10px; font-family: var(--font-display); font-size: clamp(28px, 3vw, 36px); line-height: 1.12; color: var(--ink); }
+  .sd-d { margin-top: 14px; max-width: 58ch; font-size: 16.5px; line-height: 1.65; color: var(--ink-soft); }
+  .sd-when { color: var(--rosso); }
+
+  .sd-guide {
+    margin-top: 26px;
+    padding: 22px 24px;
+    background: var(--paper);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+  }
+  .sd-guide ul { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .sd-guide li {
+    padding: 6px 12px;
+    border: 1px solid var(--bone);
+    border-radius: var(--r-control);
+    font-size: 14px;
+    color: var(--ink-soft);
+    background: var(--cream);
+  }
+
+  @media (max-width: 1023px) {
+    .steps-wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .steps-head { position: static; }
+  }
+  @media (max-width: 599px) {
+    .sd { grid-template-columns: 36px minmax(0, 1fr); gap: 16px; }
+    .sd-node { width: 36px; height: 36px; font-size: 11px; }
+    .sd:last-child .sd-rail::before, .sd:last-child .sd-rail::after { height: 36px; }
+    .sd-body { padding: 4px 0 48px; }
+  }
+</style>

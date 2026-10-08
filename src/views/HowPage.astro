@@ -1,0 +1,95 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHero from '@components/PageHero.astro';
+import StepsDetail from '@components/how/StepsDetail.astro';
+import ChangeTimeline from '@components/how/ChangeTimeline.astro';
+import BuiltDifferently from '@components/how/BuiltDifferently.astro';
+import ReadyNext from '@components/how/ReadyNext.astro';
+import PersonCard from '@components/PersonCard.astro';
+import Faq from '@components/Faq.astro';
+import FinalCta from '@components/FinalCta.astro';
+import { em, href, type Lang } from '@/i18n';
+import { how } from '@/i18n/how';
+import { shared } from '@/i18n/shared';
+import { breadcrumbSchema, faqSchema } from '@/lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = how[lang];
+const s = shared[lang];
+const path = href(lang, 'how');
+const FAQ_PICK = [4, 3, 2, 7, 8, 6];
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  nav="how"
+  schemas={[
+    faqSchema(FAQ_PICK.map((i) => s.faq[i])),
+    breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.how, path }]),
+  ]}
+>
+  <PageHero eyebrow={t.hero.eyebrow} title={t.hero.title} lede={t.hero.lede} particles />
+  <StepsDetail lang={lang} />
+  <ChangeTimeline lang={lang} />
+  <BuiltDifferently lang={lang} />
+  <ReadyNext lang={lang} />
+
+  {/* 05 — A person, always */}
+  <section id="person" class="section section--paper" aria-labelledby="person-title">
+    <div class="container person-grid">
+      <div>
+        <span class="secnum reveal">{t.person.num}</span>
+        <h2 id="person-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.person.title)} />
+        <dl class="pstats">
+          {t.person.stats.map((stat, i) => (
+            <div class="reveal" style={`--d:${0.1 + i * 0.06}s`}>
+              <dt>{stat.v}</dt>
+              <dd>{stat.l}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="reveal" style="--d:0.1s"><PersonCard lang={lang} /></div>
+    </div>
+  </section>
+
+  {/* 06 — Fair questions */}
+  <section class="section section--cream" aria-labelledby="faq-title">
+    <div class="container-text">
+      <div class="sec-head">
+        <span class="secnum reveal">{t.faq.num}</span>
+        <h2 id="faq-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.faq.title)} />
+      </div>
+      <Faq lang={lang} pick={FAQ_PICK} />
+    </div>
+  </section>
+
+  <FinalCta lang={lang} person={false} />
+</BaseLayout>
+
+<style>
+  .person-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 72px;
+    align-items: end;
+  }
+  .pstats {
+    margin: 48px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .pstats div { padding-top: 18px; border-top: 1px solid var(--ink); }
+  .pstats dt { font-family: var(--font-display); font-size: clamp(28px, 2.6vw, 34px); line-height: 1.1; color: var(--ink); }
+  .pstats dd { margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--stone); }
+  @media (max-width: 1023px) {
+    .person-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  }
+  @media (max-width: 599px) {
+    .pstats { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  }
+</style>

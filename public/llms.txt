@@ -1,24 +1,32 @@
-# Astia Web - AI Crawler Guidance
+# Astia Web
 
-## Overview
+> A website service with one price: 150 a month (CHF, EUR or USD, by market, excluding VAT) for everything a website needs. We write a brand guide for each client, build their site from it, and run it. AI does most of the building, editing and translating; a person checks every change before it goes live. Hospitality first (independent hotels, B&Bs, lodges, restaurants), open to any owner-led small business.
 
-Astia Web is a productized website service for independent hotels, built on Astro and maintained by AI agents.
+## The offer
+
+- Price: 150 a month per site, in CHF, EUR or USD depending on the market. Excluding VAT. No setup fee. No tiers, no "from" prices.
+- Billing: yearly in advance. Renews each year unless cancelled 30 days before renewal. Clients are reminded 60 days ahead.
+- Same price for one site or fifty. No waiting list.
+- Always included: a written brand guide (from a 30-minute call), a custom website designed from it, every change (live within 24 hours, Monday to Friday), every language (AI-translated, checked by a person, kept in sync), booking engine and forms, maps, analytics, global hosting, SSL, backups, structured data, a yearly review, and a rebuild on new technology when the web moves on.
+- Discussed first (special requests, agreed before work starts): an online shop, a members' area, a custom tool, a deep system integration.
+- Ownership: the client owns the code, the content and the full history. On leaving, they receive the full code as a zip and help moving their domain, at no cost.
+- Timeline: live in two to three weeks after the first call.
+
+## How sites are built
+
+Static pages built with Astro and served from a global network. No database, no plugins and no admin login on the live site. Every change is versioned and can be rolled back in one click. Every site must reach Lighthouse 90 or more before launch, and is built to WCAG 2.1 AA.
 
 ## Contact
 
-- Email: marcorosso.consulting@gmail.com
-- Phone: +41 76 433 5845
+- Marco Rosso, founder: hello@astiaweb.com, +41 76 433 5845
+- Book a call: https://astiaweb.com/book-a-call
+- Astia Web is a product of Marco Rosso Consulting, Via Don G. Gagliardi 23, 6932 Breganzona (Lugano), Switzerland.
 
-## Key Pages
+## Pages
 
-- / - Homepage
-- /how-it-works - Our process explained
-- /pricing - Service tiers and pricing
-- /journal - Insights on hospitality web design
-- /apply - Application form for new properties
-
-## Content Policy
-
-- All content is original and proprietary
-- Case studies are published with client permission
-- Pricing is subject to change
+- [Home](https://astiaweb.com/): one price, a person who answers, a website that keeps up
+- [Price](https://astiaweb.com/pricing): what is included, the five-year cost comparison, common questions
+- [How it works](https://astiaweb.com/how-it-works): from call to launch, how a change is made, how sites are built
+- [Work](https://astiaweb.com/work): sites built and run by Astia Web
+- [Journal](https://astiaweb.com/journal): articles on website pricing, ownership and the AI-era web
+- German: https://astiaweb.com/de · Italian: https://astiaweb.com/it

@@ -2,80 +2,93 @@
 import '@/styles/global.css';
 import Nav from '@components/Nav.astro';
 import Footer from '@components/Footer.astro';
-import { getEntry } from 'astro:content';
+import { LANGS, OG_LOCALE, SITE_URL, localPath, stripLang, type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+
+export type NavKey = 'home' | 'how' | 'pricing' | 'work' | 'journal' | 'book' | 'other';
 
 interface Props {
-  lang: 'en' | 'de' | 'it';
-  page: 'home' | 'how' | 'pricing' | 'apply' | 'journal' | 'article';
-  seo: {
-    title: { en: string; de: string; it: string };
-    description: { en: string; de: string; it: string };
-    ogImage?: string;
-    ogImageAlt?: { en: string; de: string; it: string };
-  };
-  currentPath: string;
-  alternates?: { en?: string; de?: string; it?: string };
-  schemas?: any[];
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Path of this page, including the language prefix: "/de/pricing". */
+  path: string;
+  nav?: NavKey;
+  /** Full paths of this page in each language, when they differ (articles). */
+  alternates?: Partial<Record<Lang, string>>;
+  /** Where the language switcher points, when it differs from hreflang. */
+  switchPaths?: Partial<Record<Lang, string>>;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  schemas?: object[];
+  noindex?: boolean;
 }
 
-const { lang, page, seo, currentPath, alternates, schemas = [] } = Astro.props;
-const site = await getEntry('site', 'general');
-const siteData = site.data as any;
+const {
+  lang,
+  title,
+  description,
+  path,
+  nav = 'other',
+  alternates,
+  switchPaths,
+  ogImage = '/images/og-astia-web.jpg',
+  ogType = 'website',
+  schemas = [],
+  noindex = false,
+} = Astro.props;
 
-const title = seo.title[lang];
-const description = seo.description[lang];
-const ogImage = seo.ogImage || '/images/safari-vehicle-driving-through-mara-wilderness-exploreans.jpg';
-const ogImageAlt = seo.ogImageAlt?.[lang] || title;
+const t = shared[lang];
+const canonical = `${SITE_URL}${path}`;
+const base = stripLang(path);
+const altPaths: Partial<Record<Lang, string>> =
+  alternates ?? Object.fromEntries(LANGS.map((l) => [l, localPath(l, base)]));
+const langPaths = { ...altPaths, ...switchPaths };
 
-const siteUrl = 'https://astiaweb.com';
-const canonical = `${siteUrl}${currentPath}`;
-
-// Build hreflang alternates
-const stripLangPrefix = (path: string) =>
-  path.replace(/^\/(de|it)\//, '/').replace(/^\/(de|it)$/, '/');
-const basePath = stripLangPrefix(currentPath);
-const altUrls = alternates || {
-  en: `${siteUrl}${basePath === '/' ? '/' : basePath}`,
-  de: `${siteUrl}/de${basePath === '/' ? '' : basePath}`,
-  it: `${siteUrl}/it${basePath === '/' ? '' : basePath}`,
-};
-
-const orgJsonLd = {
+const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: siteData.brand.name,
-  url: siteUrl,
-  logo: `${siteUrl}/images/marcorosso-consulting-logo.png`,
-  description: siteData.schema.organizationDescription[lang],
-  email: siteData.brand.email,
+  '@id': `${SITE_URL}/#organization`,
+  name: 'Astia Web',
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/astia-web-logo.png`,
+  description:
+    'Astia Web is a website service with one price: 150 a month for everything a website needs. We write a brand guide for each client, build their site from it and run it. AI does most of the building; a person checks every change.',
+  email: 'hello@astiaweb.com',
+  telephone: '+41 76 433 5845',
+  founder: { '@type': 'Person', name: 'Marco Rosso' },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Via Don Gagliardi 23',
+    streetAddress: 'Via Don G. Gagliardi 23',
     postalCode: '6932',
-    addressLocality: 'Lugano',
+    addressLocality: 'Breganzona (Lugano)',
     addressCountry: 'CH',
   },
-  parentOrganization: {
-    '@type': 'Organization',
-    name: siteData.brand.parentCompany,
-  },
-  sameAs: [siteData.social.linkedin].filter(Boolean),
+  parentOrganization: { '@type': 'Organization', name: 'Marco Rosso Consulting', url: 'https://rossoconsulting.ch' },
+  areaServed: ['CH', 'EU', 'Worldwide'],
+  knowsLanguage: ['en', 'de', 'it'],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  name: 'Astia Web',
+  url: SITE_URL,
+  inLanguage: lang,
+  publisher: { '@id': `${SITE_URL}/#organization` },
 };
 ---
 <!DOCTYPE html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F7F5F0" />
     <meta name="generator" content={Astro.generator} />
 
-    {/*
-      Scroll-reveal opt-in. Reveal styles are scoped to .js so content is
-      visible by default: if scripting is unavailable or the observer never
-      runs, nothing is left stuck at opacity 0. Runs before first paint, so
-      there is no flash of visible-then-hidden content. Readers who ask for
-      reduced motion keep everything visible immediately.
-    */}
+    {/* Reveal opt-in before first paint; reduced-motion readers skip it, so
+        nothing is ever left hidden. */}
     <script is:inline>
       (function () {
         try {
@@ -86,6 +99,44 @@ const orgJsonLd = {
       })();
     </script>
 
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    {!noindex && LANGS.filter((l) => altPaths[l]).map((l) => (
+      <link rel="alternate" hreflang={l} href={`${SITE_URL}${altPaths[l]}`} />
+    ))}
+    {!noindex && altPaths.en && <link rel="alternate" hreflang="x-default" href={`${SITE_URL}${altPaths.en}`} />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${SITE_URL}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
+    <meta property="og:site_name" content="Astia Web" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE_URL}${ogImage}`} />
+
+    {/* Self-hosted brand fonts: preload the faces seen above the fold. */}
+    <link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+    <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
     {/* Google tag (gtag.js) */}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EREW8N0F4N"></script>
     <script is:inline>
@@ -94,104 +145,18 @@ const orgJsonLd = {
       gtag('js', new Date());
       gtag('config', 'G-EREW8N0F4N');
     </script>
-
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-
-    {/* hreflang alternates */}
-    <link rel="alternate" hreflang="en" href={altUrls.en} />
-    <link rel="alternate" hreflang="de" href={altUrls.de} />
-    <link rel="alternate" hreflang="it" href={altUrls.it} />
-    <link rel="alternate" hreflang="x-default" href={altUrls.en} />
-
-    {/* Open Graph */}
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
-    <meta property="og:image:alt" content={ogImageAlt} />
-    <meta property="og:locale" content={lang === 'en' ? 'en_US' : lang === 'de' ? 'de_DE' : 'it_IT'} />
-    <meta property="og:site_name" content={siteData.brand.name} />
-
-    {/* Twitter */}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
-
-    {/* Fonts */}
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://api.fontshare.com/v2/css?f[]=editorial-new@400,400i&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    {/* JSON-LD */}
-    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
-    {schemas.map((schema, i) => (
-      <script type="application/ld+json" key={i} set:html={JSON.stringify(schema)} />
-    ))}
   </head>
   <body>
-    <Nav lang={lang} page={page} currentPath={currentPath} alternates={alternates} />
-    <main>
+    <a class="skip-link" href="#main">{t.nav.skip}</a>
+    <div data-nav-sentinel aria-hidden="true" style="position:absolute;top:0;left:0;height:8px;width:1px;"></div>
+    <Nav lang={lang} active={nav} altPaths={langPaths} />
+    <main id="main">
       <slot />
     </main>
-    <Footer lang={lang} />
+    <Footer lang={lang} altPaths={langPaths} />
 
-    {/* Sticky mobile CTA */}
-    <div class="sticky-cta">
-      <div class="sticky-cta-inner">
-        <span class="sticky-cta-text"><strong>{siteData.brand.name}</strong> — {siteData.brand.tagline[lang]}</span>
-        <a class="btn btn-primary" href={`${lang === 'en' ? '' : `/${lang}`}/apply`} style="font-size:13px; padding:10px 18px;">{siteData.cta.applyForSite[lang]}</a>
-      </div>
-    </div>
-
-    {/* Scroll reveal */}
-    <script is:inline>
-      (function() {
-        var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-        if (!reveals.length) return;
-        var observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(function(el) { observer.observe(el); });
-      })();
-    </script>
-
-    {/* GA4 event tracking */}
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function () {
-        /* Track apply form submission */
-        var form = document.querySelector('form[name="apply"]');
-        if (form) {
-          form.addEventListener('submit', function () {
-            if (typeof gtag === 'function') {
-              gtag('event', 'form_submit', { form_name: 'apply' });
-            }
-          });
-        }
-
-        /* Track outbound link clicks */
-        document.querySelectorAll('a[href^="http"], a[href^="mailto"], a[href^="tel"]').forEach(function (link) {
-          link.addEventListener('click', function () {
-            if (typeof gtag === 'function') {
-              gtag('event', 'outbound_link', {
-                link_url: link.href,
-                link_text: link.textContent.trim()
-              });
-            }
-          });
-        });
-      });
+    <script>
+      import '@/scripts/site';
     </script>
   </body>
 </html>

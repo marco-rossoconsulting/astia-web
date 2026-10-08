@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HomeHero from '@components/home/HomeHero.astro';
+import AiShift from '@components/home/AiShift.astro';
+import RebuildCycle from '@components/home/RebuildCycle.astro';
+import Routes from '@components/home/Routes.astro';
+import PriceCard from '@components/PriceCard.astro';
+import IncludedLists from '@components/IncludedLists.astro';
+import FinalCta from '@components/FinalCta.astro';
+import Icon from '@components/Icon.astro';
+import { SITE_URL, em, href, type Lang } from '@/i18n';
+import { home } from '@/i18n/home';
+import { shared } from '@/i18n/shared';
+import { serviceSchema } from '@/lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = home[lang];
+const s = shared[lang];
+const path = href(lang, 'home');
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  nav="home"
+  schemas={[serviceSchema(lang, t.seo.description, `${SITE_URL}${path}`)]}
+>
+  <HomeHero lang={lang} />
+  <AiShift lang={lang} />
+  <RebuildCycle lang={lang} />
+  <Routes lang={lang} />
+
+  {/* 04 — The price */}
+  <section class="section section--cream" aria-labelledby="price-title">
+    <div class="container">
+      <div class="sec-head">
+        <span class="secnum reveal">{t.price.num}</span>
+        <h2 id="price-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.price.title)} />
+        <p class="lede reveal" style="--d:0.1s">{t.price.lede}</p>
+      </div>
+      <div class="home-price">
+        <div class="reveal"><PriceCard lang={lang} /></div>
+        <div>
+          <IncludedLists lang={lang} variant="compact" />
+          <a href={href(lang, 'pricing', 'cost')} class="arrow-link home-price-link reveal">{t.price.link}<Icon name="arrow-right" size={16} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 05 — How it works */}
+  <section class="section section--paper" aria-labelledby="how-title">
+    <div class="container">
+      <div class="sec-head">
+        <span class="secnum reveal">{t.how.num}</span>
+        <h2 id="how-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.how.title)} />
+      </div>
+      <ol class="steps reveal">
+        {t.how.steps.map((step, i) => (
+          <li class="step" style={`--s:${i}`}>
+            <span class="step-n mono">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="step-t">{step.t}</h3>
+            <p class="step-d">{step.d}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="how-foot reveal">
+        <p class="how-note"><strong>{t.how.note.split('?')[0]}?</strong>{t.how.note.split('?').slice(1).join('?')}</p>
+        <a href={href(lang, 'how')} class="btn btn--ghost">{s.cta.seeHow}<Icon name="arrow-right" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <FinalCta lang={lang} num={t.final.num} surface="cream" />
+</BaseLayout>
+
+<style>
+  .home-price {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .home-price :global(.inc) { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .home-price-link { margin-top: 36px; }
+
+  .steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 14px;
+    height: 1px;
+    background: var(--bone);
+  }
+  .step { position: relative; }
+  .step-n {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    font-size: 11px;
+    color: var(--ink);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    transition-delay: calc(0.3s + var(--s) * 0.18s);
+  }
+  :global(.js) .steps.is-in .step-n { background: var(--ink); color: var(--paper); }
+  .step:last-child .step-n { border-color: var(--rosso); }
+  :global(.js) .steps.is-in .step:last-child .step-n { background: var(--rosso); }
+  .step-t { margin-top: 26px; font-family: var(--font-display); font-size: 26px; line-height: 1.2; color: var(--ink); }
+  .step-d { margin-top: 12px; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+
+  .how-foot {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--bone);
+    display: flex;
+    gap: 32px 64px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .how-note { max-width: 64ch; font-size: 16px; line-height: 1.6; color: var(--stone); }
+  .how-note strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 1023px) {
+    .home-price { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .home-price > div:first-child { max-width: 520px; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+    .steps::before { display: none; }
+  }
+  @media (max-width: 599px) {
+    .steps { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .step { display: grid; grid-template-columns: 30px 1fr; column-gap: 18px; }
+    .step-t { margin-top: 0; font-size: 24px; }
+    .step-d { grid-column: 2; margin-top: 6px; }
+  }
+</style>

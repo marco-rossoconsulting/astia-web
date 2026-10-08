@@ -1,4 +1,4 @@
-export default async (req, context) => {
+export default async (req) => {
   // Netlify sends the submission as JSON in the request body
   let payload;
   try {
@@ -21,33 +21,46 @@ export default async (req, context) => {
     return new Response("Missing configuration", { status: 500 });
   }
 
-  let fields = {
-    Property: data.propertyName || "—",
-    Type: data.propertyType || "—",
-    Rooms: data.rooms || "—",
-    Location: data.location || "—",
-    "Current website": data.website || "—",
-    "Booking engine": data.bookingEngine || "—",
-    "What's broken": data.whatsBroken || "—",
-    "90-day goal": data.goal || "—",
-    "Contact name": data.name || "—",
-    Role: data.role || "—",
-    Email: data.email || "—",
-    Phone: data.phone || "—",
-    Language: data.lang || "—",
-  };
+  // Netlify passes the form name alongside the data.
+  const formName = payload.form_name || payload.payload?.form_name || data["form-name"] || "";
+  const isBooking = formName === "book-a-call" || (!data.propertyName && data.business !== undefined);
 
-  if (data.packageEstimate) {
+  // HTML-escape every value: these come straight from a public form.
+  const esc = (v) =>
+    String(v ?? "—").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+  let fields;
+  if (isBooking) {
     fields = {
-      "Pricing estimate": data.packageEstimate,
-      ...fields,
+      Name: data.name || "—",
+      Email: data.email || "—",
+      Business: data.business || "—",
+      Website: data.website || "—",
+      Language: data.lang || "—",
+    };
+  } else {
+    // Legacy "apply" form (before brand v2). Kept so old submissions still mail.
+    fields = {
+      Property: data.propertyName || "—",
+      Type: data.propertyType || "—",
+      Rooms: data.rooms || "—",
+      Location: data.location || "—",
+      "Current website": data.website || "—",
+      "Booking engine": data.bookingEngine || "—",
+      "What's broken": data.whatsBroken || "—",
+      "90-day goal": data.goal || "—",
+      "Contact name": data.name || "—",
+      Role: data.role || "—",
+      Email: data.email || "—",
+      Phone: data.phone || "—",
+      Language: data.lang || "—",
     };
   }
 
   const htmlRows = Object.entries(fields)
     .map(
       ([k, v]) =>
-        `<tr><td style="padding:6px 12px;border-bottom:1px solid #eee;font-weight:600;white-space:nowrap;">${k}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;">${v}</td></tr>`
+        `<tr><td style="padding:6px 12px;border-bottom:1px solid #eee;font-weight:600;white-space:nowrap;">${esc(k)}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;">${esc(v)}</td></tr>`
     )
     .join("");
 
@@ -55,8 +68,8 @@ export default async (req, context) => {
 <html>
 <body style="font-family:system-ui,-apple-system,sans-serif;color:#111;background:#f6f6f6;padding:24px;">
   <div style="max-width:600px;margin:0 auto;background:#fff;padding:32px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-    <h2 style="margin-top:0;">New Astia Application</h2>
-    <p style="color:#666;">Submitted via astiaweb.com/apply</p>
+    <h2 style="margin-top:0;">${isBooking ? "New call request" : "New Astia application"}</h2>
+    <p style="color:#666;">Submitted via astiaweb.com/${isBooking ? "book-a-call" : "apply"}</p>
     <table style="width:100%;border-collapse:collapse;margin-top:16px;font-size:15px;">
       ${htmlRows}
     </table>
@@ -77,7 +90,10 @@ export default async (req, context) => {
       body: JSON.stringify({
         from: "Astia Web <apply@astiaweb.com>",
         to: [to],
-        subject: `New application: ${data.propertyName || "Unknown property"}`,
+        ...(isBooking && data.email ? { reply_to: data.email } : {}),
+        subject: isBooking
+          ? `Call request: ${data.business || data.name || "New contact"}`
+          : `New application: ${data.propertyName || "Unknown property"}`,
         html,
       }),
     });

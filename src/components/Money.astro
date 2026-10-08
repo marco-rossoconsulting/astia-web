@@ -1,0 +1,15 @@
+---
+/**
+ * A price that follows the visitor's currency choice (CHF / EUR / USD).
+ * Server-rendered in CHF; src/scripts/site.ts swaps the text on change.
+ */
+import { formatNumber, money, type Lang } from '@/i18n';
+interface Props {
+  n: number;
+  lang: Lang;
+  format?: 'full' | 'number';
+}
+const { n, lang, format = 'full' } = Astro.props;
+const text = format === 'number' ? formatNumber(n, lang) : money(n, lang);
+---
+<span class="money" data-money={n} data-money-format={format}>{text}</span>

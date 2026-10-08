@@ -1,0 +1,70 @@
+---
+/**
+ * "Always included" beside "Discussed first". The limit is never behind a
+ * click: both lists are always visible together.
+ */
+import { type Lang } from '@/i18n';
+import { shared } from '@/i18n/shared';
+
+interface Props {
+  lang: Lang;
+  /** compact: titles only (home); full: titles and descriptions (price page). */
+  variant?: 'compact' | 'full';
+}
+const { lang, variant = 'full' } = Astro.props;
+const t = shared[lang];
+---
+<div class:list={['inc', `inc--${variant}`]}>
+  <div class="inc-always">
+    <h3 class="mono-label inc-h">{t.included.title}</h3>
+    <ul class="inc-grid">
+      {t.included.items.map((item, i) => (
+        <li class="inc-item reveal" style={`--d:${(i % 4) * 0.05}s`}>
+          <span class="inc-plus" aria-hidden="true">+</span>
+          <span>
+            <strong>{item.t}</strong>
+            {variant === 'full' && <span class="inc-d">{item.d}</span>}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="inc-discussed">
+    <h3 class="mono-label inc-h">{t.discussed.title}</h3>
+    <ul class="minus-list">
+      {t.discussed.items.map((item) => <li>{item}</li>)}
+    </ul>
+    <p class="inc-note">{t.discussed.note}</p>
+  </div>
+</div>
+
+<style>
+  .inc { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; }
+  .inc-h { display: block; margin-bottom: 20px; }
+  .inc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+  .inc-item {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 8px;
+    padding: 16px 0;
+    border-top: 1px solid var(--bone);
+  }
+  .inc-plus { font-family: var(--font-mono); font-weight: 500; color: var(--rosso); line-height: 1.5; }
+  .inc-item strong { display: block; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--ink); }
+  .inc-d { display: block; margin-top: 2px; font-size: 15px; line-height: 1.55; color: var(--stone); }
+  .inc--compact .inc-item { padding: 12px 0; }
+  .inc-discussed {
+    align-self: start;
+    padding: 24px 26px;
+    border: 1px dashed var(--bone);
+    border-radius: var(--r-card);
+  }
+  .inc-note { margin-top: 14px; font-size: 14px; line-height: 1.6; color: var(--stone); }
+
+  @media (max-width: 1023px) {
+    .inc { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  }
+  @media (max-width: 599px) {
+    .inc-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

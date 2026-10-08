@@ -1,0 +1,256 @@
+---
+/**
+ * Book a call: pick a time in Marco's calendar, or leave four details
+ * (the brand-spec form) and get a reply within one business day.
+ * The form posts to Netlify Forms; netlify/functions/submission-created.js
+ * emails each submission.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PersonCard from '@components/PersonCard.astro';
+import SecHead from '@components/SecHead.astro';
+import Faq from '@components/Faq.astro';
+import Icon from '@components/Icon.astro';
+import { em, href, type Lang } from '@/i18n';
+import { pages, CALENDAR_URL } from '@/i18n/pages';
+import { shared } from '@/i18n/shared';
+import { breadcrumbSchema, faqSchema } from '@/lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = pages[lang].book;
+const s = shared[lang];
+const path = href(lang, 'book');
+const FAQ_PICK = [1, 0, 6];
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  nav="book"
+  schemas={[
+    faqSchema(FAQ_PICK.map((i) => s.faq[i])),
+    breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.book, path }]),
+  ]}
+>
+  <section class="book">
+    <div class="container book-grid">
+      <div class="book-intro">
+        <h1 class="d1 rise" style="--d:0.06s" set:html={em(t.title)} />
+        <p class="lede rise" style="--d:0.14s">{t.lede}</p>
+
+        <div class="pick rise" style="--d:0.22s">
+          <h2 class="pick-title"><Icon name="calendar" size={18} />{t.pickTitle}</h2>
+          <p>{t.pickBody}</p>
+          <a href={CALENDAR_URL} target="_blank" rel="noopener" class="btn btn--ghost" data-track="calendar_open">
+            {s.cta.calendar}<Icon name="arrow-up-right" size={16} />
+          </a>
+        </div>
+
+        <div class="rise" style="--d:0.3s"><PersonCard lang={lang} /></div>
+      </div>
+
+      <div class="form-card rise" style="--d:0.18s">
+        <h2 class="form-title">{t.formTitle}</h2>
+        <p class="form-sub">{t.formBody}</p>
+
+        <form
+          name="book-a-call"
+          method="POST"
+          action={href(lang, 'thanks')}
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          novalidate
+          data-book-form
+        >
+          <input type="hidden" name="form-name" value="book-a-call" />
+          <input type="hidden" name="lang" value={lang} />
+          <p class="hp"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+          <div class="field">
+            <label for="f-name">{t.fields.name}</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err" />
+            <p class="err" id="f-name-err" data-error-for="name" hidden>{t.errors.required}</p>
+          </div>
+          <div class="field">
+            <label for="f-email">{t.fields.email}</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err" />
+            <p class="err" id="f-email-err" data-error-for="email" hidden data-required={t.errors.required} data-invalid={t.errors.email}>{t.errors.required}</p>
+          </div>
+          <div class="field">
+            <label for="f-business">{t.fields.business}</label>
+            <input id="f-business" name="business" type="text" autocomplete="organization" required aria-describedby="f-business-err" />
+            <p class="err" id="f-business-err" data-error-for="business" hidden>{t.errors.required}</p>
+          </div>
+          <div class="field">
+            <label for="f-website">{t.fields.website} <span class="opt">({s.common.optional})</span></label>
+            <input id="f-website" name="website" type="text" autocomplete="url" inputmode="url" placeholder="https://" />
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--block" data-submit>
+            <span data-submit-label data-sending={t.sending}>{t.submit}</span><Icon name="arrow-right" size={16} />
+          </button>
+          <p class="reply">{t.reply}</p>
+          <noscript><p class="reply">{t.errors.failed}</p></noscript>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream section--rule" aria-labelledby="call-title">
+    <div class="container">
+      <SecHead num={t.callNum} title={t.callTitle} lede={t.callLede} id="call-title" />
+      <ol class="qs">
+        {t.questions.map((q, i) => (
+          <li class="reveal" style={`--d:${(i % 4) * 0.05}s`}>
+            <span class="qs-n mono">{String(i + 1).padStart(2, '0')}</span>
+            <p>{q}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="container-text">
+      <Faq lang={lang} pick={FAQ_PICK} />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-book-form]');
+  if (form) {
+    const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const fields = ['name', 'email', 'business'] as const;
+
+    const check = (name: (typeof fields)[number]) => {
+      const input = form.elements.namedItem(name) as HTMLInputElement;
+      const err = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`)!;
+      const value = input.value.trim();
+      let message = '';
+      if (!value) message = err.dataset.required || err.textContent || '';
+      else if (name === 'email' && !EMAIL.test(value)) message = err.dataset.invalid || '';
+      if (message) {
+        err.textContent = message;
+        err.hidden = false;
+        input.setAttribute('aria-invalid', 'true');
+        return false;
+      }
+      err.hidden = true;
+      input.removeAttribute('aria-invalid');
+      return true;
+    };
+
+    fields.forEach((name) => {
+      const input = form.elements.namedItem(name) as HTMLInputElement;
+      input.addEventListener('blur', () => { if (input.value.trim()) check(name); });
+      input.addEventListener('input', () => { if (input.getAttribute('aria-invalid')) check(name); });
+    });
+
+    form.addEventListener('submit', (e) => {
+      const results = fields.map(check);
+      const firstBad = fields[results.indexOf(false)];
+      if (firstBad) {
+        e.preventDefault();
+        (form.elements.namedItem(firstBad) as HTMLInputElement).focus();
+        return;
+      }
+      const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
+      const label = form.querySelector<HTMLElement>('[data-submit-label]');
+      if (btn && label) {
+        btn.setAttribute('aria-busy', 'true');
+        btn.disabled = true;
+        label.textContent = label.dataset.sending || label.textContent;
+      }
+      if (typeof window.gtag === 'function') window.gtag('event', 'form_submit', { form_name: 'book-a-call' });
+    });
+
+    // If the browser restores the page from cache after submitting, re-enable.
+    window.addEventListener('pageshow', () => {
+      const btn = form.querySelector<HTMLButtonElement>('[data-submit]');
+      if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+    });
+  }
+</script>
+
+<style>
+  .book { padding: 80px 0 96px; }
+  .book-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: 80px;
+    align-items: start;
+  }
+  .book-intro .lede { margin-top: 28px; }
+
+  .pick {
+    margin: 40px 0 32px;
+    padding: 26px 0;
+    border-top: 1px solid var(--bone);
+    border-bottom: 1px solid var(--bone);
+  }
+  .pick-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .pick-title :global(svg) { color: var(--rosso); }
+  .pick p { margin: 10px 0 22px; font-size: 16px; line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
+
+  .form-card {
+    position: sticky;
+    top: calc(var(--nav-h) + 32px);
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 36px;
+    box-shadow: 0 24px 48px -32px rgba(60, 50, 30, 0.18);
+  }
+  .form-title { font-family: var(--font-display); font-size: 30px; line-height: 1.15; color: var(--ink); }
+  .form-sub { margin-top: 8px; font-size: 15px; color: var(--stone); }
+  form { margin-top: 26px; display: grid; gap: 18px; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .field { display: grid; gap: 8px; }
+  .field label { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .opt { font-weight: 400; color: var(--stone); }
+  .field input {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 14px;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-control);
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .section--cream .field input, .form-card .field input { background: var(--paper); }
+  .field input::placeholder { color: var(--stone); opacity: 0.8; }
+  .field input:hover { border-color: #D6D2C8; }
+  .field input:focus { outline: none; border-color: var(--rosso); box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.12); }
+  .field input[aria-invalid='true'] { border-color: var(--rosso); }
+  .err { font-size: 13.5px; color: var(--rosso); }
+  form .btn { margin-top: 6px; }
+  .btn[aria-busy='true'] { opacity: 0.75; cursor: progress; }
+  .reply { font-size: 14px; color: var(--stone); }
+
+  .qs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
+  .qs li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 20px 0; border-top: 1px solid var(--bone); }
+  .qs-n { padding-top: 5px; font-size: 12px; color: var(--rosso); }
+  .qs p { font-family: var(--font-display); font-size: clamp(21px, 2vw, 25px); line-height: 1.3; color: var(--ink); }
+
+  @media (max-width: 1023px) {
+    .book-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .form-card { position: static; }
+  }
+  @media (max-width: 767px) {
+    .book { padding: 48px 0 64px; }
+    .form-card { padding: 24px 20px; }
+    .qs { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

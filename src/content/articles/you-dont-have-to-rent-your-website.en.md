@@ -43,6 +43,8 @@ If they tell you it's technically possible but practically very difficult — yo
 
 The intuition is wrong on this one. Most operators assume "owning code" means hiring a developer to maintain it, which sounds expensive. In 2026 that's no longer true.
 
-A static website owned by you, hosted on Netlify or Cloudflare Pages, costs zero or near-zero a month. Updates are made through a CMS that looks like Google Docs and is technically simpler than Wix. AI agents handle the small edits that used to require human work. The total operating cost of an owned, modern website is now lower than the monthly fee of most builders.
+A static website owned by you, hosted on Netlify or Cloudflare Pages, costs zero or near-zero a month. Updates can be made by email, or through an optional editor that is simpler than a site builder. AI agents handle the small edits that used to require human work. The total operating cost of an owned, modern website is now lower than the monthly fee of most builders.
 
 The reason most hoteliers don't own their sites isn't cost. It's inertia. Owning has been positioned as a developer luxury for so long that operators stopped considering it. That positioning is now wrong, and the operators who notice first will benefit accordingly.
+
+At Astia Web, the portability test has a short answer. You own the code, the content and the full history. If you leave, you get the full code as a zip and help moving your domain, at no cost.

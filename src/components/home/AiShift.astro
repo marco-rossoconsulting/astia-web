@@ -1,0 +1,312 @@
+---
+/**
+ * 01 — What changed. Pew Research data on AI summaries in Google, told in
+ * three beats so nobody has to work it out:
+ *
+ * 1. What happens: of 100 searches, 15 send someone to a website when Google
+ *    lists websites, 8 when Google answers with AI. The 7 lost visits stay on
+ *    the grid in grey, so the loss is visible, and a line under the chart
+ *    says what just happened.
+ * 2. Why it matters: you can't switch it off, so the AI has to know you.
+ * 3. Why Astia: our sites are built for exactly this.
+ *
+ * The drop plays once when the figure comes into view; after that the reader
+ * switches between the two views.
+ */
+import Icon from '@components/Icon.astro';
+import { em, href, type Lang } from '@/i18n';
+import { home } from '@/i18n/home';
+import { shared } from '@/i18n/shared';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = home[lang].changed;
+const s = shared[lang].common;
+const [listed] = t.values;
+const PEW_URL =
+  'https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/';
+---
+<section class="section section--paper ai" aria-labelledby="ai-title">
+  <div class="container ai-grid">
+    <div class="ai-copy">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="ai-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+      <p class="lede ai-body reveal" style="--d:0.1s">{t.body}</p>
+    </div>
+
+    <figure
+      class="ai-viz reveal"
+      style="--d:0.1s"
+      data-ai-viz
+      data-mode="0"
+      data-values={JSON.stringify(t.values)}
+    >
+      <div class="seg ai-tabs" role="group" aria-label={t.valueLabel}>
+        {t.tabs.map((tab, i) => (
+          <button type="button" data-ai-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>{tab}</button>
+        ))}
+      </div>
+
+      <p class="ai-readout">
+        <span class="ai-number" data-ai-number>{listed}</span>
+        <span class="ai-label">{t.valueLabel}</span>
+      </p>
+
+      <div class="ai-dots" aria-hidden="true">
+        {Array.from({ length: 100 }, (_, i) => (
+          <span class:list={['ai-dot', { 'is-on': i < listed }]} style={`--i:${i}`}></span>
+        ))}
+      </div>
+
+      <ul class="ai-legend" aria-hidden="true">
+        <li><span class="ai-dot is-on"></span>{t.legend[0]}</li>
+        <li><span class="ai-dot is-lost"></span>{t.legend[1]}</li>
+      </ul>
+
+      <div class="ai-msg" aria-live="polite">
+        <p class="ai-hint" data-ai-msg="0">{t.hint}</p>
+        <p class="ai-drop" data-ai-msg="1" hidden>{t.drop}</p>
+      </div>
+
+      <dl class="ai-stats">
+        {t.stats.map((stat) => (
+          <div>
+            <dt class="ai-stat-v">{stat.v}</dt>
+            <dd>{stat.l}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <figcaption class="source">
+        {s.source}: <a href={PEW_URL} target="_blank" rel="noopener">{t.source}</a>
+      </figcaption>
+    </figure>
+  </div>
+
+  {/* What this means for you, in three steps that end at Astia. */}
+  <div class="container">
+    <div class="meaning">
+      <p class="mono-label meaning-label reveal">{t.meaning.label}</p>
+      <ol class="meaning-steps">
+        {t.meaning.items.map((item, i) => (
+          <li class:list={['meaning-step', 'reveal', { 'meaning-step--astia': i === t.meaning.items.length - 1 }]} style={`--d:${i * 0.08}s`}>
+            <span class="meaning-n mono" aria-hidden="true">{i + 1}</span>
+            <h3 class="meaning-t">{item.t}</h3>
+            <p class="meaning-d">{item.d}</p>
+            {i === t.meaning.items.length - 1 && (
+              <a href={href(lang, 'how', 'ready')} class="arrow-link meaning-link">{t.meaning.link}<Icon name="arrow-right" size={16} /></a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <p class="ai-bridge d3 reveal">{t.bridge}</p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ai-viz]').forEach((root) => {
+    const values: number[] = JSON.parse(root.dataset.values || '[15, 8]');
+    const [listed, answered] = values;
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-ai-tab]'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('.ai-dots .ai-dot'));
+    const msgs = Array.from(root.querySelectorAll<HTMLElement>('[data-ai-msg]'));
+    const number = root.querySelector<HTMLElement>('[data-ai-number]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+    let counter = 0;
+    let touched = false;
+
+    const show = (index: number) => {
+      if (index === current) return;
+      current = index;
+      root.dataset.mode = String(index);
+      tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === index)));
+
+      // Visits that still happen stay red; the ones Google keeps turn grey.
+      dots.forEach((dot, i) => {
+        const on = index === 0 ? i < listed : i < answered;
+        const lost = index === 1 && i >= answered && i < listed;
+        dot.classList.toggle('is-on', on);
+        dot.classList.toggle('is-lost', lost);
+      });
+      msgs.forEach((m) => { m.hidden = m.dataset.aiMsg !== String(index); });
+
+      if (!number) return;
+      const to = values[index];
+      window.clearInterval(counter);
+      if (reduce) { number.textContent = String(to); return; }
+      let n = Number(number.textContent) || values[1 - index];
+      const step = to > n ? 1 : -1;
+      counter = window.setInterval(() => {
+        n += step;
+        number.textContent = String(n);
+        if (n === to) window.clearInterval(counter);
+      }, 70);
+    };
+
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => { touched = true; show(i); }));
+
+    // Play the drop once, when the figure is properly in view.
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        window.setTimeout(() => { if (!touched) show(1); }, 1800);
+      }, { threshold: 0.6 });
+      io.observe(root);
+    }
+  });
+</script>
+
+<style>
+  .ai-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 80px;
+    align-items: center;
+  }
+  .ai-body { margin-top: 32px; }
+
+  .ai-viz {
+    margin: 0;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 32px;
+  }
+  .ai-tabs { flex-wrap: wrap; }
+  .ai-readout { display: flex; align-items: baseline; gap: 18px; margin-top: 28px; }
+  .ai-number {
+    font-family: var(--font-display);
+    font-size: clamp(76px, 8vw, 112px);
+    line-height: 0.9;
+    color: var(--ink);
+    min-width: 1.15em;
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-label { font-size: 16px; line-height: 1.45; color: var(--ink); max-width: 22ch; }
+
+  .ai-dots {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .ai-dot {
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--bone);
+    background: transparent;
+    transition: background-color 0.45s ease, border-color 0.45s ease, transform 0.45s var(--ease);
+    transition-delay: calc(var(--i, 0) * 12ms);
+  }
+  .ai-dot.is-on { background: var(--rosso); border-color: var(--rosso); }
+  .ai-dot.is-lost { background: var(--bone); border: 1px dashed var(--stone); transform: scale(0.82); }
+
+  .ai-legend {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .ai-legend li { display: inline-flex; align-items: center; gap: 8px; }
+  .ai-legend .ai-dot { width: 12px; transform: none; transition: none; }
+
+  .ai-msg { margin-top: 22px; min-height: 3.2em; }
+  .ai-hint { font-size: 15px; line-height: 1.5; color: var(--stone); }
+  .ai-drop {
+    padding-left: 16px;
+    border-left: 2px solid var(--rosso);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink);
+    animation: rise 0.5s var(--ease) both;
+  }
+
+  .ai-stats {
+    margin: 26px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--bone);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .ai-stats dd { margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: var(--stone); }
+  .ai-stat-v { font-family: var(--font-display); font-size: 34px; line-height: 1; color: var(--ink); }
+  .ai-viz .source { margin-top: 22px; }
+
+  /* ---------- What this means for you ---------- */
+  .meaning { margin-top: 88px; }
+  .meaning-label { display: block; margin-bottom: 20px; color: var(--rosso); }
+  .meaning-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    counter-reset: none;
+  }
+  .meaning-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 28px 30px;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+  }
+  .meaning-n {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--ink);
+    font-size: 12px;
+    color: var(--ink);
+  }
+  .meaning-t {
+    margin-top: 20px;
+    font-family: var(--font-display);
+    font-size: clamp(25px, 2.4vw, 30px);
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .meaning-d { margin-top: 12px; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+
+  .meaning-step--astia { background: var(--ink); border-color: var(--ink); }
+  .meaning-step--astia .meaning-n { background: var(--rosso); border-color: var(--rosso); color: var(--paper); }
+  .meaning-step--astia .meaning-t { color: var(--on-ink); }
+  .meaning-step--astia .meaning-d { color: var(--on-ink-soft); }
+  .meaning-link { margin-top: auto; padding-top: 22px; align-self: flex-start; }
+  .meaning-step--astia .meaning-link { color: var(--on-ink); border-color: var(--on-ink-line); }
+  .meaning-step--astia .meaning-link:hover { color: var(--paper); border-color: var(--paper); }
+
+  .ai-bridge {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--bone);
+    max-width: 28em;
+    color: var(--ink);
+  }
+
+  @media (max-width: 1023px) {
+    .ai-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .meaning-steps { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  }
+  @media (max-width: 599px) {
+    .ai-viz { padding: 22px 18px; }
+    .ai-dots { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 7px; max-width: 250px; }
+    .ai-stats { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .ai-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+    .ai-tabs button { padding: 9px 8px; letter-spacing: 0.06em; line-height: 1.3; white-space: normal; }
+    .meaning { margin-top: 64px; }
+    .meaning-step { padding: 22px 20px 24px; }
+    .ai-bridge { margin-top: 56px; padding-top: 28px; }
+  }
+</style>

@@ -1,0 +1,186 @@
+---
+/**
+ * 04 — Ready for what comes next. Four commitments, and a small live example:
+ * the same hotel facts as a guest sees them and as an AI reads them
+ * (schema.org JSON-LD). Hotel Bellavista is fictional, as in the brand book.
+ */
+import { em, escapeHtml, type Lang } from '@/i18n';
+import { how } from '@/i18n/how';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = how[lang].ready;
+const d = t.demo;
+
+const json = {
+  '@context': 'https://schema.org',
+  '@type': 'Hotel',
+  name: d.hotel,
+  address: { '@type': 'PostalAddress', addressLocality: 'Lugano', addressCountry: 'CH' },
+  numberOfRooms: 18,
+  checkinTime: '15:00',
+  amenityFeature: { '@type': 'LocationFeatureSpecification', name: 'Breakfast', hoursAvailable: '07:00-10:30' },
+  availableLanguage: ['en', 'de', 'it'],
+  potentialAction: { '@type': 'ReserveAction', target: 'https://example.com/book' },
+};
+
+/** Light syntax colouring for the JSON block: keys, strings, numbers. */
+const highlighted = escapeHtml(JSON.stringify(json, null, 2))
+  .replace(/(&quot;[^&]*?&quot;)(\s*:)/g, '<span class="k">$1</span>$2')
+  .replace(/(:\s*)(&quot;[^&]*?&quot;)/g, '$1<span class="s">$2</span>')
+  .replace(/(\[\s*|,\s*)(&quot;[a-z]{2}&quot;)/g, '$1<span class="s">$2</span>')
+  .replace(/(: )(\d+)(?=,?\n)/g, '$1<span class="n">$2</span>');
+---
+<section id="ready" class="section section--cream" aria-labelledby="ready-title">
+  <div class="container">
+    <div class="sec-head">
+      <span class="secnum reveal">{t.num}</span>
+      <h2 id="ready-title" class="d2 reveal" style="--d:0.05s" set:html={em(t.title)} />
+    </div>
+
+    <div class="ready-grid">
+      <ol class="ready-list">
+        {t.items.map((item, i) => (
+          <li class="reveal" style={`--d:${i * 0.06}s`}>
+            <span class="ready-n mono">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="ready-t">{item.t}</h3>
+              <p class="ready-d">{item.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <figure class="demo reveal" style="--d:0.1s" data-demo data-view="guest">
+        <div class="demo-top">
+          <div class="seg" role="group" aria-label={d.caption}>
+            <button type="button" data-demo-btn="guest" aria-pressed="true">{d.tabs[0]}</button>
+            <button type="button" data-demo-btn="ai" aria-pressed="false">{d.tabs[1]}</button>
+          </div>
+          <span class="mono-label">{d.label}</span>
+        </div>
+
+        <div class="demo-stage">
+          <div class="demo-guest" data-demo-pane="guest">
+            <p class="demo-hotel">{d.hotel}</p>
+            <p class="demo-place">{d.place}</p>
+            <dl class="demo-facts">
+              {d.facts.map(([k, v]) => (
+                <div><dt>{k}</dt><dd>{v}</dd></div>
+              ))}
+            </dl>
+            <span class="demo-book">{d.book}</span>
+          </div>
+          <pre class="demo-code" data-demo-pane="ai" hidden><code set:html={highlighted} /></pre>
+        </div>
+
+        <figcaption class="demo-caption">{d.caption}</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-demo]').forEach((root) => {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-demo-btn]');
+    const panes = root.querySelectorAll<HTMLElement>('[data-demo-pane]');
+    buttons.forEach((btn) => btn.addEventListener('click', () => {
+      const view = btn.dataset.demoBtn!;
+      root.dataset.view = view;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      panes.forEach((p) => {
+        p.hidden = p.dataset.demoPane !== view;
+        if (!p.hidden) { p.classList.remove('is-entering'); void p.offsetWidth; p.classList.add('is-entering'); }
+      });
+    }));
+  });
+</script>
+
+<style>
+  .ready-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 72px;
+    align-items: start;
+  }
+  .ready-list li {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 16px;
+    padding: 22px 0;
+    border-top: 1px solid var(--bone);
+  }
+  .ready-list li:last-child { border-bottom: 1px solid var(--bone); }
+  .ready-n { padding-top: 6px; font-size: 12px; color: var(--rosso); }
+  .ready-t { font-family: var(--font-display); font-size: 26px; line-height: 1.2; color: var(--ink); }
+  .ready-d { margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
+
+  .demo {
+    margin: 0;
+    position: sticky;
+    top: calc(var(--nav-h) + 32px);
+    background: var(--paper);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    padding: 22px;
+  }
+  .demo-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .demo-stage { margin-top: 18px; min-height: 330px; }
+
+  .demo-guest {
+    height: 100%;
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: 6px;
+  }
+  .demo-hotel { font-family: var(--font-display); font-size: 34px; line-height: 1.05; color: var(--ink); }
+  .demo-place { margin-top: 6px; font-size: 14px; color: var(--stone); }
+  .demo-facts { margin: 22px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+  .demo-facts dt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); }
+  .demo-facts dd { margin: 4px 0 0; font-size: 15px; color: var(--ink); }
+  .demo-book {
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 10px 18px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--r-control);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .demo-guest .demo-book { margin-top: 28px; }
+
+  .demo-code {
+    margin: 0;
+    min-height: 330px;
+    padding: 22px;
+    background: var(--ink);
+    color: var(--on-ink-soft);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.6;
+    overflow: auto;
+    tab-size: 2;
+  }
+  .demo-code :global(.k) { color: var(--on-ink-mute); }
+  .demo-code :global(.s) { color: var(--paper); }
+  .demo-code :global(.n) { color: var(--bone); }
+  .is-entering { animation: rise 0.45s var(--ease) both; }
+  .demo-caption { margin-top: 16px; font-size: 14px; color: var(--stone); }
+
+  @media (max-width: 1023px) {
+    .ready-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .demo { position: static; }
+  }
+  @media (max-width: 479px) {
+    .demo { padding: 16px; }
+    .demo-guest { padding: 20px; }
+    .demo-facts { grid-template-columns: minmax(0, 1fr); }
+    .demo-code { font-size: 11.5px; padding: 16px; }
+  }
+</style>
