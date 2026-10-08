@@ -83,7 +83,13 @@ export function articleSchema(opts: {
     dateModified: opts.date,
     mainEntityOfPage: `${SITE_URL}${opts.path}`,
     image: `${SITE_URL}${opts.image}`,
-    author: { '@type': 'Person', name: 'Marco Rosso', url: SITE_URL },
+    author: {
+      '@type': 'Person',
+      name: 'Marco Rosso',
+      jobTitle: 'Founder, Astia Web',
+      url: SITE_URL,
+      image: `${SITE_URL}/images/marco-rosso-founder-astia-web.jpg`,
+    },
     publisher: { '@id': `${SITE_URL}/#organization` },
   };
 }

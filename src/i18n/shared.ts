@@ -78,7 +78,7 @@ const en = {
     email: 'hello@astiaweb.com',
     phone: '+41 76 433 5845',
     phoneHref: '+41764335845',
-    portraitAlt: 'Marco Rosso, founder of Astia Web',
+    portraitAlt: 'Marco Rosso, founder of Astia Web, in a navy blazer and striped shirt.',
   },
   faq: [
     {
@@ -221,7 +221,7 @@ const de: SharedCopy = {
     email: 'hello@astiaweb.com',
     phone: '+41 76 433 5845',
     phoneHref: '+41764335845',
-    portraitAlt: 'Marco Rosso, Gründer von Astia Web',
+    portraitAlt: 'Marco Rosso, Gründer von Astia Web, in dunkelblauem Sakko und gestreiftem Hemd.',
   },
   faq: [
     {
@@ -362,7 +362,7 @@ const it: SharedCopy = {
     email: 'hello@astiaweb.com',
     phone: '+41 76 433 5845',
     phoneHref: '+41764335845',
-    portraitAlt: 'Marco Rosso, fondatore di Astia Web',
+    portraitAlt: 'Marco Rosso, fondatore di Astia Web, con giacca blu scuro e camicia a righe.',
   },
   faq: [
     {

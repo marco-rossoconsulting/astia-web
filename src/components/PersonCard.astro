@@ -3,8 +3,9 @@
  * The person card: a real portrait, a name, one line, and the direct ways to
  * reach them. The visual proof of "a person, always".
  *
- * Portrait: drop a real photo (no stock, no AI) at public/images/marco-rosso.jpg,
- * ideally 1200 × 1500, max 200 KB. Until it exists, a monogram holds the slot.
+ * Portrait: public/images/marco-rosso-founder-astia-web.{webp,jpg} (4:5, 400 × 500)
+ * plus a 240 × 300 version. A real photo only: no stock, no AI-generated
+ * people. If the file is missing, a monogram holds the slot.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,13 +20,26 @@ interface Props {
 const { lang, tone = 'light' } = Astro.props;
 const p = shared[lang].person;
 
-const PORTRAIT = '/images/marco-rosso.jpg';
-const hasPortrait = fs.existsSync(path.join(process.cwd(), 'public', PORTRAIT));
+const PORTRAIT = '/images/marco-rosso-founder-astia-web';
+const hasPortrait = fs.existsSync(path.join(process.cwd(), 'public', `${PORTRAIT}.jpg`));
 ---
 <div class:list={['person', `person--${tone}`]}>
   <div class="person-top">
     {hasPortrait ? (
-      <img class="person-photo" src={PORTRAIT} alt={p.portraitAlt} width="240" height="300" loading="lazy" decoding="async" />
+      <picture>
+        <source type="image/webp" srcset={`${PORTRAIT}-240.webp 240w, ${PORTRAIT}.webp 400w`} sizes="96px" />
+        <img
+          class="person-photo"
+          src={`${PORTRAIT}-240.jpg`}
+          srcset={`${PORTRAIT}-240.jpg 240w, ${PORTRAIT}.jpg 400w`}
+          sizes="96px"
+          alt={p.portraitAlt}
+          width="240"
+          height="300"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     ) : (
       <div class="person-photo person-mono" role="img" aria-label={p.portraitAlt}>
         <span aria-hidden="true">MR</span>
@@ -53,6 +67,7 @@ const hasPortrait = fs.existsSync(path.join(process.cwd(), 'public', PORTRAIT));
   }
   :global(.section--cream) .person { background: var(--paper); }
   .person-top { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start; }
+  .person-top picture { display: block; }
   .person-photo {
     width: 96px;
     height: 120px;

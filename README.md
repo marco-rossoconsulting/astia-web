@@ -77,9 +77,11 @@ One JSON per site in `src/content/portfolio/` with an 800 × 1000 image in
 
 ## Marco's portrait
 
-The person card shows a monogram until a real portrait exists. Add
-`public/images/marco-rosso.jpg` (a real photo, ideally 1200 × 1500, under 200 KB) and
-rebuild. It appears everywhere the card is used.
+The person card and the journal byline use `public/images/marco-rosso-founder-astia-web*`
+(WebP with JPEG fallback): 400 × 500 and 240 × 300 for the card, 160 × 160 for the
+byline. The background is the brand's Bone tone. To replace the photo, keep the
+file names and sizes (a real photo only, never stock or AI-generated). If the files
+are missing, the card falls back to a monogram.
 
 ## Book a call
 
