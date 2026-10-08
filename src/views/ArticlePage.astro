@@ -67,7 +67,10 @@ const pending = article.data.translationPending;
       <h1 class="article-title rise" style="--d:0.1s">{article.data.title}</h1>
       {!pending && <p class="article-lede rise" style="--d:0.16s">{article.data.excerpt}</p>}
       <div class="byline rise" style="--d:0.22s">
-        <span class="byline-mono" aria-hidden="true">MR</span>
+        <picture>
+          <source type="image/webp" srcset="/images/marco-rosso-founder-astia-web-avatar.webp" />
+          <img class="byline-photo" src="/images/marco-rosso-founder-astia-web-avatar.jpg" alt="" width="160" height="160" loading="lazy" decoding="async" />
+        </picture>
         <span><strong>{t.byline}</strong><br />{t.bylineRole}</span>
       </div>
     </header>
@@ -134,18 +137,12 @@ const pending = article.data.translationPending;
     color: var(--stone);
   }
   .byline strong { font-weight: 500; color: var(--ink); }
-  .byline-mono {
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .byline-photo {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
+    object-fit: cover;
     background: var(--bone-soft);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 17px;
-    color: var(--stone);
   }
 
   .prose { margin-top: 48px; font-size: 18px; line-height: 1.7; color: var(--ink-soft); }
