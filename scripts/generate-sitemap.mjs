@@ -22,6 +22,10 @@ const staticRoutes = [
   { path: '/book-a-call', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.8' },
   { path: '/work', locales: ['en', 'de', 'it'], changefreq: 'monthly', priority: '0.7' },
   { path: '/journal', locales: ['en', 'de', 'it'], changefreq: 'weekly', priority: '0.7' },
+  { path: '/privacy', locales: ['en', 'de', 'it'], changefreq: 'yearly', priority: '0.3' },
+  { path: '/legal', locales: ['en', 'de', 'it'], changefreq: 'yearly', priority: '0.3' },
+  // DE/IT terms pages show the English original and point their canonical to /terms.
+  { path: '/terms', locales: ['en'], changefreq: 'yearly', priority: '0.4' },
 ];
 
 // Read all articles and group by base slug

@@ -1,0 +1,116 @@
+---
+/**
+ * Layout for long legal documents (privacy, legal notice, terms): a plain
+ * header, an optional "in short" box, and a sticky contents list beside a
+ * 720px text column on desktop.
+ */
+import { em, formatDate, type Lang } from '@/i18n';
+
+interface Props {
+  lang: Lang;
+  eyebrow: string;
+  title: string;
+  lede: string;
+  updatedLabel?: string;
+  updated?: string;
+  toc: { id: string; label: string }[];
+  tocTitle: string;
+}
+const { lang, eyebrow, title, lede, updatedLabel, updated, toc, tocTitle } = Astro.props;
+---
+<header class="doc-head">
+  <div class="container">
+    <p class="eyebrow eyebrow--rosso rise" style="--d:0.04s">{eyebrow}</p>
+    <h1 class="d1 rise" style="--d:0.1s" set:html={em(title)} />
+    <p class="lede rise" style="--d:0.16s">{lede}</p>
+    {updated && updatedLabel && (
+      <p class="doc-updated mono rise" style="--d:0.2s">{updatedLabel}: <time datetime={updated}>{formatDate(updated, lang)}</time></p>
+    )}
+    <slot name="notice" />
+  </div>
+</header>
+
+<div class="container doc-grid">
+  <nav class="doc-toc" aria-label={tocTitle}>
+    <p class="mono-label">{tocTitle}</p>
+    <ol>
+      {toc.map((item) => <li><a href={`#${item.id}`}>{item.label}</a></li>)}
+    </ol>
+  </nav>
+  <div class="doc-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .doc-head { padding: 88px 0 56px; border-bottom: 1px solid var(--bone); }
+  .doc-head .d1 { margin-top: 22px; max-width: 16em; }
+  .doc-head .lede { margin-top: 28px; }
+  .doc-updated { margin-top: 22px; font-size: 12.5px; color: var(--stone); }
+
+  .doc-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: 64px;
+    padding-top: 64px;
+    padding-bottom: 104px;
+    align-items: start;
+  }
+  .doc-toc { position: sticky; top: calc(var(--nav-h) + 32px); max-height: calc(100vh - var(--nav-h) - 64px); overflow-y: auto; }
+  .doc-toc ol { margin-top: 14px; border-left: 1px solid var(--bone); }
+  .doc-toc a {
+    display: block;
+    padding: 6px 0 6px 14px;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--stone);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .doc-toc a:hover { color: var(--ink); border-color: var(--rosso); }
+  .doc-body { max-width: var(--container-text); }
+
+  /* Shared typography for the documents rendered in the slot. */
+  .doc-body :global(.doc-section) { scroll-margin-top: calc(var(--nav-h) + 24px); padding-top: 8px; }
+  .doc-body :global(.doc-section + .doc-section) { margin-top: 48px; }
+  .doc-body :global(.doc-h2) {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 2.6vw, 32px);
+    line-height: 1.18;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .doc-body :global(.doc-h2 .mono) { font-size: 12px; color: var(--rosso); margin-right: 12px; vertical-align: 0.4em; letter-spacing: 0.06em; }
+  .doc-body :global(p), .doc-body :global(li), .doc-body :global(dd) { font-size: 16.5px; line-height: 1.7; color: var(--ink-soft); }
+  .doc-body :global(p + p) { margin-top: 14px; }
+  .doc-body :global(a) { color: var(--rosso); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .doc-body :global(.doc-list) { margin: 14px 0; padding-left: 0; display: grid; gap: 10px; }
+  .doc-body :global(.doc-list li) { position: relative; padding-left: 22px; }
+  .doc-body :global(.doc-list li::before) { content: '+'; position: absolute; left: 0; font-family: var(--font-mono); color: var(--rosso); }
+  .doc-body :global(.doc-dl) { margin: 14px 0; border-top: 1px solid var(--bone); }
+  .doc-body :global(.doc-dl > div) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--bone); }
+  .doc-body :global(.doc-dl dt) { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); padding-top: 5px; }
+  .doc-body :global(.doc-dl dd) { margin: 0; color: var(--ink); }
+  .doc-body :global(.doc-box) {
+    padding: 26px 28px;
+    margin-bottom: 56px;
+    background: var(--cream);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+  }
+  .doc-body :global(.doc-box .mono-label) { display: block; margin-bottom: 12px; color: var(--rosso); }
+
+  @media (max-width: 1023px) {
+    .doc-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 40px; }
+    .doc-toc { position: static; max-height: none; padding: 20px 22px; background: var(--cream); border: 1px solid var(--bone); border-radius: var(--r-card); }
+    .doc-toc ol { columns: 2; column-gap: 24px; border-left: 0; }
+    .doc-toc a { padding-left: 0; border-left: 0; }
+  }
+  @media (max-width: 599px) {
+    .doc-head { padding: 56px 0 40px; }
+    .doc-toc ol { columns: 1; }
+    .doc-body :global(.doc-dl > div) { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .doc-body :global(.doc-box) { padding: 20px; }
+  }
+</style>

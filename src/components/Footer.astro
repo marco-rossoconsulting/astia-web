@@ -2,6 +2,7 @@
 import Wordmark from '@components/Wordmark.astro';
 import { LANGS, LANG_NAMES, href, type Lang } from '@/i18n';
 import { shared } from '@/i18n/shared';
+import { legal } from '@/i18n/legal';
 
 interface Props {
   lang: Lang;
@@ -9,6 +10,7 @@ interface Props {
 }
 const { lang, altPaths } = Astro.props;
 const t = shared[lang];
+const lg = legal[lang].footer;
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
@@ -57,8 +59,13 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="footer-bottom">
-      <span>© {year} Marco Rosso Consulting. {t.footer.rights}</span>
-      <span>{t.footer.company} {t.footer.vat}</span>
+      <span>© {year} Marco Rosso Consulting. {t.footer.rights} {t.footer.company} {t.footer.vat}</span>
+      <nav class="footer-legal" aria-label={lg.legal}>
+        <a href={href(lang, 'privacy')}>{lg.privacy}</a>
+        <a href={href(lang, 'legal')}>{lg.legal}</a>
+        <a href={href(lang, 'terms')}>{lg.terms}</a>
+        <button type="button" data-consent-open>{lg.cookies}</button>
+      </nav>
     </div>
   </div>
 </footer>
@@ -115,6 +122,20 @@ const year = new Date().getFullYear();
     font-size: 12.5px;
     color: var(--on-ink-mute);
   }
+
+  .footer-legal { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+  .footer-legal a, .footer-legal button {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 12.5px;
+    color: var(--on-ink-soft);
+    text-decoration: underline;
+    text-decoration-color: var(--on-ink-line);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+  .footer-legal a:hover, .footer-legal button:hover { color: var(--on-ink); }
 
   @media (max-width: 1023px) {
     .footer-top { grid-template-columns: minmax(0, 1fr); gap: 48px; }

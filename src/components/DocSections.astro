@@ -1,0 +1,32 @@
+---
+/** Renders legal Section[] (paragraphs, + lists, definition lists) with linked emails and URLs. */
+import { escapeHtml } from '@/i18n';
+import type { Section } from '@/i18n/legal';
+
+interface Props { sections: Section[]; ids: string[] }
+const { sections, ids } = Astro.props;
+
+const linkify = (s: string) =>
+  escapeHtml(s)
+    .replace(/([\w.+-]+@[\w-]+\.[\w.-]+)/g, '<a href="mailto:$1">$1</a>')
+    .replace(/\b(www\.[\w.-]+\.[a-z]{2,})\b/g, '<a href="https://$1" target="_blank" rel="noopener">$1</a>')
+    .replace(/(\+41 76 433 5845)/g, '<a href="tel:+41764335845">$1</a>');
+---
+{sections.map((section, i) => (
+  <section class="doc-section" id={ids[i]}>
+    <h2 class="doc-h2">{section.title}</h2>
+    {section.blocks.map((block) =>
+      'p' in block ? (
+        <p set:html={linkify(block.p)} />
+      ) : 'list' in block ? (
+        <ul class="doc-list">{block.list.map((item) => <li set:html={linkify(item)} />)}</ul>
+      ) : (
+        <dl class="doc-dl">
+          {block.dl.map(([k, v]) => (
+            <div><dt>{k}</dt><dd set:html={linkify(v)} /></div>
+          ))}
+        </dl>
+      ),
+    )}
+  </section>
+))}

@@ -93,6 +93,22 @@ are missing, the card falls back to a monogram.
   Resend. It needs `NOTIFY_EMAIL` and `RESEND_API_KEY` in Netlify's environment
   variables. Replies go straight to the person who filled in the form.
 
+## Legal pages and consent
+
+- **Privacy policy** `/privacy`, **legal notice** `/legal` (EN/DE/IT) and the
+  **General Terms** `/terms`: copy in `src/i18n/legal.ts`; the terms are
+  transcribed verbatim in `src/i18n/terms-en.ts` from the signed Order Form PDF.
+  The DE/IT terms pages show the English original (it prevails) with a note, and
+  are noindex with their canonical pointing to `/terms`.
+- **Analytics consent:** Google Analytics (G-EREW8N0F4N) loads only after "Accept
+  analytics" in the banner (`CookieConsent.astro`, logic in `src/scripts/site.ts`).
+  "Reject" is equally prominent, a Global Privacy Control signal counts as reject,
+  and "Cookie settings" in the footer reopens the choice; withdrawing deletes the
+  `_ga` cookies. Google signals and ad personalisation are off.
+- **Keep them true:** if a provider (Netlify, Resend, Google), a cookie or a
+  retention period changes, update `src/i18n/legal.ts` and `LEGAL_UPDATED`. If the
+  General Terms PDF changes, update `terms-en.ts` word for word.
+
 ## Brand rules held in code
 
 - Signal Red `#E62127` appears only on the wordmark dot (`Wordmark.astro`). Rosso

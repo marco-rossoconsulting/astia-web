@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Nav from '@components/Nav.astro';
 import Footer from '@components/Footer.astro';
+import CookieConsent from '@components/CookieConsent.astro';
 import { LANGS, OG_LOCALE, SITE_URL, localPath, stripLang, type Lang } from '@/i18n';
 import { shared } from '@/i18n/shared';
 
@@ -22,6 +23,8 @@ interface Props {
   ogType?: 'website' | 'article';
   schemas?: object[];
   noindex?: boolean;
+  /** Canonical path when this page duplicates another (e.g. /de/terms → /terms). */
+  canonicalPath?: string;
 }
 
 const {
@@ -36,10 +39,11 @@ const {
   ogType = 'website',
   schemas = [],
   noindex = false,
+  canonicalPath,
 } = Astro.props;
 
 const t = shared[lang];
-const canonical = `${SITE_URL}${path}`;
+const canonical = `${SITE_URL}${canonicalPath ?? path}`;
 const base = stripLang(path);
 const altPaths: Partial<Record<Lang, string>> =
   alternates ?? Object.fromEntries(LANGS.map((l) => [l, localPath(l, base)]));
@@ -143,14 +147,6 @@ const website = {
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
 
-    {/* Google tag (gtag.js) */}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EREW8N0F4N"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EREW8N0F4N');
-    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">{t.nav.skip}</a>
@@ -160,6 +156,7 @@ const website = {
       <slot />
     </main>
     <Footer lang={lang} altPaths={langPaths} />
+    <CookieConsent lang={lang} />
 
     <script>
       import '@/scripts/site';

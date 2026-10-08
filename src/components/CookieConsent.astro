@@ -1,0 +1,64 @@
+---
+/**
+ * Analytics consent. Google Analytics loads only after "Accept analytics";
+ * "Reject" is exactly as easy and as prominent. Hidden until the script in
+ * src/scripts/site.ts decides it is needed (no stored choice, no Global
+ * Privacy Control signal), and reopened from "Cookie settings" in the footer.
+ * Without JavaScript nothing loads, so there is nothing to consent to.
+ */
+import { href, type Lang } from '@/i18n';
+import { legal } from '@/i18n/legal';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = legal[lang].consent;
+---
+<div class="consent" data-consent role="region" aria-labelledby="consent-title" hidden>
+  <p class="consent-title" id="consent-title">{c.title}</p>
+  <p class="consent-body">
+    {c.body} <a href={href(lang, 'privacy')}>{c.link}</a>
+  </p>
+  <div class="consent-actions">
+    <button type="button" class="consent-btn" data-consent-choice="denied">{c.reject}</button>
+    <button type="button" class="consent-btn" data-consent-choice="granted">{c.accept}</button>
+  </div>
+</div>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 65;
+    width: min(420px, calc(100vw - 48px));
+    padding: 22px 22px 20px;
+    background: var(--paper);
+    border: 1px solid var(--bone);
+    border-radius: var(--r-card);
+    box-shadow: 0 24px 48px -20px rgba(20, 20, 20, 0.28);
+    animation: rise 0.5s var(--ease) both;
+  }
+  .consent-title { font-family: var(--font-display); font-size: 24px; line-height: 1.15; color: var(--ink); }
+  .consent-body { margin-top: 8px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+  .consent-body a { color: var(--rosso); text-decoration: underline; text-underline-offset: 2px; }
+  .consent-actions { margin-top: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  /* Both choices look the same: refusing is as easy as accepting. */
+  .consent-btn {
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid var(--ink);
+    border-radius: var(--r-control);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .consent-btn:hover { background: var(--ink); color: var(--paper); }
+
+  @media (max-width: 599px) {
+    .consent { left: 12px; right: 12px; bottom: 12px; width: auto; padding: 18px 16px 16px; }
+    .consent-title { font-size: 21px; }
+  }
+</style>
