@@ -19,6 +19,9 @@ export const ROUTES = {
   journal: '/journal',
   book: '/book-a-call',
   thanks: '/thank-you',
+  privacy: '/privacy',
+  legal: '/legal',
+  terms: '/terms',
 } as const;
 export type RouteKey = keyof typeof ROUTES;
 

@@ -12,6 +12,7 @@ import Faq from '@components/Faq.astro';
 import Icon from '@components/Icon.astro';
 import { em, href, type Lang } from '@/i18n';
 import { pages, CALENDAR_URL } from '@/i18n/pages';
+import { legal } from '@/i18n/legal';
 import { shared } from '@/i18n/shared';
 import { breadcrumbSchema, faqSchema } from '@/lib/schema';
 
@@ -19,6 +20,7 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = pages[lang].book;
 const s = shared[lang];
+const note = legal[lang].formNote;
 const path = href(lang, 'book');
 const FAQ_PICK = [1, 0, 6];
 ---
@@ -28,6 +30,7 @@ const FAQ_PICK = [1, 0, 6];
   description={t.seo.description}
   path={path}
   nav="book"
+  ogImage={`/images/og/book-${lang}.jpg`}
   schemas={[
     faqSchema(FAQ_PICK.map((i) => s.faq[i])),
     breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.book, path }]),
@@ -91,6 +94,7 @@ const FAQ_PICK = [1, 0, 6];
             <span data-submit-label data-sending={t.sending}>{t.submit}</span><Icon name="arrow-right" size={16} />
           </button>
           <p class="reply">{t.reply}</p>
+          <p class="privacy-note">{note.before} <a href={href(lang, 'privacy')}>{note.link}</a>{note.after}</p>
           <noscript><p class="reply">{t.errors.failed}</p></noscript>
         </form>
       </div>
@@ -238,6 +242,8 @@ const FAQ_PICK = [1, 0, 6];
   form .btn { margin-top: 6px; }
   .btn[aria-busy='true'] { opacity: 0.75; cursor: progress; }
   .reply { font-size: 14px; color: var(--stone); }
+  .privacy-note { margin-top: -10px; font-size: 13px; line-height: 1.5; color: var(--stone); }
+  .privacy-note a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
 
   .qs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
   .qs li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 20px 0; border-top: 1px solid var(--bone); }

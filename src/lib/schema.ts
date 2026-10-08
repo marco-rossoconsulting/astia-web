@@ -89,6 +89,7 @@ export function articleSchema(opts: {
       jobTitle: 'Founder, Astia Web',
       url: SITE_URL,
       image: `${SITE_URL}/images/marco-rosso-founder-astia-web.jpg`,
+      sameAs: ['https://www.linkedin.com/in/mprosso'],
     },
     publisher: { '@id': `${SITE_URL}/#organization` },
   };

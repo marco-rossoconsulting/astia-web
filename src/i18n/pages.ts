@@ -4,8 +4,8 @@ import type { Lang } from './index';
 const en = {
   work: {
     seo: {
-      title: 'Work · Astia Web',
-      description: 'Websites built from a written brand guide and run by Astia Web: every change, every language, kept current.',
+      title: 'Work: websites we build and run · Astia Web',
+      description: 'Websites built from a written brand guide and run by Astia Web for hotels, lodges and beach clubs. Every change, every language, kept current.',
     },
     title: 'Built from a brand guide, not a *template*.',
     lede: 'Every site here started with a 30-minute call and a written brand guide. We built it, and we run it: every change, every language.',
@@ -16,8 +16,8 @@ const en = {
   },
   journal: {
     seo: {
-      title: 'Journal · Astia Web',
-      description: 'Slower reads on what a website should cost now, owning your site, and being readable by AI.',
+      title: 'Journal: website prices, ownership and AI search · Astia Web',
+      description: 'Plain, argued reads on what a website should cost now, why you should own your site, and how to be found by AI assistants as well as people.',
     },
     title: 'Notes on what a website should cost *now*.',
     lede: 'Slower reads on pricing, ownership and where the web is going. Plain words, one or two numbers, and a decision you can make on Monday.',
@@ -28,6 +28,7 @@ const en = {
     bylineRole: 'Founder, Astia Web',
     endTitle: 'Want this applied to your own *site*?',
     endLede: 'Thirty minutes, no pitch. We look at your site and tell you plainly what we would change, and what we would leave alone.',
+    preferred: { text: 'Want to see our articles first when you search?', link: 'Add Astia Web as a preferred source on Google' },
   },
   book: {
     seo: {
@@ -88,8 +89,8 @@ export type PagesCopy = typeof en;
 const de: PagesCopy = {
   work: {
     seo: {
-      title: 'Arbeiten · Astia Web',
-      description: 'Websites, gebaut aus einem schriftlichen Markenleitfaden und betrieben von Astia Web: jede Änderung, jede Sprache, immer aktuell.',
+      title: 'Arbeiten: Websites, die wir betreiben · Astia Web',
+      description: 'Websites aus einem schriftlichen Markenleitfaden, gebaut und betrieben von Astia Web für Hotels, Lodges und Beach Clubs. Jede Änderung, jede Sprache.',
     },
     title: 'Gebaut aus einem Markenleitfaden, nicht aus einer *Vorlage*.',
     lede: 'Jede Website hier begann mit einem 30-minütigen Gespräch und einem schriftlichen Markenleitfaden. Wir haben sie gebaut, und wir betreiben sie: jede Änderung, jede Sprache.',
@@ -100,8 +101,8 @@ const de: PagesCopy = {
   },
   journal: {
     seo: {
-      title: 'Journal · Astia Web',
-      description: 'Längere Texte darüber, was eine Website heute kosten sollte, warum Sie Ihre Website besitzen sollten und wie sie für AI lesbar wird.',
+      title: 'Journal: Website-Preise, Eigentum und AI-Suche · Astia Web',
+      description: 'Texte darüber, was eine Website heute kosten sollte, warum Ihnen Ihre Website gehören sollte und wie Sie von AI-Assistenten gefunden werden.',
     },
     title: 'Was eine Website heute kosten *sollte*.',
     lede: 'Längere Texte über Preise, Eigentum und die Richtung des Webs. Klare Worte, ein oder zwei Zahlen und eine Entscheidung, die Sie am Montag treffen können.',
@@ -112,6 +113,7 @@ const de: PagesCopy = {
     bylineRole: 'Gründer, Astia Web',
     endTitle: 'Das auf Ihre eigene Website *angewandt*?',
     endLede: 'Dreissig Minuten, kein Verkaufsgespräch. Wir schauen uns Ihre Website an und sagen Ihnen offen, was wir ändern würden und was nicht.',
+    preferred: { text: 'Möchten Sie unsere Beiträge bei der Suche zuerst sehen?', link: 'Astia Web bei Google als bevorzugte Quelle hinzufügen' },
   },
   book: {
     seo: {
@@ -170,8 +172,8 @@ const de: PagesCopy = {
 const it: PagesCopy = {
   work: {
     seo: {
-      title: 'Lavori · Astia Web',
-      description: 'Siti costruiti da linee guida del brand scritte e gestiti da Astia Web: ogni modifica, ogni lingua, sempre aggiornati.',
+      title: 'Lavori: siti che costruiamo e gestiamo · Astia Web',
+      description: 'Siti costruiti da linee guida del brand scritte e gestiti da Astia Web per hotel, lodge e beach club. Ogni modifica, ogni lingua, sempre aggiornati.',
     },
     title: 'Costruiti da linee guida del brand, non da un *modello*.',
     lede: 'Ogni sito qui è nato da una chiamata di 30 minuti e da linee guida del brand scritte. Lo abbiamo costruito, e lo gestiamo: ogni modifica, ogni lingua.',
@@ -182,8 +184,8 @@ const it: PagesCopy = {
   },
   journal: {
     seo: {
-      title: 'Journal · Astia Web',
-      description: 'Letture più lente su quanto dovrebbe costare oggi un sito, sul possedere il proprio sito e sull’essere leggibili dall’IA.',
+      title: 'Journal: prezzi dei siti, proprietà e ricerca IA · Astia Web',
+      description: 'Letture su quanto dovrebbe costare oggi un sito, perché il sito deve essere vostro e come farsi trovare dagli assistenti IA oltre che dalle persone.',
     },
     title: 'Quanto dovrebbe costare un sito *oggi*.',
     lede: 'Letture più lente su prezzi, proprietà e la direzione del web. Parole semplici, uno o due numeri, e una decisione da prendere lunedì.',
@@ -194,6 +196,7 @@ const it: PagesCopy = {
     bylineRole: 'Fondatore, Astia Web',
     endTitle: 'Volete applicarlo al vostro *sito*?',
     endLede: 'Trenta minuti, nessuna vendita. Guardiamo il vostro sito e vi diciamo chiaramente cosa cambieremmo, e cosa lasceremmo com’è.',
+    preferred: { text: 'Volete vedere per primi i nostri articoli quando cercate?', link: 'Aggiungete Astia Web come fonte preferita su Google' },
   },
   book: {
     seo: {
@@ -250,6 +253,9 @@ const it: PagesCopy = {
 };
 
 export const pages: Record<Lang, PagesCopy> = { en, de, it };
+
+/** Google Search "preferred sources" deeplink: a plain link, no script, no cookies. */
+export const PREFERRED_SOURCE_URL = 'https://www.google.com/preferences/source?q=astiaweb.com';
 
 /** Marco's booking calendar (Google Calendar appointment schedule). */
 export const CALENDAR_URL = 'https://calendar.app.google/Aqg3ijBRxXwTaNBAA';

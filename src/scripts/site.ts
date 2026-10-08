@@ -6,13 +6,22 @@
  * - Menu: the tablet/phone menu panel, with Escape, focus return and scroll lock.
  * - Reveal: .reveal elements ease in as they enter the viewport.
  * - Currency: one CHF / EUR / USD preference for every [data-money] figure.
- * - Analytics: GA4 events from [data-track] and outbound links.
+ * - Consent: Google Analytics loads only after "Accept analytics" (see
+ *   CookieConsent.astro); "Reject", or a Global Privacy Control signal, means
+ *   it never loads. "Cookie settings" in the footer reopens the choice.
+ * - Analytics: GA4 events from [data-track] and outbound links (only sent
+ *   once analytics has loaded).
  */
 import { CURRENCIES, DEFAULT_CURRENCY, formatNumber, type Currency, type Lang } from '@/i18n';
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+    [key: `ga-disable-${string}`]: boolean | undefined;
+  }
+  interface Navigator {
+    globalPrivacyControl?: boolean;
   }
 }
 
@@ -127,6 +136,101 @@ document.addEventListener('click', (e) => {
 const initial = readCurrency();
 if (initial !== DEFAULT_CURRENCY) applyCurrency(initial);
 else document.documentElement.dataset.currency = DEFAULT_CURRENCY;
+
+/* ---------- Consent and Google Analytics ---------- */
+const GA_ID = 'G-EREW8N0F4N';
+const CONSENT_KEY = 'astia-consent';
+type Consent = 'granted' | 'denied';
+
+function readConsent(): Consent | null {
+  try {
+    const v = localStorage.getItem(CONSENT_KEY);
+    return v === 'granted' || v === 'denied' ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+function storeConsent(value: Consent): void {
+  try {
+    localStorage.setItem(CONSENT_KEY, value);
+  } catch {
+    /* not remembered: the banner simply asks again next time */
+  }
+}
+
+let analyticsLoaded = false;
+function loadAnalytics(): void {
+  window[`ga-disable-${GA_ID}`] = false;
+  if (analyticsLoaded) return;
+  analyticsLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  // gtag.js expects the arguments object itself, not an array.
+  window.gtag = function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer!.push(arguments);
+  };
+  window.gtag('consent', 'default', {
+    analytics_storage: 'granted',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID, {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+  });
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(script);
+}
+
+function stopAnalytics(): void {
+  window[`ga-disable-${GA_ID}`] = true;
+  // Remove the analytics cookies on this host and its parent domain.
+  const host = location.hostname;
+  const domains = ['', host, `.${host}`, `.${host.split('.').slice(-2).join('.')}`];
+  document.cookie.split(';').forEach((c) => {
+    const name = c.split('=')[0].trim();
+    if (!name.startsWith('_ga')) return;
+    domains.forEach((d) => {
+      document.cookie = `${name}=; Max-Age=0; path=/${d ? `; domain=${d}` : ''}`;
+    });
+  });
+}
+
+const banner = document.querySelector<HTMLElement>('[data-consent]');
+const showBanner = () => {
+  if (!banner) return;
+  banner.hidden = false;
+};
+const hideBanner = () => {
+  if (banner) banner.hidden = true;
+};
+
+banner?.addEventListener('click', (e) => {
+  const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-consent-choice]');
+  if (!btn) return;
+  const choice = btn.dataset.consentChoice as Consent;
+  storeConsent(choice);
+  hideBanner();
+  if (choice === 'granted') loadAnalytics();
+  else stopAnalytics();
+});
+
+document.addEventListener('click', (e) => {
+  if ((e.target as HTMLElement).closest('[data-consent-open]')) {
+    e.preventDefault();
+    showBanner();
+    banner?.querySelector<HTMLButtonElement>('[data-consent-choice]')?.focus();
+  }
+});
+
+const consent = readConsent();
+if (consent === 'granted') loadAnalytics();
+else if (consent === null && navigator.globalPrivacyControl !== true) showBanner();
 
 /* ---------- Analytics ---------- */
 document.addEventListener('click', (e) => {

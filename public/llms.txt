@@ -20,7 +20,11 @@ Static pages built with Astro and served from a global network. No database, no 
 
 - Marco Rosso, founder: hello@astiaweb.com, +41 76 433 5845
 - Book a call: https://astiaweb.com/book-a-call
-- Astia Web is a product of Marco Rosso Consulting, Via Don G. Gagliardi 23, 6932 Breganzona (Lugano), Switzerland.
+- Astia Web is a product of Marco Rosso Consulting (Marco Paolo Rosso, sole proprietorship), Via Don G. Gagliardi 23, 6932 Breganzona (Lugano), Switzerland. UID CHE-188.786.759.
+
+## Full text
+
+- [llms-full.txt](https://astiaweb.com/llms-full.txt): the whole offer, process, FAQ and five-year cost comparison in one plain-text file
 
 ## Pages
 
@@ -29,4 +33,6 @@ Static pages built with Astro and served from a global network. No database, no 
 - [How it works](https://astiaweb.com/how-it-works): from call to launch, how a change is made, how sites are built
 - [Work](https://astiaweb.com/work): sites built and run by Astia Web
 - [Journal](https://astiaweb.com/journal): articles on website pricing, ownership and the AI-era web
+- [General Terms](https://astiaweb.com/terms): the full terms and data processing annex every client signs
+- [Privacy policy](https://astiaweb.com/privacy) · [Legal notice](https://astiaweb.com/legal)
 - German: https://astiaweb.com/de · Italian: https://astiaweb.com/it

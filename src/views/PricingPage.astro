@@ -25,6 +25,7 @@ const path = href(lang, 'pricing');
   description={t.seo.description}
   path={path}
   nav="pricing"
+  ogImage={`/images/og/pricing-${lang}.jpg`}
   schemas={[
     serviceSchema(lang, t.seo.description, `${SITE_URL}${path}`),
     faqSchema(s.faq),

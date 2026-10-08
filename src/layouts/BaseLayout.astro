@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Nav from '@components/Nav.astro';
 import Footer from '@components/Footer.astro';
+import CookieConsent from '@components/CookieConsent.astro';
 import { LANGS, OG_LOCALE, SITE_URL, localPath, stripLang, type Lang } from '@/i18n';
 import { shared } from '@/i18n/shared';
 
@@ -22,6 +23,8 @@ interface Props {
   ogType?: 'website' | 'article';
   schemas?: object[];
   noindex?: boolean;
+  /** Canonical path when this page duplicates another (e.g. /de/terms → /terms). */
+  canonicalPath?: string;
 }
 
 const {
@@ -36,10 +39,11 @@ const {
   ogType = 'website',
   schemas = [],
   noindex = false,
+  canonicalPath,
 } = Astro.props;
 
 const t = shared[lang];
-const canonical = `${SITE_URL}${path}`;
+const canonical = `${SITE_URL}${canonicalPath ?? path}`;
 const base = stripLang(path);
 const altPaths: Partial<Record<Lang, string>> =
   alternates ?? Object.fromEntries(LANGS.map((l) => [l, localPath(l, base)]));
@@ -47,32 +51,64 @@ const langPaths = { ...altPaths, ...switchPaths };
 
 const organization = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': ['Organization', 'ProfessionalService'],
   '@id': `${SITE_URL}/#organization`,
   name: 'Astia Web',
   url: SITE_URL,
   logo: `${SITE_URL}/images/astia-web-logo.png`,
+  image: `${SITE_URL}/images/og/home-en.jpg`,
+  slogan: 'One price for everything your website needs.',
   description:
     'Astia Web is a website service with one price: 150 a month for everything a website needs. We write a brand guide for each client, build their site from it and run it. AI does most of the building; a person checks every change.',
   email: 'hello@astiaweb.com',
   telephone: '+41 76 433 5845',
+  priceRange: 'CHF 150 / month',
+  identifier: { '@type': 'PropertyValue', propertyID: 'CHE-UID', value: 'CHE-188.786.759' },
   founder: {
     '@type': 'Person',
     name: 'Marco Rosso',
     jobTitle: 'Founder',
     image: `${SITE_URL}/images/marco-rosso-founder-astia-web.jpg`,
     email: 'hello@astiaweb.com',
+    sameAs: ['https://www.linkedin.com/in/mprosso'],
   },
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Via Don G. Gagliardi 23',
     postalCode: '6932',
     addressLocality: 'Breganzona (Lugano)',
+    addressRegion: 'TI',
     addressCountry: 'CH',
   },
-  parentOrganization: { '@type': 'Organization', name: 'Marco Rosso Consulting', url: 'https://rossoconsulting.ch' },
-  areaServed: ['CH', 'EU', 'Worldwide'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: 'hello@astiaweb.com',
+    telephone: '+41 76 433 5845',
+    availableLanguage: ['English', 'German', 'Italian'],
+    url: `${SITE_URL}/book-a-call`,
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Marco Rosso Consulting',
+    url: 'https://rossoconsulting.ch',
+    sameAs: ['https://www.linkedin.com/company/marcorosso-consulting'],
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Switzerland' },
+    { '@type': 'Place', name: 'European Union' },
+    { '@type': 'Place', name: 'Worldwide' },
+  ],
   knowsLanguage: ['en', 'de', 'it'],
+  knowsAbout: [
+    'Website design',
+    'Hotel websites',
+    'Multilingual websites',
+    'Website hosting and maintenance',
+    'Structured data',
+    'Search engine optimisation',
+    'Visibility in AI assistants',
+  ],
 };
 
 const website = {
@@ -122,12 +158,14 @@ const website = {
     <meta property="og:image" content={`${SITE_URL}${ogImage}`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={OG_LOCALE[lang]} />
     <meta property="og:site_name" content="Astia Web" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${SITE_URL}${ogImage}`} />
+    <meta name="twitter:image:alt" content={title} />
 
     {/* Self-hosted brand fonts: preload the faces seen above the fold. */}
     <link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -143,14 +181,6 @@ const website = {
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
 
-    {/* Google tag (gtag.js) */}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EREW8N0F4N"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EREW8N0F4N');
-    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">{t.nav.skip}</a>
@@ -160,6 +190,7 @@ const website = {
       <slot />
     </main>
     <Footer lang={lang} altPaths={langPaths} />
+    <CookieConsent lang={lang} />
 
     <script>
       import '@/scripts/site';

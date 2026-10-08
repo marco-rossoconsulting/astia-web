@@ -2,9 +2,9 @@ import type { Lang } from './index';
 
 const en = {
   seo: {
-    title: 'How it works · Astia Web',
+    title: 'How Astia Web builds and runs your website',
     description:
-      'Brand first, then the site. A 30-minute call, a written brand guide, your website live in two to three weeks, then changes by email live within a day. AI drafts, a person checks.',
+      'A 30-minute call, a written brand guide, your site live in two to three weeks, then changes by email within a day. AI drafts, a person checks every change.',
   },
   hero: {
     eyebrow: 'How it works',
@@ -121,9 +121,9 @@ export type HowCopy = typeof en;
 
 const de: HowCopy = {
   seo: {
-    title: 'So funktioniert es · Astia Web',
+    title: 'So baut und betreibt Astia Web Ihre Website',
     description:
-      'Erst die Marke, dann die Website. Ein 30-minütiges Gespräch, ein schriftlicher Markenleitfaden, Ihre Website live in zwei bis drei Wochen, danach Änderungen per E-Mail innerhalb eines Tages. AI entwirft, ein Mensch prüft.',
+      'Ein Gespräch, ein Markenleitfaden, Ihre Website in zwei bis drei Wochen live, danach Änderungen per E-Mail in einem Tag. AI entwirft, ein Mensch prüft.',
   },
   hero: {
     eyebrow: 'So funktioniert es',
@@ -238,9 +238,9 @@ const de: HowCopy = {
 
 const it: HowCopy = {
   seo: {
-    title: 'Come funziona · Astia Web',
+    title: 'Come Astia Web costruisce e gestisce il vostro sito',
     description:
-      'Prima il brand, poi il sito. Una chiamata di 30 minuti, linee guida del brand scritte, il vostro sito online in due o tre settimane, poi modifiche via email online entro un giorno. L’IA prepara, una persona controlla.',
+      'Una chiamata, linee guida del brand, il sito online in due o tre settimane, poi modifiche via email entro un giorno. L\u2019IA prepara, una persona controlla.',
   },
   hero: {
     eyebrow: 'Come funziona',

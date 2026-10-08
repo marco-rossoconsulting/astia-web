@@ -25,6 +25,7 @@ const path = href(lang, 'home');
   description={t.seo.description}
   path={path}
   nav="home"
+  ogImage={`/images/og/home-${lang}.jpg`}
   schemas={[serviceSchema(lang, t.seo.description, `${SITE_URL}${path}`)]}
 >
   <HomeHero lang={lang} />

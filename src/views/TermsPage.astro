@@ -1,0 +1,145 @@
+---
+/**
+ * General Terms and Annex 1, published in full (English, binding). The DE and
+ * IT routes explain the language rule and show the English original; they
+ * are noindex with the canonical pointing to /terms.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import LegalDoc from '@components/LegalDoc.astro';
+import { escapeHtml, href, type Lang } from '@/i18n';
+import { legal } from '@/i18n/legal';
+import {
+  ANNEX_1,
+  ANNEX_INTRO,
+  GENERAL_TERMS,
+  TERMS_PRECEDENCE,
+  TERMS_SUMMARY,
+  TERMS_SUMMARY_NOTE,
+} from '@/i18n/terms-en';
+import { breadcrumbSchema } from '@/lib/schema';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const l = legal[lang];
+const t = l.terms;
+const path = href(lang, 'terms');
+const isEnglish = lang === 'en';
+
+const linkify = (s: string) =>
+  escapeHtml(s).replace(/([\w.+-]+@[\w-]+\.[\w.-]+)/g, '<a href="mailto:$1">$1</a>');
+
+const toc = [
+  { id: 'summary', label: 'In short' },
+  ...GENERAL_TERMS.map((s) => ({ id: s.id, label: `${s.num} ${s.title}` })),
+  { id: 'annex-1', label: 'Annex 1: Data processing' },
+];
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  canonicalPath={href('en', 'terms')}
+  alternates={{ en: href('en', 'terms') }}
+  switchPaths={{ en: href('en', 'terms'), de: href('de', 'terms'), it: href('it', 'terms') }}
+  noindex={!isEnglish}
+  schemas={[breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: t.eyebrow, path }])]}
+>
+  <LegalDoc lang={lang} eyebrow={t.eyebrow} title={t.title} lede={t.lede} toc={toc} tocTitle={lang === "de" ? "Inhalt" : lang === "it" ? "Indice" : "Contents"}>
+    {!isEnglish && (
+      <p class="lang-note" lang={lang} slot="notice">{t.languageNote}</p>
+    )}
+
+    <div lang="en">
+      <section class="doc-section" id="summary">
+        <div class="doc-box">
+          <span class="mono-label">In short</span>
+          <p class="summary-note">{TERMS_SUMMARY_NOTE}</p>
+          <dl class="summary-grid">
+            {TERMS_SUMMARY.map((item, i) => (
+              <div>
+                <dt><span class="mono">{String(i + 1).padStart(2, '0')}</span>{item.t}</dt>
+                <dd>{item.d}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <p class="precedence">{TERMS_PRECEDENCE}</p>
+      </section>
+
+      {GENERAL_TERMS.map((section) => (
+        <section class="doc-section" id={section.id}>
+          <h2 class="doc-h2"><span class="mono">{section.num}</span>{section.title}</h2>
+          <ol class="clauses">
+            {section.clauses.map((c) => (
+              <li class="clause" id={`clause-${c.n.toLowerCase()}`}>
+                <span class="clause-n mono">{c.n}</span>
+                <div>
+                  <p>{c.lead && <strong>{c.lead} </strong>}<Fragment set:html={linkify(c.t)} /></p>
+                  {c.items && <ul class="clause-items">{c.items.map((it) => <li>{it}</li>)}</ul>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+
+      <section class="doc-section annex" id="annex-1">
+        <p class="mono-label annex-label">Annex 1</p>
+        <h2 class="doc-h2">Data processing</h2>
+        <p>{ANNEX_INTRO}</p>
+      </section>
+
+      {ANNEX_1.map((section) => (
+        <section class="doc-section" id={section.id}>
+          <h2 class="doc-h2"><span class="mono">{section.num}</span>{section.title}</h2>
+          <ol class="clauses">
+            {section.clauses.map((c) => (
+              <li class="clause" id={`clause-${c.n.toLowerCase()}`}>
+                <span class="clause-n mono">{c.n}</span>
+                <div>
+                  <p>{c.lead && <strong>{c.lead} </strong>}<Fragment set:html={linkify(c.t)} /></p>
+                  {c.items && <ul class="clause-items">{c.items.map((it) => <li>{it}</li>)}</ul>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+  </LegalDoc>
+</BaseLayout>
+
+<style>
+  .lang-note {
+    margin-top: 28px;
+    max-width: 62ch;
+    padding: 18px 20px;
+    border-left: 2px solid var(--rosso);
+    background: var(--cream);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .summary-note { font-size: 14.5px !important; color: var(--stone) !important; }
+  .summary-grid { margin: 20px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; }
+  .summary-grid dt { font-weight: 500; font-size: 16px; color: var(--ink); display: flex; gap: 10px; align-items: baseline; }
+  .summary-grid dt .mono { font-size: 11px; color: var(--rosso); }
+  .summary-grid dd { margin: 4px 0 0; font-size: 15px !important; line-height: 1.55 !important; }
+  .precedence { font-size: 15px !important; color: var(--stone) !important; }
+
+  .clauses { display: grid; gap: 14px; }
+  .clause { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; scroll-margin-top: calc(var(--nav-h) + 24px); }
+  .clause-n { padding-top: 5px; font-size: 12px; color: var(--stone); }
+  .clause strong { font-weight: 600; color: var(--ink); }
+  .clause-items { margin-top: 8px; display: grid; gap: 6px; }
+  .clause-items li { font-size: 16px !important; }
+
+  .annex { margin-top: 72px !important; padding-top: 40px; border-top: 1px solid var(--ink); }
+  .annex-label { display: block; margin-bottom: 10px; color: var(--rosso); }
+
+  @media (max-width: 599px) {
+    .summary-grid { grid-template-columns: minmax(0, 1fr); }
+    .clause { grid-template-columns: 40px minmax(0, 1fr); gap: 8px; }
+  }
+</style>

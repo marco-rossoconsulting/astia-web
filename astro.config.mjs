@@ -12,6 +12,8 @@ export default defineConfig({
   trailingSlash: 'never',
   build: {
     format: 'file',
-    inlineStylesheets: 'auto',
+    // The whole stylesheet is small (~20 KB); inlining it removes the only
+    // render-blocking requests, so the first paint needs one round trip.
+    inlineStylesheets: 'always',
   },
 });

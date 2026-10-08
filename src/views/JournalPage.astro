@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import PageHero from '@components/PageHero.astro';
 import FinalCta from '@components/FinalCta.astro';
 import Icon from '@components/Icon.astro';
+import PreferredSource from '@components/PreferredSource.astro';
 import { formatDate, href, type Lang } from '@/i18n';
 import { pages } from '@/i18n/pages';
 import { shared } from '@/i18n/shared';
@@ -23,6 +24,7 @@ const [latest, ...rest] = articles;
   description={t.seo.description}
   path={path}
   nav="journal"
+  ogImage={`/images/og/journal-${lang}.jpg`}
   schemas={[breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: s.nav.journal, path }])]}
 >
   <PageHero title={t.title} lede={t.lede} />
@@ -63,6 +65,7 @@ const [latest, ...rest] = articles;
           </li>
         ))}
       </ul>
+      <div class="pref-wrap reveal"><PreferredSource lang={lang} /></div>
     </div>
   </section>
 
@@ -107,6 +110,7 @@ const [latest, ...rest] = articles;
   .read :global(svg) { transition: transform 0.25s var(--ease); }
   .feature:hover .read :global(svg), .item:hover .read :global(svg) { transform: translateX(3px); }
 
+  .pref-wrap { margin-top: 56px; }
   .list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
   .item { display: block; padding: 36px 0 40px; border-bottom: 1px solid var(--bone); height: 100%; }
   .item .meta { margin-top: 0; }

@@ -2,9 +2,9 @@ import type { Lang } from './index';
 
 const en = {
   seo: {
-    title: 'Astia Web · One price for everything your website needs',
+    title: 'Websites for hotels and small businesses · Astia Web',
     description:
-      'We write your brand guide, build your website and run it for 150 a month. Every change, every language, live within a day. For independent hotels and small businesses.',
+      'One price for everything your website needs: 150 a month for a brand guide, a custom website, every change and every language. For hotels and small businesses.',
   },
   hero: {
     eyebrow: 'One price · Everything included',
@@ -122,9 +122,9 @@ export type HomeCopy = typeof en;
 
 const de: HomeCopy = {
   seo: {
-    title: 'Astia Web · Ein Preis für alles, was Ihre Website braucht',
+    title: 'Websites für Hotels und kleine Unternehmen · Astia Web',
     description:
-      'Wir schreiben Ihren Markenleitfaden, bauen Ihre Website und betreiben sie für 150 pro Monat. Jede Änderung, jede Sprache, live innerhalb eines Tages. Für unabhängige Hotels und kleine Unternehmen.',
+      'Ein Preis für alles, was Ihre Website braucht: 150 pro Monat für Markenleitfaden, eigene Website, jede Änderung und jede Sprache. Für Hotels und KMU.',
   },
   hero: {
     eyebrow: 'Ein Preis · Alles inklusive',
@@ -240,9 +240,9 @@ const de: HomeCopy = {
 
 const it: HomeCopy = {
   seo: {
-    title: 'Astia Web · Un prezzo per tutto ciò che serve al vostro sito',
+    title: 'Siti web per hotel e piccole imprese · Astia Web',
     description:
-      'Scriviamo le linee guida del vostro brand, costruiamo il vostro sito e lo gestiamo per 150 al mese. Ogni modifica, ogni lingua, online entro un giorno. Per hotel indipendenti e piccole imprese.',
+      'Un prezzo per tutto ciò che serve al vostro sito: 150 al mese per linee guida del brand, sito su misura, ogni modifica e ogni lingua. Per hotel e PMI.',
   },
   hero: {
     eyebrow: 'Un prezzo · Tutto incluso',

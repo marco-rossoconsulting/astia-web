@@ -1,0 +1,48 @@
+---
+/** Privacy policy and legal notice, in EN / DE / IT. */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import LegalDoc from '@components/LegalDoc.astro';
+import DocSections from '@components/DocSections.astro';
+import { href, type Lang } from '@/i18n';
+import { legal, LEGAL_UPDATED } from '@/i18n/legal';
+import { breadcrumbSchema } from '@/lib/schema';
+
+interface Props {
+  lang: Lang;
+  kind: 'privacy' | 'legal';
+}
+const { lang, kind } = Astro.props;
+const l = legal[lang];
+const t = l[kind];
+const path = href(lang, kind);
+const slug = (s: string) =>
+  s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const ids = t.sections.map((s) => slug(s.title));
+const tocTitle = lang === 'de' ? 'Inhalt' : lang === 'it' ? 'Indice' : 'Contents';
+---
+<BaseLayout
+  lang={lang}
+  title={t.seo.title}
+  description={t.seo.description}
+  path={path}
+  schemas={[breadcrumbSchema([{ name: 'Astia Web', path: href(lang, 'home') }, { name: t.eyebrow, path }])]}
+>
+  <LegalDoc
+    lang={lang}
+    eyebrow={t.eyebrow}
+    title={t.title}
+    lede={t.lede}
+    updatedLabel={l.updated}
+    updated={LEGAL_UPDATED}
+    toc={t.sections.map((s, i) => ({ id: ids[i], label: s.title }))}
+    tocTitle={tocTitle}
+  >
+    {kind === 'privacy' && (
+      <div class="doc-box">
+        <span class="mono-label">{l.privacy.summaryTitle}</span>
+        <ul class="doc-list">{l.privacy.summary.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    )}
+    <DocSections sections={t.sections} ids={ids} />
+  </LegalDoc>
+</BaseLayout>
