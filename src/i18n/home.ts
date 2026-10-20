@@ -93,14 +93,27 @@ const en = {
     fair: 'To be fair: builder sites are often fast, and a lean one-off build you rarely change can cost less. If that is you, we will say so.',
     link: 'Compare them in detail',
   },
+  hotels: {
+    num: '04 — For hotels',
+    title: 'A site your guests can book *direct*.',
+    lede: 'Hospitality is where we started and where most of our work is. For an independent hotel, B&B or lodge, the 150 a month already covers what a hotel website has to do.',
+    items: [
+      { t: 'Your booking engine, on your site', d: 'We connect the booking engine you already use, so guests can book direct on your own pages. Forms, maps and analytics are connected too.' },
+      { t: 'Every language your guests speak', d: 'AI translates every page, a person checks it, and each change reaches every language at once. More languages cost nothing extra.' },
+      { t: 'New rates, live within 24 hours', d: 'Rates, a seasonal menu, new photos: email us and the change is live within 24 hours, Monday to Friday. No invoice per change.' },
+      { t: 'Based in Lugano', d: 'Astia Web is run from Breganzona (Lugano), in Ticino, Switzerland. Swiss hotels pay in CHF, and calls are in English, German or Italian.' },
+    ],
+    note: 'Several hotels? The same price for each site, the same 24-hour changes, and no waiting list.',
+    link: 'See everything the 150 includes',
+  },
   price: {
-    num: '04 — The price',
+    num: '05 — The price',
     title: '150 a month. No tiers, no add-ons, no *surprises*.',
     lede: 'Same price for one site or fifty. Per site, excluding VAT, in CHF, EUR or USD depending on your market.',
     link: 'See the five-year cost',
   },
   how: {
-    num: '05 — How it works',
+    num: '06 — How it works',
     title: 'Brand first, then the site. Live in two to three *weeks*.',
     steps: [
       { t: 'A 30-minute call', d: 'We learn your business: who you serve, what makes you different, how you speak to guests.' },
@@ -111,7 +124,7 @@ const en = {
     note: 'Why brand first? A site without a clear direction comes out generic. A site built from your own brand guide sounds and looks like your business, not like AI.',
   },
   final: {
-    num: '06 — Next step',
+    num: '07 — Next step',
     title: 'Book a call. Leave with the start of your brand *guide*.',
     lede: 'Thirty minutes. We learn your business, answer every question honestly, and tell you plainly if Astia Web is not the right fit.',
     or: 'Or write to',
@@ -213,14 +226,27 @@ const de: HomeCopy = {
     fair: 'Fairerweise: Baukasten-Websites sind oft schnell, und ein schlanker Einmal-Bau, den Sie selten ändern, kann weniger kosten. Wenn das auf Sie zutrifft, sagen wir es Ihnen.',
     link: 'Im Detail vergleichen',
   },
+  hotels: {
+    num: '04 — Für Hotels',
+    title: 'Eine Website, auf der Gäste *direkt* buchen.',
+    lede: 'In der Hotellerie haben wir angefangen, und dort liegt der Grossteil unserer Arbeit. Für ein unabhängiges Hotel, ein B&B oder eine Lodge decken die 150 pro Monat bereits ab, was eine Hotel-Website leisten muss.',
+    items: [
+      { t: 'Ihre Buchungsmaschine, auf Ihrer Website', d: 'Wir binden die Buchungsmaschine ein, mit der Sie schon arbeiten. So buchen Ihre Gäste direkt auf Ihren eigenen Seiten. Formulare, Karten und Analytics sind ebenfalls angebunden.' },
+      { t: 'Jede Sprache Ihrer Gäste', d: 'AI übersetzt jede Seite, ein Mensch prüft sie, und jede Änderung erscheint gleichzeitig in allen Sprachen. Weitere Sprachen kosten nichts extra.' },
+      { t: 'Neue Preise, live innerhalb von 24 Stunden', d: 'Zimmerpreise, die Karte für die neue Saison, frische Fotos: Schreiben Sie uns, und die Änderung ist innerhalb von 24 Stunden live, Montag bis Freitag. Ohne Rechnung pro Änderung.' },
+      { t: 'Zu Hause in Lugano', d: 'Astia Web sitzt in Breganzona (Lugano), im Tessin. Schweizer Hotels bezahlen in CHF, und Gespräche führen wir auf Deutsch, Englisch oder Italienisch.' },
+    ],
+    note: 'Mehrere Hotels? Derselbe Preis für jede Website, dieselben Änderungen innerhalb von 24 Stunden, keine Warteliste.',
+    link: 'Alles, was in den 150 enthalten ist',
+  },
   price: {
-    num: '04 — Der Preis',
+    num: '05 — Der Preis',
     title: '150 pro Monat. Keine Stufen, keine Extras, keine *Überraschungen*.',
     lede: 'Derselbe Preis für eine Website oder fünfzig. Pro Website, exkl. MwSt., in CHF, EUR oder USD, je nach Ihrem Markt.',
     link: 'Die Kosten über fünf Jahre',
   },
   how: {
-    num: '05 — So funktioniert es',
+    num: '06 — So funktioniert es',
     title: 'Erst die Marke, dann die Website. Live in zwei bis drei *Wochen*.',
     steps: [
       { t: 'Ein 30-minütiges Gespräch', d: 'Wir lernen Ihr Unternehmen kennen: wen Sie bedienen, was Sie unterscheidet, wie Sie mit Gästen sprechen.' },
@@ -231,7 +257,7 @@ const de: HomeCopy = {
     note: 'Warum zuerst die Marke? Eine Website ohne klare Richtung wird beliebig. Eine Website aus Ihrem eigenen Markenleitfaden klingt und wirkt wie Ihr Unternehmen, nicht wie AI.',
   },
   final: {
-    num: '06 — Nächster Schritt',
+    num: '07 — Nächster Schritt',
     title: 'Buchen Sie ein Gespräch. Dort beginnt Ihr *Markenleitfaden*.',
     lede: 'Dreissig Minuten. Wir lernen Ihr Unternehmen kennen, beantworten jede Frage ehrlich und sagen Ihnen offen, wenn Astia Web nicht das Richtige ist.',
     or: 'Oder schreiben Sie an',
@@ -331,14 +357,27 @@ const it: HomeCopy = {
     fair: 'Per essere onesti: i siti fatti con questi strumenti sono spesso veloci, e un sito una tantum essenziale che cambiate raramente può costare meno. Se è il vostro caso, ve lo diremo.',
     link: 'Il confronto nel dettaglio',
   },
+  hotels: {
+    num: '04 — Per gli hotel',
+    title: 'Un sito dove gli ospiti prenotano *direttamente*.',
+    lede: 'L’ospitalità è il settore da cui siamo partiti, ed è lì che si concentra gran parte del nostro lavoro. Per un hotel indipendente, un B&B o un lodge, i 150 al mese coprono già tutto ciò che deve fare il sito di un hotel.',
+    items: [
+      { t: 'Il vostro booking engine, sul vostro sito', d: 'Colleghiamo il booking engine che usate già, così gli ospiti prenotano direttamente dalle vostre pagine. Anche moduli, mappe e statistiche sono collegati.' },
+      { t: 'Tutte le lingue dei vostri ospiti', d: 'L’IA traduce ogni pagina, una persona la controlla, e ogni modifica arriva in tutte le lingue insieme. Le lingue in più non costano nulla.' },
+      { t: 'Nuove tariffe, online entro 24 ore', d: 'Tariffe, il menu della nuova stagione, foto nuove: scriveteci e la modifica è online entro 24 ore, dal lunedì al venerdì. Nessuna fattura per ogni modifica.' },
+      { t: 'Di casa a Lugano', d: 'Astia Web ha sede a Breganzona (Lugano), in Ticino. Gli hotel svizzeri pagano in CHF, e le chiamate si fanno in italiano, tedesco o inglese.' },
+    ],
+    note: 'Più hotel? Stesso prezzo per ogni sito, le stesse modifiche entro 24 ore, nessuna lista d’attesa.',
+    link: 'Tutto ciò che è incluso nei 150',
+  },
   price: {
-    num: '04 — Il prezzo',
+    num: '05 — Il prezzo',
     title: '150 al mese. Niente fasce, niente extra, niente *sorprese*.',
     lede: 'Stesso prezzo per un sito o cinquanta. Per sito, IVA esclusa, in CHF, EUR o USD secondo il vostro mercato.',
     link: 'Il costo su cinque anni',
   },
   how: {
-    num: '05 — Come funziona',
+    num: '06 — Come funziona',
     title: 'Prima il brand, poi il sito. Online in due o tre *settimane*.',
     steps: [
       { t: 'Una chiamata di 30 minuti', d: 'Conosciamo la vostra attività: chi servite, cosa vi distingue, come parlate ai vostri ospiti.' },
@@ -349,7 +388,7 @@ const it: HomeCopy = {
     note: 'Perché prima il brand? Un sito senza una direzione chiara risulta generico. Un sito costruito dalle vostre linee guida parla e appare come la vostra attività, non come l’IA.',
   },
   final: {
-    num: '06 — Il prossimo passo',
+    num: '07 — Il prossimo passo',
     title: 'Prenotate una chiamata. Le vostre linee guida del brand *iniziano* lì.',
     lede: 'Trenta minuti. Conosciamo la vostra attività, rispondiamo onestamente a ogni domanda e vi diciamo chiaramente se Astia Web non fa per voi.',
     or: 'Oppure scrivete a',

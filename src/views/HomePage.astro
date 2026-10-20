@@ -4,6 +4,7 @@ import HomeHero from '@components/home/HomeHero.astro';
 import AiShift from '@components/home/AiShift.astro';
 import RebuildCycle from '@components/home/RebuildCycle.astro';
 import Routes from '@components/home/Routes.astro';
+import ForHotels from '@components/home/ForHotels.astro';
 import PriceCard from '@components/PriceCard.astro';
 import IncludedLists from '@components/IncludedLists.astro';
 import FinalCta from '@components/FinalCta.astro';
@@ -32,8 +33,9 @@ const path = href(lang, 'home');
   <AiShift lang={lang} />
   <RebuildCycle lang={lang} />
   <Routes lang={lang} />
+  <ForHotels lang={lang} />
 
-  {/* 04 — The price */}
+  {/* 05 — The price */}
   <section class="section section--cream" aria-labelledby="price-title">
     <div class="container">
       <div class="sec-head">
@@ -51,7 +53,7 @@ const path = href(lang, 'home');
     </div>
   </section>
 
-  {/* 05 — How it works */}
+  {/* 06 — How it works */}
   <section class="section section--paper" aria-labelledby="how-title">
     <div class="container">
       <div class="sec-head">
