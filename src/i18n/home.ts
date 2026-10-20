@@ -95,7 +95,7 @@ const en = {
   },
   hotels: {
     num: '04 — For hotels',
-    title: 'For hotels: a site your guests can book *direct*.',
+    title: 'A site your guests can book *direct*.',
     lede: 'Hospitality is where we started and where most of our work is. For an independent hotel, B&B or lodge, the 150 a month already covers what a hotel website has to do.',
     items: [
       { t: 'Your booking engine, on your site', d: 'We connect the booking engine you already use, so guests can book direct on your own pages. Forms, maps and analytics are connected too.' },
@@ -228,13 +228,13 @@ const de: HomeCopy = {
   },
   hotels: {
     num: '04 — Für Hotels',
-    title: 'Für Hotels: eine Website, auf der Gäste *direkt* buchen.',
+    title: 'Eine Website, auf der Gäste *direkt* buchen.',
     lede: 'In der Hotellerie haben wir angefangen, und dort liegt der Grossteil unserer Arbeit. Für ein unabhängiges Hotel, ein B&B oder eine Lodge decken die 150 pro Monat bereits ab, was eine Hotel-Website leisten muss.',
     items: [
       { t: 'Ihre Buchungsmaschine, auf Ihrer Website', d: 'Wir binden die Buchungsmaschine ein, mit der Sie schon arbeiten. So buchen Ihre Gäste direkt auf Ihren eigenen Seiten. Formulare, Karten und Analytics sind ebenfalls angebunden.' },
       { t: 'Jede Sprache Ihrer Gäste', d: 'AI übersetzt jede Seite, ein Mensch prüft sie, und jede Änderung erscheint gleichzeitig in allen Sprachen. Weitere Sprachen kosten nichts extra.' },
       { t: 'Neue Preise, live innerhalb von 24 Stunden', d: 'Zimmerpreise, die Karte für die neue Saison, frische Fotos: Schreiben Sie uns, und die Änderung ist innerhalb von 24 Stunden live, Montag bis Freitag. Ohne Rechnung pro Änderung.' },
-      { t: 'Zuhause in Lugano', d: 'Astia Web sitzt in Breganzona (Lugano), im Tessin. Schweizer Hotels bezahlen in CHF, und Gespräche führen wir auf Deutsch, Englisch oder Italienisch.' },
+      { t: 'Zu Hause in Lugano', d: 'Astia Web sitzt in Breganzona (Lugano), im Tessin. Schweizer Hotels bezahlen in CHF, und Gespräche führen wir auf Deutsch, Englisch oder Italienisch.' },
     ],
     note: 'Mehrere Hotels? Derselbe Preis für jede Website, dieselben Änderungen innerhalb von 24 Stunden, keine Warteliste.',
     link: 'Alles, was in den 150 enthalten ist',
@@ -359,12 +359,12 @@ const it: HomeCopy = {
   },
   hotels: {
     num: '04 — Per gli hotel',
-    title: 'Per gli hotel: un sito dove gli ospiti prenotano *direttamente*.',
+    title: 'Un sito dove gli ospiti prenotano *direttamente*.',
     lede: 'L’ospitalità è il settore da cui siamo partiti, ed è lì che si concentra gran parte del nostro lavoro. Per un hotel indipendente, un B&B o un lodge, i 150 al mese coprono già tutto ciò che deve fare il sito di un hotel.',
     items: [
       { t: 'Il vostro booking engine, sul vostro sito', d: 'Colleghiamo il booking engine che usate già, così gli ospiti prenotano direttamente dalle vostre pagine. Anche moduli, mappe e statistiche sono collegati.' },
       { t: 'Tutte le lingue dei vostri ospiti', d: 'L’IA traduce ogni pagina, una persona la controlla, e ogni modifica arriva in tutte le lingue insieme. Le lingue in più non costano nulla.' },
-      { t: 'Nuove tariffe, online entro 24 ore', d: 'Tariffe, il menu della nuova stagione, foto nuove: scriveteci e la modifica è online entro 24 ore, dal lunedì al venerdì. Nessuna fattura a modifica.' },
+      { t: 'Nuove tariffe, online entro 24 ore', d: 'Tariffe, il menu della nuova stagione, foto nuove: scriveteci e la modifica è online entro 24 ore, dal lunedì al venerdì. Nessuna fattura per ogni modifica.' },
       { t: 'Di casa a Lugano', d: 'Astia Web ha sede a Breganzona (Lugano), in Ticino. Gli hotel svizzeri pagano in CHF, e le chiamate si fanno in italiano, tedesco o inglese.' },
     ],
     note: 'Più hotel? Stesso prezzo per ogni sito, le stesse modifiche entro 24 ore, nessuna lista d’attesa.',
