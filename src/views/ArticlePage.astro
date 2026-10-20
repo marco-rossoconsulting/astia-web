@@ -38,6 +38,8 @@ const title = article.data.seo?.title ?? `${article.data.title} · Astia Web`;
 const description = article.data.seo?.description ?? article.data.excerpt;
 const pending = article.data.translationPending;
 const ogImage = article.data.seo?.ogImage ?? `/images/og/journal-${baseSlug(article.data.route)}.jpg`;
+const lead = article.data.leadImage;
+const relatedRoutes = ['pricing', 'how', 'book'] as const;
 ---
 <BaseLayout
   lang={lang}
@@ -51,7 +53,7 @@ const ogImage = article.data.seo?.ogImage ?? `/images/og/journal-${baseSlug(arti
   ogImage={ogImage}
   noindex={pending}
   schemas={[
-    articleSchema({ lang, title: article.data.title, description, path, date: article.data.date, image: ogImage }),
+    articleSchema({ lang, title: article.data.title, description, path, date: article.data.date, image: lead?.src ?? ogImage }),
     breadcrumbSchema([
       { name: 'Astia Web', path: href(lang, 'home') },
       { name: s.nav.journal, path: href(lang, 'journal') },
@@ -72,15 +74,37 @@ const ogImage = article.data.seo?.ogImage ?? `/images/og/journal-${baseSlug(arti
       <div class="byline rise" style="--d:0.22s">
         <picture>
           <source type="image/webp" srcset="/images/marco-rosso-founder-astia-web-avatar.webp" />
-          <img class="byline-photo" src="/images/marco-rosso-founder-astia-web-avatar.jpg" alt="" width="160" height="160" loading="lazy" decoding="async" />
+          <img class="byline-photo" src="/images/marco-rosso-founder-astia-web-avatar.jpg" alt={t.avatarAlt} width="160" height="160" loading="lazy" decoding="async" />
         </picture>
         <span><strong>{t.byline}</strong><br />{t.bylineRole}</span>
       </div>
     </header>
 
+    {lead && (
+      <figure class="container-text lead-figure">
+        <img class="lead-img" src={lead.src} alt={lead.alt} width={lead.width} height={lead.height} loading="eager" decoding="async" fetchpriority="high" />
+        {lead.caption && <figcaption class="lead-caption">{lead.caption}</figcaption>}
+      </figure>
+    )}
+
     <div class="container-text prose">
       <Content />
     </div>
+
+    <aside class="container-text related" aria-labelledby="related-title">
+      <h2 id="related-title" class="mono-label related-label">{t.related.label}</h2>
+      <p class="related-intro">{t.related.intro}</p>
+      <ul class="related-list">
+        {t.related.links.map((l, i) => (
+          <li>
+            <a href={href(lang, relatedRoutes[i])} class="related-item">
+              <span class="related-a">{l.a}<Icon name="arrow-right" size={16} /></span>
+              <span class="related-d">{l.d}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
     {!pending && <div class="container-text pref-wrap"><PreferredSource lang={lang} /></div>}
 
   </article>
@@ -174,6 +198,29 @@ const ogImage = article.data.seo?.ogImage ?? `/images/og/journal-${baseSlug(arti
   .prose :global(ul), .prose :global(ol) { margin: 0 0 1.25em; padding-left: 1.2em; list-style: disc; }
   .prose :global(ol) { list-style: decimal; }
   .prose :global(li) { margin-bottom: 0.4em; }
+
+  .lead-figure { margin-top: 40px; }
+  .lead-img { display: block; width: 100%; height: auto; border-radius: var(--r-card); background: var(--bone-soft); }
+  .lead-caption { margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--stone); }
+
+  .related { margin-top: 56px; }
+  .related-label { display: block; }
+  .related-intro { margin-top: 12px; font-size: 16px; line-height: 1.6; color: var(--stone); }
+  .related-list { margin-top: 20px; border-bottom: 1px solid var(--bone); }
+  .related-item { display: grid; gap: 4px; padding: 18px 0; border-top: 1px solid var(--bone); }
+  .related-a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: clamp(21px, 2vw, 24px);
+    line-height: 1.25;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+  .related-a :global(svg) { flex: none; color: var(--rosso); }
+  .related-item:hover .related-a { color: var(--rosso); }
+  .related-d { font-size: 15px; line-height: 1.55; color: var(--stone); }
 
   .pref-wrap { margin-top: 48px; }
   .more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
