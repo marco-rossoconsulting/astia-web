@@ -12,6 +12,8 @@ seo:
   description: "AI agents now write much of a website’s code. What that means for small business websites, what still needs a person, and what the work should cost."
 ---
 
+*A note on currency: the € amounts in this article are EU-market figures, not Swiss prices. Astia Web’s own price, 150 a month, is charged in CHF, EUR or USD depending on your market.*
+
 The term started as a joke. *Vibe coding* — the practice of building software by describing what you want in natural language to an AI agent and refining the result — sounded too casual to be serious. Six months later, it's the default workflow for a significant fraction of working developers, and the implications for small business websites are unusually clear.
 
 For most of web development's history, building a website required two distinct kinds of skill. Engineering skill: knowing HTML, CSS, JavaScript, how databases work, how to deploy. And design skill: knowing what the site should look like, what message it should send, how the buyer thinks. The first was scarce and expensive. The second was scarce and expensive in a different way — there are plenty of people with design opinions, far fewer with design judgment.
@@ -36,7 +38,7 @@ These are not engineering problems. They're hospitality problems, with a web int
 
 ## The economic shift, in numbers
 
-A reasonable estimate of where the cost of a custom hotel website actually sits in 2026:
+A reasonable estimate, in euros for the EU market, of where the cost of a custom hotel website actually sits in 2026:
 
 Engineering work: €200–500 (down from €8,000–15,000). Most of it agent-drafted, human-reviewed.
 

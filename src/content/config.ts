@@ -18,6 +18,20 @@ const articles = defineCollection({
     published: z.boolean().default(true),
     /** True when the body is a stub pointing to another language. */
     translationPending: z.boolean().default(false),
+    /**
+     * Optional lead image, shown under the byline and used as the Article
+     * schema image. Use a real photo or screenshot in /public/images with
+     * alt text that describes what it shows.
+     */
+    leadImage: z
+      .object({
+        src: z.string().startsWith('/images/'),
+        alt: z.string().min(10, 'Describe what the lead image shows'),
+        width: z.number().int().positive(),
+        height: z.number().int().positive(),
+        caption: z.string().optional(),
+      })
+      .optional(),
     seo: z
       .object({
         title: z.string().optional(),

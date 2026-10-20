@@ -12,6 +12,8 @@ seo:
   description: "A boutique hotel once paid an agency €25,000 to €40,000 for a site that dated in two years. What changed, and what a fair price for a website looks like now."
 ---
 
+*A note on currency: the € amounts in this article are EU-market figures, not Swiss prices. Astia Web’s own price, 150 a month, is charged in CHF, EUR or USD depending on your market.*
+
 Ten years ago, commissioning a hotel website was a real project. You hired an agency. They sent a discovery questionnaire, ran a kickoff workshop, billed by the hour, presented three wireframe directions, billed for revisions, built on WordPress or a proprietary CMS, integrated your booking engine for an extra fee, hosted on a server they marked up 4x, and handed it over five months later with a maintenance retainer that would consume another €1,000 a month for as long as you owned the site.
 
 That model wasn't a scam. It made sense given the tools of 2015. Building a custom website required real engineering. Maintaining it required ongoing engineering. Hosting it required dedicated infrastructure. You were paying for human time, because that was the only kind of time available.

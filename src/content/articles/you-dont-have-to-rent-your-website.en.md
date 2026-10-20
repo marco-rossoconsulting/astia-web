@@ -50,4 +50,4 @@ A static website owned by you, hosted on Netlify or Cloudflare Pages, costs zero
 
 The reason most hoteliers don't own their sites isn't cost. It's inertia. Owning has been positioned as a developer luxury for so long that operators stopped considering it. That positioning is now wrong, and the operators who notice first will benefit accordingly.
 
-At Astia Web, the portability test has a short answer. You own the code, the content and the full history. If you leave, you get the full code as a zip and help moving your domain, at no cost.
+At Astia Web, the portability test has a short answer. You own the code, the content and the full history. If you leave, you get the full code as a zip and help moving your domain, at no cost. All of it is part of [the one price of 150 a month](/pricing).
