@@ -39,7 +39,6 @@ const description = article.data.seo?.description ?? article.data.excerpt;
 const pending = article.data.translationPending;
 const ogImage = article.data.seo?.ogImage ?? `/images/og/journal-${baseSlug(article.data.route)}.jpg`;
 const lead = article.data.leadImage;
-const relatedRoutes = ['pricing', 'how', 'book'] as const;
 ---
 <BaseLayout
   lang={lang}
@@ -74,7 +73,7 @@ const relatedRoutes = ['pricing', 'how', 'book'] as const;
       <div class="byline rise" style="--d:0.22s">
         <picture>
           <source type="image/webp" srcset="/images/marco-rosso-founder-astia-web-avatar.webp" />
-          <img class="byline-photo" src="/images/marco-rosso-founder-astia-web-avatar.jpg" alt={t.avatarAlt} width="160" height="160" loading="lazy" decoding="async" />
+          <img class="byline-photo" src="/images/marco-rosso-founder-astia-web-avatar.jpg" alt="" width="160" height="160" loading="lazy" decoding="async" />
         </picture>
         <span><strong>{t.byline}</strong><br />{t.bylineRole}</span>
       </div>
@@ -95,9 +94,9 @@ const relatedRoutes = ['pricing', 'how', 'book'] as const;
       <h2 id="related-title" class="mono-label related-label">{t.related.label}</h2>
       <p class="related-intro">{t.related.intro}</p>
       <ul class="related-list">
-        {t.related.links.map((l, i) => (
+        {t.related.links.map((l) => (
           <li>
-            <a href={href(lang, relatedRoutes[i])} class="related-item">
+            <a href={href(lang, l.route)} class="related-item">
               <span class="related-a">{l.a}<Icon name="arrow-right" size={16} /></span>
               <span class="related-d">{l.d}</span>
             </a>

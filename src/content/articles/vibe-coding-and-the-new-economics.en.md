@@ -12,7 +12,7 @@ seo:
   description: "AI agents now write much of a website’s code. What that means for small business websites, what still needs a person, and what the work should cost."
 ---
 
-*A note on currency: the € amounts in this article are EU-market figures in euros, not Swiss prices. Astia Web’s own price, 150 a month, is charged in CHF, EUR or USD depending on your market.*
+*A note on currency: the € amounts in this article are EU-market figures, not Swiss prices. Astia Web’s own price, 150 a month, is charged in CHF, EUR or USD depending on your market.*
 
 The term started as a joke. *Vibe coding* — the practice of building software by describing what you want in natural language to an AI agent and refining the result — sounded too casual to be serious. Six months later, it's the default workflow for a significant fraction of working developers, and the implications for small business websites are unusually clear.
 

@@ -1,5 +1,5 @@
 /** Copy for the smaller pages: Work, Journal, Book a call, Thank you, 404. */
-import type { Lang } from './index';
+import type { Lang, RouteKey } from './index';
 
 const en = {
   work: {
@@ -29,14 +29,13 @@ const en = {
     endTitle: 'Want this applied to your own *site*?',
     endLede: 'Thirty minutes, no pitch. We look at your site and tell you plainly what we would change, and what we would leave alone.',
     preferred: { text: 'Want to see our articles first when you search?', link: 'Add Astia Web as a preferred source on Google' },
-    avatarAlt: 'Marco Rosso',
     related: {
       label: 'Related pages',
       intro: 'If this article raised the question for your own site, these pages answer it in plain terms.',
       links: [
-        { a: 'What 150 a month includes, and the five-year cost', d: 'Everything included, what we discuss first, and what you will have paid after five years.' },
-        { a: 'How Astia Web builds and runs your website', d: 'From a 30-minute call to a site live in two to three weeks, then changes within 24 hours.' },
-        { a: 'Book a 30-minute call about your website', d: 'We learn your business and tell you plainly if Astia Web is the right fit.' },
+        { route: 'pricing' as RouteKey, a: 'What 150 a month includes, and the five-year cost', d: 'Everything included, what we discuss first, and what you will have paid after five years.' },
+        { route: 'how' as RouteKey, a: 'How Astia Web builds and runs your website', d: 'From a 30-minute call to a site live in two to three weeks, then changes within 24 hours.' },
+        { route: 'book' as RouteKey, a: 'Book a 30-minute call about your website', d: 'We learn your business and tell you plainly if Astia Web is the right fit.' },
       ],
     },
   },
@@ -124,14 +123,13 @@ const de: PagesCopy = {
     endTitle: 'Das auf Ihre eigene Website *angewandt*?',
     endLede: 'Dreissig Minuten, kein Verkaufsgespräch. Wir schauen uns Ihre Website an und sagen Ihnen offen, was wir ändern würden und was nicht.',
     preferred: { text: 'Möchten Sie unsere Beiträge bei der Suche zuerst sehen?', link: 'Astia Web bei Google als bevorzugte Quelle hinzufügen' },
-    avatarAlt: 'Marco Rosso',
     related: {
       label: 'Weiterführende Seiten',
       intro: 'Wenn dieser Beitrag Fragen zu Ihrer eigenen Website aufwirft: Hier finden Sie die Antworten, klar und ohne Umwege.',
       links: [
-        { a: 'Was die 150 pro Monat enthalten, und die Kosten über fünf Jahre', d: 'Was inklusive ist, was wir vorher besprechen und was Sie nach fünf Jahren bezahlt haben.' },
-        { a: 'Wie Astia Web Ihre Website baut und betreibt', d: 'Vom 30-minütigen Gespräch zur Website, live in zwei bis drei Wochen, danach Änderungen innerhalb von 24 Stunden.' },
-        { a: 'Ein 30-minütiges Gespräch über Ihre Website buchen', d: 'Wir lernen Ihr Unternehmen kennen und sagen Ihnen offen, ob Astia Web das Richtige ist.' },
+        { route: 'pricing', a: 'Was die 150 pro Monat enthalten, und die Kosten über fünf Jahre', d: 'Was inklusive ist, was wir vorher besprechen und was Sie nach fünf Jahren bezahlt haben.' },
+        { route: 'how', a: 'Wie Astia Web Ihre Website baut und betreibt', d: 'Vom 30-minütigen Gespräch zur Website, live in zwei bis drei Wochen, danach Änderungen innerhalb von 24 Stunden.' },
+        { route: 'book', a: 'Ein 30-minütiges Gespräch über Ihre Website buchen', d: 'Wir lernen Ihr Unternehmen kennen und sagen Ihnen offen, ob Astia Web das Richtige ist.' },
       ],
     },
   },
@@ -217,14 +215,13 @@ const it: PagesCopy = {
     endTitle: 'Volete applicarlo al vostro *sito*?',
     endLede: 'Trenta minuti, nessuna vendita. Guardiamo il vostro sito e vi diciamo chiaramente cosa cambieremmo, e cosa lasceremmo com’è.',
     preferred: { text: 'Volete vedere per primi i nostri articoli quando cercate?', link: 'Aggiungete Astia Web come fonte preferita su Google' },
-    avatarAlt: 'Marco Rosso',
     related: {
       label: 'Pagine correlate',
       intro: 'Se questo articolo vi ha fatto pensare al vostro sito, queste pagine vi danno le risposte, senza giri di parole.',
       links: [
-        { a: 'Cosa includono i 150 al mese, e il costo su cinque anni', d: 'Tutto ciò che è incluso, cosa valutiamo prima insieme e quanto avrete pagato dopo cinque anni.' },
-        { a: 'Come Astia Web costruisce e gestisce il vostro sito', d: 'Da una chiamata di 30 minuti a un sito online in due o tre settimane, poi modifiche entro 24 ore.' },
-        { a: 'Prenotate una chiamata di 30 minuti sul vostro sito', d: 'Conosciamo la vostra attività e vi diciamo chiaramente se Astia Web fa per voi.' },
+        { route: 'pricing', a: 'Cosa includono i 150 al mese, e il costo su cinque anni', d: 'Tutto ciò che è incluso, cosa valutiamo prima insieme e quanto avrete pagato dopo cinque anni.' },
+        { route: 'how', a: 'Come Astia Web costruisce e gestisce il vostro sito', d: 'Da una chiamata di 30 minuti a un sito online in due o tre settimane, poi modifiche entro 24 ore.' },
+        { route: 'book', a: 'Prenotate una chiamata di 30 minuti per parlare del vostro sito', d: 'Conosciamo la vostra attività e vi diciamo chiaramente se Astia Web fa per voi.' },
       ],
     },
   },
