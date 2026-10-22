@@ -57,7 +57,7 @@ Astia Web sites are built with Astro and served by Netlify. Astro builds every p
 
 Static website security is not the same as no risk. The tools that build the site still need updates. Contact forms on our sites are collected by Netlify's own form service, which Netlify maintains, not by code on your site. And your booking engine and PMS run on your vendors' servers, some of which may run PHP. A static site makes your website smaller as a target. It does not make your hotel immune. So we ask the same question of every vendor connected to your site, and we keep those connections working when they update ([keeping your booking engine and forms connected](/journal/connect-anything-open-platforms-2026-en)).
 
-The word that matters is managed. A static site nobody updates will age too. AI does most of our building and editing, and a person checks every change before it goes live, including security updates. You can read [who updates and checks your site](/how-it-works), and [hosting and security are included in the monthly price](/pricing) of CHF 150 a month.
+The word that matters is managed. A static site nobody updates will age too. AI does most of our building and editing, and a person checks every change before it goes live, including security updates. You can read [who updates and checks your site](/how-it-works), and [hosting and security are included in the price](/pricing), which is 150 a month.
 
 ## Staying on WordPress can be the right choice
 
